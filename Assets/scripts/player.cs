@@ -644,8 +644,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // =========================================================================
     private void HandleCombatInputs()
     {
-        // No permitir atacar en estados incompatibles (colgado, trepando o deslizándose)
-        if (isHanging || isClimbing || isSliding) return;
+        // No permitir atacar en estados incompatibles (colgado, trepando, deslizándose o esquivando)
+        if (isHanging || isClimbing || isSliding || isDodging || isBackdodging) return;
 
         // Si está agachado, solo puede iniciar ataque si tiene espacio para levantarse
         if (isCrouching)
@@ -1070,7 +1070,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void HandleCrouchInputs()
     {
-        if (isHanging || isClimbing || IsInCombatAction || isSliding) return;
+        if (isHanging || isClimbing || IsInCombatAction || isSliding || isDodging || isBackdodging) return;
 
         bool crouchKeyDown = Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow);
 
@@ -1111,7 +1111,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // Solo disponible en el suelo
         if (!isGrounded) return;
 
-        // Si está agachado, comprobar si puede incorporarse antes de esquivar
+        // Si S o Flecha Abajo está mantenida (postura agachada defensiva), K no interrumpe el agachado
+        bool crouchHeld = Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow);
+        if (crouchHeld) return;
+
+        // Si está agachado (por techo bajo o previo), comprobar si puede incorporarse antes de esquivar
         if (isCrouching)
         {
             if (CanStandUp())
