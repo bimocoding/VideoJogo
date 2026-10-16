@@ -53,6 +53,57 @@ TextureImporter:
   - first:
       213: -6503069476712038098
     second: slide_merged_16
+  - first:
+      213: 4857335772653305134
+    second: slide_0
+  - first:
+      213: -329969244792713109
+    second: slide_1
+  - first:
+      213: -7909398147288137428
+    second: slide_2
+  - first:
+      213: 5850636965976271850
+    second: slide_3
+  - first:
+      213: -5470278947253641299
+    second: slide_4
+  - first:
+      213: -7826137699747185008
+    second: slide_5
+  - first:
+      213: -3649443920344856325
+    second: slide_6
+  - first:
+      213: 4606067871806678329
+    second: slide_7
+  - first:
+      213: -5719591081113913424
+    second: slide_8
+  - first:
+      213: 17345911028680437
+    second: slide_9
+  - first:
+      213: -9218011682180229013
+    second: slide_10
+  - first:
+      213: 7413055326644926886
+    second: slide_11
+  - first:
+      213: 1841399051030617402
+    second: slide_12
+  - first:
+      213: -2074508108351830736
+    second: slide_13
+  - first:
+      213: 4074463093872167941
+    second: slide_14
+  - first:
+      213: -7116036870925712791
+    second: slide_15
+  - first:
+      213: 1853171392000366297
+    second: slide_16
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -85,7 +136,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -125,7 +176,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -163,375 +214,375 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slide_merged_0
+      name: slide_0
       rect:
         serializedVersion: 2
-        x: 18
+        x: 0
         y: 320
-        width: 45
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2057037ffe901c240800000000000000
-      internalID: 4810136803257382146
+      spriteID: e2d3cc36629b86340800000000000000
+      internalID: 4857335772653305134
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_1
+      name: slide_1
       rect:
         serializedVersion: 2
-        x: 162
+        x: 144
         y: 320
-        width: 45
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0c77359eb05243e60800000000000000
-      internalID: 7941012776050456512
+      spriteID: b60935958b6bb6bf0800000000000000
+      internalID: -329969244792713109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_2
+      name: slide_2
       rect:
         serializedVersion: 2
-        x: 304
+        x: 288
         y: 320
-        width: 48
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a007f5cbd29f55b0800000000000000
-      internalID: -5377417957440290652
+      spriteID: c2102c37a4c2c3290800000000000000
+      internalID: -7909398147288137428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_3
+      name: slide_3
       rect:
         serializedVersion: 2
-        x: 14
+        x: 0
         y: 256
-        width: 51
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 73d3cc53ecbd21e70800000000000000
-      internalID: 9084565077072035127
+      spriteID: aebe8c29253a13150800000000000000
+      internalID: 5850636965976271850
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_4
+      name: slide_4
       rect:
         serializedVersion: 2
-        x: 146
+        x: 144
         y: 256
-        width: 94
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ecda7027d4d351470800000000000000
-      internalID: 8364659285745446350
+      spriteID: daf16aeb74aa514b0800000000000000
+      internalID: -5470278947253641299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_5
+      name: slide_5
       rect:
         serializedVersion: 2
-        x: 290
+        x: 288
         y: 256
-        width: 94
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ee0b5813cfbf9c2a0800000000000000
-      internalID: -6716560308665208594
+      spriteID: 09eb64b0a39f36390800000000000000
+      internalID: -7826137699747185008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_6
+      name: slide_6
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 192
-        width: 110
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 35abbb762775ef8f0800000000000000
-      internalID: -504869959340672429
+      spriteID: bf8c22c07129a5dc0800000000000000
+      internalID: -3649443920344856325
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_7
+      name: slide_7
       rect:
         serializedVersion: 2
-        x: 146
+        x: 144
         y: 192
-        width: 110
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f10dc3307eb338870800000000000000
-      internalID: 8683850369878249503
+      spriteID: 935606e435a0cef30800000000000000
+      internalID: 4606067871806678329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_8
+      name: slide_8
       rect:
         serializedVersion: 2
-        x: 290
+        x: 288
         y: 192
-        width: 122
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b1750e54e25b5fd70800000000000000
-      internalID: 9076359834380556059
+      spriteID: 0b776b5273eef90b0800000000000000
+      internalID: -5719591081113913424
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_9
+      name: slide_9
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 128
-        width: 122
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa354705bc5d2d820800000000000000
-      internalID: 2941648575831233450
+      spriteID: 5f68b21a300ad3000800000000000000
+      internalID: 17345911028680437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_10
+      name: slide_10
       rect:
         serializedVersion: 2
-        x: 152
+        x: 144
         y: 128
-        width: 122
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c602c2d7c7e166070800000000000000
-      internalID: 8099194499897237612
+      spriteID: b681f34d63b031080800000000000000
+      internalID: -9218011682180229013
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_11
+      name: slide_11
       rect:
         serializedVersion: 2
-        x: 296
+        x: 288
         y: 128
-        width: 122
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb60a9fe0c7f601f0800000000000000
-      internalID: -1078902652683024709
+      spriteID: 6a9fcf42b8670e660800000000000000
+      internalID: 7413055326644926886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_12
+      name: slide_12
       rect:
         serializedVersion: 2
-        x: 11
+        x: 0
         y: 64
-        width: 115
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 26258c3e0da725780800000000000000
-      internalID: -8695752892905663902
+      spriteID: a3ddb664ea6fd8910800000000000000
+      internalID: 1841399051030617402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_13
+      name: slide_13
       rect:
         serializedVersion: 2
-        x: 162
+        x: 144
         y: 64
-        width: 108
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dd339adfe27550940800000000000000
-      internalID: 5261707598988129245
+      spriteID: 035850eddddd533e0800000000000000
+      internalID: -2074508108351830736
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_14
+      name: slide_14
       rect:
         serializedVersion: 2
-        x: 306
+        x: 288
         y: 64
-        width: 41
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ee69b7ba72deed680800000000000000
-      internalID: -8728278273160931602
+      spriteID: 50c80b0b8966b8830800000000000000
+      internalID: 4074463093872167941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_15
+      name: slide_15
       rect:
         serializedVersion: 2
-        x: 18
+        x: 0
         y: 0
-        width: 41
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0ac206c9c98a344b0800000000000000
-      internalID: -5457332932850996064
+      spriteID: 96204e31b22ce3d90800000000000000
+      internalID: -7116036870925712791
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slide_merged_16
+      name: slide_16
       rect:
         serializedVersion: 2
-        x: 162
+        x: 144
         y: 0
-        width: 45
-        height: 53
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 144
+        height: 64
+      alignment: 9
+      pivot: {x: 0.2777778, y: 0.015625}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e21c4e204c470c5a0800000000000000
-      internalID: -6503069476712038098
+      spriteID: 9d619100099c7b910800000000000000
+      internalID: 1853171392000366297
       vertices: []
       indices: 
       edges: []
@@ -550,6 +601,23 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
+      slide_0: 4857335772653305134
+      slide_1: -329969244792713109
+      slide_10: -9218011682180229013
+      slide_11: 7413055326644926886
+      slide_12: 1841399051030617402
+      slide_13: -2074508108351830736
+      slide_14: 4074463093872167941
+      slide_15: -7116036870925712791
+      slide_16: 1853171392000366297
+      slide_2: -7909398147288137428
+      slide_3: 5850636965976271850
+      slide_4: -5470278947253641299
+      slide_5: -7826137699747185008
+      slide_6: -3649443920344856325
+      slide_7: 4606067871806678329
+      slide_8: -5719591081113913424
+      slide_9: 17345911028680437
       slide_merged_0: 4810136803257382146
       slide_merged_1: 7941012776050456512
       slide_merged_10: 8099194499897237612

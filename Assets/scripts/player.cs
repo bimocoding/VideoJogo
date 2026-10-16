@@ -106,6 +106,27 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Helper para saber si está en cualquier acción de combate
     public bool IsInCombatAction => isAttacking || isDodgeAttacking || isVerticalAttacking;
 
+    [Header("Sistema de Agachado y Deslizamiento (Fase 4 - Crouch & Slide)")]
+    public KeyCode crouchKey = KeyCode.S;
+    public float crouchColliderHeight = 0.32f;  // Altura del collider reducida al agacharse/deslizarse
+    public float slideDuration = 0.55f;         // Duración del deslizamiento
+    public float slideInitialSpeed = 8.5f;      // Velocidad de arranque del slide (mayor a carrera 4.6f)
+    public float slideDeceleration = 9.0f;      // Desaceleración / fricción durante el slide
+
+    // Estados de Crouch y Slide
+    public bool isCrouching = false;
+    public bool isSliding = false;
+    private float slideTimer = 0f;
+    private float currentSlideSpeed = 0f;
+    private float slideDirection = 1f;
+
+    // Dimensiones originales del collider físico
+    private Collider2D playerCollider;
+    private CapsuleCollider2D capsuleCol;
+    private BoxCollider2D boxCol;
+    private Vector2 originalColliderSize;
+    private Vector2 originalColliderOffset;
+
     // Eventos de combate desacoplados
     public static Action<int> OnComboHit;
     public static Action OnComboReset;
@@ -132,6 +153,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         lastGroundedPos = transform.position;
         facingDirection = transform.localScale.x < 0 ? 1 : -1;
 
+        SetupColliders();
+
         if (groundCheck == null)
         {
             var childCheck = transform.Find("GroundCheck");
@@ -152,6 +175,25 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    private void SetupColliders()
+    {
+        capsuleCol = GetComponent<CapsuleCollider2D>();
+        boxCol = GetComponent<BoxCollider2D>();
+
+        if (capsuleCol != null)
+        {
+            playerCollider = capsuleCol;
+            originalColliderSize = capsuleCol.size;
+            originalColliderOffset = capsuleCol.offset;
+        }
+        else if (boxCol != null)
+        {
+            playerCollider = boxCol;
+            originalColliderSize = boxCol.size;
+            originalColliderOffset = boxCol.offset;
+        }
+    }
+
     void Update()
     {
         if (ledgeCooldown > 0f) ledgeCooldown -= Time.deltaTime;
@@ -166,14 +208,21 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
+        // Gestión de Crouch y Slide (Fase 4)
+        HandleSlideInputs();
+        UpdateSlide();
+        HandleCrouchInputs();
+
         // Sistema de combate con J (combos), K (dodge attacks) y W+J (ataque vertical)
         HandleCombatInputs();
 
-        // Movimiento horizontal A/D o flechas (bloqueado durante cualquier acción de combate)
-        move = IsInCombatAction ? 0f : Input.GetAxisRaw("Horizontal");
+        bool isMovementBlocked = IsInCombatAction || isSliding || isCrouching;
+
+        // Movimiento horizontal A/D o flechas (bloqueado durante combate, slide o agachado)
+        move = isMovementBlocked ? 0f : Input.GetAxisRaw("Horizontal");
 
         // Conmutador / Toggle de Correr con Shift
-        if (!IsInCombatAction && (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)))
+        if (!isMovementBlocked && (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)))
         {
             isRunning = !isRunning;
         }
@@ -185,14 +234,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
             rb2d.linearVelocity = Vector2.zero;
         }
 
-        // Buffer de salto (no saltar durante el combate)
-        if (!IsInCombatAction && Input.GetButtonDown("Jump"))
+        // Buffer de salto (no saltar durante combate, slide o agachado)
+        if (!isMovementBlocked && Input.GetButtonDown("Jump"))
             jumpBufferCounter = jumpBufferTime;
         else
             jumpBufferCounter -= Time.deltaTime;
 
-        // Orientación / Flip (no flipear durante el combate)
-        if (!IsInCombatAction)
+        // Orientación / Flip (no flipear durante combate, slide o agachado)
+        if (!isMovementBlocked)
         {
             if (move > 0.01f) facingDirection = -1;
             else if (move < -0.01f) facingDirection = 1;
@@ -223,6 +272,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetBool("isAttacking", isAttacking);
             animator.SetBool("isDodgeAttacking", isDodgeAttacking);
             animator.SetBool("isVerticalAttacking", isVerticalAttacking);
+            animator.SetBool("isCrouching", isCrouching);
+            animator.SetBool("isSliding", isSliding);
         }
 
         // Recuperación de Squash & Stretch
@@ -283,9 +334,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         bool isApex = !isGrounded && Mathf.Abs(rb2d.linearVelocity.y) < apexThreshold;
+        bool freezeMovementForce = IsInCombatAction || isSliding || isCrouching;
 
-        // Selección de velocidad según estado Caminar / Correr (solo si no está en acción de combate)
-        if (!IsInCombatAction)
+        // Selección de velocidad según estado Caminar / Correr (solo si no está en combate, slide o agachado)
+        if (!freezeMovementForce)
         {
             float currentMaxSpeed = isRunning ? runSpeed : walkSpeed;
             float targetSpeed = move * currentMaxSpeed;
@@ -319,8 +371,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void CheckLedgeGrab()
     {
-        // No agarrar si está en combate (ataque, dodge attack o vertical attack)
-        if (IsInCombatAction) return;
+        // No agarrar si está en combate, slide o agachado
+        if (IsInCombatAction || isSliding || isCrouching) return;
 
         // No agarrar si el jugador está presionando S/Abajo para bajar
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) return;
@@ -480,8 +532,30 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // =========================================================================
     private void HandleCombatInputs()
     {
-        // No permitir atacar en estados incompatibles (colgado o trepando de un borde)
-        if (isHanging || isClimbing) return;
+        // No permitir atacar en estados incompatibles (colgado, trepando o deslizándose)
+        if (isHanging || isClimbing || isSliding) return;
+
+        // Si está agachado, solo puede iniciar ataque si tiene espacio para levantarse
+        if (isCrouching)
+        {
+            if (Input.GetKeyDown(attackKey))
+            {
+                if (CanStandUp())
+                {
+                    isCrouching = false;
+                    SetColliderCrouched(false);
+                    if (animator != null) animator.SetBool("isCrouching", false);
+                }
+                else
+                {
+                    return; // Bloqueado debajo de estructura baja
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
 
         // Contador de reseteo de combo si transcurre demasiado tiempo sin atacar
         if (comboResetTimer > 0f)
@@ -837,6 +911,166 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    // =========================================================================
+    // SISTEMA DE AGACHADO Y DESLIZAMIENTO (FASE 4 - CROUCH & SLIDE)
+    // =========================================================================
+    private void SetColliderCrouched(bool crouch)
+    {
+        if (playerCollider == null) return;
+
+        float targetHeight = crouch ? crouchColliderHeight : originalColliderSize.y;
+        float bottomY = originalColliderOffset.y - (originalColliderSize.y * 0.5f);
+        Vector2 targetSize = new Vector2(originalColliderSize.x, targetHeight);
+        Vector2 targetOffset = new Vector2(originalColliderOffset.x, bottomY + (targetHeight * 0.5f));
+
+        if (capsuleCol != null)
+        {
+            capsuleCol.size = targetSize;
+            capsuleCol.offset = targetOffset;
+        }
+        else if (boxCol != null)
+        {
+            boxCol.size = targetSize;
+            boxCol.offset = targetOffset;
+        }
+    }
+
+    public bool CanStandUp()
+    {
+        if (playerCollider == null) return true;
+
+        float bottomY = originalColliderOffset.y - (originalColliderSize.y * 0.5f);
+        float checkHeight = originalColliderSize.y - crouchColliderHeight;
+        float checkCenterY = bottomY + crouchColliderHeight + (checkHeight * 0.5f);
+        Vector2 boxCenter = (Vector2)transform.position + new Vector2(originalColliderOffset.x, checkCenterY);
+        Vector2 boxSize = new Vector2(originalColliderSize.x * 0.90f, checkHeight - 0.02f);
+
+        Collider2D[] hits = Physics2D.OverlapBoxAll(boxCenter, boxSize, 0f, groundLayer);
+        foreach (var h in hits)
+        {
+            if (h != null && h != playerCollider && !h.transform.IsChildOf(transform) && !h.isTrigger)
+            {
+                return false; // Obstáculo sólido arriba
+            }
+        }
+        return true; // Espacio libre
+    }
+
+    private void HandleCrouchInputs()
+    {
+        if (isHanging || isClimbing || IsInCombatAction || isSliding) return;
+
+        bool crouchKeyDown = Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow);
+
+        // Agacharse con S en el suelo
+        if (isGrounded && crouchKeyDown)
+        {
+            if (!isCrouching)
+            {
+                isCrouching = true;
+                SetColliderCrouched(true);
+            }
+        }
+        else if (isCrouching)
+        {
+            // Al soltar S, permitir levantarse únicamente si hay espacio suficiente
+            if (CanStandUp())
+            {
+                isCrouching = false;
+                SetColliderCrouched(false);
+            }
+            // Si hay techo bajo, permanece agachado automáticamente hasta que salga
+        }
+    }
+
+    private void HandleSlideInputs()
+    {
+        if (isHanging || isClimbing || IsInCombatAction || isSliding) return;
+
+        // Condición para Slide: En el suelo, corriendo y pulsa K
+        bool isMovingHorizontally = Mathf.Abs(move) > 0.1f || Mathf.Abs(rb2d.linearVelocity.x) > walkSpeed + 0.2f;
+        if (isGrounded && isRunning && isMovingHorizontally && Input.GetKeyDown(dodgeKey))
+        {
+            StartSlide();
+        }
+    }
+
+    private void StartSlide()
+    {
+        isSliding = true;
+        isCrouching = false;
+        slideTimer = 0f;
+        currentSlideSpeed = slideInitialSpeed;
+        slideDirection = (facingDirection == -1) ? 1f : -1f;
+
+        SetColliderCrouched(true);
+
+        if (animator != null)
+        {
+            animator.SetTrigger("slide");
+            animator.SetBool("isSliding", true);
+        }
+    }
+
+    private void UpdateSlide()
+    {
+        if (!isSliding) return;
+
+        slideTimer += Time.deltaTime;
+
+        // Desaceleración progresiva
+        currentSlideSpeed = Mathf.MoveTowards(currentSlideSpeed, 0f, slideDeceleration * Time.deltaTime);
+        rb2d.linearVelocity = new Vector2(slideDirection * currentSlideSpeed, rb2d.linearVelocity.y);
+
+        // Cancelar slide en salto si el jugador pulsa Space y hay espacio libre
+        if (Input.GetButtonDown("Jump") && CanStandUp())
+        {
+            StopSlide(false);
+            ExecuteJump();
+            return;
+        }
+
+        // Fin del deslizamiento
+        if (slideTimer >= slideDuration || Mathf.Abs(currentSlideSpeed) < 0.2f)
+        {
+            // Si termina debajo de un techo bajo, transicionar a postura agachada
+            if (!CanStandUp())
+            {
+                StopSlide(true);
+            }
+            else if (Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow))
+            {
+                StopSlide(true);
+            }
+            else
+            {
+                StopSlide(false);
+            }
+        }
+    }
+
+    private void StopSlide(bool remainCrouched)
+    {
+        isSliding = false;
+
+        if (remainCrouched)
+        {
+            isCrouching = true;
+            SetColliderCrouched(true);
+        }
+        else
+        {
+            isCrouching = false;
+            SetColliderCrouched(false);
+        }
+
+        if (animator != null)
+        {
+            animator.SetBool("isSliding", false);
+            animator.SetBool("isCrouching", isCrouching);
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
@@ -853,7 +1087,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         float reach = (currentComboStep == 3) ? attack3Reach : ((currentComboStep == 2) ? attack2Reach : attack1Reach);
         Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (reach * 0.5f);
         Vector2 attackSize = new Vector2(reach, 0.75f);
-
         Gizmos.color = isAttacking ? Color.red : new Color(1f, 0f, 0f, 0.2f);
         Gizmos.DrawWireCube(attackCenter, attackSize);
 
@@ -869,6 +1102,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Vector2 vertSize = new Vector2(verticalAttackReachX, verticalAttackReachY);
         Gizmos.color = isVerticalAttacking ? Color.yellow : new Color(1f, 1f, 0f, 0.2f);
         Gizmos.DrawWireCube(vertCenter, vertSize);
+
+        // Gizmo de comprobación de techo (Ceiling Check) para levantarse
+        if (playerCollider != null)
+        {
+            float bottomY = originalColliderOffset.y - (originalColliderSize.y * 0.5f);
+            float checkHeight = originalColliderSize.y - crouchColliderHeight;
+            float checkCenterY = bottomY + crouchColliderHeight + (checkHeight * 0.5f);
+            Vector2 boxCenter = (Vector2)transform.position + new Vector2(originalColliderOffset.x, checkCenterY);
+            Vector2 boxSize = new Vector2(originalColliderSize.x * 0.90f, checkHeight - 0.02f);
+            Gizmos.color = CanStandUp() ? Color.green : Color.magenta;
+            Gizmos.DrawWireCube(boxCenter, boxSize);
+        }
     }
 }
 

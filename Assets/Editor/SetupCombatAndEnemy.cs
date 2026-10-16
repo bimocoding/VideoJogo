@@ -66,12 +66,15 @@ public static class SetupCombatAndEnemy
         // 6. Ejecutar configuración de Fase 3 (Dodge & Vertical Attack)
         SetupPhase3Combat.ExecutePhase3Setup();
 
+        // 7. Ejecutar configuración de Fase 4 (Crouch & Slide)
+        SetupPhase4CrouchAndSlide.ExecutePhase4Setup();
+
         // Guardar cambios en la escena
         EditorSceneManager.MarkSceneDirty(scene);
         EditorSceneManager.SaveScene(scene);
         AssetDatabase.SaveAssets();
 
-        Debug.Log("<color=green>[SETUP COMBAT]</color> ¡Configuración de combate, enemigos, Fase 3 y UI completada con éxito!");
+        Debug.Log("<color=green>[SETUP COMBAT]</color> ¡Configuración de combate, enemigos, Fase 3, Fase 4 y UI completada con éxito!");
     }
 
     private static GameObject SetupHitFxPrefab()
