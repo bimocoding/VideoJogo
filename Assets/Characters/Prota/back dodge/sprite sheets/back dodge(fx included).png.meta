@@ -1,0 +1,756 @@
+fileFormatVersion: 2
+guid: f8c26c3910dbaad4c8806641341eeae3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4552070457452030958
+    second: back dodge(fx included)_0
+  - first:
+      213: -2484419544892249879
+    second: back dodge(fx included)_1
+  - first:
+      213: -2017046737407432037
+    second: back dodge(fx included)_2
+  - first:
+      213: 4847886646722855572
+    second: back dodge(fx included)_3
+  - first:
+      213: -7858516069409535748
+    second: back dodge(fx included)_4
+  - first:
+      213: -1977330612141784118
+    second: back dodge(fx included)_5
+  - first:
+      213: -8036938443661725321
+    second: back dodge(fx included)_6
+  - first:
+      213: -398296903310873819
+    second: back dodge(fx included)_7
+  - first:
+      213: 2545381607839267156
+    second: back dodge(fx included)_8
+  - first:
+      213: 6642860824387268477
+    second: back dodge(fx included)_9
+  - first:
+      213: 8727662281351375945
+    second: back dodge(fx included)_10
+  - first:
+      213: 1289131768730826970
+    second: back dodge(fx included)_11
+  - first:
+      213: 2348088646295535450
+    second: back dodge(fx included)_12
+  - first:
+      213: 2242568680902010009
+    second: back dodge(fx included)_13
+  - first:
+      213: -7388708400969940253
+    second: back dodge(fx included)_14
+  - first:
+      213: -3759619401767704547
+    second: back dodge(fx included)_15
+  - first:
+      213: 1887829260349580998
+    second: back dodge(fx included)_16
+  - first:
+      213: 5818205808555510581
+    second: back dodge(fx included)_17
+  - first:
+      213: 5939752996206620122
+    second: back dodge(fx included)_18
+  - first:
+      213: 8355611086835776684
+    second: back dodge(fx included)_19
+  - first:
+      213: 4061679079644175929
+    second: back dodge(fx included)_20
+  - first:
+      213: 3160311481581591083
+    second: back dodge(fx included)_21
+  - first:
+      213: -2484352726093203474
+    second: back dodge(fx included)_22
+  - first:
+      213: -4051724130053809211
+    second: back dodge(fx included)_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: back dodge(fx included)_0
+      rect:
+        serializedVersion: 2
+        x: 86
+        y: 304
+        width: 53
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 214950f690cc3d0c0800000000000000
+      internalID: -4552070457452030958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_1
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 304
+        width: 52
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e8e8a14691958dd0800000000000000
+      internalID: -2484419544892249879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_2
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 304
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9a2879dda20204e0800000000000000
+      internalID: -2017046737407432037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_3
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 312
+        width: 59
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49286415837274340800000000000000
+      internalID: 4847886646722855572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 252
+        width: 57
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf845256541f0f290800000000000000
+      internalID: -7858516069409535748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_5
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 246
+        width: 64
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac388cbd84c1f84e0800000000000000
+      internalID: -1977330612141784118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_6
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 244
+        width: 66
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771bcd7211f077090800000000000000
+      internalID: -8036938443661725321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_7
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 243
+        width: 82
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52b6403a317f87af0800000000000000
+      internalID: -398296903310873819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_8
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 121
+        width: 121
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45972191613035320800000000000000
+      internalID: 2545381607839267156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_9
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 182
+        width: 84
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7f26f179be203c50800000000000000
+      internalID: 6642860824387268477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_10
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 121
+        width: 116
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94c268f8a92ee1970800000000000000
+      internalID: 8727662281351375945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_11
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 182
+        width: 85
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad83fd7738ae3e110800000000000000
+      internalID: 1289131768730826970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_12
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 121
+        width: 122
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5fb29fde26169020800000000000000
+      internalID: 2348088646295535450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_13
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 182
+        width: 92
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 994a49965543f1f10800000000000000
+      internalID: 2242568680902010009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_14
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 182
+        width: 116
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e20e3b3bd8067990800000000000000
+      internalID: -7388708400969940253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_15
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 121
+        width: 134
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1828fac21623dbc0800000000000000
+      internalID: -3759619401767704547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 134
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c6a9bbc5bae23a10800000000000000
+      internalID: 1887829260349580998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_17
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 60
+        width: 57
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53bc0115b5b6eb050800000000000000
+      internalID: 5818205808555510581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_18
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 60
+        width: 57
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: add257041ed3e6250800000000000000
+      internalID: 5939752996206620122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_19
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 60
+        width: 57
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cac7928730815f370800000000000000
+      internalID: 8355611086835776684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_20
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 57
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93e93dd6a9bfd5830800000000000000
+      internalID: 4061679079644175929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_21
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 54
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2a52476c8eabdb20800000000000000
+      internalID: 3160311481581591083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_22
+      rect:
+        serializedVersion: 2
+        x: 367
+        y: 0
+        width: 52
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee7f078bb5ec58dd0800000000000000
+      internalID: -2484352726093203474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: back dodge(fx included)_23
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 45
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cb9344ee5265c7c0800000000000000
+      internalID: -4051724130053809211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      back dodge(fx included)_0: -4552070457452030958
+      back dodge(fx included)_1: -2484419544892249879
+      back dodge(fx included)_10: 8727662281351375945
+      back dodge(fx included)_11: 1289131768730826970
+      back dodge(fx included)_12: 2348088646295535450
+      back dodge(fx included)_13: 2242568680902010009
+      back dodge(fx included)_14: -7388708400969940253
+      back dodge(fx included)_15: -3759619401767704547
+      back dodge(fx included)_16: 1887829260349580998
+      back dodge(fx included)_17: 5818205808555510581
+      back dodge(fx included)_18: 5939752996206620122
+      back dodge(fx included)_19: 8355611086835776684
+      back dodge(fx included)_2: -2017046737407432037
+      back dodge(fx included)_20: 4061679079644175929
+      back dodge(fx included)_21: 3160311481581591083
+      back dodge(fx included)_22: -2484352726093203474
+      back dodge(fx included)_23: -4051724130053809211
+      back dodge(fx included)_3: 4847886646722855572
+      back dodge(fx included)_4: -7858516069409535748
+      back dodge(fx included)_5: -1977330612141784118
+      back dodge(fx included)_6: -8036938443661725321
+      back dodge(fx included)_7: -398296903310873819
+      back dodge(fx included)_8: 2545381607839267156
+      back dodge(fx included)_9: 6642860824387268477
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

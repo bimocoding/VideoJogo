@@ -1,0 +1,652 @@
+fileFormatVersion: 2
+guid: 09c422b83aa67094fa742e6392307e1e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6272241949977485034
+    second: dodge atk 2x_char_0
+  - first:
+      213: 9116489364080427713
+    second: dodge atk 2x_char_1
+  - first:
+      213: -4860674046891894916
+    second: dodge atk 2x_char_2
+  - first:
+      213: 5556608313343488088
+    second: dodge atk 2x_char_3
+  - first:
+      213: 2385584826016660276
+    second: dodge atk 2x_char_4
+  - first:
+      213: 2719765270746781266
+    second: dodge atk 2x_char_5
+  - first:
+      213: 1469723238021698507
+    second: dodge atk 2x_char_6
+  - first:
+      213: 2680195458257464428
+    second: dodge atk 2x_char_7
+  - first:
+      213: 6348165169837776287
+    second: dodge atk 2x_char_8
+  - first:
+      213: 3304287033346635721
+    second: dodge atk 2x_char_9
+  - first:
+      213: -4699494951872279774
+    second: dodge atk 2x_char_10
+  - first:
+      213: 747078370141737776
+    second: dodge atk 2x_char_11
+  - first:
+      213: 3155477838767654352
+    second: dodge atk 2x_char_12
+  - first:
+      213: -6275769947726796993
+    second: dodge atk 2x_char_13
+  - first:
+      213: 5763312648117967362
+    second: dodge atk 2x_char_14
+  - first:
+      213: -3013616948521687622
+    second: dodge atk 2x_char_15
+  - first:
+      213: -4360678588686288732
+    second: dodge atk 2x_char_16
+  - first:
+      213: -9000463145725004586
+    second: dodge atk 2x_char_17
+  - first:
+      213: 3993298210809470067
+    second: dodge atk 2x_char_18
+  - first:
+      213: -877292113848921185
+    second: dodge atk 2x_char_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dodge atk 2x_char_0
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 411
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 611e942ad2584f8a0800000000000000
+      internalID: -6272241949977485034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_1
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 411
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c204a086c6448e70800000000000000
+      internalID: 9116489364080427713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_2
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 411
+        width: 57
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c775c0215ba6b8cb0800000000000000
+      internalID: -4860674046891894916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_3
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 411
+        width: 58
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85032d022d90d1d40800000000000000
+      internalID: 5556608313343488088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_4
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 283
+        width: 57
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43bf84882cc4b1120800000000000000
+      internalID: 2385584826016660276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_5
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 283
+        width: 58
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2565e439a1c8eb520800000000000000
+      internalID: 2719765270746781266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_6
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 283
+        width: 57
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc39b608f71856410800000000000000
+      internalID: 1469723238021698507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_7
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 283
+        width: 58
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6c2d0aa197f13520800000000000000
+      internalID: 2680195458257464428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_8
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 157
+        width: 76
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9d10b38696391850800000000000000
+      internalID: 6348165169837776287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_9
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 157
+        width: 75
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c73e8acc8f2bdd20800000000000000
+      internalID: 3304287033346635721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_10
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 166
+        width: 25
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22b49e18d3a08ceb0800000000000000
+      internalID: -4699494951872279774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_11
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 157
+        width: 59
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0331da7c1d72e5a00800000000000000
+      internalID: 747078370141737776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_12
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 169
+        width: 14
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d50d5c30628acb20800000000000000
+      internalID: 3155477838767654352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_13
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 158
+        width: 59
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f372ca5ab7cf7e8a0800000000000000
+      internalID: -6275769947726796993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_14
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 62
+        width: 14
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20a569071566bff40800000000000000
+      internalID: 5763312648117967362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_15
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 30
+        width: 49
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab5a4462a5b7d26d0800000000000000
+      internalID: -3013616948521687622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_16
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 77
+        width: 13
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a8b3bd6de1cb73c0800000000000000
+      internalID: -4360678588686288732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_17
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 30
+        width: 49
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d4f019947ee71380800000000000000
+      internalID: -9000463145725004586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_18
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 30
+        width: 52
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37c5089b09b0b6730800000000000000
+      internalID: 3993298210809470067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 2x_char_19
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 31
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9398c5787b33d3f0800000000000000
+      internalID: -877292113848921185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dodge atk 2x_char_0: -6272241949977485034
+      dodge atk 2x_char_1: 9116489364080427713
+      dodge atk 2x_char_10: -4699494951872279774
+      dodge atk 2x_char_11: 747078370141737776
+      dodge atk 2x_char_12: 3155477838767654352
+      dodge atk 2x_char_13: -6275769947726796993
+      dodge atk 2x_char_14: 5763312648117967362
+      dodge atk 2x_char_15: -3013616948521687622
+      dodge atk 2x_char_16: -4360678588686288732
+      dodge atk 2x_char_17: -9000463145725004586
+      dodge atk 2x_char_18: 3993298210809470067
+      dodge atk 2x_char_19: -877292113848921185
+      dodge atk 2x_char_2: -4860674046891894916
+      dodge atk 2x_char_3: 5556608313343488088
+      dodge atk 2x_char_4: 2385584826016660276
+      dodge atk 2x_char_5: 2719765270746781266
+      dodge atk 2x_char_6: 1469723238021698507
+      dodge atk 2x_char_7: 2680195458257464428
+      dodge atk 2x_char_8: 6348165169837776287
+      dodge atk 2x_char_9: 3304287033346635721
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

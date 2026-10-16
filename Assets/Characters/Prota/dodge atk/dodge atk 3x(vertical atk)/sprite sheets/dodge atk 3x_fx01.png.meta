@@ -1,0 +1,3538 @@
+fileFormatVersion: 2
+guid: c9a077ec20e094a4c921da1e56fe5e78
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5340886986611670756
+    second: dodge atk 3x_fx01_0
+  - first:
+      213: 1497057348275405576
+    second: dodge atk 3x_fx01_1
+  - first:
+      213: 4299758179411330976
+    second: dodge atk 3x_fx01_2
+  - first:
+      213: -6409146078071095820
+    second: dodge atk 3x_fx01_3
+  - first:
+      213: -1340884944616406353
+    second: dodge atk 3x_fx01_4
+  - first:
+      213: -7534432132802710555
+    second: dodge atk 3x_fx01_5
+  - first:
+      213: -4759329914352832778
+    second: dodge atk 3x_fx01_6
+  - first:
+      213: -8660812324609545668
+    second: dodge atk 3x_fx01_7
+  - first:
+      213: 4672678720684991218
+    second: dodge atk 3x_fx01_8
+  - first:
+      213: -8702109171176123494
+    second: dodge atk 3x_fx01_9
+  - first:
+      213: 6519421860778827091
+    second: dodge atk 3x_fx01_10
+  - first:
+      213: -4776505259293450881
+    second: dodge atk 3x_fx01_11
+  - first:
+      213: 457693919068861633
+    second: dodge atk 3x_fx01_12
+  - first:
+      213: 928510161632233334
+    second: dodge atk 3x_fx01_13
+  - first:
+      213: -6346207819469908992
+    second: dodge atk 3x_fx01_14
+  - first:
+      213: -1388574267486426122
+    second: dodge atk 3x_fx01_15
+  - first:
+      213: 8999625917835588322
+    second: dodge atk 3x_fx01_16
+  - first:
+      213: -8432380887942731509
+    second: dodge atk 3x_fx01_17
+  - first:
+      213: 3507201027640557335
+    second: dodge atk 3x_fx01_18
+  - first:
+      213: -5212924808235078995
+    second: dodge atk 3x_fx01_19
+  - first:
+      213: -3673999948517168532
+    second: dodge atk 3x_fx01_20
+  - first:
+      213: 8603688433170628583
+    second: dodge atk 3x_fx01_21
+  - first:
+      213: 5538508440104998088
+    second: dodge atk 3x_fx01_22
+  - first:
+      213: -9148462023191031427
+    second: dodge atk 3x_fx01_23
+  - first:
+      213: -2268986432600093906
+    second: dodge atk 3x_fx01_24
+  - first:
+      213: 5513683340988126015
+    second: dodge atk 3x_fx01_25
+  - first:
+      213: -3419237586765130342
+    second: dodge atk 3x_fx01_26
+  - first:
+      213: 8213936803618657589
+    second: dodge atk 3x_fx01_27
+  - first:
+      213: -6059388186869845421
+    second: dodge atk 3x_fx01_28
+  - first:
+      213: -2725921214130042885
+    second: dodge atk 3x_fx01_29
+  - first:
+      213: 1432733920172506409
+    second: dodge atk 3x_fx01_30
+  - first:
+      213: 4138374759080908157
+    second: dodge atk 3x_fx01_31
+  - first:
+      213: -7500628291658938431
+    second: dodge atk 3x_fx01_32
+  - first:
+      213: 7718020448804293294
+    second: dodge atk 3x_fx01_33
+  - first:
+      213: -2455303833427012049
+    second: dodge atk 3x_fx01_34
+  - first:
+      213: -8270061533031165683
+    second: dodge atk 3x_fx01_35
+  - first:
+      213: 4313895058804941739
+    second: dodge atk 3x_fx01_36
+  - first:
+      213: -5478699497221734979
+    second: dodge atk 3x_fx01_37
+  - first:
+      213: 1243516325497796869
+    second: dodge atk 3x_fx01_38
+  - first:
+      213: 1557942431454947506
+    second: dodge atk 3x_fx01_39
+  - first:
+      213: -8395962563790238985
+    second: dodge atk 3x_fx01_40
+  - first:
+      213: 5911908371173377507
+    second: dodge atk 3x_fx01_41
+  - first:
+      213: 2702411785882378485
+    second: dodge atk 3x_fx01_42
+  - first:
+      213: -7387610306526739409
+    second: dodge atk 3x_fx01_43
+  - first:
+      213: 4228628067312850815
+    second: dodge atk 3x_fx01_44
+  - first:
+      213: 1187863945948897700
+    second: dodge atk 3x_fx01_45
+  - first:
+      213: -144786043902916691
+    second: dodge atk 3x_fx01_46
+  - first:
+      213: -6923132957189620495
+    second: dodge atk 3x_fx01_47
+  - first:
+      213: -1975226169324047093
+    second: dodge atk 3x_fx01_48
+  - first:
+      213: -5967041999341462600
+    second: dodge atk 3x_fx01_49
+  - first:
+      213: 3115198297937665871
+    second: dodge atk 3x_fx01_50
+  - first:
+      213: -984143617438060120
+    second: dodge atk 3x_fx01_51
+  - first:
+      213: -738683454362944664
+    second: dodge atk 3x_fx01_52
+  - first:
+      213: -106322838260744808
+    second: dodge atk 3x_fx01_53
+  - first:
+      213: 8565216102068359277
+    second: dodge atk 3x_fx01_54
+  - first:
+      213: 1165593248050213652
+    second: dodge atk 3x_fx01_55
+  - first:
+      213: -2530152866791379473
+    second: dodge atk 3x_fx01_56
+  - first:
+      213: 3242149956910754166
+    second: dodge atk 3x_fx01_57
+  - first:
+      213: -6558094791469733000
+    second: dodge atk 3x_fx01_58
+  - first:
+      213: 6161199064892676770
+    second: dodge atk 3x_fx01_59
+  - first:
+      213: 6977278524435447378
+    second: dodge atk 3x_fx01_60
+  - first:
+      213: 3244289635054754157
+    second: dodge atk 3x_fx01_61
+  - first:
+      213: 8888722777702006627
+    second: dodge atk 3x_fx01_62
+  - first:
+      213: -7616646306864259403
+    second: dodge atk 3x_fx01_63
+  - first:
+      213: 5083758283773016094
+    second: dodge atk 3x_fx01_64
+  - first:
+      213: 235158314560463910
+    second: dodge atk 3x_fx01_65
+  - first:
+      213: -6449969912355985861
+    second: dodge atk 3x_fx01_66
+  - first:
+      213: 5458762110248764827
+    second: dodge atk 3x_fx01_67
+  - first:
+      213: -4284963465791358894
+    second: dodge atk 3x_fx01_68
+  - first:
+      213: -196088215117856058
+    second: dodge atk 3x_fx01_69
+  - first:
+      213: 7258657560853001088
+    second: dodge atk 3x_fx01_70
+  - first:
+      213: -8408577597783781739
+    second: dodge atk 3x_fx01_71
+  - first:
+      213: 2140279934845821935
+    second: dodge atk 3x_fx01_72
+  - first:
+      213: -6242652450582692466
+    second: dodge atk 3x_fx01_73
+  - first:
+      213: 5944447494449290972
+    second: dodge atk 3x_fx01_74
+  - first:
+      213: -2212497468249038198
+    second: dodge atk 3x_fx01_75
+  - first:
+      213: -7305449225949125492
+    second: dodge atk 3x_fx01_76
+  - first:
+      213: 576904011534214912
+    second: dodge atk 3x_fx01_77
+  - first:
+      213: -1183005415479955807
+    second: dodge atk 3x_fx01_78
+  - first:
+      213: 3769686892330118915
+    second: dodge atk 3x_fx01_79
+  - first:
+      213: -2826642317377484510
+    second: dodge atk 3x_fx01_80
+  - first:
+      213: 7623552146316972330
+    second: dodge atk 3x_fx01_81
+  - first:
+      213: -201059744444487929
+    second: dodge atk 3x_fx01_82
+  - first:
+      213: -8381138111262801945
+    second: dodge atk 3x_fx01_83
+  - first:
+      213: -7858810566536236831
+    second: dodge atk 3x_fx01_84
+  - first:
+      213: 6553803796841006170
+    second: dodge atk 3x_fx01_85
+  - first:
+      213: -2978679970091354157
+    second: dodge atk 3x_fx01_86
+  - first:
+      213: 2732126292134394755
+    second: dodge atk 3x_fx01_87
+  - first:
+      213: -774573808122387421
+    second: dodge atk 3x_fx01_88
+  - first:
+      213: -5597415003399762246
+    second: dodge atk 3x_fx01_89
+  - first:
+      213: 3072809918045556468
+    second: dodge atk 3x_fx01_90
+  - first:
+      213: -5924752682692620795
+    second: dodge atk 3x_fx01_91
+  - first:
+      213: -4303775422170215394
+    second: dodge atk 3x_fx01_92
+  - first:
+      213: 2558916054997705922
+    second: dodge atk 3x_fx01_93
+  - first:
+      213: -8828051562143522669
+    second: dodge atk 3x_fx01_94
+  - first:
+      213: 6181221552565028631
+    second: dodge atk 3x_fx01_95
+  - first:
+      213: -5218411697499655817
+    second: dodge atk 3x_fx01_96
+  - first:
+      213: -527104802680009040
+    second: dodge atk 3x_fx01_97
+  - first:
+      213: 5128309214966768768
+    second: dodge atk 3x_fx01_98
+  - first:
+      213: 3495392516824009646
+    second: dodge atk 3x_fx01_99
+  - first:
+      213: -7984657126528281791
+    second: dodge atk 3x_fx01_100
+  - first:
+      213: -65294634517621130
+    second: dodge atk 3x_fx01_101
+  - first:
+      213: 8642790878135478510
+    second: dodge atk 3x_fx01_102
+  - first:
+      213: -7124247081059166025
+    second: dodge atk 3x_fx01_103
+  - first:
+      213: -6510749358795568833
+    second: dodge atk 3x_fx01_104
+  - first:
+      213: 8457169069061343889
+    second: dodge atk 3x_fx01_105
+  - first:
+      213: 3098557649200710442
+    second: dodge atk 3x_fx01_106
+  - first:
+      213: -2990404156021935141
+    second: dodge atk 3x_fx01_107
+  - first:
+      213: 8070694539441350919
+    second: dodge atk 3x_fx01_108
+  - first:
+      213: -6095877627320219356
+    second: dodge atk 3x_fx01_109
+  - first:
+      213: -1842248532420197864
+    second: dodge atk 3x_fx01_110
+  - first:
+      213: -3274334359959600333
+    second: dodge atk 3x_fx01_111
+  - first:
+      213: -6269217308873629415
+    second: dodge atk 3x_fx01_112
+  - first:
+      213: 7339387158153019576
+    second: dodge atk 3x_fx01_113
+  - first:
+      213: -8717765150103227965
+    second: dodge atk 3x_fx01_114
+  - first:
+      213: 7722247093271591904
+    second: dodge atk 3x_fx01_115
+  - first:
+      213: 8554523102384107908
+    second: dodge atk 3x_fx01_116
+  - first:
+      213: 3740698424177668570
+    second: dodge atk 3x_fx01_117
+  - first:
+      213: -3027552254315787015
+    second: dodge atk 3x_fx01_118
+  - first:
+      213: -2749744648544118977
+    second: dodge atk 3x_fx01_119
+  - first:
+      213: 4917015003469099633
+    second: dodge atk 3x_fx01_120
+  - first:
+      213: -2739050064971069466
+    second: dodge atk 3x_fx01_121
+  - first:
+      213: -6594141961631851248
+    second: dodge atk 3x_fx01_122
+  - first:
+      213: -4255062545135149532
+    second: dodge atk 3x_fx01_123
+  - first:
+      213: 3510677214389479792
+    second: dodge atk 3x_fx01_124
+  - first:
+      213: 1003873577305810525
+    second: dodge atk 3x_fx01_125
+  - first:
+      213: 2965404987497078056
+    second: dodge atk 3x_fx01_126
+  - first:
+      213: 7649079599336889507
+    second: dodge atk 3x_fx01_127
+  - first:
+      213: -3300203890590629314
+    second: dodge atk 3x_fx01_128
+  - first:
+      213: -3028602976497187104
+    second: dodge atk 3x_fx01_129
+  - first:
+      213: 1219550338701493443
+    second: dodge atk 3x_fx01_130
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_0
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 1139
+        width: 10
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eebe76ca64ae1a40800000000000000
+      internalID: 5340886986611670756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 1132
+        width: 10
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 803085cf9bd96c410800000000000000
+      internalID: 1497057348275405576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_2
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 1139
+        width: 9
+        height: 161
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a784e7784fcbab30800000000000000
+      internalID: 4299758179411330976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_3
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 1132
+        width: 10
+        height: 133
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fdfbfe59932e07a0800000000000000
+      internalID: -6409146078071095820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_4
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 1139
+        width: 10
+        height: 114
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa248774f38346de0800000000000000
+      internalID: -1340884944616406353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_5
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 1139
+        width: 8
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e37104f4e1507790800000000000000
+      internalID: -7534432132802710555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_6
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 1132
+        width: 9
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6feeb1ea8a673fdb0800000000000000
+      internalID: -4759329914352832778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_7
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 1139
+        width: 9
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3aa255e31d9ec780800000000000000
+      internalID: -8660812324609545668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_8
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 1132
+        width: 9
+        height: 122
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f2a4ff1a80b8d040800000000000000
+      internalID: 4672678720684991218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_9
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 1139
+        width: 8
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a93d06780d5eb3780800000000000000
+      internalID: -8702109171176123494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_10
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 1150
+        width: 6
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35d53a814a3a97a50800000000000000
+      internalID: 6519421860778827091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_11
+      rect:
+        serializedVersion: 2
+        x: 488
+        y: 1142
+        width: 7
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7d570016c176bdb0800000000000000
+      internalID: -4776505259293450881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_12
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 1148
+        width: 7
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c4b4f5c13e0a5600800000000000000
+      internalID: 457693919068861633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_13
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 1142
+        width: 7
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6770e62921bb2ec00800000000000000
+      internalID: 928510161632233334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_14
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 1150
+        width: 6
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00490b1ac9dbde7a0800000000000000
+      internalID: -6346207819469908992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_15
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 1150
+        width: 6
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb293a8f0bcabce0800000000000000
+      internalID: -1388574267486426122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_16
+      rect:
+        serializedVersion: 2
+        x: 691
+        y: 1142
+        width: 7
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e23df7171815ec70800000000000000
+      internalID: 8999625917835588322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_17
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 1153
+        width: 8
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b096163524a2afa80800000000000000
+      internalID: -8432380887942731509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_18
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 1142
+        width: 7
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71f7660b0c41ca030800000000000000
+      internalID: 3507201027640557335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_19
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 1150
+        width: 6
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daaa3549188f7a7b0800000000000000
+      internalID: -5212924808235078995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_20
+      rect:
+        serializedVersion: 2
+        x: 876
+        y: 905
+        width: 59
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6aa4d33384530dc0800000000000000
+      internalID: -3673999948517168532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_21
+      rect:
+        serializedVersion: 2
+        x: 887
+        y: 1162
+        width: 6
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7efb541bb01766770800000000000000
+      internalID: 8603688433170628583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_22
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 1155
+        width: 7
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c416fdf41cbcdc40800000000000000
+      internalID: 5538508440104998088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_23
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 1185
+        width: 9
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d711c82b2422a0180800000000000000
+      internalID: -9148462023191031427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_24
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 1162
+        width: 6
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2bc0b47cd0f280e0800000000000000
+      internalID: -2268986432600093906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_25
+      rect:
+        serializedVersion: 2
+        x: 1079
+        y: 906
+        width: 58
+        height: 308
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f33169f29c9848c40800000000000000
+      internalID: 5513683340988126015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_26
+      rect:
+        serializedVersion: 2
+        x: 1090
+        y: 1155
+        width: 14
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a95533ed78d6c80d0800000000000000
+      internalID: -3419237586765130342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_27
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 1186
+        width: 21
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 535923be004cdf170800000000000000
+      internalID: 8213936803618657589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_28
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 898
+        width: 24
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 352bc6d4c8ab8eba0800000000000000
+      internalID: -6059388186869845421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_29
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 921
+        width: 35
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf7c31a29159b2ad0800000000000000
+      internalID: -2725921214130042885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_30
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 915
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92df881d8e712e310800000000000000
+      internalID: 1432733920172506409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_31
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 896
+        width: 8
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d75d576dae57e6930800000000000000
+      internalID: 4138374759080908157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_32
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 917
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c78c6b0f4a68e790800000000000000
+      internalID: -7500628291658938431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_33
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 913
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaa4e24d4baeb1b60800000000000000
+      internalID: 7718020448804293294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_34
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 915
+        width: 44
+        height: 131
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f269de81c220dedd0800000000000000
+      internalID: -2455303833427012049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_35
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 898
+        width: 7
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d011e053ad6da3d80800000000000000
+      internalID: -8270061533031165683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_36
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 903
+        width: 50
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba3a16233b80edb30800000000000000
+      internalID: 4313895058804941739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_37
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 915
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbdbcfca5dfb7f3b0800000000000000
+      internalID: -5478699497221734979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_38
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 904
+        width: 51
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509f1b5728bd14110800000000000000
+      internalID: 1243516325497796869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_39
+      rect:
+        serializedVersion: 2
+        x: 714
+        y: 916
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b86167136cee9510800000000000000
+      internalID: 1557942431454947506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_40
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 897
+        width: 9
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fa0ecd288c8b7b80800000000000000
+      internalID: -8395962563790238985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_41
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 909
+        width: 11
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e5827847515b0250800000000000000
+      internalID: 5911908371173377507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_42
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 900
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f029568335e08520800000000000000
+      internalID: 2702411785882378485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_43
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 914
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f248574419fe97990800000000000000
+      internalID: -7387610306526739409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_44
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 893
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f77dd6fa2da1faa30800000000000000
+      internalID: 4228628067312850815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_45
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 898
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a127cb17f32c7010800000000000000
+      internalID: 1187863945948897700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_46
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 903
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da78bb43cdd9dfdf0800000000000000
+      internalID: -144786043902916691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_47
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 904
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fcb9e971471cef90800000000000000
+      internalID: -6923132957189620495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_48
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 490
+        width: 20
+        height: 249
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b057262a3469694e0800000000000000
+      internalID: -1975226169324047093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_49
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 564
+        width: 9
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bb5a659aeec03da0800000000000000
+      internalID: -5967041999341462600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_50
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 600
+        width: 63
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4fd971d8586b3b20800000000000000
+      internalID: 3115198297937665871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_51
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 599
+        width: 72
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a1f2aa189e9752f0800000000000000
+      internalID: -984143617438060120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_52
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 600
+        width: 140
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86bfc3ddf4bafb5f0800000000000000
+      internalID: -738683454362944664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_53
+      rect:
+        serializedVersion: 2
+        x: 1044
+        y: 600
+        width: 140
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89df4f121f3468ef0800000000000000
+      internalID: -106322838260744808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_54
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 372
+        width: 27
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d609d341aa2cdd670800000000000000
+      internalID: 8565216102068359277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_55
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 373
+        width: 16
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41370ae22e40d2010800000000000000
+      internalID: 1165593248050213652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_56
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 398
+        width: 13
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: feda67b7f5713ecd0800000000000000
+      internalID: -2530152866791379473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_57
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 373
+        width: 16
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 679a63a453e6efc20800000000000000
+      internalID: 3242149956910754166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_58
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 372
+        width: 24
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87b6b1f8887fcf4a0800000000000000
+      internalID: -6558094791469733000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_59
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 381
+        width: 24
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aa9565f7e9f08550800000000000000
+      internalID: 6161199064892676770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_60
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 374
+        width: 15
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25ebfebc9d544d060800000000000000
+      internalID: 6977278524435447378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_61
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 394
+        width: 12
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d699bedeb38060d20800000000000000
+      internalID: 3244289635054754157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_62
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 374
+        width: 17
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36ff9d795461b5b70800000000000000
+      internalID: 8888722777702006627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_63
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 378
+        width: 24
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5be9093e98c3c4690800000000000000
+      internalID: -7616646306864259403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_64
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 391
+        width: 23
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e187d3469332d8640800000000000000
+      internalID: 5083758283773016094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_65
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 383
+        width: 16
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6242b5dbd33734300800000000000000
+      internalID: 235158314560463910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_66
+      rect:
+        serializedVersion: 2
+        x: 498
+        y: 373
+        width: 20
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b366012c98a1d76a0800000000000000
+      internalID: -6449969912355985861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_67
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 383
+        width: 16
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b954dbea73b61cb40800000000000000
+      internalID: 5458762110248764827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_68
+      rect:
+        serializedVersion: 2
+        x: 562
+        y: 391
+        width: 23
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 258baf93e60c884c0800000000000000
+      internalID: -4284963465791358894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_69
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 400
+        width: 20
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c28249aeca574df0800000000000000
+      internalID: -196088215117856058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_70
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 383
+        width: 19
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 083b8d4f79eebb460800000000000000
+      internalID: 7258657560853001088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_71
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 383
+        width: 16
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59e4ac1b93bbe4b80800000000000000
+      internalID: -8408577597783781739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_72
+      rect:
+        serializedVersion: 2
+        x: 765
+        y: 391
+        width: 23
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe3a164d24dc3bd10800000000000000
+      internalID: 2140279934845821935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_73
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 391
+        width: 23
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8dfbc2dba4ad59a0800000000000000
+      internalID: -6242652450582692466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_74
+      rect:
+        serializedVersion: 2
+        x: 854
+        y: 383
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cde5c9c408bee7250800000000000000
+      internalID: 5944447494449290972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_75
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 383
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a82a0926641ab41e0800000000000000
+      internalID: -2212497468249038198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_76
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 391
+        width: 23
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8466aa82a4dd9a90800000000000000
+      internalID: -7305449225949125492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_77
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 392
+        width: 23
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 007aef45423910800800000000000000
+      internalID: 576904011534214912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_78
+      rect:
+        serializedVersion: 2
+        x: 1057
+        y: 384
+        width: 16
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ae24faa7de159fe0800000000000000
+      internalID: -1183005415479955807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_79
+      rect:
+        serializedVersion: 2
+        x: 1157
+        y: 383
+        width: 16
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30f68c3814e905430800000000000000
+      internalID: 3769686892330118915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_80
+      rect:
+        serializedVersion: 2
+        x: 1171
+        y: 392
+        width: 23
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 229c0add9cfb5c8d0800000000000000
+      internalID: -2826642317377484510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_81
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 331
+        width: 18
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a21d3e7294c4cc960800000000000000
+      internalID: 7623552146316972330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_82
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 331
+        width: 115
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70761c94a31b53df0800000000000000
+      internalID: -201059744444487929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_83
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 331
+        width: 17
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ef31b00b4730bb80800000000000000
+      internalID: -8381138111262801945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_84
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 331
+        width: 114
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e075807d65efe290800000000000000
+      internalID: -7858810566536236831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_85
+      rect:
+        serializedVersion: 2
+        x: 463
+        y: 358
+        width: 19
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a54805664d9c3fa50800000000000000
+      internalID: 6553803796841006170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_86
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 369
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d73223595a99a6d0800000000000000
+      internalID: -2978679970091354157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_87
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 362
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38bfc2423667ae520800000000000000
+      internalID: 2732126292134394755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_88
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 369
+        width: 6
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3242b82b9392045f0800000000000000
+      internalID: -774573808122387421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_89
+      rect:
+        serializedVersion: 2
+        x: 527
+        y: 365
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abe4ae5f5bcf152b0800000000000000
+      internalID: -5597415003399762246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_90
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 364
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe076b0750d4aa20800000000000000
+      internalID: 3072809918045556468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_91
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 360
+        width: 24
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50e401663dc07cda0800000000000000
+      internalID: -5924752682692620795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_92
+      rect:
+        serializedVersion: 2
+        x: 700
+        y: 367
+        width: 37
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1ccc705e0be544c0800000000000000
+      internalID: -4303775422170215394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_93
+      rect:
+        serializedVersion: 2
+        x: 742
+        y: 355
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c4ae242898138320800000000000000
+      internalID: 2558916054997705922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_94
+      rect:
+        serializedVersion: 2
+        x: 873
+        y: 335
+        width: 72
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3906a9390e57c7580800000000000000
+      internalID: -8828051562143522669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_95
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 348
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71780a6a04c18c550800000000000000
+      internalID: 6181221552565028631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_96
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 335
+        width: 75
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7713ace953a7497b0800000000000000
+      internalID: -5218411697499655817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_97
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 349
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0be0bd489f85fa8f0800000000000000
+      internalID: -527104802680009040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_98
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 331
+        width: 11
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 084e4706f0a6b2740800000000000000
+      internalID: 5128309214966768768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_99
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 331
+        width: 63
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eab8ad389f0228030800000000000000
+      internalID: 3495392516824009646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_100
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 354
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1439dffd5acc03190800000000000000
+      internalID: -7984657126528281791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_101
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 331
+        width: 11
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67696d730e6081ff0800000000000000
+      internalID: -65294634517621130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_102
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 337
+        width: 11
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee8604f138c51f770800000000000000
+      internalID: 8642790878135478510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_103
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 334
+        width: 22
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b8da519607912d90800000000000000
+      internalID: -7124247081059166025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_104
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 347
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f39436f14fb25a5a0800000000000000
+      internalID: -6510749358795568833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_105
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 345
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19a82d6d576ed5570800000000000000
+      internalID: 8457169069061343889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_106
+      rect:
+        serializedVersion: 2
+        x: 761
+        y: 333
+        width: 11
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a238dacd3c9400b20800000000000000
+      internalID: 3098557649200710442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_107
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 336
+        width: 10
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd3f5719343ff76d0800000000000000
+      internalID: -2990404156021935141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_108
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 345
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 709261a5cedd00070800000000000000
+      internalID: 8070694539441350919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_109
+      rect:
+        serializedVersion: 2
+        x: 965
+        y: 336
+        width: 10
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 429c3556897176ba0800000000000000
+      internalID: -6095877627320219356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_110
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 337
+        width: 10
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8120c1d68b40f66e0800000000000000
+      internalID: -1842248532420197864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_111
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 336
+        width: 12
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33380ce6f3a3f82d0800000000000000
+      internalID: -3274334359959600333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_112
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 342
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9116bd4c2144ff8a0800000000000000
+      internalID: -6269217308873629415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_113
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 342
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b046ce0cbdbad560800000000000000
+      internalID: 7339387158153019576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_114
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 344
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c131d0e8c6440780800000000000000
+      internalID: -8717765150103227965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_115
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 331
+        width: 38
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ebfe3e21deea2b60800000000000000
+      internalID: 7722247093271591904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_116
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 334
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4813a741075c7b670800000000000000
+      internalID: 8554523102384107908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_117
+      rect:
+        serializedVersion: 2
+        x: 883
+        y: 343
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad139f0d561a9e330800000000000000
+      internalID: 3740698424177668570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_118
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 333
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fc039ee349fbf5d0800000000000000
+      internalID: -3027552254315787015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_119
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 333
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f371f789fc1f6d9d0800000000000000
+      internalID: -2749744648544118977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_120
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 336
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 172ba0d181fbc3440800000000000000
+      internalID: 4917015003469099633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_121
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 336
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e7836f5a70fcf9d0800000000000000
+      internalID: -2739050064971069466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_122
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 145
+        width: 13
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01d9f6ab2d6ec74a0800000000000000
+      internalID: -6594141961631851248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_123
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 135
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42e5624d82bf2f4c0800000000000000
+      internalID: -4255062545135149532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_124
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 138
+        width: 26
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0792ebc735e68b030800000000000000
+      internalID: 3510677214389479792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_125
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 132
+        width: 17
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d56a6b623b97eed00800000000000000
+      internalID: 1003873577305810525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_126
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 71
+        width: 58
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82d5feeef1c372920800000000000000
+      internalID: 2965404987497078056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_127
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 70
+        width: 36
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ac99297e5df62a60800000000000000
+      internalID: 7649079599336889507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_128
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 132
+        width: 17
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e32cbf6fb025332d0800000000000000
+      internalID: -3300203890590629314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_129
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 69
+        width: 58
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e6c13c93ad38f5d0800000000000000
+      internalID: -3028602976497187104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge atk 3x_fx01_130
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 70
+        width: 35
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c482045296bce010800000000000000
+      internalID: 1219550338701493443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dodge atk 3x_fx01_0: 5340886986611670756
+      dodge atk 3x_fx01_1: 1497057348275405576
+      dodge atk 3x_fx01_10: 6519421860778827091
+      dodge atk 3x_fx01_100: -7984657126528281791
+      dodge atk 3x_fx01_101: -65294634517621130
+      dodge atk 3x_fx01_102: 8642790878135478510
+      dodge atk 3x_fx01_103: -7124247081059166025
+      dodge atk 3x_fx01_104: -6510749358795568833
+      dodge atk 3x_fx01_105: 8457169069061343889
+      dodge atk 3x_fx01_106: 3098557649200710442
+      dodge atk 3x_fx01_107: -2990404156021935141
+      dodge atk 3x_fx01_108: 8070694539441350919
+      dodge atk 3x_fx01_109: -6095877627320219356
+      dodge atk 3x_fx01_11: -4776505259293450881
+      dodge atk 3x_fx01_110: -1842248532420197864
+      dodge atk 3x_fx01_111: -3274334359959600333
+      dodge atk 3x_fx01_112: -6269217308873629415
+      dodge atk 3x_fx01_113: 7339387158153019576
+      dodge atk 3x_fx01_114: -8717765150103227965
+      dodge atk 3x_fx01_115: 7722247093271591904
+      dodge atk 3x_fx01_116: 8554523102384107908
+      dodge atk 3x_fx01_117: 3740698424177668570
+      dodge atk 3x_fx01_118: -3027552254315787015
+      dodge atk 3x_fx01_119: -2749744648544118977
+      dodge atk 3x_fx01_12: 457693919068861633
+      dodge atk 3x_fx01_120: 4917015003469099633
+      dodge atk 3x_fx01_121: -2739050064971069466
+      dodge atk 3x_fx01_122: -6594141961631851248
+      dodge atk 3x_fx01_123: -4255062545135149532
+      dodge atk 3x_fx01_124: 3510677214389479792
+      dodge atk 3x_fx01_125: 1003873577305810525
+      dodge atk 3x_fx01_126: 2965404987497078056
+      dodge atk 3x_fx01_127: 7649079599336889507
+      dodge atk 3x_fx01_128: -3300203890590629314
+      dodge atk 3x_fx01_129: -3028602976497187104
+      dodge atk 3x_fx01_13: 928510161632233334
+      dodge atk 3x_fx01_130: 1219550338701493443
+      dodge atk 3x_fx01_14: -6346207819469908992
+      dodge atk 3x_fx01_15: -1388574267486426122
+      dodge atk 3x_fx01_16: 8999625917835588322
+      dodge atk 3x_fx01_17: -8432380887942731509
+      dodge atk 3x_fx01_18: 3507201027640557335
+      dodge atk 3x_fx01_19: -5212924808235078995
+      dodge atk 3x_fx01_2: 4299758179411330976
+      dodge atk 3x_fx01_20: -3673999948517168532
+      dodge atk 3x_fx01_21: 8603688433170628583
+      dodge atk 3x_fx01_22: 5538508440104998088
+      dodge atk 3x_fx01_23: -9148462023191031427
+      dodge atk 3x_fx01_24: -2268986432600093906
+      dodge atk 3x_fx01_25: 5513683340988126015
+      dodge atk 3x_fx01_26: -3419237586765130342
+      dodge atk 3x_fx01_27: 8213936803618657589
+      dodge atk 3x_fx01_28: -6059388186869845421
+      dodge atk 3x_fx01_29: -2725921214130042885
+      dodge atk 3x_fx01_3: -6409146078071095820
+      dodge atk 3x_fx01_30: 1432733920172506409
+      dodge atk 3x_fx01_31: 4138374759080908157
+      dodge atk 3x_fx01_32: -7500628291658938431
+      dodge atk 3x_fx01_33: 7718020448804293294
+      dodge atk 3x_fx01_34: -2455303833427012049
+      dodge atk 3x_fx01_35: -8270061533031165683
+      dodge atk 3x_fx01_36: 4313895058804941739
+      dodge atk 3x_fx01_37: -5478699497221734979
+      dodge atk 3x_fx01_38: 1243516325497796869
+      dodge atk 3x_fx01_39: 1557942431454947506
+      dodge atk 3x_fx01_4: -1340884944616406353
+      dodge atk 3x_fx01_40: -8395962563790238985
+      dodge atk 3x_fx01_41: 5911908371173377507
+      dodge atk 3x_fx01_42: 2702411785882378485
+      dodge atk 3x_fx01_43: -7387610306526739409
+      dodge atk 3x_fx01_44: 4228628067312850815
+      dodge atk 3x_fx01_45: 1187863945948897700
+      dodge atk 3x_fx01_46: -144786043902916691
+      dodge atk 3x_fx01_47: -6923132957189620495
+      dodge atk 3x_fx01_48: -1975226169324047093
+      dodge atk 3x_fx01_49: -5967041999341462600
+      dodge atk 3x_fx01_5: -7534432132802710555
+      dodge atk 3x_fx01_50: 3115198297937665871
+      dodge atk 3x_fx01_51: -984143617438060120
+      dodge atk 3x_fx01_52: -738683454362944664
+      dodge atk 3x_fx01_53: -106322838260744808
+      dodge atk 3x_fx01_54: 8565216102068359277
+      dodge atk 3x_fx01_55: 1165593248050213652
+      dodge atk 3x_fx01_56: -2530152866791379473
+      dodge atk 3x_fx01_57: 3242149956910754166
+      dodge atk 3x_fx01_58: -6558094791469733000
+      dodge atk 3x_fx01_59: 6161199064892676770
+      dodge atk 3x_fx01_6: -4759329914352832778
+      dodge atk 3x_fx01_60: 6977278524435447378
+      dodge atk 3x_fx01_61: 3244289635054754157
+      dodge atk 3x_fx01_62: 8888722777702006627
+      dodge atk 3x_fx01_63: -7616646306864259403
+      dodge atk 3x_fx01_64: 5083758283773016094
+      dodge atk 3x_fx01_65: 235158314560463910
+      dodge atk 3x_fx01_66: -6449969912355985861
+      dodge atk 3x_fx01_67: 5458762110248764827
+      dodge atk 3x_fx01_68: -4284963465791358894
+      dodge atk 3x_fx01_69: -196088215117856058
+      dodge atk 3x_fx01_7: -8660812324609545668
+      dodge atk 3x_fx01_70: 7258657560853001088
+      dodge atk 3x_fx01_71: -8408577597783781739
+      dodge atk 3x_fx01_72: 2140279934845821935
+      dodge atk 3x_fx01_73: -6242652450582692466
+      dodge atk 3x_fx01_74: 5944447494449290972
+      dodge atk 3x_fx01_75: -2212497468249038198
+      dodge atk 3x_fx01_76: -7305449225949125492
+      dodge atk 3x_fx01_77: 576904011534214912
+      dodge atk 3x_fx01_78: -1183005415479955807
+      dodge atk 3x_fx01_79: 3769686892330118915
+      dodge atk 3x_fx01_8: 4672678720684991218
+      dodge atk 3x_fx01_80: -2826642317377484510
+      dodge atk 3x_fx01_81: 7623552146316972330
+      dodge atk 3x_fx01_82: -201059744444487929
+      dodge atk 3x_fx01_83: -8381138111262801945
+      dodge atk 3x_fx01_84: -7858810566536236831
+      dodge atk 3x_fx01_85: 6553803796841006170
+      dodge atk 3x_fx01_86: -2978679970091354157
+      dodge atk 3x_fx01_87: 2732126292134394755
+      dodge atk 3x_fx01_88: -774573808122387421
+      dodge atk 3x_fx01_89: -5597415003399762246
+      dodge atk 3x_fx01_9: -8702109171176123494
+      dodge atk 3x_fx01_90: 3072809918045556468
+      dodge atk 3x_fx01_91: -5924752682692620795
+      dodge atk 3x_fx01_92: -4303775422170215394
+      dodge atk 3x_fx01_93: 2558916054997705922
+      dodge atk 3x_fx01_94: -8828051562143522669
+      dodge atk 3x_fx01_95: 6181221552565028631
+      dodge atk 3x_fx01_96: -5218411697499655817
+      dodge atk 3x_fx01_97: -527104802680009040
+      dodge atk 3x_fx01_98: 5128309214966768768
+      dodge atk 3x_fx01_99: 3495392516824009646
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

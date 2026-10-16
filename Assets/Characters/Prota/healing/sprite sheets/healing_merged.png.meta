@@ -1,0 +1,1354 @@
+fileFormatVersion: 2
+guid: 07c7be1d26d4d7c48969568fd674f8e1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6717870075880718142
+    second: healing_merged_0
+  - first:
+      213: 6987086083536318696
+    second: healing_merged_1
+  - first:
+      213: 6181271592766115607
+    second: healing_merged_2
+  - first:
+      213: -8897023146113270533
+    second: healing_merged_3
+  - first:
+      213: 4466508513256044432
+    second: healing_merged_4
+  - first:
+      213: 2194937622147169905
+    second: healing_merged_5
+  - first:
+      213: 6526209788914676933
+    second: healing_merged_6
+  - first:
+      213: -4902755896804367175
+    second: healing_merged_7
+  - first:
+      213: -7238827749704874969
+    second: healing_merged_8
+  - first:
+      213: 9075972452611896119
+    second: healing_merged_9
+  - first:
+      213: 158095909553552463
+    second: healing_merged_10
+  - first:
+      213: 1744606001939143381
+    second: healing_merged_11
+  - first:
+      213: -2902883546617361903
+    second: healing_merged_12
+  - first:
+      213: -1744367219736860649
+    second: healing_merged_13
+  - first:
+      213: -7870947099651314596
+    second: healing_merged_14
+  - first:
+      213: 3416640060827283731
+    second: healing_merged_15
+  - first:
+      213: 8522345018714464518
+    second: healing_merged_16
+  - first:
+      213: 386417600684531095
+    second: healing_merged_17
+  - first:
+      213: -2712603052242585263
+    second: healing_merged_18
+  - first:
+      213: 1620903198320273832
+    second: healing_merged_19
+  - first:
+      213: -9127716747432910471
+    second: healing_merged_20
+  - first:
+      213: -4820266782589348402
+    second: healing_merged_21
+  - first:
+      213: 852445767375133931
+    second: healing_merged_22
+  - first:
+      213: -7811999284000812130
+    second: healing_merged_23
+  - first:
+      213: 4801547226263060514
+    second: healing_merged_24
+  - first:
+      213: 6802218088103307842
+    second: healing_merged_25
+  - first:
+      213: -4451965770160615649
+    second: healing_merged_26
+  - first:
+      213: -1511327551830866728
+    second: healing_merged_27
+  - first:
+      213: 5778077643288418934
+    second: healing_merged_28
+  - first:
+      213: 4125931876683343540
+    second: healing_merged_29
+  - first:
+      213: 6278726297102744428
+    second: healing_merged_30
+  - first:
+      213: 7839855680318636344
+    second: healing_merged_31
+  - first:
+      213: 4325956816868372741
+    second: healing_merged_32
+  - first:
+      213: 1468487904739261556
+    second: healing_merged_33
+  - first:
+      213: -1463482850137304532
+    second: healing_merged_34
+  - first:
+      213: 4601109062559446445
+    second: healing_merged_35
+  - first:
+      213: 2359669861106488647
+    second: healing_merged_36
+  - first:
+      213: -1362016112086539134
+    second: healing_merged_37
+  - first:
+      213: 7593668647182060638
+    second: healing_merged_38
+  - first:
+      213: -4224988655463654012
+    second: healing_merged_39
+  - first:
+      213: 8933692067909135037
+    second: healing_merged_40
+  - first:
+      213: -5592690279295352387
+    second: healing_merged_41
+  - first:
+      213: -859564194506796180
+    second: healing_merged_42
+  - first:
+      213: 2848891025144915087
+    second: healing_merged_43
+  - first:
+      213: 6443836230266297114
+    second: healing_merged_44
+  - first:
+      213: 3349104227322226767
+    second: healing_merged_45
+  - first:
+      213: -3191077936051236978
+    second: healing_merged_46
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: healing_merged_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 405
+        width: 41
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c047ef32c455c2a0800000000000000
+      internalID: -6717870075880718142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_1
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 405
+        width: 40
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e0f14816cd17f060800000000000000
+      internalID: 6987086083536318696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_2
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 423
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71f890b83c948c550800000000000000
+      internalID: 6181271592766115607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_3
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 405
+        width: 40
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfc7d79469c678480800000000000000
+      internalID: -8897023146113270533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_4
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 385
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09772e604d93cfd30800000000000000
+      internalID: 4466508513256044432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_5
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 324
+        width: 40
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ef838532cf57e10800000000000000
+      internalID: 2194937622147169905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_6
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 389
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c4bfe5c931c19a50800000000000000
+      internalID: 6526209788914676933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_7
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 387
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b4268edc79e5fbb0800000000000000
+      internalID: -4902755896804367175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_8
+      rect:
+        serializedVersion: 2
+        x: 218
+        y: 324
+        width: 42
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 724c99cb3848a8b90800000000000000
+      internalID: -7238827749704874969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_9
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 382
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 733b92debd454fd70800000000000000
+      internalID: 9075972452611896119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 351
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4cb161646ba13200800000000000000
+      internalID: 158095909553552463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_11
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 324
+        width: 42
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dad89a5ae5163810800000000000000
+      internalID: 1744606001939143381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_12
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 366
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11acb836bc2e6b7d0800000000000000
+      internalID: -2902883546617361903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_13
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 369
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 718afb57143cac7e0800000000000000
+      internalID: -1744367219736860649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_14
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 308
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5c646f9057c4c290800000000000000
+      internalID: -7870947099651314596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_15
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 243
+        width: 38
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 311bafe78085a6f20800000000000000
+      internalID: 3416640060827283731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_16
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 308
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 601abc524a3754670800000000000000
+      internalID: 8522345018714464518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_17
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 243
+        width: 38
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79d92cfa2c4dc5500800000000000000
+      internalID: 386417600684531095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_18
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 243
+        width: 38
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 159b07e55e5ea5ad0800000000000000
+      internalID: -2712603052242585263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_19
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 309
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a9ac27feda9e7610800000000000000
+      internalID: 1620903198320273832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_20
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 291
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 971a0ea9af5d35180800000000000000
+      internalID: -9127716747432910471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_21
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 293
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec5952d66e8fa1db0800000000000000
+      internalID: -4820266782589348402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_22
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 295
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bec1ea2b8ee74db00800000000000000
+      internalID: 852445767375133931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_23
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 281
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e93968b7a04369390800000000000000
+      internalID: -7811999284000812130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_24
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 205
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2200ca933c582a240800000000000000
+      internalID: 4801547226263060514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_25
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 162
+        width: 55
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24a622abf45566e50800000000000000
+      internalID: 6802218088103307842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_26
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 162
+        width: 53
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1fc06538b07732c0800000000000000
+      internalID: -4451965770160615649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_27
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 118
+        width: 63
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d44cd5599fa60be0800000000000000
+      internalID: -1511327551830866728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_28
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 161
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a15d4c00bdf2050800000000000000
+      internalID: 5778077643288418934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_29
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 32
+        width: 85
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6eb258e21424930800000000000000
+      internalID: 4125931876683343540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_30
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 0
+        width: 93
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6b76b41d44822750800000000000000
+      internalID: 6278726297102744428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_31
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 144
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83188b33433cccc60800000000000000
+      internalID: 7839855680318636344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_32
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 135
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5017e171ec2e80c30800000000000000
+      internalID: 4325956816868372741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_33
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 37
+        width: 88
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47cf0fe08fd116410800000000000000
+      internalID: 1468487904739261556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_34
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 104
+        width: 6
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2290b60a1aa0bbe0800000000000000
+      internalID: -1463482850137304532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_35
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 121
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da5bfae805c6adf30800000000000000
+      internalID: 4601109062559446445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_36
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 81
+        width: 60
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74592729c3b3fb020800000000000000
+      internalID: 2359669861106488647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_37
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 86
+        width: 25
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28429b4ff85291de0800000000000000
+      internalID: -1362016112086539134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_38
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 0
+        width: 50
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5cce41d661226960800000000000000
+      internalID: 7593668647182060638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_39
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 62
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48d980be333dd55c0800000000000000
+      internalID: -4224988655463654012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_40
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 0
+        width: 54
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbae2706a99dafb70800000000000000
+      internalID: 8933692067909135037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_41
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 34
+        width: 7
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db102d382d5c262b0800000000000000
+      internalID: -5592690279295352387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_42
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 10
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6317c45be63214f0800000000000000
+      internalID: -859564194506796180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_43
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 0
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f84af851b4b498720800000000000000
+      internalID: 2848891025144915087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_44
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 23
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1b90d719ea1d6950800000000000000
+      internalID: 6443836230266297114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_45
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 6
+        width: 18
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f48ec49ec886a7e20800000000000000
+      internalID: 3349104227322226767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_merged_46
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 1
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8f4413368307b3d0800000000000000
+      internalID: -3191077936051236978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      healing_merged_0: -6717870075880718142
+      healing_merged_1: 6987086083536318696
+      healing_merged_10: 158095909553552463
+      healing_merged_11: 1744606001939143381
+      healing_merged_12: -2902883546617361903
+      healing_merged_13: -1744367219736860649
+      healing_merged_14: -7870947099651314596
+      healing_merged_15: 3416640060827283731
+      healing_merged_16: 8522345018714464518
+      healing_merged_17: 386417600684531095
+      healing_merged_18: -2712603052242585263
+      healing_merged_19: 1620903198320273832
+      healing_merged_2: 6181271592766115607
+      healing_merged_20: -9127716747432910471
+      healing_merged_21: -4820266782589348402
+      healing_merged_22: 852445767375133931
+      healing_merged_23: -7811999284000812130
+      healing_merged_24: 4801547226263060514
+      healing_merged_25: 6802218088103307842
+      healing_merged_26: -4451965770160615649
+      healing_merged_27: -1511327551830866728
+      healing_merged_28: 5778077643288418934
+      healing_merged_29: 4125931876683343540
+      healing_merged_3: -8897023146113270533
+      healing_merged_30: 6278726297102744428
+      healing_merged_31: 7839855680318636344
+      healing_merged_32: 4325956816868372741
+      healing_merged_33: 1468487904739261556
+      healing_merged_34: -1463482850137304532
+      healing_merged_35: 4601109062559446445
+      healing_merged_36: 2359669861106488647
+      healing_merged_37: -1362016112086539134
+      healing_merged_38: 7593668647182060638
+      healing_merged_39: -4224988655463654012
+      healing_merged_4: 4466508513256044432
+      healing_merged_40: 8933692067909135037
+      healing_merged_41: -5592690279295352387
+      healing_merged_42: -859564194506796180
+      healing_merged_43: 2848891025144915087
+      healing_merged_44: 6443836230266297114
+      healing_merged_45: 3349104227322226767
+      healing_merged_46: -3191077936051236978
+      healing_merged_5: 2194937622147169905
+      healing_merged_6: 6526209788914676933
+      healing_merged_7: -4902755896804367175
+      healing_merged_8: -7238827749704874969
+      healing_merged_9: 9075972452611896119
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

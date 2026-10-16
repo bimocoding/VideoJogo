@@ -1,0 +1,1882 @@
+fileFormatVersion: 2
+guid: 6a3d13cdec1ae7846a9f567a91d538c9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5862352134439595730
+    second: dodge atk 3x_grid_0
+  - first:
+      213: 2952701014889885556
+    second: dodge atk 3x_grid_1
+  - first:
+      213: -3662886729389160748
+    second: dodge atk 3x_grid_2
+  - first:
+      213: 8346861135669758180
+    second: dodge atk 3x_grid_3
+  - first:
+      213: -9088187684655494721
+    second: dodge atk 3x_grid_4
+  - first:
+      213: 643528794094029690
+    second: dodge atk 3x_grid_5
+  - first:
+      213: 2829419787744401044
+    second: dodge atk 3x_grid_6
+  - first:
+      213: 2180628455862758447
+    second: dodge atk 3x_grid_7
+  - first:
+      213: 877410493946183432
+    second: dodge atk 3x_grid_8
+  - first:
+      213: -4781041595325736819
+    second: dodge atk 3x_grid_9
+  - first:
+      213: 7027926924681514345
+    second: dodge atk 3x_grid_10
+  - first:
+      213: 5868941734138425767
+    second: dodge atk 3x_grid_11
+  - first:
+      213: -4942809357470496785
+    second: dodge atk 3x_grid_12
+  - first:
+      213: 6722859245272749122
+    second: dodge atk 3x_grid_13
+  - first:
+      213: 3935182348414935770
+    second: dodge atk 3x_grid_14
+  - first:
+      213: -8981022651248803703
+    second: dodge atk 3x_grid_15
+  - first:
+      213: -7484301677386314478
+    second: dodge atk 3x_grid_16
+  - first:
+      213: -7613246865914636581
+    second: dodge atk 3x_grid_17
+  - first:
+      213: 7782256207702991786
+    second: dodge atk 3x_grid_18
+  - first:
+      213: -2645699368887617535
+    second: dodge atk 3x_grid_19
+  - first:
+      213: -2183487193551754897
+    second: dodge atk 3x_grid_20
+  - first:
+      213: 5359590419054531279
+    second: dodge atk 3x_grid_21
+  - first:
+      213: 1773565038590439543
+    second: dodge atk 3x_grid_22
+  - first:
+      213: 8384943142148211328
+    second: dodge atk 3x_grid_23
+  - first:
+      213: -3388128586361469732
+    second: dodge atk 3x_grid_24
+  - first:
+      213: -5342958916664313581
+    second: dodge atk 3x_grid_25
+  - first:
+      213: 7498466714220940324
+    second: dodge atk 3x_grid_26
+  - first:
+      213: 5932273708229369753
+    second: dodge atk 3x_grid_27
+  - first:
+      213: 5566146086123448483
+    second: dodge atk 3x_grid_28
+  - first:
+      213: -1930605007603222536
+    second: dodge atk 3x_grid_29
+  - first:
+      213: 4888605430228723580
+    second: dodge atk 3x_grid_30
+  - first:
+      213: -4769826823352810382
+    second: dodge atk 3x_grid_31
+  - first:
+      213: 7104840251944134127
+    second: dodge atk 3x_grid_32
+  - first:
+      213: -6315644070825184871
+    second: dodge atk 3x_grid_33
+  - first:
+      213: -149115166314393384
+    second: dodge atk 3x_grid_34
+  - first:
+      213: -3735184742488426807
+    second: dodge atk 3x_grid_35
+  - first:
+      213: -1998254993300219429
+    second: dodge atk 3x_grid_36
+  - first:
+      213: -9078479205865144670
+    second: dodge atk 3x_grid_37
+  - first:
+      213: -1486264651718326115
+    second: dodge atk 3x_grid_38
+  - first:
+      213: -3118441666469486662
+    second: dodge atk 3x_grid_39
+  - first:
+      213: 2025313600301181582
+    second: dodge atk 3x_grid_40
+  - first:
+      213: 6379081627070712351
+    second: dodge atk 3x_grid_41
+  - first:
+      213: 693150893890251261
+    second: dodge atk 3x_grid_42
+  - first:
+      213: -9171730950211302398
+    second: dodge atk 3x_grid_43
+  - first:
+      213: -2511937656964129044
+    second: dodge atk 3x_grid_44
+  - first:
+      213: 2415809036229737766
+    second: dodge atk 3x_grid_45
+  - first:
+      213: 8489747242799886375
+    second: dodge atk 3x_grid_46
+  - first:
+      213: -2995384785504820898
+    second: dodge atk 3x_grid_47
+  - first:
+      213: -3802603590919770189
+    second: dodge atk 3x_grid_48
+  - first:
+      213: 4304370529410675364
+    second: dodge atk 3x_grid_49
+  - first:
+      213: -7607180785206790194
+    second: dodge atk 3x_grid_50
+  - first:
+      213: -6392973429606771689
+    second: dodge atk 3x_grid_51
+  - first:
+      213: 7791582923048925002
+    second: dodge atk 3x_grid_52
+  - first:
+      213: -837128292915884575
+    second: dodge atk 3x_grid_53
+  - first:
+      213: 5152170313997215551
+    second: dodge atk 3x_grid_54
+  - first:
+      213: 1270484796220572048
+    second: dodge atk 3x_grid_55
+  - first:
+      213: -5391534802738635525
+    second: dodge atk 3x_grid_56
+  - first:
+      213: 3171122573781423402
+    second: dodge atk 3x_grid_57
+  - first:
+      213: -4014099308010151853
+    second: dodge atk 3x_grid_58
+  - first:
+      213: -5222643751276864474
+    second: dodge atk 3x_grid_59
+  - first:
+      213: 6025840564067816909
+    second: dodge atk 3x_grid_60
+  - first:
+      213: 8789640035647288460
+    second: dodge atk 3x_grid_61
+  - first:
+      213: 6525858371032035569
+    second: dodge atk 3x_grid_62
+  - first:
+      213: -5837571933936716495
+    second: dodge atk 3x_grid_63
+  - first:
+      213: 6051707008391818352
+    second: dodge atk 3x_grid_64
+  - first:
+      213: 5231939971699777235
+    second: dodge atk 3x_grid_65
+  - first:
+      213: -4288827889621439156
+    second: dodge atk 3x_grid_66
+  - first:
+      213: -1932074186412032315
+    second: dodge atk 3x_grid_67
+  - first:
+      213: 1732332959911547275
+    second: dodge atk 3x_grid_68
+  - first:
+      213: 3594505262643937633
+    second: dodge atk 3x_grid_69
+  - first:
+      213: -3748631355755408029
+    second: dodge atk 3x_grid_70
+  - first:
+      213: -2678771247297334691
+    second: dodge atk 3x_grid_71
+  - first:
+      213: -3272879196429707345
+    second: dodge atk 3x_grid_72
+  - first:
+      213: -201574148283044039
+    second: dodge atk 3x_grid_73
+  - first:
+      213: -7194759719941733841
+    second: dodge atk 3x_grid_74
+  - first:
+      213: -8379438168614766849
+    second: dodge atk 3x_grid_75
+  - first:
+      213: -8768631491842201627
+    second: dodge atk 3x_grid_76
+  - first:
+      213: -8140428275041056466
+    second: dodge atk 3x_grid_77
+  - first:
+      213: -2702180860225318953
+    second: dodge atk 3x_grid_78
+  - first:
+      213: 6992980568166031343
+    second: dodge atk 3x_grid_79
+  - first:
+      213: -3884616079251502694
+    second: dodge atk 3x_grid_80
+  - first:
+      213: 4304345975068115770
+    second: dodge atk 3x_grid_81
+  - first:
+      213: -4541579935357330118
+    second: dodge atk 3x_grid_82
+  - first:
+      213: 3212080344394279459
+    second: dodge atk 3x_grid_83
+  - first:
+      213: 1231444377294056242
+    second: dodge atk 3x_grid_84
+  - first:
+      213: 3899135634180082311
+    second: dodge atk 3x_grid_85
+  - first:
+      213: -2586599019545075426
+    second: dodge atk 3x_grid_86
+  - first:
+      213: -3222934805030442254
+    second: dodge atk 3x_grid_87
+  - first:
+      213: 7627303513578062445
+    second: dodge atk 3x_grid_88
+  - first:
+      213: -5377371291196184907
+    second: dodge atk 3x_grid_89
+  - first:
+      213: 3033042274745364119
+    second: dodge atk 3x_grid_90
+  - first:
+      213: 1876419960398139345
+    second: dodge atk 3x_grid_91
+  - first:
+      213: 3210532204512006031
+    second: dodge atk 3x_grid_92
+  - first:
+      213: -3506064615185528347
+    second: dodge atk 3x_grid_93
+  - first:
+      213: -1379830968892077656
+    second: dodge atk 3x_grid_94
+  - first:
+      213: 544556563124737678
+    second: dodge atk 3x_grid_95
+  - first:
+      213: 818378490052367959
+    second: dodge atk 3x_grid_96
+  - first:
+      213: -6298445680881394486
+    second: dodge atk 3x_grid_97
+  - first:
+      213: -4591333402695893625
+    second: dodge atk 3x_grid_98
+  - first:
+      213: -1452584517297309547
+    second: dodge atk 3x_grid_99
+  - first:
+      213: -759726726648639676
+    second: dodge atk 3x_grid_100
+  - first:
+      213: 669567551192691820
+    second: dodge atk 3x_grid_101
+  - first:
+      213: -3581452918736506142
+    second: dodge atk 3x_grid_102
+  - first:
+      213: 9026507679109374373
+    second: dodge atk 3x_grid_103
+  - first:
+      213: -4987253176747133596
+    second: dodge atk 3x_grid_104
+  - first:
+      213: -8553188782980232902
+    second: dodge atk 3x_grid_105
+  - first:
+      213: 2461876605026576583
+    second: dodge atk 3x_grid_106
+  - first:
+      213: 2788323394251817827
+    second: dodge atk 3x_grid_107
+  - first:
+      213: -2694258554554448595
+    second: dodge atk 3x_grid_108
+  - first:
+      213: -7240107095714379460
+    second: dodge atk 3x_grid_109
+  - first:
+      213: -7725361482115659093
+    second: dodge atk 3x_grid_110
+  - first:
+      213: 7501233981069472967
+    second: dodge atk 3x_grid_111
+  - first:
+      213: 7734752173828170091
+    second: dodge atk 3x_grid_112
+  - first:
+      213: 6427223930885063218
+    second: dodge atk 3x_grid_113
+  - first:
+      213: -220252141346316516
+    second: dodge atk 3x_grid_114
+  - first:
+      213: 7879191467166891878
+    second: dodge atk 3x_grid_115
+  - first:
+      213: 4340311417431117838
+    second: dodge atk 3x_grid_116
+  - first:
+      213: 4180409414554181654
+    second: dodge atk 3x_grid_117
+  - first:
+      213: -3933120355545203231
+    second: dodge atk 3x_grid_118
+  - first:
+      213: 7932815875053146300
+    second: dodge atk 3x_grid_119
+  - first:
+      213: -8518549829613545704
+    second: dodge atk 3x_grid_120
+  - first:
+      213: 6428058463888552432
+    second: dodge atk 3x_grid_121
+  - first:
+      213: 5673566957304924460
+    second: dodge atk 3x_grid_122
+  - first:
+      213: -66017137601163950
+    second: dodge atk 3x_grid_123
+  - first:
+      213: 3082657812617128303
+    second: dodge atk 3x_grid_124
+  - first:
+      213: -3366751440706907135
+    second: dodge atk 3x_grid_125
+  - first:
+      213: 3991709706792692227
+    second: dodge atk 3x_grid_126
+  - first:
+      213: 3292209960812685288
+    second: dodge atk 3x_grid_127
+  - first:
+      213: 3434663714589333714
+    second: dodge atk 3x_grid_128
+  - first:
+      213: 9220246653907640364
+    second: dodge atk 3x_grid_129
+  - first:
+      213: 8555081019963222059
+    second: dodge atk 3x_grid_130
+  - first:
+      213: 549641954564678024
+    second: dodge atk 3x_grid_131
+  - first:
+      213: 1301746557284443310
+    second: dodge atk 3x_grid_132
+  - first:
+      213: 4151343463509424559
+    second: dodge atk 3x_grid_133
+  - first:
+      213: -6989053103354485489
+    second: dodge atk 3x_grid_134
+  - first:
+      213: 3910886291275770710
+    second: dodge atk 3x_grid_135
+  - first:
+      213: 5194757299967878836
+    second: dodge atk 3x_grid_136
+  - first:
+      213: 9218778560445874467
+    second: dodge atk 3x_grid_137
+  - first:
+      213: 9167351527223997443
+    second: dodge atk 3x_grid_138
+  - first:
+      213: 5370144869939684981
+    second: dodge atk 3x_grid_139
+  - first:
+      213: -6940790277453087110
+    second: dodge atk 3x_grid_140
+  - first:
+      213: -176044639356441258
+    second: dodge atk 3x_grid_141
+  - first:
+      213: -3583228325366771901
+    second: dodge atk 3x_grid_142
+  - first:
+      213: 7116570438712557267
+    second: dodge atk 3x_grid_143
+  - first:
+      213: -9151530575875020632
+    second: dodge atk 3x_grid_144
+  - first:
+      213: -7195624679060079973
+    second: dodge atk 3x_grid_145
+  - first:
+      213: 6307728545518753589
+    second: dodge atk 3x_grid_146
+  - first:
+      213: -4779351583009373023
+    second: dodge atk 3x_grid_147
+  - first:
+      213: 2055751318276927575
+    second: dodge atk 3x_grid_148
+  - first:
+      213: 1532606860698624981
+    second: dodge atk 3x_grid_149
+  - first:
+      213: 4621031504045688499
+    second: dodge atk 3x_grid_150
+  - first:
+      213: 5665093523405549215
+    second: dodge atk 3x_grid_151
+  - first:
+      213: 7125013958082487566
+    second: dodge atk 3x_grid_152
+  - first:
+      213: 5024204637920542725
+    second: dodge atk 3x_grid_153
+  - first:
+      213: 4674352639645295123
+    second: dodge atk 3x_grid_154
+  - first:
+      213: 7971217967069059280
+    second: dodge atk 3x_grid_155
+  - first:
+      213: 1593453902914460188
+    second: dodge atk 3x_grid_156
+  - first:
+      213: 5714987346445518029
+    second: dodge atk 3x_grid_157
+  - first:
+      213: 9130492441424177597
+    second: dodge atk 3x_grid_158
+  - first:
+      213: 6419594743312879238
+    second: dodge atk 3x_grid_159
+  - first:
+      213: -5884463357692308518
+    second: dodge atk 3x_grid_160
+  - first:
+      213: 8187770705799014565
+    second: dodge atk 3x_grid_161
+  - first:
+      213: -2054360363963326554
+    second: dodge atk 3x_grid_162
+  - first:
+      213: 4298967095753583896
+    second: dodge atk 3x_grid_163
+  - first:
+      213: -1941487289427492067
+    second: dodge atk 3x_grid_164
+  - first:
+      213: -3454843415695563238
+    second: dodge atk 3x_grid_165
+  - first:
+      213: -4825498583818203295
+    second: dodge atk 3x_grid_166
+  - first:
+      213: 7232881510659854795
+    second: dodge atk 3x_grid_167
+  - first:
+      213: -4506887103383258077
+    second: dodge atk 3x_grid_168
+  - first:
+      213: -8872747046509588384
+    second: dodge atk 3x_grid_169
+  - first:
+      213: 4670863552240878137
+    second: dodge atk 3x_grid_170
+  - first:
+      213: 5412862540609160581
+    second: dodge atk 3x_grid_171
+  - first:
+      213: 8956583703633693904
+    second: dodge atk 3x_grid_172
+  - first:
+      213: -8182733429951913014
+    second: dodge atk 3x_grid_173
+  - first:
+      213: -9020873424251491877
+    second: dodge atk 3x_grid_174
+  - first:
+      213: 191279916428381127
+    second: dodge atk 3x_grid_175
+  - first:
+      213: 1658814124489457962
+    second: dodge atk 3x_grid_176
+  - first:
+      213: 2432424543959592007
+    second: dodge atk 3x_grid_177
+  - first:
+      213: 6581244852028627300
+    second: dodge atk 3x_grid_178
+  - first:
+      213: 759337074501374966
+    second: dodge atk 3x_grid_179
+  - first:
+      213: -3007900647607087613
+    second: dodge atk 3x_grid_180
+  - first:
+      213: -5413912036273218589
+    second: dodge atk 3x_grid_181
+  - first:
+      213: -3063257096931291970
+    second: dodge atk 3x_grid_182
+  - first:
+      213: -4725718722876135116
+    second: dodge atk 3x_grid_183
+  - first:
+      213: 4209437870891595865
+    second: dodge atk 3x_grid_184
+  - first:
+      213: 3626061515610319987
+    second: dodge atk 3x_grid_185
+  - first:
+      213: -1923215104660481025
+    second: dodge atk 3x_grid_186
+  - first:
+      213: 5375596886855645377
+    second: dodge atk 3x_grid_187
+  - first:
+      213: -580961546898901317
+    second: dodge atk 3x_grid_188
+  - first:
+      213: 1135859185019354790
+    second: dodge atk 3x_grid_189
+  - first:
+      213: 3608594876237107717
+    second: dodge atk 3x_grid_190
+  - first:
+      213: -8656977736243884598
+    second: dodge atk 3x_grid_191
+  - first:
+      213: -1465137035031304744
+    second: dodge atk 3x_grid_192
+  - first:
+      213: -7876349512604759676
+    second: dodge atk 3x_grid_193
+  - first:
+      213: -1186955825421928448
+    second: dodge atk 3x_grid_194
+  - first:
+      213: -9021823980114258668
+    second: dodge atk 3x_grid_195
+  - first:
+      213: 9201144127536659916
+    second: dodge atk 3x_grid_196
+  - first:
+      213: -1739007540424295385
+    second: vertical_atk_0
+  - first:
+      213: -2356252667723790476
+    second: vertical_atk_1
+  - first:
+      213: -2272948167888732814
+    second: vertical_atk_2
+  - first:
+      213: 347795123776017024
+    second: vertical_atk_3
+  - first:
+      213: -1034478959743889592
+    second: vertical_atk_4
+  - first:
+      213: -7666446710467920264
+    second: vertical_atk_5
+  - first:
+      213: 1752672939853575371
+    second: vertical_atk_6
+  - first:
+      213: 5140339444370527983
+    second: vertical_atk_7
+  - first:
+      213: -6496476534465697311
+    second: vertical_atk_8
+  - first:
+      213: 5335651803520921583
+    second: vertical_atk_9
+  - first:
+      213: 8634190812329902118
+    second: vertical_atk_10
+  - first:
+      213: -8969537529739105742
+    second: vertical_atk_11
+  - first:
+      213: 7692233836381490331
+    second: vertical_atk_12
+  - first:
+      213: 8005691962728320052
+    second: vertical_atk_13
+  - first:
+      213: 1356351113410663719
+    second: vertical_atk_14
+  - first:
+      213: -599955301444688894
+    second: vertical_atk_15
+  - first:
+      213: -1574053296857342254
+    second: vertical_atk_16
+  - first:
+      213: 3089834144973370688
+    second: vertical_atk_17
+  - first:
+      213: 9000612170223497544
+    second: vertical_atk_18
+  - first:
+      213: 3748556494279246266
+    second: vertical_atk_19
+  - first:
+      213: -3119304855885948203
+    second: vertical_atk_20
+  - first:
+      213: 4274109398316780598
+    second: vertical_atk_21
+  - first:
+      213: -5407809735612577203
+    second: vertical_atk_22
+  - first:
+      213: 8363924827551145580
+    second: vertical_atk_23
+  - first:
+      213: 2667156784450491556
+    second: vertical_atk_24
+  - first:
+      213: 7776221777221620205
+    second: vertical_atk_25
+  - first:
+      213: 7100931008529198896
+    second: vertical_atk_26
+  - first:
+      213: 6182347276797593112
+    second: vertical_atk_27
+  - first:
+      213: -8323892706775677894
+    second: vertical_atk_28
+  - first:
+      213: 1930924483908358640
+    second: vertical_atk_29
+  - first:
+      213: 5146457504310112845
+    second: vertical_atk_30
+  - first:
+      213: 9031206874663674833
+    second: vertical_atk_31
+  - first:
+      213: 6286112261426151181
+    second: vertical_atk_32
+  - first:
+      213: 2024026635363137358
+    second: vertical_atk_33
+  - first:
+      213: -1544393039055370704
+    second: vertical_atk_34
+  - first:
+      213: 7082451335745584325
+    second: vertical_atk_35
+  - first:
+      213: -7543781287420920124
+    second: vertical_atk_36
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: vertical_atk_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1728
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72cb84b0bddcdd7e0800000000000000
+      internalID: -1739007540424295385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_1
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1728
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 477c143cea8ec4fd0800000000000000
+      internalID: -2356252667723790476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_2
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1728
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27dfd141fadd470e0800000000000000
+      internalID: -2272948167888732814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_3
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 1728
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 082584782dd93d400800000000000000
+      internalID: 347795123776017024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_4
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1728
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84f89d4fddac4a1f0800000000000000
+      internalID: -1034478959743889592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_5
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1728
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87ef81dd55f4b9590800000000000000
+      internalID: -7666446710467920264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1440
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc47963b0ceb25810800000000000000
+      internalID: 1752672939853575371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1440
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe652ae6d77265740800000000000000
+      internalID: 5140339444370527983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_8
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1440
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e9e28ff201e7d5a0800000000000000
+      internalID: -6496476534465697311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_9
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 1440
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fef690abb0b0c0a40800000000000000
+      internalID: 5335651803520921583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_10
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1440
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6208dd34ccec2d770800000000000000
+      internalID: 8634190812329902118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_11
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1440
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23aad5ca32dc58380800000000000000
+      internalID: -8969537529739105742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1152
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9c42c24bed40ca60800000000000000
+      internalID: 7692233836381490331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_13
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1152
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43c0f939c6ee91f60800000000000000
+      internalID: 8005691962728320052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 1152
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7255c81c62ab2d210800000000000000
+      internalID: 1356351113410663719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_15
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 1152
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 204e64005d78ca7f0800000000000000
+      internalID: -599955301444688894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_16
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 1152
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2de194fbdd6d72ae0800000000000000
+      internalID: -1574053296857342254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_17
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 1152
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 045b202c8cb41ea20800000000000000
+      internalID: 3089834144973370688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 864
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 841ba3fd41998ec70800000000000000
+      internalID: 9000612170223497544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_19
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 864
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab18ff5554c850430800000000000000
+      internalID: 3748556494279246266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_20
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 864
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5da54c6a2c006b4d0800000000000000
+      internalID: -3119304855885948203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_21
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 864
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63c84d14adfa05b30800000000000000
+      internalID: 4274109398316780598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_22
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 864
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4ac9ef72b993f4b0800000000000000
+      internalID: -5407809735612577203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_23
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 864
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6e91421151a21470800000000000000
+      internalID: 8363924827551145580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 576
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a4d179d6f4a30520800000000000000
+      internalID: 2667156784450491556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_25
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 576
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de193f59180baeb60800000000000000
+      internalID: 7776221777221620205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_26
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 576
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03f60f141239b8260800000000000000
+      internalID: 7100931008529198896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_27
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 576
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 816cf9fb71c1cc550800000000000000
+      internalID: 6182347276797593112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_28
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 576
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a34cb206fa79b7c80800000000000000
+      internalID: -8323892706775677894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_29
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 576
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f1567f66950cca10800000000000000
+      internalID: 1930924483908358640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_30
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d423c0445d3eb6740800000000000000
+      internalID: 5146457504310112845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_31
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 288
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d3e4699dca455d70800000000000000
+      internalID: 9031206874663674833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_32
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 288
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0f7888ebc1cc3750800000000000000
+      internalID: 6286112261426151181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_33
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 288
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e47bfb84089c61c10800000000000000
+      internalID: 2024026635363137358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_34
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 288
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 036c489a6b6319ae0800000000000000
+      internalID: -1544393039055370704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_35
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 288
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc3b1627fbe94260800000000000000
+      internalID: 7082451335745584325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vertical_atk_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 224
+        height: 288
+      alignment: 9
+      pivot: {x: 0.4955357, y: 0.22222222}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ce790443ea1f4790800000000000000
+      internalID: -7543781287420920124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      dodge atk 3x_grid_0: -5862352134439595730
+      dodge atk 3x_grid_1: 2952701014889885556
+      dodge atk 3x_grid_10: 7027926924681514345
+      dodge atk 3x_grid_100: -759726726648639676
+      dodge atk 3x_grid_101: 669567551192691820
+      dodge atk 3x_grid_102: -3581452918736506142
+      dodge atk 3x_grid_103: 9026507679109374373
+      dodge atk 3x_grid_104: -4987253176747133596
+      dodge atk 3x_grid_105: -8553188782980232902
+      dodge atk 3x_grid_106: 2461876605026576583
+      dodge atk 3x_grid_107: 2788323394251817827
+      dodge atk 3x_grid_108: -2694258554554448595
+      dodge atk 3x_grid_109: -7240107095714379460
+      dodge atk 3x_grid_11: 5868941734138425767
+      dodge atk 3x_grid_110: -7725361482115659093
+      dodge atk 3x_grid_111: 7501233981069472967
+      dodge atk 3x_grid_112: 7734752173828170091
+      dodge atk 3x_grid_113: 6427223930885063218
+      dodge atk 3x_grid_114: -220252141346316516
+      dodge atk 3x_grid_115: 7879191467166891878
+      dodge atk 3x_grid_116: 4340311417431117838
+      dodge atk 3x_grid_117: 4180409414554181654
+      dodge atk 3x_grid_118: -3933120355545203231
+      dodge atk 3x_grid_119: 7932815875053146300
+      dodge atk 3x_grid_12: -4942809357470496785
+      dodge atk 3x_grid_120: -8518549829613545704
+      dodge atk 3x_grid_121: 6428058463888552432
+      dodge atk 3x_grid_122: 5673566957304924460
+      dodge atk 3x_grid_123: -66017137601163950
+      dodge atk 3x_grid_124: 3082657812617128303
+      dodge atk 3x_grid_125: -3366751440706907135
+      dodge atk 3x_grid_126: 3991709706792692227
+      dodge atk 3x_grid_127: 3292209960812685288
+      dodge atk 3x_grid_128: 3434663714589333714
+      dodge atk 3x_grid_129: 9220246653907640364
+      dodge atk 3x_grid_13: 6722859245272749122
+      dodge atk 3x_grid_130: 8555081019963222059
+      dodge atk 3x_grid_131: 549641954564678024
+      dodge atk 3x_grid_132: 1301746557284443310
+      dodge atk 3x_grid_133: 4151343463509424559
+      dodge atk 3x_grid_134: -6989053103354485489
+      dodge atk 3x_grid_135: 3910886291275770710
+      dodge atk 3x_grid_136: 5194757299967878836
+      dodge atk 3x_grid_137: 9218778560445874467
+      dodge atk 3x_grid_138: 9167351527223997443
+      dodge atk 3x_grid_139: 5370144869939684981
+      dodge atk 3x_grid_14: 3935182348414935770
+      dodge atk 3x_grid_140: -6940790277453087110
+      dodge atk 3x_grid_141: -176044639356441258
+      dodge atk 3x_grid_142: -3583228325366771901
+      dodge atk 3x_grid_143: 7116570438712557267
+      dodge atk 3x_grid_144: -9151530575875020632
+      dodge atk 3x_grid_145: -7195624679060079973
+      dodge atk 3x_grid_146: 6307728545518753589
+      dodge atk 3x_grid_147: -4779351583009373023
+      dodge atk 3x_grid_148: 2055751318276927575
+      dodge atk 3x_grid_149: 1532606860698624981
+      dodge atk 3x_grid_15: -8981022651248803703
+      dodge atk 3x_grid_150: 4621031504045688499
+      dodge atk 3x_grid_151: 5665093523405549215
+      dodge atk 3x_grid_152: 7125013958082487566
+      dodge atk 3x_grid_153: 5024204637920542725
+      dodge atk 3x_grid_154: 4674352639645295123
+      dodge atk 3x_grid_155: 7971217967069059280
+      dodge atk 3x_grid_156: 1593453902914460188
+      dodge atk 3x_grid_157: 5714987346445518029
+      dodge atk 3x_grid_158: 9130492441424177597
+      dodge atk 3x_grid_159: 6419594743312879238
+      dodge atk 3x_grid_16: -7484301677386314478
+      dodge atk 3x_grid_160: -5884463357692308518
+      dodge atk 3x_grid_161: 8187770705799014565
+      dodge atk 3x_grid_162: -2054360363963326554
+      dodge atk 3x_grid_163: 4298967095753583896
+      dodge atk 3x_grid_164: -1941487289427492067
+      dodge atk 3x_grid_165: -3454843415695563238
+      dodge atk 3x_grid_166: -4825498583818203295
+      dodge atk 3x_grid_167: 7232881510659854795
+      dodge atk 3x_grid_168: -4506887103383258077
+      dodge atk 3x_grid_169: -8872747046509588384
+      dodge atk 3x_grid_17: -7613246865914636581
+      dodge atk 3x_grid_170: 4670863552240878137
+      dodge atk 3x_grid_171: 5412862540609160581
+      dodge atk 3x_grid_172: 8956583703633693904
+      dodge atk 3x_grid_173: -8182733429951913014
+      dodge atk 3x_grid_174: -9020873424251491877
+      dodge atk 3x_grid_175: 191279916428381127
+      dodge atk 3x_grid_176: 1658814124489457962
+      dodge atk 3x_grid_177: 2432424543959592007
+      dodge atk 3x_grid_178: 6581244852028627300
+      dodge atk 3x_grid_179: 759337074501374966
+      dodge atk 3x_grid_18: 7782256207702991786
+      dodge atk 3x_grid_180: -3007900647607087613
+      dodge atk 3x_grid_181: -5413912036273218589
+      dodge atk 3x_grid_182: -3063257096931291970
+      dodge atk 3x_grid_183: -4725718722876135116
+      dodge atk 3x_grid_184: 4209437870891595865
+      dodge atk 3x_grid_185: 3626061515610319987
+      dodge atk 3x_grid_186: -1923215104660481025
+      dodge atk 3x_grid_187: 5375596886855645377
+      dodge atk 3x_grid_188: -580961546898901317
+      dodge atk 3x_grid_189: 1135859185019354790
+      dodge atk 3x_grid_19: -2645699368887617535
+      dodge atk 3x_grid_190: 3608594876237107717
+      dodge atk 3x_grid_191: -8656977736243884598
+      dodge atk 3x_grid_192: -1465137035031304744
+      dodge atk 3x_grid_193: -7876349512604759676
+      dodge atk 3x_grid_194: -1186955825421928448
+      dodge atk 3x_grid_195: -9021823980114258668
+      dodge atk 3x_grid_196: 9201144127536659916
+      dodge atk 3x_grid_2: -3662886729389160748
+      dodge atk 3x_grid_20: -2183487193551754897
+      dodge atk 3x_grid_21: 5359590419054531279
+      dodge atk 3x_grid_22: 1773565038590439543
+      dodge atk 3x_grid_23: 8384943142148211328
+      dodge atk 3x_grid_24: -3388128586361469732
+      dodge atk 3x_grid_25: -5342958916664313581
+      dodge atk 3x_grid_26: 7498466714220940324
+      dodge atk 3x_grid_27: 5932273708229369753
+      dodge atk 3x_grid_28: 5566146086123448483
+      dodge atk 3x_grid_29: -1930605007603222536
+      dodge atk 3x_grid_3: 8346861135669758180
+      dodge atk 3x_grid_30: 4888605430228723580
+      dodge atk 3x_grid_31: -4769826823352810382
+      dodge atk 3x_grid_32: 7104840251944134127
+      dodge atk 3x_grid_33: -6315644070825184871
+      dodge atk 3x_grid_34: -149115166314393384
+      dodge atk 3x_grid_35: -3735184742488426807
+      dodge atk 3x_grid_36: -1998254993300219429
+      dodge atk 3x_grid_37: -9078479205865144670
+      dodge atk 3x_grid_38: -1486264651718326115
+      dodge atk 3x_grid_39: -3118441666469486662
+      dodge atk 3x_grid_4: -9088187684655494721
+      dodge atk 3x_grid_40: 2025313600301181582
+      dodge atk 3x_grid_41: 6379081627070712351
+      dodge atk 3x_grid_42: 693150893890251261
+      dodge atk 3x_grid_43: -9171730950211302398
+      dodge atk 3x_grid_44: -2511937656964129044
+      dodge atk 3x_grid_45: 2415809036229737766
+      dodge atk 3x_grid_46: 8489747242799886375
+      dodge atk 3x_grid_47: -2995384785504820898
+      dodge atk 3x_grid_48: -3802603590919770189
+      dodge atk 3x_grid_49: 4304370529410675364
+      dodge atk 3x_grid_5: 643528794094029690
+      dodge atk 3x_grid_50: -7607180785206790194
+      dodge atk 3x_grid_51: -6392973429606771689
+      dodge atk 3x_grid_52: 7791582923048925002
+      dodge atk 3x_grid_53: -837128292915884575
+      dodge atk 3x_grid_54: 5152170313997215551
+      dodge atk 3x_grid_55: 1270484796220572048
+      dodge atk 3x_grid_56: -5391534802738635525
+      dodge atk 3x_grid_57: 3171122573781423402
+      dodge atk 3x_grid_58: -4014099308010151853
+      dodge atk 3x_grid_59: -5222643751276864474
+      dodge atk 3x_grid_6: 2829419787744401044
+      dodge atk 3x_grid_60: 6025840564067816909
+      dodge atk 3x_grid_61: 8789640035647288460
+      dodge atk 3x_grid_62: 6525858371032035569
+      dodge atk 3x_grid_63: -5837571933936716495
+      dodge atk 3x_grid_64: 6051707008391818352
+      dodge atk 3x_grid_65: 5231939971699777235
+      dodge atk 3x_grid_66: -4288827889621439156
+      dodge atk 3x_grid_67: -1932074186412032315
+      dodge atk 3x_grid_68: 1732332959911547275
+      dodge atk 3x_grid_69: 3594505262643937633
+      dodge atk 3x_grid_7: 2180628455862758447
+      dodge atk 3x_grid_70: -3748631355755408029
+      dodge atk 3x_grid_71: -2678771247297334691
+      dodge atk 3x_grid_72: -3272879196429707345
+      dodge atk 3x_grid_73: -201574148283044039
+      dodge atk 3x_grid_74: -7194759719941733841
+      dodge atk 3x_grid_75: -8379438168614766849
+      dodge atk 3x_grid_76: -8768631491842201627
+      dodge atk 3x_grid_77: -8140428275041056466
+      dodge atk 3x_grid_78: -2702180860225318953
+      dodge atk 3x_grid_79: 6992980568166031343
+      dodge atk 3x_grid_8: 877410493946183432
+      dodge atk 3x_grid_80: -3884616079251502694
+      dodge atk 3x_grid_81: 4304345975068115770
+      dodge atk 3x_grid_82: -4541579935357330118
+      dodge atk 3x_grid_83: 3212080344394279459
+      dodge atk 3x_grid_84: 1231444377294056242
+      dodge atk 3x_grid_85: 3899135634180082311
+      dodge atk 3x_grid_86: -2586599019545075426
+      dodge atk 3x_grid_87: -3222934805030442254
+      dodge atk 3x_grid_88: 7627303513578062445
+      dodge atk 3x_grid_89: -5377371291196184907
+      dodge atk 3x_grid_9: -4781041595325736819
+      dodge atk 3x_grid_90: 3033042274745364119
+      dodge atk 3x_grid_91: 1876419960398139345
+      dodge atk 3x_grid_92: 3210532204512006031
+      dodge atk 3x_grid_93: -3506064615185528347
+      dodge atk 3x_grid_94: -1379830968892077656
+      dodge atk 3x_grid_95: 544556563124737678
+      dodge atk 3x_grid_96: 818378490052367959
+      dodge atk 3x_grid_97: -6298445680881394486
+      dodge atk 3x_grid_98: -4591333402695893625
+      dodge atk 3x_grid_99: -1452584517297309547
+      vertical_atk_0: -1739007540424295385
+      vertical_atk_1: -2356252667723790476
+      vertical_atk_10: 8634190812329902118
+      vertical_atk_11: -8969537529739105742
+      vertical_atk_12: 7692233836381490331
+      vertical_atk_13: 8005691962728320052
+      vertical_atk_14: 1356351113410663719
+      vertical_atk_15: -599955301444688894
+      vertical_atk_16: -1574053296857342254
+      vertical_atk_17: 3089834144973370688
+      vertical_atk_18: 9000612170223497544
+      vertical_atk_19: 3748556494279246266
+      vertical_atk_2: -2272948167888732814
+      vertical_atk_20: -3119304855885948203
+      vertical_atk_21: 4274109398316780598
+      vertical_atk_22: -5407809735612577203
+      vertical_atk_23: 8363924827551145580
+      vertical_atk_24: 2667156784450491556
+      vertical_atk_25: 7776221777221620205
+      vertical_atk_26: 7100931008529198896
+      vertical_atk_27: 6182347276797593112
+      vertical_atk_28: -8323892706775677894
+      vertical_atk_29: 1930924483908358640
+      vertical_atk_3: 347795123776017024
+      vertical_atk_30: 5146457504310112845
+      vertical_atk_31: 9031206874663674833
+      vertical_atk_32: 6286112261426151181
+      vertical_atk_33: 2024026635363137358
+      vertical_atk_34: -1544393039055370704
+      vertical_atk_35: 7082451335745584325
+      vertical_atk_36: -7543781287420920124
+      vertical_atk_4: -1034478959743889592
+      vertical_atk_5: -7666446710467920264
+      vertical_atk_6: 1752672939853575371
+      vertical_atk_7: 5140339444370527983
+      vertical_atk_8: -6496476534465697311
+      vertical_atk_9: 5335651803520921583
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

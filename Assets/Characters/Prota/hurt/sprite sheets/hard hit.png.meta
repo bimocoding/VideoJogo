@@ -1,0 +1,1016 @@
+fileFormatVersion: 2
+guid: 68bd1b8cf5df0ba4f95b0e5f5b2a07d9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1849860577593021450
+    second: hard hit_0
+  - first:
+      213: -1853935672237130598
+    second: hard hit_1
+  - first:
+      213: 4190055282201391594
+    second: hard hit_2
+  - first:
+      213: 7024896474180150975
+    second: hard hit_3
+  - first:
+      213: 4215681562030286682
+    second: hard hit_4
+  - first:
+      213: 7034139918821088323
+    second: hard hit_5
+  - first:
+      213: -4352287735734114268
+    second: hard hit_6
+  - first:
+      213: -4687836361436330814
+    second: hard hit_7
+  - first:
+      213: -3870922926185188434
+    second: hard hit_8
+  - first:
+      213: -1052936587197669219
+    second: hard hit_9
+  - first:
+      213: -6241653944006581685
+    second: hard hit_10
+  - first:
+      213: 7899326004851951284
+    second: hard hit_11
+  - first:
+      213: -4788735106941659706
+    second: hard hit_12
+  - first:
+      213: 9006650877787532204
+    second: hard hit_13
+  - first:
+      213: 6225205381635006365
+    second: hard hit_14
+  - first:
+      213: -1406203896135664637
+    second: hard hit_15
+  - first:
+      213: 1221891417146581254
+    second: hard hit_16
+  - first:
+      213: 7308397091319625492
+    second: hard hit_17
+  - first:
+      213: -6227683094509480998
+    second: hard hit_18
+  - first:
+      213: -8190618296232487561
+    second: hard hit_19
+  - first:
+      213: 127848617201378801
+    second: hard hit_20
+  - first:
+      213: 960789558404364841
+    second: hard hit_21
+  - first:
+      213: -7941003638050942506
+    second: hard hit_22
+  - first:
+      213: 6800248532492471041
+    second: hard hit_23
+  - first:
+      213: -7179962877245875875
+    second: hard hit_24
+  - first:
+      213: -829509240091557364
+    second: hard hit_25
+  - first:
+      213: 2318028775369089780
+    second: hard hit_26
+  - first:
+      213: 5944548685921720155
+    second: hard hit_27
+  - first:
+      213: 3302289195587334513
+    second: hard hit_28
+  - first:
+      213: -9213490823648889160
+    second: hard hit_29
+  - first:
+      213: -3664208360879822422
+    second: hard hit_30
+  - first:
+      213: 3940620007165613015
+    second: hard hit_31
+  - first:
+      213: -4159896950576729490
+    second: hard hit_32
+  - first:
+      213: -6875520632223084475
+    second: hard hit_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hard hit_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 303
+        width: 71
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fba19c0b99f356e0800000000000000
+      internalID: -1849860577593021450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 303
+        width: 72
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9c71e3245f7546e0800000000000000
+      internalID: -1853935672237130598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_2
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 303
+        width: 65
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae1fcdc4411162a30800000000000000
+      internalID: 4190055282201391594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_3
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 304
+        width: 57
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb6e66faf127d7160800000000000000
+      internalID: 7024896474180150975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_4
+      rect:
+        serializedVersion: 2
+        x: 323
+        y: 306
+        width: 53
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a57aaf68b0c118a30800000000000000
+      internalID: 4215681562030286682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_5
+      rect:
+        serializedVersion: 2
+        x: 404
+        y: 306
+        width: 51
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34cd9b9dcf84e9160800000000000000
+      internalID: 7034139918821088323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_6
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 246
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 428674f1d519993c0800000000000000
+      internalID: -4352287735734114268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_7
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 243
+        width: 47
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c48d6f9aa571feb0800000000000000
+      internalID: -4687836361436330814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_8
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 241
+        width: 49
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea3f0df8b18b74ac0800000000000000
+      internalID: -3870922926185188434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_9
+      rect:
+        serializedVersion: 2
+        x: 251
+        y: 242
+        width: 49
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d90221da0c73361f0800000000000000
+      internalID: -1052936587197669219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_10
+      rect:
+        serializedVersion: 2
+        x: 331
+        y: 242
+        width: 50
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b426290cec03169a0800000000000000
+      internalID: -6241653944006581685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_11
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 243
+        width: 51
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6c434262b00ad60800000000000000
+      internalID: 7899326004851951284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_12
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 179
+        width: 57
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c5dc43cacefa8db0800000000000000
+      internalID: -4788735106941659706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_13
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 179
+        width: 56
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cab6c7a014d0efc70800000000000000
+      internalID: 9006650877787532204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_14
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 179
+        width: 81
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9f5432ef4f546650800000000000000
+      internalID: 6225205381635006365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_15
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 179
+        width: 80
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30c3011c1092c7ce0800000000000000
+      internalID: -1406203896135664637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_16
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 179
+        width: 78
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 601ee1125c705f010800000000000000
+      internalID: 1221891417146581254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_17
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 179
+        width: 78
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 417ba99de64ac6560800000000000000
+      internalID: 7308397091319625492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 119
+        width: 78
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad39e02a833d299a0800000000000000
+      internalID: -6227683094509480998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_19
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 119
+        width: 78
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7755f3a2e04155e80800000000000000
+      internalID: -8190618296232487561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_20
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 119
+        width: 78
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f52055d3a536c100800000000000000
+      internalID: 127848617201378801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_21
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 119
+        width: 78
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92ab89c4309655d00800000000000000
+      internalID: 960789558404364841
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_22
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 119
+        width: 78
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d193e1b343ebc190800000000000000
+      internalID: -7941003638050942506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_23
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 119
+        width: 78
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10bc593d2065f5e50800000000000000
+      internalID: 6800248532492471041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 59
+        width: 78
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d599441edc5ab5c90800000000000000
+      internalID: -7179962877245875875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_25
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 59
+        width: 60
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c024076bdbdfc74f0800000000000000
+      internalID: -829509240091557364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_26
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 59
+        width: 63
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f22207c3ea4b2020800000000000000
+      internalID: 2318028775369089780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_27
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 59
+        width: 59
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b571166c8874f7250800000000000000
+      internalID: 5944548685921720155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_28
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 59
+        width: 54
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 171f790f68614dd20800000000000000
+      internalID: 3302289195587334513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_29
+      rect:
+        serializedVersion: 2
+        x: 413
+        y: 59
+        width: 54
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b6361b39ea132080800000000000000
+      internalID: -9213490823648889160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_30
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 0
+        width: 54
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa9edbad8ed162dc0800000000000000
+      internalID: -3664208360879822422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_31
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 0
+        width: 53
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d357e9a405efa630800000000000000
+      internalID: 3940620007165613015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_32
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 45
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e62b4a673c31546c0800000000000000
+      internalID: -4159896950576729490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hard hit_33
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 0
+        width: 45
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 540597eb96e3590a0800000000000000
+      internalID: -6875520632223084475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      hard hit_0: -1849860577593021450
+      hard hit_1: -1853935672237130598
+      hard hit_10: -6241653944006581685
+      hard hit_11: 7899326004851951284
+      hard hit_12: -4788735106941659706
+      hard hit_13: 9006650877787532204
+      hard hit_14: 6225205381635006365
+      hard hit_15: -1406203896135664637
+      hard hit_16: 1221891417146581254
+      hard hit_17: 7308397091319625492
+      hard hit_18: -6227683094509480998
+      hard hit_19: -8190618296232487561
+      hard hit_2: 4190055282201391594
+      hard hit_20: 127848617201378801
+      hard hit_21: 960789558404364841
+      hard hit_22: -7941003638050942506
+      hard hit_23: 6800248532492471041
+      hard hit_24: -7179962877245875875
+      hard hit_25: -829509240091557364
+      hard hit_26: 2318028775369089780
+      hard hit_27: 5944548685921720155
+      hard hit_28: 3302289195587334513
+      hard hit_29: -9213490823648889160
+      hard hit_3: 7024896474180150975
+      hard hit_30: -3664208360879822422
+      hard hit_31: 3940620007165613015
+      hard hit_32: -4159896950576729490
+      hard hit_33: -6875520632223084475
+      hard hit_4: 4215681562030286682
+      hard hit_5: 7034139918821088323
+      hard hit_6: -4352287735734114268
+      hard hit_7: -4687836361436330814
+      hard hit_8: -3870922926185188434
+      hard hit_9: -1052936587197669219
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

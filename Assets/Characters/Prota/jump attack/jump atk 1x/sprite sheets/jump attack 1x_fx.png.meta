@@ -1,0 +1,574 @@
+fileFormatVersion: 2
+guid: c5bab628fe964cc44a9509e6b10bcbdd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4777588240082726999
+    second: jump attack 1x_fx_0
+  - first:
+      213: 387160050129306181
+    second: jump attack 1x_fx_1
+  - first:
+      213: 5362679437857395654
+    second: jump attack 1x_fx_2
+  - first:
+      213: -2571122146371146153
+    second: jump attack 1x_fx_3
+  - first:
+      213: 2997771899268628089
+    second: jump attack 1x_fx_4
+  - first:
+      213: 4670767283504515101
+    second: jump attack 1x_fx_5
+  - first:
+      213: 2716940126725705195
+    second: jump attack 1x_fx_6
+  - first:
+      213: 284263164855966436
+    second: jump attack 1x_fx_7
+  - first:
+      213: -2383420131919547005
+    second: jump attack 1x_fx_8
+  - first:
+      213: 5930880512716383635
+    second: jump attack 1x_fx_9
+  - first:
+      213: -1916024055317066816
+    second: jump attack 1x_fx_10
+  - first:
+      213: -2943667568381163217
+    second: jump attack 1x_fx_11
+  - first:
+      213: -8684443070419700532
+    second: jump attack 1x_fx_12
+  - first:
+      213: 4857981751729929926
+    second: jump attack 1x_fx_13
+  - first:
+      213: 8463132458554394127
+    second: jump attack 1x_fx_14
+  - first:
+      213: 6413943127934044225
+    second: jump attack 1x_fx_15
+  - first:
+      213: -174867538980744486
+    second: jump attack 1x_fx_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: jump attack 1x_fx_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 146
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9af09c2fec892bdb0800000000000000
+      internalID: -4777588240082726999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 151
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5420e2ba3087f5500800000000000000
+      internalID: 387160050129306181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_2
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 158
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c318c939801c6a40800000000000000
+      internalID: 5362679437857395654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_3
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 145
+        width: 31
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e686fb70a815cd0800000000000000
+      internalID: -2571122146371146153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_4
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 153
+        width: 26
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97efd85d8a93a9920800000000000000
+      internalID: 2997771899268628089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_5
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 150
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d188dc9f816e1d040800000000000000
+      internalID: 4670767283504515101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_6
+      rect:
+        serializedVersion: 2
+        x: 249
+        y: 133
+        width: 124
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bed8d7976a284b520800000000000000
+      internalID: 2716940126725705195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_7
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 137
+        width: 124
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ead7f3a7d7e1f300800000000000000
+      internalID: 284263164855966436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 68
+        width: 125
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 385bb6694046ceed0800000000000000
+      internalID: -2383420131919547005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_9
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 68
+        width: 126
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3952fb53768be4250800000000000000
+      internalID: 5930880512716383635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_10
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 68
+        width: 125
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cb09b1f54ae865e0800000000000000
+      internalID: -1916024055317066816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_11
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 68
+        width: 123
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f298dc951fdf527d0800000000000000
+      internalID: -2943667568381163217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_12
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 72
+        width: 115
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc4f7832a09aa7780800000000000000
+      internalID: -8684443070419700532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_13
+      rect:
+        serializedVersion: 2
+        x: 389
+        y: 76
+        width: 103
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ce313d1aa40b6340800000000000000
+      internalID: 4857981751729929926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_14
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 0
+        width: 70
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f068637a126137570800000000000000
+      internalID: 8463132458554394127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_15
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 3
+        width: 71
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1480116da47e20950800000000000000
+      internalID: 6413943127934044225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump attack 1x_fx_16
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 7
+        width: 70
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad25e4856eeb29df0800000000000000
+      internalID: -174867538980744486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      jump attack 1x_fx_0: -4777588240082726999
+      jump attack 1x_fx_1: 387160050129306181
+      jump attack 1x_fx_10: -1916024055317066816
+      jump attack 1x_fx_11: -2943667568381163217
+      jump attack 1x_fx_12: -8684443070419700532
+      jump attack 1x_fx_13: 4857981751729929926
+      jump attack 1x_fx_14: 8463132458554394127
+      jump attack 1x_fx_15: 6413943127934044225
+      jump attack 1x_fx_16: -174867538980744486
+      jump attack 1x_fx_2: 5362679437857395654
+      jump attack 1x_fx_3: -2571122146371146153
+      jump attack 1x_fx_4: 2997771899268628089
+      jump attack 1x_fx_5: 4670767283504515101
+      jump attack 1x_fx_6: 2716940126725705195
+      jump attack 1x_fx_7: 284263164855966436
+      jump attack 1x_fx_8: -2383420131919547005
+      jump attack 1x_fx_9: 5930880512716383635
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

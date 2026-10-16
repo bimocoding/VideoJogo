@@ -1,0 +1,552 @@
+fileFormatVersion: 2
+guid: c8ef88f76c886ce47a2f6d26439ed42f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1137221719343063050
+    second: ledge_full_0
+  - first:
+      213: -2068354285158691598
+    second: ledge_full_1
+  - first:
+      213: -9022300835574952918
+    second: ledge_full_2
+  - first:
+      213: 3321544996856805448
+    second: ledge_full_3
+  - first:
+      213: -1061001257260799855
+    second: ledge_full_4
+  - first:
+      213: 1433961838690151793
+    second: ledge_full_5
+  - first:
+      213: 3169734961863302236
+    second: ledge_full_6
+  - first:
+      213: -7993142188944736705
+    second: ledge_full_7
+  - first:
+      213: 6869336159317024602
+    second: ledge_full_8
+  - first:
+      213: -2992882933989869820
+    second: ledge_full_9
+  - first:
+      213: 7075570009903444430
+    second: ledge_full_10
+  - first:
+      213: -148055084118947459
+    second: ledge_full_11
+  - first:
+      213: 8130183874538465291
+    second: ledge_full_12
+  - first:
+      213: -6886815078738311538
+    second: ledge_full_13
+  - first:
+      213: -2200852838146477726
+    second: ledge_0
+  - first:
+      213: -1620226364640072190
+    second: ledge_1
+  - first:
+      213: 1061181368633616886
+    second: ledge_2
+  - first:
+      213: -5981508079050943261
+    second: ledge_3
+  - first:
+      213: -626736681822609194
+    second: ledge_4
+  - first:
+      213: 3139786459692727089
+    second: ledge_5
+  - first:
+      213: 2498007999301824240
+    second: ledge_6
+  - first:
+      213: 1257515480469130135
+    second: ledge_7
+  - first:
+      213: 639013668283160789
+    second: ledge_8
+  - first:
+      213: 8958030485497831995
+    second: ledge_9
+  - first:
+      213: -2453127829221564355
+    second: ledge_10
+  - first:
+      213: 8397616433646962095
+    second: ledge_11
+  - first:
+      213: -4976609703039680039
+    second: ledge_12
+  - first:
+      213: -3976599979064961499
+    second: ledge_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 1
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ledge_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2617e5b11000571e0800000000000000
+      internalID: -2200852838146477726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_1
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ee7e7a4bcc389e0800000000000000
+      internalID: -1620226364640072190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_2
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f96ba715d21abe00800000000000000
+      internalID: 1061181368633616886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_3
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e41a0fe71a6dfca0800000000000000
+      internalID: -5981508079050943261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_4
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d0a148fe426d47f0800000000000000
+      internalID: -626736681822609194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_5
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13bf0985623c29b20800000000000000
+      internalID: 3139786459692727089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_6
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fe28745a05baa220800000000000000
+      internalID: 2498007999301824240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_7
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79bcae8baa7937110800000000000000
+      internalID: 1257515480469130135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_8
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d813a0bb8b3ed800800000000000000
+      internalID: 639013668283160789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_9
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b32e73fc341515c70800000000000000
+      internalID: 8958030485497831995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_10
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d30af9e8c3db4fdd0800000000000000
+      internalID: -2453127829221564355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_11
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa5828767a35a8470800000000000000
+      internalID: 8397616433646962095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_12
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d1ce80a7d78feab0800000000000000
+      internalID: -4976609703039680039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge_13
+      rect:
+        serializedVersion: 2
+        x: 1404
+        y: 0
+        width: 108
+        height: 111
+      alignment: 9
+      pivot: {x: 0.37037036, y: 0.5945946}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 526d102536740d8c0800000000000000
+      internalID: -3976599979064961499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ledge_0: -2200852838146477726
+      ledge_1: -1620226364640072190
+      ledge_10: -2453127829221564355
+      ledge_11: 8397616433646962095
+      ledge_12: -4976609703039680039
+      ledge_13: -3976599979064961499
+      ledge_2: 1061181368633616886
+      ledge_3: -5981508079050943261
+      ledge_4: -626736681822609194
+      ledge_5: 3139786459692727089
+      ledge_6: 2498007999301824240
+      ledge_7: 1257515480469130135
+      ledge_8: 639013668283160789
+      ledge_9: 8958030485497831995
+      ledge_full_0: -1137221719343063050
+      ledge_full_1: -2068354285158691598
+      ledge_full_10: 7075570009903444430
+      ledge_full_11: -148055084118947459
+      ledge_full_12: 8130183874538465291
+      ledge_full_13: -6886815078738311538
+      ledge_full_2: -9022300835574952918
+      ledge_full_3: 3321544996856805448
+      ledge_full_4: -1061001257260799855
+      ledge_full_5: 1433961838690151793
+      ledge_full_6: 3169734961863302236
+      ledge_full_7: -7993142188944736705
+      ledge_full_8: 6869336159317024602
+      ledge_full_9: -2992882933989869820
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

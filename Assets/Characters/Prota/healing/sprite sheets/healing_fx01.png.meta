@@ -1,0 +1,1458 @@
+fileFormatVersion: 2
+guid: a727e36223ab8544b9c5c6d3fc51ca1e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1299668694912300968
+    second: healing_fx01_0
+  - first:
+      213: -4910110871264422057
+    second: healing_fx01_1
+  - first:
+      213: -8265112298768192199
+    second: healing_fx01_2
+  - first:
+      213: -1784958151036943895
+    second: healing_fx01_3
+  - first:
+      213: 7170570585263387377
+    second: healing_fx01_4
+  - first:
+      213: 2270881210275309411
+    second: healing_fx01_5
+  - first:
+      213: 831264968403072186
+    second: healing_fx01_6
+  - first:
+      213: -6018512282505829286
+    second: healing_fx01_7
+  - first:
+      213: -9172393928099542812
+    second: healing_fx01_8
+  - first:
+      213: 5259077020062837964
+    second: healing_fx01_9
+  - first:
+      213: 4497128950188935601
+    second: healing_fx01_10
+  - first:
+      213: 3345110810897129176
+    second: healing_fx01_11
+  - first:
+      213: 1493188674035293486
+    second: healing_fx01_12
+  - first:
+      213: 8738648806282390359
+    second: healing_fx01_13
+  - first:
+      213: -530939710168499284
+    second: healing_fx01_14
+  - first:
+      213: -9014777388627964502
+    second: healing_fx01_15
+  - first:
+      213: -5799727965258786083
+    second: healing_fx01_16
+  - first:
+      213: 8201508017943608895
+    second: healing_fx01_17
+  - first:
+      213: -7594717200407648803
+    second: healing_fx01_18
+  - first:
+      213: 9013477679954636273
+    second: healing_fx01_19
+  - first:
+      213: 4830544938985252903
+    second: healing_fx01_20
+  - first:
+      213: -1394375425503595711
+    second: healing_fx01_21
+  - first:
+      213: -3415862673519574123
+    second: healing_fx01_22
+  - first:
+      213: 5944742589048893968
+    second: healing_fx01_23
+  - first:
+      213: -6202703077954027368
+    second: healing_fx01_24
+  - first:
+      213: -3975528537195067545
+    second: healing_fx01_25
+  - first:
+      213: 8506872919582617896
+    second: healing_fx01_26
+  - first:
+      213: -8019247816145027487
+    second: healing_fx01_27
+  - first:
+      213: 6642482946189802183
+    second: healing_fx01_28
+  - first:
+      213: -7788508212211893211
+    second: healing_fx01_29
+  - first:
+      213: 5572035104692087413
+    second: healing_fx01_30
+  - first:
+      213: 5497263046683967733
+    second: healing_fx01_31
+  - first:
+      213: -2892503897564251917
+    second: healing_fx01_32
+  - first:
+      213: 1862873344189670790
+    second: healing_fx01_33
+  - first:
+      213: 6461270335090943890
+    second: healing_fx01_34
+  - first:
+      213: 4518213808709682466
+    second: healing_fx01_35
+  - first:
+      213: -999603971686746618
+    second: healing_fx01_36
+  - first:
+      213: -4346002292133840526
+    second: healing_fx01_37
+  - first:
+      213: 8653360162942518268
+    second: healing_fx01_38
+  - first:
+      213: -8130926499512085368
+    second: healing_fx01_39
+  - first:
+      213: 1666827016259016448
+    second: healing_fx01_40
+  - first:
+      213: 1063372027841080568
+    second: healing_fx01_41
+  - first:
+      213: 1240728061618399346
+    second: healing_fx01_42
+  - first:
+      213: 8015379118691176518
+    second: healing_fx01_43
+  - first:
+      213: -2300214805579466017
+    second: healing_fx01_44
+  - first:
+      213: -6008604094826092381
+    second: healing_fx01_45
+  - first:
+      213: -1018705642755251162
+    second: healing_fx01_46
+  - first:
+      213: 6023758610004369038
+    second: healing_fx01_47
+  - first:
+      213: 1875377391658654629
+    second: healing_fx01_48
+  - first:
+      213: -4255025598616802445
+    second: healing_fx01_49
+  - first:
+      213: -4615763633602572995
+    second: healing_fx01_50
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: healing_fx01_0
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 413
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a771f5cac9590210800000000000000
+      internalID: 1299668694912300968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_1
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 408
+        width: 11
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 757108e6d28cbdbb0800000000000000
+      internalID: -4910110871264422057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 417
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93da53b972c6c4d80800000000000000
+      internalID: -8265112298768192199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_3
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 404
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e1418cc40e8a37e0800000000000000
+      internalID: -1784958151036943895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_4
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 373
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f23d7bb4fbf28360800000000000000
+      internalID: 7170570585263387377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_5
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 377
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 367a199dd6ac38f10800000000000000
+      internalID: 2270881210275309411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 375
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab434e3a51f398b00800000000000000
+      internalID: 831264968403072186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_7
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 364
+        width: 13
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a542aec67f2f97ca0800000000000000
+      internalID: -6018512282505829286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_8
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 370
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e84dafd15c15b080800000000000000
+      internalID: -9172393928099542812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_9
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 337
+        width: 11
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccce34b9faefbf840800000000000000
+      internalID: 5259077020062837964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 339
+        width: 8
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b9032114f2096e30800000000000000
+      internalID: 4497128950188935601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_11
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 346
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8de97d13f883c6e20800000000000000
+      internalID: 3345110810897129176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_12
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 354
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2d9282103fd8b410800000000000000
+      internalID: 1493188674035293486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_13
+      rect:
+        serializedVersion: 2
+        x: 215
+        y: 349
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75b6a5b3acae54970800000000000000
+      internalID: 8738648806282390359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_14
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 331
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cabf14a8529b1a8f0800000000000000
+      internalID: -530939710168499284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_15
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 330
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aad4b953ab315e280800000000000000
+      internalID: -9014777388627964502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_16
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 334
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddad9d4d42a338fa0800000000000000
+      internalID: -5799727965258786083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_17
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 337
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3efb00c61c91d170800000000000000
+      internalID: 8201508017943608895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_18
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 299
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd5272cd1f42a9690800000000000000
+      internalID: -7594717200407648803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_19
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 299
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fdab98c13e461d70800000000000000
+      internalID: 9013477679954636273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_20
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 300
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 728e6c7570b890340800000000000000
+      internalID: 4830544938985252903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_21
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 282
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 143f25f20fe26ace0800000000000000
+      internalID: -1394375425503595711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_22
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 262
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59389571ffa6890d0800000000000000
+      internalID: -3415862673519574123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_23
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 265
+        width: 20
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 012356d53e7ff7250800000000000000
+      internalID: 5944742589048893968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_24
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 268
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8900457f9629be9a0800000000000000
+      internalID: -6202703077954027368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_25
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 199
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7674f02dbd514d8c0800000000000000
+      internalID: -3975528537195067545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_26
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 158
+        width: 50
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 821bc1959db7e0670800000000000000
+      internalID: 8506872919582617896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_27
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 188
+        width: 21
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16e39d85998e5b090800000000000000
+      internalID: -8019247816145027487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_28
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 184
+        width: 18
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cabb32db07de2c50800000000000000
+      internalID: 6642482946189802183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_29
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 188
+        width: 14
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52cb5e8db09a9e390800000000000000
+      internalID: -7788508212211893211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_30
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 174
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57aad23e768d35d40800000000000000
+      internalID: 5572035104692087413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_31
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 161
+        width: 23
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f0ca7e7d933a4c40800000000000000
+      internalID: 5497263046683967733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_32
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 180
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f8ff32c703cbd7d0800000000000000
+      internalID: -2892503897564251917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_33
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 176
+        width: 22
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68528f5cf614ad910800000000000000
+      internalID: 1862873344189670790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_34
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 173
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2976dd0f22b0ba950800000000000000
+      internalID: 6461270335090943890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_35
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 155
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 225c76f358be3be30800000000000000
+      internalID: 4518213808709682466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 77
+        width: 34
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 606ba8fdb71b022f0800000000000000
+      internalID: -999603971686746618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_37
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 98
+        width: 17
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279345001f5efa3c0800000000000000
+      internalID: -4346002292133840526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_38
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 98
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf384b18839e61870800000000000000
+      internalID: 8653360162942518268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_39
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 78
+        width: 28
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88495cd9d65292f80800000000000000
+      internalID: -8130926499512085368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_40
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 37
+        width: 30
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 007942e0752c12710800000000000000
+      internalID: 1666827016259016448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_41
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 84
+        width: 29
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fced8fa93bd1ce00800000000000000
+      internalID: 1063372027841080568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_42
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 20
+        width: 78
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 278af9f2993f73110800000000000000
+      internalID: 1240728061618399346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_43
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 101
+        width: 6
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 640dba557d85c3f60800000000000000
+      internalID: 8015379118691176518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_44
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 101
+        width: 19
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda775642def310e0800000000000000
+      internalID: -2300214805579466017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_45
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 22
+        width: 45
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a8eee329662d9ca0800000000000000
+      internalID: -6008604094826092381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_46
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 34
+        width: 7
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62423e08d94dcd1f0800000000000000
+      internalID: -1018705642755251162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_47
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 11
+        width: 52
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8ed2026a80b89350800000000000000
+      internalID: 6023758610004369038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 15
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5abdc913dcda60a10800000000000000
+      internalID: 1875377391658654629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_49
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 20
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37b604c13cc13f4c0800000000000000
+      internalID: -4255025598616802445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: healing_fx01_50
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 16
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3dc3fb3e6381ffb0800000000000000
+      internalID: -4615763633602572995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      healing_fx01_0: 1299668694912300968
+      healing_fx01_1: -4910110871264422057
+      healing_fx01_10: 4497128950188935601
+      healing_fx01_11: 3345110810897129176
+      healing_fx01_12: 1493188674035293486
+      healing_fx01_13: 8738648806282390359
+      healing_fx01_14: -530939710168499284
+      healing_fx01_15: -9014777388627964502
+      healing_fx01_16: -5799727965258786083
+      healing_fx01_17: 8201508017943608895
+      healing_fx01_18: -7594717200407648803
+      healing_fx01_19: 9013477679954636273
+      healing_fx01_2: -8265112298768192199
+      healing_fx01_20: 4830544938985252903
+      healing_fx01_21: -1394375425503595711
+      healing_fx01_22: -3415862673519574123
+      healing_fx01_23: 5944742589048893968
+      healing_fx01_24: -6202703077954027368
+      healing_fx01_25: -3975528537195067545
+      healing_fx01_26: 8506872919582617896
+      healing_fx01_27: -8019247816145027487
+      healing_fx01_28: 6642482946189802183
+      healing_fx01_29: -7788508212211893211
+      healing_fx01_3: -1784958151036943895
+      healing_fx01_30: 5572035104692087413
+      healing_fx01_31: 5497263046683967733
+      healing_fx01_32: -2892503897564251917
+      healing_fx01_33: 1862873344189670790
+      healing_fx01_34: 6461270335090943890
+      healing_fx01_35: 4518213808709682466
+      healing_fx01_36: -999603971686746618
+      healing_fx01_37: -4346002292133840526
+      healing_fx01_38: 8653360162942518268
+      healing_fx01_39: -8130926499512085368
+      healing_fx01_4: 7170570585263387377
+      healing_fx01_40: 1666827016259016448
+      healing_fx01_41: 1063372027841080568
+      healing_fx01_42: 1240728061618399346
+      healing_fx01_43: 8015379118691176518
+      healing_fx01_44: -2300214805579466017
+      healing_fx01_45: -6008604094826092381
+      healing_fx01_46: -1018705642755251162
+      healing_fx01_47: 6023758610004369038
+      healing_fx01_48: 1875377391658654629
+      healing_fx01_49: -4255025598616802445
+      healing_fx01_5: 2270881210275309411
+      healing_fx01_50: -4615763633602572995
+      healing_fx01_6: 831264968403072186
+      healing_fx01_7: -6018512282505829286
+      healing_fx01_8: -9172393928099542812
+      healing_fx01_9: 5259077020062837964
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
