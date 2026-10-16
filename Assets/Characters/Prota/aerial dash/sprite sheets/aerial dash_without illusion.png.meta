@@ -20,6 +20,24 @@ TextureImporter:
   - first:
       213: 3828201784264280709
     second: aerial dash_without illusion_5
+  - first:
+      213: -5672869595778636664
+    second: dodge_0
+  - first:
+      213: 1685754737939873486
+    second: dodge_1
+  - first:
+      213: 4459518147029533292
+    second: dodge_2
+  - first:
+      213: -4627716620307745415
+    second: dodge_3
+  - first:
+      213: 4930688269445531599
+    second: dodge_4
+  - first:
+      213: 281908485051993513
+    second: dodge_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,7 +70,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -92,7 +110,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -130,133 +148,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: aerial dash_without illusion_0
+      name: dodge_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 69
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fbf77b7fbeb7936d0800000000000000
-      internalID: -3010238622516936769
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_without illusion_1
-      rect:
-        serializedVersion: 2
-        x: 115
-        y: 5
-        width: 99
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06d9a7fd0a0ee8360800000000000000
-      internalID: 7173918237996522848
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_without illusion_2
-      rect:
-        serializedVersion: 2
-        x: 225
-        y: 2
-        width: 70
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0aa39696d2b06a7f0800000000000000
-      internalID: -601781210537444704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_without illusion_3
-      rect:
-        serializedVersion: 2
-        x: 339
-        y: 2
-        width: 67
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b44a15c521cbe15e0800000000000000
-      internalID: -1936904002678447029
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_without illusion_4
-      rect:
-        serializedVersion: 2
-        x: 452
-        y: 2
-        width: 66
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3bd5a4a6cec3d8cd0800000000000000
-      internalID: -2554318427555996237
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_without illusion_5
-      rect:
-        serializedVersion: 2
-        x: 566
+        x: 0
         y: 0
-        width: 68
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 112
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3392857, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58ac6977d31802530800000000000000
-      internalID: 3828201784264280709
+      spriteID: 8842086a82be541b0800000000000000
+      internalID: -5672869595778636664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge_1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 112
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3392857, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ece765da001056710800000000000000
+      internalID: 1685754737939873486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge_2
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 112
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3392857, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c628a1f802463ed30800000000000000
+      internalID: 4459518147029533292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge_3
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 112
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3392857, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 975b265a04c07cfb0800000000000000
+      internalID: -4627716620307745415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge_4
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 112
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3392857, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc78c7e6bd25d6440800000000000000
+      internalID: 4930688269445531599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dodge_5
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 112
+        height: 64
+      alignment: 9
+      pivot: {x: 0.3392857, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ad41b6064a89e300800000000000000
+      internalID: 281908485051993513
       vertices: []
       indices: 
       edges: []
@@ -281,6 +299,12 @@ TextureImporter:
       aerial dash_without illusion_3: -1936904002678447029
       aerial dash_without illusion_4: -2554318427555996237
       aerial dash_without illusion_5: 3828201784264280709
+      dodge_0: -5672869595778636664
+      dodge_1: 1685754737939873486
+      dodge_2: 4459518147029533292
+      dodge_3: -4627716620307745415
+      dodge_4: 4930688269445531599
+      dodge_5: 281908485051993513
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -120,6 +120,26 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private float currentSlideSpeed = 0f;
     private float slideDirection = 1f;
 
+    [Header("Sistema de Evasión (Fase 5 - Dodge, Backdodge y Sprint)")]
+    public float dodgeDuration = 0.40f;         // Duración del dodge normal
+    public float backdodgeDuration = 0.50f;     // Duración del backdodge
+    public float dodgeSpeed = 6.8f;             // Velocidad base del dodge normal
+    public float backdodgeSpeed = 6.2f;         // Velocidad base del backdodge
+    public float dodgeRunMultiplier = 1.35f;    // Multiplicador de distancia / velocidad al esquivar en carrera
+    public float dodgeCooldown = 0.25f;         // Tiempo de recuperación entre evasiones
+
+    // Estados de Dodge y Backdodge
+    public bool isDodging = false;
+    public bool isBackdodging = false;
+    private float dodgeTimer = 0f;
+    private float currentDodgeSpeed = 0f;
+    private float dodgeDirection = 1f;
+    private float dodgeCooldownTimer = 0f;
+
+    // Propiedades de estado
+    public bool IsInEvasiveAction => isDodging || isBackdodging || isSliding;
+    public bool IsEffectiveRunning => isRunning && Mathf.Abs(move) > 0.1f && isGrounded && !isCrouching && !isSliding && !isDodging && !isBackdodging && !IsInCombatAction && !isHanging && !isClimbing;
+
     // Dimensiones originales del collider físico
     private Collider2D playerCollider;
     private CapsuleCollider2D capsuleCol;
@@ -208,15 +228,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // Gestión de Crouch y Slide (Fase 4)
-        HandleSlideInputs();
+        if (dodgeCooldownTimer > 0f) dodgeCooldownTimer -= Time.deltaTime;
+
+        // Gestión de Crouch, Slide, Dodge y Backdodge (Fase 4 & 5)
+        HandleDodgeAndSlideInputs();
         UpdateSlide();
+        UpdateDodge();
         HandleCrouchInputs();
 
         // Sistema de combate con J (combos), K (dodge attacks) y W+J (ataque vertical)
         HandleCombatInputs();
 
-        bool isMovementBlocked = IsInCombatAction || isSliding || isCrouching;
+        bool isMovementBlocked = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging;
 
         // Movimiento horizontal A/D o flechas (bloqueado durante combate, slide o agachado)
         move = isMovementBlocked ? 0f : Input.GetAxisRaw("Horizontal");
@@ -274,6 +297,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetBool("isVerticalAttacking", isVerticalAttacking);
             animator.SetBool("isCrouching", isCrouching);
             animator.SetBool("isSliding", isSliding);
+            animator.SetBool("isDodging", isDodging);
+            animator.SetBool("isBackdodging", isBackdodging);
         }
 
         // Recuperación de Squash & Stretch
@@ -334,7 +359,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         bool isApex = !isGrounded && Mathf.Abs(rb2d.linearVelocity.y) < apexThreshold;
-        bool freezeMovementForce = IsInCombatAction || isSliding || isCrouching;
+        bool freezeMovementForce = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging;
 
         // Selección de velocidad según estado Caminar / Correr (solo si no está en combate, slide o agachado)
         if (!freezeMovementForce)
@@ -371,8 +396,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void CheckLedgeGrab()
     {
-        // No agarrar si está en combate, slide o agachado
-        if (IsInCombatAction || isSliding || isCrouching) return;
+        // No agarrar si está en combate, slide, agachado o esquivando
+        if (IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging) return;
 
         // No agarrar si el jugador está presionando S/Abajo para bajar
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) return;
@@ -983,15 +1008,154 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
-    private void HandleSlideInputs()
+    // =========================================================================
+    // SISTEMA DE EVASIÓN Y DESLIZAMIENTO (FASE 5 - DODGE, BACKDODGE Y SPRINT)
+    // =========================================================================
+    private void HandleDodgeAndSlideInputs()
     {
-        if (isHanging || isClimbing || IsInCombatAction || isSliding) return;
+        // No actuar si está en un estado incompatible
+        if (isHanging || isClimbing || IsInCombatAction || isSliding || isDodging || isBackdodging) return;
 
-        // Condición para Slide: En el suelo, corriendo y pulsa K
-        bool isMovingHorizontally = Mathf.Abs(move) > 0.1f || Mathf.Abs(rb2d.linearVelocity.x) > walkSpeed + 0.2f;
-        if (isGrounded && isRunning && isMovingHorizontally && Input.GetKeyDown(dodgeKey))
+        // Comprobación de recuperación/cooldown
+        if (dodgeCooldownTimer > 0f) return;
+
+        if (!Input.GetKeyDown(dodgeKey)) return;
+
+        // Solo disponible en el suelo
+        if (!isGrounded) return;
+
+        // Si está agachado, comprobar si puede incorporarse antes de esquivar
+        if (isCrouching)
+        {
+            if (CanStandUp())
+            {
+                isCrouching = false;
+                SetColliderCrouched(false);
+                if (animator != null) animator.SetBool("isCrouching", false);
+            }
+            else
+            {
+                return; // Techo bajo bloquea la evasión
+            }
+        }
+
+        // Determinación de orientación actual:
+        // facingDirection == -1 -> Mira hacia la DERECHA
+        // facingDirection == 1  -> Mira hacia la IZQUIERDA
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        bool isOppositeInput = false;
+
+        if (facingDirection == -1) // Mira a la DERECHA
+        {
+            // Sentido opuesto: entrada hacia la IZQUIERDA (A o Flecha Izq o eje negativo)
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || horizontalInput < -0.1f)
+            {
+                isOppositeInput = true;
+            }
+        }
+        else // Mira a la IZQUIERDA
+        {
+            // Sentido opuesto: entrada hacia la DERECHA (D o Flecha Der o eje positivo)
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || horizontalInput > 0.1f)
+            {
+                isOppositeInput = true;
+            }
+        }
+
+        // PRIORIDAD EXCLUSIVA DE K:
+        // 1. Backdodge: si se pulsa la dirección opuesta a su orientación
+        if (isOppositeInput)
+        {
+            StartDodge(isBackwards: true);
+            return;
+        }
+
+        // 2. Slide: si el personaje está en el suelo, corriendo y moviéndose en la dirección frontal
+        bool isMovingForward = (facingDirection == -1 && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || horizontalInput > 0.1f)) ||
+                               (facingDirection == 1 && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || horizontalInput < -0.1f));
+
+        if (isRunning && (isMovingForward || Mathf.Abs(rb2d.linearVelocity.x) > walkSpeed + 0.2f))
         {
             StartSlide();
+            return;
+        }
+
+        // 3. Dodge Normal: si no se cumple ninguna de las anteriores (neutral o adelante sin slide)
+        StartDodge(isBackwards: false);
+    }
+
+    private void StartDodge(bool isBackwards)
+    {
+        isDodging = !isBackwards;
+        isBackdodging = isBackwards;
+        dodgeTimer = 0f;
+
+        // Orientación:
+        // facingDirection == -1 -> Mira a la DERECHA (+X)
+        // facingDirection == 1  -> Mira a la IZQUIERDA (-X)
+        float forwardDir = (facingDirection == -1) ? 1f : -1f;
+        dodgeDirection = isBackwards ? -forwardDir : forwardDir;
+
+        float baseSpeed = isBackwards ? backdodgeSpeed : dodgeSpeed;
+        float speedMultiplier = isRunning ? dodgeRunMultiplier : 1.0f;
+        currentDodgeSpeed = baseSpeed * speedMultiplier;
+
+        // Mantener orientación del personaje (el backdodge mantiene el frente hacia el enemigo)
+        transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
+
+        if (animator != null)
+        {
+            if (isBackwards)
+            {
+                animator.SetTrigger("backdodge");
+                animator.SetBool("isBackdodging", true);
+                animator.SetBool("isDodging", false);
+            }
+            else
+            {
+                animator.SetTrigger("dodge");
+                animator.SetBool("isDodging", true);
+                animator.SetBool("isBackdodging", false);
+            }
+        }
+    }
+
+    private void UpdateDodge()
+    {
+        if (!isDodging && !isBackdodging) return;
+
+        dodgeTimer += Time.deltaTime;
+
+        // Desaceleración suave
+        currentDodgeSpeed = Mathf.MoveTowards(currentDodgeSpeed, 0f, 7.5f * Time.deltaTime);
+
+        // Comprobación de pared frontal en la dirección del movimiento para evitar atravesar paredes
+        Vector2 checkOrigin = (Vector2)transform.position + Vector2.up * 0.35f;
+        RaycastHit2D wallHit = Physics2D.Raycast(checkOrigin, Vector2.right * dodgeDirection, 0.32f, groundLayer);
+        if (wallHit.collider != null)
+        {
+            currentDodgeSpeed = 0f;
+        }
+
+        rb2d.linearVelocity = new Vector2(dodgeDirection * currentDodgeSpeed, rb2d.linearVelocity.y);
+
+        float maxDuration = isBackdodging ? backdodgeDuration : dodgeDuration;
+        if (dodgeTimer >= maxDuration || Mathf.Abs(currentDodgeSpeed) < 0.2f)
+        {
+            StopDodge();
+        }
+    }
+
+    private void StopDodge()
+    {
+        isDodging = false;
+        isBackdodging = false;
+        dodgeCooldownTimer = dodgeCooldown;
+
+        if (animator != null)
+        {
+            animator.SetBool("isDodging", false);
+            animator.SetBool("isBackdodging", false);
         }
     }
 
