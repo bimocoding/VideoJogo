@@ -45,6 +45,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private float ledgeCooldown = 0f;
     private Vector2 ledgeCorner;
 
+    [Header("Wall Jump Horizontal desde Agarre (Fase 6)")]
+    public float wallJumpForceX = 8.0f;         // Impulso horizontal hacia el lado contrario
+    public float wallJumpForceY = 11.5f;        // Impulso vertical hacia arriba
+    public float wallJumpLedgeCooldown = 0.35f; // Tiempo de protección contra re-agarre al mismo saliente
+    public float wallJumpGraceTime = 0.18f;     // Tiempo que preserva el impulso horizontal sin fricción aérea
+    public bool isWallJumping = false;
+    private float wallJumpTimer = 0f;
+    private Vector2 lastLedgeCorner = Vector2.positiveInfinity;
+
     [Header("Squash & Stretch (Juice Visual)")]
     public bool enableSquashAndStretch = true;
     public Vector2 jumpStretch = new Vector2(0.85f, 1.2f);
@@ -342,6 +351,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
+            lastLedgeCorner = Vector2.positiveInfinity;
+            isWallJumping = false;
+            wallJumpTimer = 0f;
             if (Mathf.Abs(rb2d.linearVelocity.y) < 0.1f)
             {
                 lastGroundedPos = transform.position;
@@ -361,8 +373,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
         bool isApex = !isGrounded && Mathf.Abs(rb2d.linearVelocity.y) < apexThreshold;
         bool freezeMovementForce = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging;
 
+        // Durante los primeros instantes del wall jump, se preserva el impulso horizontal sin interferencia
+        if (wallJumpTimer > 0f)
+        {
+            wallJumpTimer -= Time.fixedDeltaTime;
+            if (wallJumpTimer <= 0f) isWallJumping = false;
+        }
         // Selección de velocidad según estado Caminar / Correr (solo si no está en combate, slide o agachado)
-        if (!freezeMovementForce)
+        else if (!freezeMovementForce)
         {
             float currentMaxSpeed = isRunning ? runSpeed : walkSpeed;
             float targetSpeed = move * currentMaxSpeed;
@@ -424,7 +442,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
             if (ledgeHit.collider != null)
             {
-                GrabLedge(new Vector2(wallHit.point.x, ledgeHit.point.y), lookDir);
+                Vector2 corner = new Vector2(wallHit.point.x, ledgeHit.point.y);
+
+                // Evitar re-engancharse a la misma esquina durante el cooldown
+                if (ledgeCooldown > 0f && Vector2.Distance(corner, lastLedgeCorner) < 0.6f) return;
+
+                GrabLedge(corner, lookDir);
             }
         }
     }
@@ -456,7 +479,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
 
-        // Temporizador de 3 segundos
+        // Temporizador de aproximadamente 3 segundos
         hangTimer += Time.deltaTime;
         if (hangTimer >= maxHangTime)
         {
@@ -464,18 +487,82 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 1. Subir con ESPACIO (o W / Arriba)
-        if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            StartCoroutine(ClimbLedgeRoutine(lookDir));
-            return;
-        }
-
-        // 2. Soltarse y bajar con S (o Abajo)
+        // 1. Soltarse y bajar con S (o Abajo)
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             DropFromLedge(lookDir);
             return;
+        }
+
+        // Comprobación de entradas direccionales hacia afuera del muro (dirección opuesta a lookDir)
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        bool isJumpPressed = Input.GetButtonDown("Jump");
+
+        // Si el muro está a la izquierda (lookDir.x < 0):
+        // D + ESPACIO salta hacia la derecha
+        // Si el muro está a la derecha (lookDir.x > 0):
+        // A + ESPACIO salta hacia la izquierda
+        bool awayInput = false;
+        if (lookDir.x < 0f)
+        {
+            awayInput = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || horizontalInput > 0.1f;
+        }
+        else
+        {
+            awayInput = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || horizontalInput < -0.1f;
+        }
+
+        // 2. Wall Jump horizontal desde el agarre: Dirección contraria + ESPACIO
+        if (isJumpPressed && awayInput)
+        {
+            ExecuteLedgeWallJump(lookDir);
+            return;
+        }
+
+        // 3. Subir al saliente: ESPACIO solo (sin dirección contraria), o W / Arriba
+        if (isJumpPressed || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            StartCoroutine(ClimbLedgeRoutine(lookDir));
+            return;
+        }
+    }
+
+    private void ExecuteLedgeWallJump(Vector2 lookDir)
+    {
+        isHanging = false;
+        isClimbing = false;
+        isWallJumping = true;
+        wallJumpTimer = wallJumpGraceTime;
+        rb2d.bodyType = RigidbodyType2D.Dynamic;
+
+        Vector2 jumpAwayDir = -lookDir;
+
+        // Actualizar orientación del personaje hacia la dirección del salto horizontal
+        // facingDirection == -1 -> Mira a la DERECHA (+X)
+        // facingDirection == 1  -> Mira a la IZQUIERDA (-X)
+        facingDirection = (jumpAwayDir.x > 0f) ? -1 : 1;
+
+        // Registrar esquina previa y cooldown para evitar re-agarre instantáneo en el mismo muro
+        lastLedgeCorner = ledgeCorner;
+        ledgeCooldown = wallJumpLedgeCooldown;
+
+        // Separar ligeramente del saliente para garantizar salida limpia de colisiones
+        transform.position = new Vector3(ledgeCorner.x + jumpAwayDir.x * 0.18f, ledgeCorner.y - 0.40f, transform.position.z);
+        transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
+
+        // Impulso horizontal y vertical desacoplado
+        rb2d.linearVelocity = new Vector2(jumpAwayDir.x * wallJumpForceX, wallJumpForceY);
+
+        if (enableSquashAndStretch)
+        {
+            currentScale = new Vector3(jumpStretch.x, jumpStretch.y, 1f);
+        }
+
+        if (animator != null)
+        {
+            animator.SetBool("isHanging", false);
+            animator.SetBool("isClimbing", false);
+            animator.SetTrigger("jump");
         }
     }
 

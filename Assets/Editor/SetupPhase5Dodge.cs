@@ -280,7 +280,7 @@ public static class SetupPhase5Dodge
         textRect.anchoredPosition = Vector2.zero;
 
         TextMeshProUGUI tmp = textGo.AddComponent<TextMeshProUGUI>();
-        tmp.text = "⚡ SPRINT";
+        tmp.text = ">> SPRINT";
         tmp.fontSize = 18f;
         tmp.fontStyle = FontStyles.Bold;
         tmp.alignment = TextAlignmentOptions.Center;
