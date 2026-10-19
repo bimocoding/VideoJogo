@@ -46,10 +46,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private Vector2 ledgeCorner;
 
     [Header("Wall Jump Horizontal desde Agarre (Fase 6)")]
-    public float wallJumpForceX = 5.2f;         // Impulso horizontal controlado hacia el lado contrario
-    public float wallJumpForceY = 10.5f;        // Impulso vertical hacia arriba
+    public float wallJumpForceX = 3.8f;         // Impulso horizontal controlado hacia el lado contrario
+    public float wallJumpForceY = 6.8f;         // Impulso vertical controlado y moderado hacia arriba
     public float wallJumpLedgeCooldown = 0.35f; // Tiempo de protección contra re-agarre al mismo saliente
-    public float wallJumpGraceTime = 0.18f;     // Tiempo que preserva el impulso horizontal sin fricción aérea
+    public float wallJumpGraceTime = 0.12f;     // Tiempo que preserva el impulso horizontal sin fricción aérea
     public bool isWallJumping = false;
     private float wallJumpTimer = 0f;
     private Vector2 lastLedgeCorner = Vector2.positiveInfinity;
@@ -556,7 +556,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         ledgeCooldown = wallJumpLedgeCooldown;
 
         // Separar ligeramente del saliente para garantizar salida limpia de colisiones
-        transform.position = new Vector3(ledgeCorner.x + jumpAwayDir.x * 0.18f, ledgeCorner.y - 0.40f, transform.position.z);
+        transform.position = new Vector3(ledgeCorner.x + jumpAwayDir.x * 0.12f, ledgeCorner.y - 0.25f, transform.position.z);
         transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
 
         // Impulso horizontal y vertical desacoplado

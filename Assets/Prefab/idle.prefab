@@ -220,10 +220,10 @@ MonoBehaviour:
   climbDuration: 0.66
   isHanging: 0
   isClimbing: 0
-  wallJumpForceX: 5.2
-  wallJumpForceY: 10.5
+  wallJumpForceX: 3.8
+  wallJumpForceY: 6.8
   wallJumpLedgeCooldown: 0.35
-  wallJumpGraceTime: 0.18
+  wallJumpGraceTime: 0.12
   isWallJumping: 0
   enableSquashAndStretch: 1
   jumpStretch: {x: 0.85, y: 1.2}

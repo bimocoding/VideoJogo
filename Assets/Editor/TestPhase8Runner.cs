@@ -125,18 +125,19 @@ public static class TestPhase8Runner
 
         methodExecWallJump.Invoke(player, new object[] { Vector2.left });
 
-        bool t4Success = player.wallJumpForceX <= 6.0f &&
-                         player.wallJumpForceX >= 4.5f &&
-                         Mathf.Abs(rb2d.linearVelocity.x - 5.2f) < 0.1f;
+        bool t4Success = player.wallJumpForceX <= 4.5f &&
+                         player.wallJumpForceX >= 3.2f &&
+                         player.wallJumpForceY <= 7.5f &&
+                         Mathf.Abs(rb2d.linearVelocity.x - 3.8f) < 0.1f;
 
         if (t4Success)
         {
-            Debug.Log($"<color=green>[PASS 4/9]</color> Wall Jump Horizontal: Fuerza moderada calibrada a {player.wallJumpForceX:F1} (VelX resultante = {rb2d.linearVelocity.x:F1}).");
+            Debug.Log($"<color=green>[PASS 4/9]</color> Wall Jump Horizontal: Fuerza moderada reducida calibrada a {player.wallJumpForceX:F1} (VelX={rb2d.linearVelocity.x:F1}, VelY={rb2d.linearVelocity.y:F1}).");
             passed++;
         }
         else
         {
-            Debug.LogError($"<color=red>[FAIL 4/9]</color> Wall Jump Horizontal fuera del rango moderado. wallJumpForceX={player.wallJumpForceX}, VelX={rb2d.linearVelocity.x}");
+            Debug.LogError($"<color=red>[FAIL 4/9]</color> Wall Jump Horizontal fuera del rango moderado. wallJumpForceX={player.wallJumpForceX}, VelX={rb2d.linearVelocity.x}, VelY={rb2d.linearVelocity.y}");
         }
 
         // =========================================================================
