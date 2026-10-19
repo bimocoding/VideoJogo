@@ -71,7 +71,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public LayerMask enemyLayer;
     public float attack1Duration = 0.45f;
     public float attack2Duration = 0.48f;
-    public float attack3Duration = 0.75f;
+    public float attack3Duration = 0.95f;
     public float comboChainWindowStart = 0.16f; // Momento a partir del cual se puede presionar J para encadenar
     public float comboResetTime = 1.25f;        // Tiempo para reiniciar contador si no ataca
     public float attack1Reach = 1.15f;

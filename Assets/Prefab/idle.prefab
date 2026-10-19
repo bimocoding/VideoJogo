@@ -241,7 +241,7 @@ MonoBehaviour:
     m_Bits: 0
   attack1Duration: 0.45
   attack2Duration: 0.48
-  attack3Duration: 0.75
+  attack3Duration: 0.95
   comboChainWindowStart: 0.16
   comboResetTime: 1.25
   attack1Reach: 1.15
