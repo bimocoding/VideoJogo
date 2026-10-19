@@ -7744,7 +7744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HitReceiver
   maxHealth: 100
-  currentHealth: 100
+  currentHealth: 55
   isImmortal: 1
   respawnDelay: 1
   flashDuration: 0.12
@@ -7897,7 +7897,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: -4.45, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -11318,19 +11318,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8675999683785227126, guid: 579fef78f73793e4abff30195597cfec, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 8675999683785227126, guid: 579fef78f73793e4abff30195597cfec, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 8675999683785227126, guid: 579fef78f73793e4abff30195597cfec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.83
+      value: -3.5800002
       objectReference: {fileID: 0}
     - target: {fileID: 8675999683785227126, guid: 579fef78f73793e4abff30195597cfec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.4
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 8675999683785227126, guid: 579fef78f73793e4abff30195597cfec, type: 3}
       propertyPath: m_LocalPosition.z

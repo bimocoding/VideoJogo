@@ -153,7 +153,7 @@ public static class RegressionTestSuite
 
         // Test 2.2: Detección de techo bajo (Estructura de prueba Test_LowCeilingStructure)
         var oldPos = player.transform.position;
-        player.transform.position = new Vector3(-3.5f, -4.40f, 0f); // Debajo de Test_LowCeilingStructure (-3.5, -3.95)
+        player.transform.position = new Vector3(-5.24f, -5.45f, 0f); // Debajo de Test_LowCeilingStructure (-5.24, -4.92)
         bool canStandUnderCeiling = player.CanStandUp();
         AssertTest("2.2 Detección de techo bajo (CanStandUp)",
             !canStandUnderCeiling,
@@ -212,10 +212,21 @@ public static class RegressionTestSuite
         mStartDodge.Invoke(player, new object[] { true }); // Backwards
         float dirBack = (float)fDodgeDirection.GetValue(player);
         int facingBack = (int)fFacingDir.GetValue(player);
+        float speedBackNormal = (float)fCurrentDodgeSpeed.GetValue(player);
         AssertTest("3.3 Backdodge en sentido opuesto sin invertir frente",
             player.isBackdodging && !player.isDodging && dirBack < 0f && facingBack == -1,
             $"isBackdodging={player.isBackdodging}, dir={dirBack:F1} (Negativo=Atrás), facing={facingBack} (Frente conservado)");
         mStopDodge.Invoke(player, null);
+
+        // Test 3.3b: Backdodge con carrera activa mantiene la misma distancia/velocidad
+        player.isRunning = true;
+        mStartDodge.Invoke(player, new object[] { true });
+        float speedBackSprint = (float)fCurrentDodgeSpeed.GetValue(player);
+        AssertTest("3.3b Backdodge con carrera mantiene misma velocidad/distancia",
+            Mathf.Approximately(speedBackSprint, speedBackNormal) && Mathf.Approximately(speedBackSprint, player.backdodgeSpeed),
+            $"Velocidad Backdodge con Sprint={speedBackSprint:F2}, sin Sprint={speedBackNormal:F2} (Esperado {player.backdodgeSpeed:F2})");
+        mStopDodge.Invoke(player, null);
+        player.isRunning = false;
 
         // Test 3.4: Cooldown de evasión activado tras StopDodge
         float dodgeCd = (float)fDodgeCooldownTimer.GetValue(player);

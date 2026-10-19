@@ -135,8 +135,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float dodgeDuration = 0.40f;         // Duración del dodge normal
     public float backdodgeDuration = 0.50f;     // Duración del backdodge
     public float dodgeSpeed = 6.8f;             // Velocidad base del dodge normal
-    public float backdodgeSpeed = 6.2f;         // Velocidad base del backdodge
-    public float dodgeRunMultiplier = 1.35f;    // Multiplicador de distancia / velocidad al esquivar en carrera
+    public float backdodgeSpeed = 6.2f;         // Velocidad base del backdodge (distancia constante fija)
+    public float dodgeRunMultiplier = 1.35f;    // Multiplicador de distancia / velocidad al esquivar hacia adelante en carrera
     public float dodgeCooldown = 0.25f;         // Tiempo de recuperación entre evasiones
 
     // Estados de Dodge y Backdodge
@@ -1279,7 +1279,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
         dodgeDirection = isBackwards ? -forwardDir : forwardDir;
 
         float baseSpeed = isBackwards ? backdodgeSpeed : dodgeSpeed;
-        float speedMultiplier = isRunning ? dodgeRunMultiplier : 1.0f;
+        // El backdodge mantiene la misma distancia fija constante ya sea con correr activado o desactivado;
+        // el multiplicador de sprint solo incrementa la distancia del dodge hacia adelante.
+        float speedMultiplier = (!isBackwards && isRunning) ? dodgeRunMultiplier : 1.0f;
         currentDodgeSpeed = baseSpeed * speedMultiplier;
 
         // Mantener orientación del personaje (el backdodge mantiene el frente hacia el enemigo)
