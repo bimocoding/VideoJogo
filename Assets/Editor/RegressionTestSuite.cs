@@ -235,7 +235,7 @@ public static class RegressionTestSuite
         fLedgeCorner.SetValue(player, new Vector2(-6.2f, -2.6f));
         mExecWallJump.Invoke(player, new object[] { Vector2.left });
         AssertTest("4.1 Wall Jump a la Derecha (D + ESPACIO)",
-            !player.isHanging && player.isWallJumping && rb2d.linearVelocity.x > 7.5f && (int)fFacingDir.GetValue(player) == -1,
+            !player.isHanging && player.isWallJumping && rb2d.linearVelocity.x > 4.5f && (int)fFacingDir.GetValue(player) == -1,
             $"isHanging={player.isHanging}, VelX={rb2d.linearVelocity.x:F1}, facing={fFacingDir.GetValue(player)}");
 
         // Test 4.2: Wall Jump hacia la Izquierda (agarrado a muro derecho)
@@ -244,7 +244,7 @@ public static class RegressionTestSuite
         fLedgeCorner.SetValue(player, new Vector2(-3.4f, -2.6f));
         mExecWallJump.Invoke(player, new object[] { Vector2.right });
         AssertTest("4.2 Wall Jump a la Izquierda (A + ESPACIO)",
-            !player.isHanging && player.isWallJumping && rb2d.linearVelocity.x < -7.5f && (int)fFacingDir.GetValue(player) == 1,
+            !player.isHanging && player.isWallJumping && rb2d.linearVelocity.x < -4.5f && (int)fFacingDir.GetValue(player) == 1,
             $"isHanging={player.isHanging}, VelX={rb2d.linearVelocity.x:F1}, facing={fFacingDir.GetValue(player)}");
 
         // Test 4.3: Protección anti re-enganche en mismo muro

@@ -195,13 +195,95 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924488a49f1d2354c8d19679e7eb0f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
-  speed: 2
+  walkSpeed: 2.3
+  runSpeed: 4.6
+  isRunning: 0
+  groundAcceleration: 16
+  groundDeceleration: 18
+  airAcceleration: 10
+  airDeceleration: 8
   jumpForce: 4
+  fallMultiplier: 2.8
+  lowJumpMultiplier: 2.2
+  coyoteTime: 0.15
+  jumpBufferTime: 0.15
+  apexThreshold: 2
+  apexGravityMultiplier: 0.4
+  apexSpeedBonus: 1.15
+  enableLedgeGrab: 1
+  maxHangTime: 3
+  wallCheckDistance: 0.38
+  chestCheckHeight: 0.3
+  headCheckHeight: 0.62
+  hangOffsetX: 0.02
+  hangOffsetY: 0.02
+  climbDuration: 0.66
+  isHanging: 0
+  isClimbing: 0
+  wallJumpForceX: 5.2
+  wallJumpForceY: 10.5
+  wallJumpLedgeCooldown: 0.35
+  wallJumpGraceTime: 0.18
+  isWallJumping: 0
+  enableSquashAndStretch: 1
+  jumpStretch: {x: 0.85, y: 1.2}
+  landSquash: {x: 1.2, y: 0.8}
+  squashRecoverySpeed: 12
   groundCheck: {fileID: 7563256089448134111}
   groundRadius: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  attackKey: 106
+  hitFxPrefab: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  attack1Duration: 0.45
+  attack2Duration: 0.48
+  attack3Duration: 0.75
+  comboChainWindowStart: 0.16
+  comboResetTime: 1.25
+  attack1Reach: 1.15
+  attack2Reach: 1.25
+  attack3Reach: 1.55
+  attackLungeForce: 1.2
+  isAttacking: 0
+  currentComboStep: 0
+  dodgeKey: 107
+  dodgeCancelWindowStart: 0.1
+  dodgeCancelWindowEnd: 0.42
+  dodgeAttack1Duration: 0.45
+  dodgeAttack2Duration: 0.5
+  dodgeAttack1Lunge: 4.2
+  dodgeAttack2Lunge: 2.8
+  dodgeAttack1Reach: 1.4
+  dodgeAttack2Reach: 1.5
+  verticalAttackJumpForce: 8.5
+  verticalAttackDuration: 0.65
+  verticalAttackReachX: 1.35
+  verticalAttackReachY: 2.2
+  verticalAttackKnockback: 4.8
+  isDodgeAttacking: 0
+  isVerticalAttacking: 0
+  currentDodgeStep: 0
+  crouchKey: 115
+  crouchColliderHeight: 0.32
+  slideDuration: 0.55
+  slideInitialSpeed: 8.5
+  slideDeceleration: 9
+  isCrouching: 0
+  isSliding: 0
+  dodgeDuration: 0.4
+  backdodgeDuration: 0.5
+  dodgeSpeed: 6.8
+  backdodgeSpeed: 6.2
+  dodgeRunMultiplier: 1.35
+  dodgeCooldown: 0.25
+  isDodging: 0
+  isBackdodging: 0
+  fallThreshold: -9
+  lastGroundedPos: {x: 0, y: 0, z: 0}
 --- !u!1 &3594314530035506961
 GameObject:
   m_ObjectHideFlags: 0

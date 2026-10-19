@@ -1129,6 +1129,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: verticalAttack
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: isVerticalAttacking
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 778009871509789534}
   m_Solo: 0
