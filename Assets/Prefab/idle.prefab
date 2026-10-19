@@ -259,8 +259,9 @@ MonoBehaviour:
   dodgeAttack2Lunge: 2.8
   dodgeAttack1Reach: 1.4
   dodgeAttack2Reach: 1.5
-  verticalAttackJumpForce: 8.5
-  verticalAttackDuration: 0.65
+  verticalAttackJumpForce: 7.6
+  verticalAttackDuration: 0.52
+  verticalAttackForwardDrift: 0.2
   verticalAttackReachX: 1.35
   verticalAttackReachY: 2.2
   verticalAttackKnockback: 4.8

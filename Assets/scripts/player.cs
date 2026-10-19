@@ -101,8 +101,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float dodgeAttack2Reach = 1.5f;
 
     [Header("Ataque Vertical (W + J)")]
-    public float verticalAttackJumpForce = 8.5f;
-    public float verticalAttackDuration = 0.65f;
+    public float verticalAttackJumpForce = 7.6f; // Impulso vertical ágil y contenido
+    public float verticalAttackDuration = 0.52f;  // Duración reactiva del ataque vertical
+    public float verticalAttackForwardDrift = 0.20f; // Avance horizontal mínimo para evitar desplazarse mucho
     public float verticalAttackReachX = 1.35f;
     public float verticalAttackReachY = 2.2f;
     public float verticalAttackKnockback = 4.8f; // Impulso vertical equilibrado y controlado del enemigo
@@ -340,6 +341,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
+        // Frenado horizontal inmediato y firme durante el Ataque Vertical para evitar desplazarse
+        if (isVerticalAttacking)
+        {
+            rb2d.linearVelocity = new Vector2(Mathf.MoveTowards(rb2d.linearVelocity.x, 0f, 14f * Time.fixedDeltaTime), rb2d.linearVelocity.y);
+        }
+
         // Aterrizaje
         if (!wasGrounded && isGrounded)
         {
@@ -404,7 +411,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             rb2d.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
         }
-        else if (rb2d.linearVelocity.y > 0f && !Input.GetButton("Jump"))
+        else if (rb2d.linearVelocity.y > 0f && !Input.GetButton("Jump") && !isVerticalAttacking)
         {
             rb2d.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1f) * Time.fixedDeltaTime;
         }
@@ -739,8 +746,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
 
             // CANCELACIÓN O ENCADENAMIENTO A ATAQUE VERTICAL CON W+J o UP+J
-            bool upHeldDuringAtk = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
-            if (upHeldDuringAtk && Input.GetKeyDown(attackKey) && attackTimer >= comboChainWindowStart)
+            bool isUpHeldDuringAtk = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || 
+                                     Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || 
+                                     Input.GetAxisRaw("Vertical") > 0.5f;
+            if (isUpHeldDuringAtk && Input.GetKeyDown(attackKey) && attackTimer >= comboChainWindowStart)
             {
                 ExecuteVerticalAttack();
                 return;
@@ -767,9 +776,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 4. Iniciar Ataque Vertical desde el suelo con W + J o Flecha Arriba + J
-        bool verticalInput = (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) && Input.GetKeyDown(attackKey);
-        if (isGrounded && verticalInput)
+        // 4. Iniciar Ataque Vertical desde el suelo con W + J, Flecha Arriba + J o Eje Vertical Arriba + J
+        bool isUpHeldGround = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || 
+                              Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || 
+                              Input.GetAxisRaw("Vertical") > 0.5f;
+        if (isGrounded && isUpHeldGround && Input.GetKeyDown(attackKey))
         {
             ExecuteVerticalAttack();
             return;
@@ -999,11 +1010,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
 
-        // Impulso vertical con ligera proyección frontal
-        rb2d.linearVelocity = new Vector2(lookDir.x * 1.5f, verticalAttackJumpForce);
+        // Impulso vertical con avance horizontal mínimo y anclado al eje
+        rb2d.linearVelocity = new Vector2(lookDir.x * verticalAttackForwardDrift, verticalAttackJumpForce);
 
         if (animator != null)
         {
+            animator.ResetTrigger("verticalAttack");
             animator.SetTrigger("verticalAttack");
             animator.SetBool("isVerticalAttacking", true);
             animator.SetBool("isAttacking", false);
@@ -1015,10 +1027,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private IEnumerator VerticalAttackHitboxRoutine(Vector2 lookDir)
     {
-        // Impacto durante la fase de ascenso de la espada
-        yield return new WaitForSeconds(0.12f);
+        // Impacto sincronizado con la fase de corte ascendente
+        yield return new WaitForSeconds(0.10f);
 
-        Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 1.1f + lookDir * 0.35f;
+        Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 1.0f + lookDir * 0.25f;
         Vector2 attackSize = new Vector2(verticalAttackReachX, verticalAttackReachY);
 
         Collider2D[] hits = Physics2D.OverlapBoxAll(attackCenter, attackSize, 0f);
@@ -1050,7 +1062,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             connectedComboHits++;
             comboResetTimer = comboResetTime;
             OnComboHit?.Invoke(connectedComboHits);
-            TriggerHitstop(0.06f);
+            TriggerHitstop(0.07f);
         }
     }
 
