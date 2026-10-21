@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
@@ -22,6 +22,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float lowJumpMultiplier = 2.2f;
     public float coyoteTime = 0.15f;
     public float jumpBufferTime = 0.15f;
+
+    [Header("Doble Salto (Double Jump)")]
+    public float doubleJumpForce = 2.0f;
+    public int maxAirJumps = 1;
+    private int airJumpsRemaining = 0;
 
     [Header("Apex Hang Time (Pico del Salto)")]
     public float apexThreshold = 2.0f;
@@ -306,10 +311,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
             else if (move < -0.01f) facingDirection = 1;
         }
 
-        // Disparo de salto
+        // Disparo de salto normal (desde suelo o coyote time)
         if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
         {
             ExecuteJump();
+        }
+        // Disparo de doble salto (en el aire, sin coyote time, si quedan saltos aéreos)
+        else if (jumpBufferCounter > 0f && !isGrounded && airJumpsRemaining > 0 && !isAirDashing && !IsInCombatAction && !isHanging && !isClimbing)
+        {
+            ExecuteDoubleJump();
         }
 
         // Salto variable: soltar el botÃ³n corta el ascenso
@@ -391,6 +401,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (isGrounded)
         {
             hasAirDashed = false;
+            airJumpsRemaining = maxAirJumps;
             coyoteTimeCounter = coyoteTime;
             lastLedgeCorner = Vector2.positiveInfinity;
             isWallJumping = false;
@@ -620,6 +631,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void ExecuteLedgeWallJump(Vector2 lookDir)
     {
         hasAirDashed = false;
+        airJumpsRemaining = maxAirJumps;
         isHanging = false;
         isClimbing = false;
         isWallJumping = true;
@@ -663,6 +675,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void DropFromLedge(Vector2 lookDir)
     {
         hasAirDashed = false;
+        airJumpsRemaining = maxAirJumps;
         isHanging = false;
         isClimbing = false;
         rb2d.bodyType = RigidbodyType2D.Dynamic;
@@ -738,6 +751,41 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (animator != null)
         {
             animator.SetTrigger("jump");
+        }
+    }
+
+    private void ExecuteDoubleJump()
+    {
+        airJumpsRemaining--;
+        jumpBufferCounter = 0f;
+        coyoteTimeCounter = 0f;
+
+        // Orientar segun entrada horizontal si la hay
+        if (Mathf.Abs(move) > 0.01f)
+        {
+            facingDirection = (move > 0f) ? -1 : 1;
+            transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
+        }
+
+        // Impulso vertical limpio
+        rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, doubleJumpForce);
+
+        if (enableSquashAndStretch)
+        {
+            currentScale = new Vector3(jumpStretch.x, jumpStretch.y, 1f);
+        }
+
+        bool isMovingHorizontally = Mathf.Abs(move) > 0.1f || Mathf.Abs(rb2d.linearVelocity.x) > 0.5f;
+        if (animator != null)
+        {
+            if (isMovingHorizontally)
+            {
+                animator.SetTrigger("doubleJumpForward");
+            }
+            else
+            {
+                animator.SetTrigger("doubleJumpVertical");
+            }
         }
     }
 

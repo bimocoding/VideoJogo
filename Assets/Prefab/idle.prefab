@@ -207,6 +207,8 @@ MonoBehaviour:
   lowJumpMultiplier: 2.2
   coyoteTime: 0.15
   jumpBufferTime: 0.15
+  doubleJumpForce: 2
+  maxAirJumps: 1
   apexThreshold: 2
   apexGravityMultiplier: 0.4
   apexSpeedBonus: 1.15
@@ -265,6 +267,9 @@ MonoBehaviour:
   verticalAttackReachX: 1.35
   verticalAttackReachY: 2.2
   verticalAttackKnockback: 4.8
+  jumpAttackDuration: 0.45
+  jumpAttackReach: 1.55
+  isJumpAttacking: 0
   isDodgeAttacking: 0
   isVerticalAttacking: 0
   currentDodgeStep: 0
@@ -275,6 +280,9 @@ MonoBehaviour:
   slideDeceleration: 9
   isCrouching: 0
   isSliding: 0
+  airDashSpeed: 8
+  airDashDuration: 0.225
+  isAirDashing: 0
   dodgeDuration: 0.4
   backdodgeDuration: 0.5
   dodgeSpeed: 6.8
