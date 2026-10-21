@@ -582,12 +582,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 2. Dash / Dodge desde el agarre (tecla K)
-        if (Input.GetKeyDown(dodgeKey))
-        {
-            ExecuteLedgeDodge(lookDir);
-            return;
-        }
 
         // ComprobaciÃ³n de entradas direccionales hacia afuera del muro (direcciÃ³n opuesta a lookDir)
         float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -622,54 +616,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
-    private void ExecuteLedgeDodge(Vector2 lookDir)
-    {
-        hasAirDashed = false;
-        isHanging = false;
-        isClimbing = false;
-        rb2d.bodyType = RigidbodyType2D.Dynamic;
-
-        // Restaurar collider fÃ­sico
-        if (playerCollider != null) playerCollider.enabled = true;
-
-        Vector2 jumpAwayDir = -lookDir;
-
-        // Orientar hacia afuera del muro
-        // facingDirection == -1 -> Mira a la DERECHA (+X)
-        // facingDirection == 1  -> Mira a la IZQUIERDA (-X)
-        facingDirection = (jumpAwayDir.x > 0f) ? -1 : 1;
-
-        // Registrar esquina previa y cooldown para evitar re-agarre instantÃ¡neo
-        lastLedgeCorner = ledgeCorner;
-        ledgeCooldown = wallJumpLedgeCooldown;
-
-        // Separar del saliente limpiamente para evitar atascarse en la geometrÃ­a
-        transform.position = new Vector3(ledgeCorner.x + jumpAwayDir.x * 0.15f, ledgeCorner.y - 0.25f, transform.position.z);
-        transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
-
-        // Iniciar Dodge alejÃ¡ndose del muro
-        dodgeCooldownTimer = dodgeCooldown;
-        isDodging = true;
-        isBackdodging = false;
-        dodgeTimer = 0f;
-        dodgeDirection = jumpAwayDir.x;
-        currentDodgeSpeed = dodgeSpeed;
-
-        // Atravesar enemigos si los hubiera
-        SetDodgeIgnoreEnemies(true);
-
-        // Impulso horizontal limpio con pequeÃ±a suspensiÃ³n vertical
-        rb2d.linearVelocity = new Vector2(jumpAwayDir.x * dodgeSpeed, 1.5f);
-
-        if (animator != null)
-        {
-            animator.SetBool("isHanging", false);
-            animator.SetBool("isClimbing", false);
-            animator.SetTrigger("dodge");
-            animator.SetBool("isDodging", true);
-            animator.SetBool("isBackdodging", false);
-        }
-    }
 
     private void ExecuteLedgeWallJump(Vector2 lookDir)
     {
@@ -1623,18 +1569,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void StartDodge(bool isBackwards)
     {
-        if (isHanging || isClimbing)
-        {
-            isHanging = false;
-            isClimbing = false;
-            rb2d.bodyType = RigidbodyType2D.Dynamic;
-            if (playerCollider != null) playerCollider.enabled = true;
-            if (animator != null)
-            {
-                animator.SetBool("isHanging", false);
-                animator.SetBool("isClimbing", false);
-            }
-        }
 
         isDodging = !isBackwards;
         isBackdodging = isBackwards;
