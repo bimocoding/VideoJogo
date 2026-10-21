@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 213e0cc27b004936ba2e5f0f47e47f97
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ghoul_attack
+  serializedVersion: 8

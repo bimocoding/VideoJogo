@@ -28,6 +28,27 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public int maxAirJumps = 1;
     private int airJumpsRemaining = 0;
 
+    [Header("Sistema de Salud y Daño por Vacío")]
+    public int maxHealth = 100;
+    public int currentHealth = 100;
+    public int voidDamage = 25;
+    public bool isDead = false;
+
+    [Header("Sistema de Curación (Tecla H)")]
+    public KeyCode healKey = KeyCode.H;
+    public int maxHealCharges = 3;
+    public int healChargesRemaining = 3;
+    public int healAmount = 35;
+    public float healCooldown = 5.0f;
+    public float healCooldownTimer = 0f;
+    public bool isHealing = false;
+    public float healDuration = 1.08f;
+    private Coroutine healRoutine;
+
+    // Eventos desacoplados para la UI (Health Bar y Healing Indicator)
+    public static Action<int, int> OnHealthChanged;
+    public static Action<int, int, float, float> OnHealStateChanged;
+
     [Header("Apex Hang Time (Pico del Salto)")]
     public float apexThreshold = 2.0f;
     [Range(0f, 1f)]
@@ -223,6 +244,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
             groundLayer = LayerMask.GetMask("Floor");
             if (groundLayer.value == 0) groundLayer = (1 << 3) | (1 << 0);
         }
+
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        OnHealStateChanged?.Invoke(healChargesRemaining, maxHealCharges, healCooldownTimer, healCooldown);
     }
 
     private void SetupColliders()
@@ -276,11 +300,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
         UpdateDodge();
         UpdateAirDash();
         HandleCrouchInputs();
+        HandleHealingInput();
 
         // Sistema de combate con J (combos), K (dodge attacks) y W+J (ataque vertical)
         HandleCombatInputs();
 
-        bool isMovementBlocked = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing;
+        bool isMovementBlocked = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing || isHealing || isDead;
 
         // Movimiento horizontal A/D o flechas (bloqueado durante combate, slide o agachado)
         move = isMovementBlocked ? 0f : Input.GetAxisRaw("Horizontal");
@@ -291,11 +316,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
             isRunning = !isRunning;
         }
 
-        // Respawn si cae al abismo
-        if (transform.position.y < fallThreshold)
+        // Respawn y daño de 25 HP si cae al abismo
+        if (transform.position.y < fallThreshold && !isDead)
         {
-            transform.position = lastGroundedPos + Vector3.up * 0.2f;
-            rb2d.linearVelocity = Vector2.zero;
+            TakeDamage(voidDamage, true);
+            if (!isDead)
+            {
+                transform.position = lastGroundedPos + Vector3.up * 0.2f;
+                rb2d.linearVelocity = Vector2.zero;
+            }
         }
 
         // Buffer de salto (no saltar durante combate, slide o agachado)
@@ -347,6 +376,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetBool("isDodging", isDodging);
             animator.SetBool("isBackdodging", isBackdodging);
             animator.SetBool("isAirDashing", isAirDashing);
+            animator.SetBool("isHealing", isHealing);
         }
 
         // RecuperaciÃ³n de Squash & Stretch
@@ -1773,6 +1803,97 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetBool("isSliding", false);
             animator.SetBool("isCrouching", isCrouching);
         }
+    }
+
+    // =========================================================================
+    // SISTEMA DE SALUD, DAÑO Y CURACIÓN (TECLA H)
+    // =========================================================================
+    public void TakeDamage(int damage, bool fromVoid = false)
+    {
+        if (isDead) return;
+
+        currentHealth = Mathf.Max(0, currentHealth - damage);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+
+        if (animator != null && !fromVoid)
+        {
+            animator.SetTrigger("hurt");
+        }
+
+        if (currentHealth <= 0)
+        {
+            StartCoroutine(DieRoutine());
+        }
+    }
+
+    private IEnumerator DieRoutine()
+    {
+        isDead = true;
+        rb2d.linearVelocity = Vector2.zero;
+        if (animator != null)
+        {
+            animator.SetTrigger("hurt");
+        }
+
+        // Pantalla de Game Over estilo Dark Souls
+        if (GameOverUI.Instance != null)
+        {
+            GameOverUI.Instance.TriggerGameOver();
+        }
+
+        yield return null;
+    }
+
+    private void HandleHealingInput()
+    {
+        if (healCooldownTimer > 0f)
+        {
+            healCooldownTimer -= Time.deltaTime;
+            if (healCooldownTimer <= 0f) healCooldownTimer = 0f;
+            OnHealStateChanged?.Invoke(healChargesRemaining, maxHealCharges, healCooldownTimer, healCooldown);
+        }
+
+        if (isDead || isHealing || isHanging || isClimbing || IsInCombatAction || isSliding || isDodging || isBackdodging || isAirDashing)
+            return;
+
+        if (Input.GetKeyDown(healKey))
+        {
+            if (healChargesRemaining > 0 && healCooldownTimer <= 0f && currentHealth < maxHealth)
+            {
+                if (healRoutine != null) StopCoroutine(healRoutine);
+                healRoutine = StartCoroutine(ExecuteHealRoutine());
+            }
+        }
+    }
+
+    private IEnumerator ExecuteHealRoutine()
+    {
+        isHealing = true;
+        healChargesRemaining--;
+        healCooldownTimer = healCooldown;
+
+        if (isGrounded)
+        {
+            rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
+        }
+
+        if (animator != null)
+        {
+            animator.SetTrigger("heal");
+            animator.SetBool("isHealing", true);
+        }
+
+        currentHealth = Mathf.Min(maxHealth, currentHealth + healAmount);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        OnHealStateChanged?.Invoke(healChargesRemaining, maxHealCharges, healCooldownTimer, healCooldown);
+
+        yield return new WaitForSeconds(healDuration);
+
+        if (animator != null)
+        {
+            animator.SetBool("isHealing", false);
+        }
+        isHealing = false;
     }
 
     private void OnDrawGizmosSelected()

@@ -83,6 +83,13 @@ public class HitReceiver : MonoBehaviour
             transform.localScale = new Vector3(originalScale.x * squashScale.x, originalScale.y * squashScale.y, originalScale.z);
         }
 
+        // Notificar aturdimiento a componentes de IA (GhoulAI u otros) para que no pueda golpear durante el combo
+        var ghoulAI = GetComponent<GhoulAI>();
+        if (ghoulAI != null)
+        {
+            ghoulAI.OnStunned(0.75f);
+        }
+
         // Empuje físico ligero hacia atrás según el lado desde el que se golpea
         if (rb != null)
         {

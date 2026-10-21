@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 1801a8c99754434f9b394f824bf515da
+AnimationClip:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ghoul_run
+  serializedVersion: 8

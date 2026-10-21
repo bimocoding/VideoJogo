@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 1a615aac6a564cfdb29dc8f9cef1c815
+AnimatorController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GhoulController
+  serializedVersion: 5

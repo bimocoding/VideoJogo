@@ -209,6 +209,18 @@ MonoBehaviour:
   jumpBufferTime: 0.15
   doubleJumpForce: 2
   maxAirJumps: 1
+  maxHealth: 100
+  currentHealth: 100
+  voidDamage: 25
+  isDead: 0
+  healKey: 104
+  maxHealCharges: 3
+  healChargesRemaining: 3
+  healAmount: 35
+  healCooldown: 5
+  healCooldownTimer: 0
+  isHealing: 0
+  healDuration: 1.08
   apexThreshold: 2
   apexGravityMultiplier: 0.4
   apexSpeedBonus: 1.15
