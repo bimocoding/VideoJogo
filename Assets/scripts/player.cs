@@ -132,6 +132,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private float currentSlideSpeed = 0f;
     private float slideDirection = 1f;
 
+    [Header("Sistema de Evasión Aérea (Aerial Dash)")]
+    public float airDashSpeed = 8.0f;           // Distancia calibrada a ~60% (ej. de 10 a 6)
+    public float airDashDuration = 0.225f;
+    public bool isAirDashing = false;
+    private bool hasAirDashed = false;
+    private float airDashTimer = 0f;
+    private float airDashDirection = 0f;
+
     [Header("Sistema de Evasión (Fase 5 - Dodge, Backdodge y Sprint)")]
     public float dodgeDuration = 0.40f;         // Duración del dodge normal
     public float backdodgeDuration = 0.50f;     // Duración del backdodge
@@ -150,7 +158,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     // Propiedades de estado
     public bool IsInEvasiveAction => isDodging || isBackdodging || isSliding;
-    public bool IsEffectiveRunning => isRunning && Mathf.Abs(move) > 0.1f && isGrounded && !isCrouching && !isSliding && !isDodging && !isBackdodging && !IsInCombatAction && !isHanging && !isClimbing;
+    public bool IsEffectiveRunning => isRunning && Mathf.Abs(move) > 0.1f && isGrounded && !isCrouching && !isSliding && !isDodging && !isBackdodging && !isAirDashing && !IsInCombatAction && !isHanging && !isClimbing;
 
     // Dimensiones originales del collider físico
     private Collider2D playerCollider;
@@ -231,11 +239,21 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (ledgeCooldown > 0f) ledgeCooldown -= Time.deltaTime;
 
         // Si está en la animación de trepar, congelar inputs de movimiento
-        if (isClimbing) return;
+        if (isClimbing)
+        {
+            rb2d.linearVelocity = Vector2.zero;
+            return;
+        }
 
         // Comportamiento cuando está colgado del borde
         if (isHanging)
         {
+            // Bloqueo continuo de posición al borde para eliminar cualquier levitación o deriva residual
+            Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
+            transform.position = new Vector3(ledgeCorner.x + lookDir.x * hangOffsetX, ledgeCorner.y - hangOffsetY, transform.position.z);
+            rb2d.linearVelocity = Vector2.zero;
+            rb2d.angularVelocity = 0f;
+
             HandleLedgeInputs();
             return;
         }
@@ -246,12 +264,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
         HandleDodgeAndSlideInputs();
         UpdateSlide();
         UpdateDodge();
+        UpdateAirDash();
         HandleCrouchInputs();
 
         // Sistema de combate con J (combos), K (dodge attacks) y W+J (ataque vertical)
         HandleCombatInputs();
 
-        bool isMovementBlocked = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging;
+        bool isMovementBlocked = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing;
 
         // Movimiento horizontal A/D o flechas (bloqueado durante combate, slide o agachado)
         move = isMovementBlocked ? 0f : Input.GetAxisRaw("Horizontal");
@@ -311,6 +330,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetBool("isSliding", isSliding);
             animator.SetBool("isDodging", isDodging);
             animator.SetBool("isBackdodging", isBackdodging);
+            animator.SetBool("isAirDashing", isAirDashing);
         }
 
         // Recuperación de Squash & Stretch
@@ -328,7 +348,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isClimbing || isHanging) return;
+        if (isClimbing || isHanging)
+        {
+            rb2d.linearVelocity = Vector2.zero;
+            rb2d.angularVelocity = 0f;
+            return;
+        }
 
         wasGrounded = isGrounded;
         Vector2 checkPos = (groundCheck != null) ? (Vector2)groundCheck.position : (Vector2)transform.position + Vector2.down * 0.05f;
@@ -359,6 +384,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // Coyote time y checkpoint
         if (isGrounded)
         {
+            hasAirDashed = false;
             coyoteTimeCounter = coyoteTime;
             lastLedgeCorner = Vector2.positiveInfinity;
             isWallJumping = false;
@@ -380,7 +406,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         bool isApex = !isGrounded && Mathf.Abs(rb2d.linearVelocity.y) < apexThreshold;
-        bool freezeMovementForce = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging;
+        bool freezeMovementForce = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing;
 
         // Durante los primeros instantes del wall jump, se preserva el impulso horizontal sin interferencia
         if (wallJumpTimer > 0f)
@@ -407,6 +433,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         // Curva de gravedad Celeste
+        if (isAirDashing) return; // Suspender gravedad Celeste durante el aerial dash
         if (rb2d.linearVelocity.y < 0f)
         {
             rb2d.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
@@ -424,7 +451,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void CheckLedgeGrab()
     {
         // No agarrar si está en combate, slide, agachado o esquivando
-        if (IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging) return;
+        if (IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing) return;
 
         // No agarrar si el jugador está presionando S/Abajo para bajar
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) return;
@@ -463,13 +490,49 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void GrabLedge(Vector2 corner, Vector2 lookDir)
     {
+        // Cancelar ataques o esquives activos para eliminar cualquier inercia previa
+        if (attackRoutine != null)
+        {
+            StopCoroutine(attackRoutine);
+            attackRoutine = null;
+        }
+        if (hitstopRoutine != null)
+        {
+            StopCoroutine(hitstopRoutine);
+            hitstopRoutine = null;
+            if (animator != null) animator.speed = 1.0f;
+        }
+
+        isAttacking = false;
+        isDodgeAttacking = false;
+        isVerticalAttacking = false;
+        isDodging = false;
+        isBackdodging = false;
+        isAirDashing = false;
+        hasAirDashed = false;
+        isSliding = false;
+        isCrouching = false;
+        isWallJumping = false;
+        wallJumpTimer = 0f;
+        comboQueued = false;
+        currentComboStep = 0;
+        currentDodgeStep = 0;
+        currentDodgeSpeed = 0f;
+        currentSlideSpeed = 0f;
+
+        SetDodgeIgnoreEnemies(false);
+
         isHanging = true;
         isClimbing = false;
         hangTimer = 0f;
         ledgeCorner = corner;
 
+        // Asignar Kinematic y anular tajantemente cualquier inercia o velocidad previa
         rb2d.linearVelocity = Vector2.zero;
+        rb2d.angularVelocity = 0f;
         rb2d.bodyType = RigidbodyType2D.Kinematic;
+        rb2d.linearVelocity = Vector2.zero;
+        rb2d.angularVelocity = 0f;
 
         // Desactivar temporalmente collider físico para evitar penetración errática
         // con la geometría de la plataforma y eliminar cualquier efecto de levitación/expulsión
@@ -485,6 +548,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetTrigger("ledgeGrab");
             animator.SetBool("isHanging", true);
             animator.SetBool("isClimbing", false);
+            animator.SetBool("isDodging", false);
+            animator.SetBool("isBackdodging", false);
+            animator.SetBool("isAttacking", false);
+            animator.SetBool("isDodgeAttacking", false);
+            animator.SetBool("isVerticalAttacking", false);
         }
     }
 
@@ -504,6 +572,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             DropFromLedge(lookDir);
+            return;
+        }
+
+        // 2. Dash / Dodge desde el agarre (tecla K)
+        if (Input.GetKeyDown(dodgeKey))
+        {
+            ExecuteLedgeDodge(lookDir);
             return;
         }
 
@@ -540,8 +615,58 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    private void ExecuteLedgeDodge(Vector2 lookDir)
+    {
+        hasAirDashed = false;
+        isHanging = false;
+        isClimbing = false;
+        rb2d.bodyType = RigidbodyType2D.Dynamic;
+
+        // Restaurar collider físico
+        if (playerCollider != null) playerCollider.enabled = true;
+
+        Vector2 jumpAwayDir = -lookDir;
+
+        // Orientar hacia afuera del muro
+        // facingDirection == -1 -> Mira a la DERECHA (+X)
+        // facingDirection == 1  -> Mira a la IZQUIERDA (-X)
+        facingDirection = (jumpAwayDir.x > 0f) ? -1 : 1;
+
+        // Registrar esquina previa y cooldown para evitar re-agarre instantáneo
+        lastLedgeCorner = ledgeCorner;
+        ledgeCooldown = wallJumpLedgeCooldown;
+
+        // Separar del saliente limpiamente para evitar atascarse en la geometría
+        transform.position = new Vector3(ledgeCorner.x + jumpAwayDir.x * 0.15f, ledgeCorner.y - 0.25f, transform.position.z);
+        transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
+
+        // Iniciar Dodge alejándose del muro
+        dodgeCooldownTimer = dodgeCooldown;
+        isDodging = true;
+        isBackdodging = false;
+        dodgeTimer = 0f;
+        dodgeDirection = jumpAwayDir.x;
+        currentDodgeSpeed = dodgeSpeed;
+
+        // Atravesar enemigos si los hubiera
+        SetDodgeIgnoreEnemies(true);
+
+        // Impulso horizontal limpio con pequeña suspensión vertical
+        rb2d.linearVelocity = new Vector2(jumpAwayDir.x * dodgeSpeed, 1.5f);
+
+        if (animator != null)
+        {
+            animator.SetBool("isHanging", false);
+            animator.SetBool("isClimbing", false);
+            animator.SetTrigger("dodge");
+            animator.SetBool("isDodging", true);
+            animator.SetBool("isBackdodging", false);
+        }
+    }
+
     private void ExecuteLedgeWallJump(Vector2 lookDir)
     {
+        hasAirDashed = false;
         isHanging = false;
         isClimbing = false;
         isWallJumping = true;
@@ -584,9 +709,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void DropFromLedge(Vector2 lookDir)
     {
+        hasAirDashed = false;
         isHanging = false;
         isClimbing = false;
         rb2d.bodyType = RigidbodyType2D.Dynamic;
+        lastLedgeCorner = ledgeCorner;
         ledgeCooldown = 0.65f; // Cooldown generoso para caer limpiamente
 
         // Restaurar collider físico al soltarse
@@ -1177,8 +1304,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (!Input.GetKeyDown(dodgeKey)) return;
 
-        // Solo disponible en el suelo
-        if (!isGrounded) return;
+        // Si está en el aire: DISPARO DE AERIAL DASH (solo en el aire, distancia fija con o sin sprint)
+        if (!isGrounded)
+        {
+            if (!hasAirDashed && !isAirDashing && !isHanging && !isClimbing && !IsInCombatAction)
+            {
+                StartAirDash();
+            }
+            return;
+        }
 
         // Si S o Flecha Abajo está mantenida (postura agachada defensiva), K no interrumpe el agachado
         bool crouchHeld = Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow);
@@ -1275,8 +1409,104 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    // ==========================================
+    // SISTEMA DE AERIAL DASH (EN EL AIRE)
+    // ==========================================
+    private void StartAirDash()
+    {
+        isAirDashing = true;
+        hasAirDashed = true;
+        airDashTimer = 0f;
+
+        // Orientar según entrada horizontal si la hay, o mantener orientación actual
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        if (horizontalInput > 0.1f) facingDirection = -1;
+        else if (horizontalInput < -0.1f) facingDirection = 1;
+
+        // facingDirection == -1 -> Mira hacia la DERECHA (+X)
+        // facingDirection == 1  -> Mira hacia la IZQUIERDA (-X)
+        airDashDirection = (facingDirection == -1) ? 1f : -1f;
+
+        // REGLA ESTRICTA: Misma velocidad y distancia con sprint activado o desactivado
+        rb2d.linearVelocity = new Vector2(airDashDirection * airDashSpeed, 0f);
+
+        // Ignorar colisión física con enemigos durante la evasión aérea
+        SetDodgeIgnoreEnemies(true);
+
+        transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
+
+        if (animator != null)
+        {
+            animator.SetTrigger("airDash");
+            animator.SetBool("isAirDashing", true);
+        }
+    }
+
+    private void UpdateAirDash()
+    {
+        if (!isAirDashing) return;
+
+        airDashTimer += Time.deltaTime;
+
+        // Comprobación de pared frontal para evitar penetrar estructuras sólidas
+        Vector2 checkOrigin = (Vector2)transform.position + Vector2.up * 0.35f;
+        RaycastHit2D wallHit = Physics2D.Raycast(checkOrigin, Vector2.right * airDashDirection, 0.35f, groundLayer);
+        if (wallHit.collider != null)
+        {
+            StopAirDash();
+            return;
+        }
+
+        // Si aterriza en el suelo durante el dash aéreo
+        if (isGrounded && airDashTimer > 0.04f)
+        {
+            StopAirDash();
+            return;
+        }
+
+        // Mantener velocidad constante horizontal y suspensión vertical de gravedad cero
+        rb2d.linearVelocity = new Vector2(airDashDirection * airDashSpeed, 0f);
+
+        if (airDashTimer >= airDashDuration)
+        {
+            StopAirDash();
+        }
+    }
+
+    private void StopAirDash()
+    {
+        if (!isAirDashing) return;
+
+        isAirDashing = false;
+        dodgeCooldownTimer = dodgeCooldown;
+
+        // Restaurar colisiones contra enemigos
+        SetDodgeIgnoreEnemies(false);
+
+        // Conservar velocidad de salida horizontal controlada
+        rb2d.linearVelocity = new Vector2(airDashDirection * walkSpeed, 0f);
+
+        if (animator != null)
+        {
+            animator.SetBool("isAirDashing", false);
+        }
+    }
+
     private void StartDodge(bool isBackwards)
     {
+        if (isHanging || isClimbing)
+        {
+            isHanging = false;
+            isClimbing = false;
+            rb2d.bodyType = RigidbodyType2D.Dynamic;
+            if (playerCollider != null) playerCollider.enabled = true;
+            if (animator != null)
+            {
+                animator.SetBool("isHanging", false);
+                animator.SetBool("isClimbing", false);
+            }
+        }
+
         isDodging = !isBackwards;
         isBackdodging = isBackwards;
         dodgeTimer = 0f;

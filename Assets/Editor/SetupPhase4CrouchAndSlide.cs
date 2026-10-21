@@ -25,7 +25,7 @@ public static class SetupPhase4CrouchAndSlide
         // 2. Crear clips de animación
         AnimationClip clipCrouchLoop = CreateSubClip(
             "Assets/Characters/Prota/crouching/sprite sheets/crouching.png",
-            "crouch_", 2, 8, "Assets/Characters/Prota/Animations/prota_crouch.anim", 12f, true);
+            "crouch_", 2, 8, "Assets/Characters/Prota/Animations/prota_crouch.anim", 12f, false);
 
         AnimationClip clipSlide = CreateClip(
             "Assets/Characters/Prota/slide/sprite sheets/slide_merged.png",

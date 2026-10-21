@@ -38,6 +38,24 @@ TextureImporter:
   - first:
       213: 2739974004291636782
     second: aerial dash_11
+  - first:
+      213: -6792054774267659672
+    second: air_dash_0
+  - first:
+      213: -3906909713744243344
+    second: air_dash_1
+  - first:
+      213: 3555094607520314620
+    second: air_dash_2
+  - first:
+      213: -6498526853559523307
+    second: air_dash_3
+  - first:
+      213: -2079968821827073109
+    second: air_dash_4
+  - first:
+      213: -8396233944373154250
+    second: air_dash_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -70,7 +88,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -110,7 +128,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -148,265 +166,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: aerial dash_0
+      name: air_dash_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 52
-        width: 69
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 42514ab7a4b990510800000000000000
-      internalID: 1515913493791118628
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_1
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 54
-        width: 99
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c3a7f7aa747262790800000000000000
-      internalID: -7555308136110785988
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_2
-      rect:
-        serializedVersion: 2
-        x: 207
-        y: 51
-        width: 106
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0a0a293139d455330800000000000000
-      internalID: 3698947963038638240
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_3
-      rect:
-        serializedVersion: 2
-        x: 313
-        y: 51
-        width: 101
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 10c99ec2934b86a00800000000000000
-      internalID: 750047495616830465
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_4
-      rect:
-        serializedVersion: 2
-        x: 418
-        y: 51
-        width: 77
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c8661fd8853cf7250800000000000000
-      internalID: 5944684818258290316
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_5
-      rect:
-        serializedVersion: 2
-        x: 524
-        y: 49
-        width: 68
+        x: 0
+        y: 50
+        width: 104
         height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.3653846, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b73fe5db098bef070800000000000000
-      internalID: 8142148108124353403
+      spriteID: 86ab7cc2b26cdb1a0800000000000000
+      internalID: -6792054774267659672
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aerial dash_6
-      rect:
-        serializedVersion: 2
-        x: 1
-        y: 2
-        width: 69
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6235499ee1c2fd170800000000000000
-      internalID: 8205325557371786022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aerial dash_7
+      name: air_dash_1
       rect:
         serializedVersion: 2
         x: 104
-        y: 4
-        width: 99
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 50
+        width: 104
+        height: 50
+      alignment: 9
+      pivot: {x: 0.3653846, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 35d2ab71e6d302700800000000000000
-      internalID: 513477900574010707
+      spriteID: 07550c6a05ed7c9c0800000000000000
+      internalID: -3906909713744243344
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aerial dash_8
+      name: air_dash_2
       rect:
         serializedVersion: 2
-        x: 207
-        y: 1
-        width: 70
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 208
+        y: 50
+        width: 104
+        height: 50
+      alignment: 9
+      pivot: {x: 0.3653846, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 048f78f2f156db580800000000000000
-      internalID: -8809774111450990528
+      spriteID: cf4b728b5bb365130800000000000000
+      internalID: 3555094607520314620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aerial dash_9
+      name: air_dash_3
       rect:
         serializedVersion: 2
-        x: 313
-        y: 1
-        width: 67
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 312
+        y: 50
+        width: 104
+        height: 50
+      alignment: 9
+      pivot: {x: 0.3653846, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6b024ec2e2aff4190800000000000000
-      internalID: -7975881338821271370
+      spriteID: 5186f32e14890d5a0800000000000000
+      internalID: -6498526853559523307
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aerial dash_10
+      name: air_dash_4
       rect:
         serializedVersion: 2
-        x: 418
-        y: 1
-        width: 66
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 416
+        y: 50
+        width: 104
+        height: 50
+      alignment: 9
+      pivot: {x: 0.3653846, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ed3a0bf266f729b90800000000000000
-      internalID: -7236581574367468578
+      spriteID: bab0c1f60677223e0800000000000000
+      internalID: -2079968821827073109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: aerial dash_11
+      name: air_dash_5
       rect:
         serializedVersion: 2
-        x: 524
-        y: 0
-        width: 68
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 520
+        y: 50
+        width: 104
+        height: 50
+      alignment: 9
+      pivot: {x: 0.3653846, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e2e8b9307d7560620800000000000000
-      internalID: 2739974004291636782
+      spriteID: 63eaf8676b59a7b80800000000000000
+      internalID: -8396233944373154250
       vertices: []
       indices: 
       edges: []
@@ -437,6 +323,12 @@ TextureImporter:
       aerial dash_7: 513477900574010707
       aerial dash_8: -8809774111450990528
       aerial dash_9: -7975881338821271370
+      air_dash_0: -6792054774267659672
+      air_dash_1: -3906909713744243344
+      air_dash_2: 3555094607520314620
+      air_dash_3: -6498526853559523307
+      air_dash_4: -2079968821827073109
+      air_dash_5: -8396233944373154250
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
