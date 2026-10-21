@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
@@ -10,7 +10,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float runSpeed = 4.6f;               // Velocidad de carrera (al activar Shift)
     public bool isRunning = false;              // Estado toggle de carrera
 
-    [Header("Aceleración y Fricción")]
+    [Header("AceleraciÃ³n y FricciÃ³n")]
     public float groundAcceleration = 16f;
     public float groundDeceleration = 18f;
     public float airAcceleration = 10f;
@@ -31,13 +31,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     [Header("Agarre de Bordes (Ledge Grab)")]
     public bool enableLedgeGrab = true;
-    public float maxHangTime = 3.0f;            // Tiempo máximo colgado antes de soltarse automáticamente
+    public float maxHangTime = 3.0f;            // Tiempo mÃ¡ximo colgado antes de soltarse automÃ¡ticamente
     public float wallCheckDistance = 0.38f;
     public float chestCheckHeight = 0.30f;
     public float headCheckHeight = 0.62f;
     public float hangOffsetX = 0.02f;
     public float hangOffsetY = 0.02f;
-    public float climbDuration = 0.66f;         // Duración exacta de los 8 frames de trepada (8 frames a 12 fps)
+    public float climbDuration = 0.66f;         // DuraciÃ³n exacta de los 8 frames de trepada (8 frames a 12 fps)
 
     public bool isHanging = false;
     public bool isClimbing = false;
@@ -48,8 +48,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [Header("Wall Jump Horizontal desde Agarre (Fase 6)")]
     public float wallJumpForceX = 3.8f;         // Impulso horizontal controlado hacia el lado contrario
     public float wallJumpForceY = 6.8f;         // Impulso vertical controlado y moderado hacia arriba
-    public float wallJumpLedgeCooldown = 0.35f; // Tiempo de protección contra re-agarre al mismo saliente
-    public float wallJumpGraceTime = 0.12f;     // Tiempo que preserva el impulso horizontal sin fricción aérea
+    public float wallJumpLedgeCooldown = 0.35f; // Tiempo de protecciÃ³n contra re-agarre al mismo saliente
+    public float wallJumpGraceTime = 0.12f;     // Tiempo que preserva el impulso horizontal sin fricciÃ³n aÃ©rea
     public bool isWallJumping = false;
     private float wallJumpTimer = 0f;
     private Vector2 lastLedgeCorner = Vector2.positiveInfinity;
@@ -60,7 +60,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public Vector2 landSquash = new Vector2(1.2f, 0.8f);
     public float squashRecoverySpeed = 12f;
 
-    [Header("Detección de Suelo")]
+    [Header("DetecciÃ³n de Suelo")]
     public Transform groundCheck;
     public float groundRadius = 0.15f;
     public LayerMask groundLayer;
@@ -101,12 +101,17 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float dodgeAttack2Reach = 1.5f;
 
     [Header("Ataque Vertical (W + J)")]
-    public float verticalAttackJumpForce = 7.6f; // Impulso vertical ágil y contenido
-    public float verticalAttackDuration = 0.52f;  // Duración reactiva del ataque vertical
-    public float verticalAttackForwardDrift = 0.20f; // Avance horizontal mínimo para evitar desplazarse mucho
+    public float verticalAttackJumpForce = 7.6f; // Impulso vertical Ã¡gil y contenido
+    public float verticalAttackDuration = 0.52f;  // DuraciÃ³n reactiva del ataque vertical
+    public float verticalAttackForwardDrift = 0.20f; // Avance horizontal mÃ­nimo para evitar desplazarse mucho
     public float verticalAttackReachX = 1.35f;
     public float verticalAttackReachY = 2.2f;
     public float verticalAttackKnockback = 4.8f; // Impulso vertical equilibrado y controlado del enemigo
+
+    [Header("Ataque AÃ©reo en Salto (Jump Attack con J en el aire)")]
+    public float jumpAttackDuration = 0.45f;
+    public float jumpAttackReach = 1.55f;
+    public bool isJumpAttacking = false;
 
     // Estados adicionales de combate
     public bool isDodgeAttacking = false;
@@ -115,15 +120,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private Coroutine hitstopRoutine;
     private readonly System.Collections.Generic.List<Collider2D> ignoredEnemyColliders = new System.Collections.Generic.List<Collider2D>();
 
-    // Helper para saber si está en cualquier acción de combate
-    public bool IsInCombatAction => isAttacking || isDodgeAttacking || isVerticalAttacking;
+    // Helper para saber si estÃ¡ en cualquier acciÃ³n de combate
+    public bool IsInCombatAction => isAttacking || isDodgeAttacking || isVerticalAttacking || isJumpAttacking;
 
     [Header("Sistema de Agachado y Deslizamiento (Fase 4 - Crouch & Slide)")]
     public KeyCode crouchKey = KeyCode.S;
     public float crouchColliderHeight = 0.32f;  // Altura del collider reducida al agacharse/deslizarse
-    public float slideDuration = 0.55f;         // Duración del deslizamiento
+    public float slideDuration = 0.55f;         // DuraciÃ³n del deslizamiento
     public float slideInitialSpeed = 8.5f;      // Velocidad de arranque del slide (mayor a carrera 4.6f)
-    public float slideDeceleration = 9.0f;      // Desaceleración / fricción durante el slide
+    public float slideDeceleration = 9.0f;      // DesaceleraciÃ³n / fricciÃ³n durante el slide
 
     // Estados de Crouch y Slide
     public bool isCrouching = false;
@@ -132,7 +137,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private float currentSlideSpeed = 0f;
     private float slideDirection = 1f;
 
-    [Header("Sistema de Evasión Aérea (Aerial Dash)")]
+    [Header("Sistema de EvasiÃ³n AÃ©rea (Aerial Dash)")]
     public float airDashSpeed = 8.0f;           // Distancia calibrada a ~60% (ej. de 10 a 6)
     public float airDashDuration = 0.225f;
     public bool isAirDashing = false;
@@ -140,13 +145,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private float airDashTimer = 0f;
     private float airDashDirection = 0f;
 
-    [Header("Sistema de Evasión (Fase 5 - Dodge, Backdodge y Sprint)")]
-    public float dodgeDuration = 0.40f;         // Duración del dodge normal
-    public float backdodgeDuration = 0.50f;     // Duración del backdodge
+    [Header("Sistema de EvasiÃ³n (Fase 5 - Dodge, Backdodge y Sprint)")]
+    public float dodgeDuration = 0.40f;         // DuraciÃ³n del dodge normal
+    public float backdodgeDuration = 0.50f;     // DuraciÃ³n del backdodge
     public float dodgeSpeed = 6.8f;             // Velocidad base del dodge normal
     public float backdodgeSpeed = 6.2f;         // Velocidad base del backdodge (distancia constante fija)
     public float dodgeRunMultiplier = 1.35f;    // Multiplicador de distancia / velocidad al esquivar hacia adelante en carrera
-    public float dodgeCooldown = 0.25f;         // Tiempo de recuperación entre evasiones
+    public float dodgeCooldown = 0.25f;         // Tiempo de recuperaciÃ³n entre evasiones
 
     // Estados de Dodge y Backdodge
     public bool isDodging = false;
@@ -160,7 +165,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public bool IsInEvasiveAction => isDodging || isBackdodging || isSliding;
     public bool IsEffectiveRunning => isRunning && Mathf.Abs(move) > 0.1f && isGrounded && !isCrouching && !isSliding && !isDodging && !isBackdodging && !isAirDashing && !IsInCombatAction && !isHanging && !isClimbing;
 
-    // Dimensiones originales del collider físico
+    // Dimensiones originales del collider fÃ­sico
     private Collider2D playerCollider;
     private CapsuleCollider2D capsuleCol;
     private BoxCollider2D boxCol;
@@ -171,7 +176,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public static Action<int> OnComboHit;
     public static Action OnComboReset;
 
-    [Header("Respawn al Vacío (Checkpoints)")]
+    [Header("Respawn al VacÃ­o (Checkpoints)")]
     public float fallThreshold = -9f;
     public Vector3 lastGroundedPos;
 
@@ -238,17 +243,17 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (ledgeCooldown > 0f) ledgeCooldown -= Time.deltaTime;
 
-        // Si está en la animación de trepar, congelar inputs de movimiento
+        // Si estÃ¡ en la animaciÃ³n de trepar, congelar inputs de movimiento
         if (isClimbing)
         {
             rb2d.linearVelocity = Vector2.zero;
             return;
         }
 
-        // Comportamiento cuando está colgado del borde
+        // Comportamiento cuando estÃ¡ colgado del borde
         if (isHanging)
         {
-            // Bloqueo continuo de posición al borde para eliminar cualquier levitación o deriva residual
+            // Bloqueo continuo de posiciÃ³n al borde para eliminar cualquier levitaciÃ³n o deriva residual
             Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
             transform.position = new Vector3(ledgeCorner.x + lookDir.x * hangOffsetX, ledgeCorner.y - hangOffsetY, transform.position.z);
             rb2d.linearVelocity = Vector2.zero;
@@ -260,7 +265,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (dodgeCooldownTimer > 0f) dodgeCooldownTimer -= Time.deltaTime;
 
-        // Gestión de Crouch, Slide, Dodge y Backdodge (Fase 4 & 5)
+        // GestiÃ³n de Crouch, Slide, Dodge y Backdodge (Fase 4 & 5)
         HandleDodgeAndSlideInputs();
         UpdateSlide();
         UpdateDodge();
@@ -294,7 +299,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         else
             jumpBufferCounter -= Time.deltaTime;
 
-        // Orientación / Flip (no flipear durante combate, slide o agachado)
+        // OrientaciÃ³n / Flip (no flipear durante combate, slide o agachado)
         if (!isMovementBlocked)
         {
             if (move > 0.01f) facingDirection = -1;
@@ -307,13 +312,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
             ExecuteJump();
         }
 
-        // Salto variable: soltar el botón corta el ascenso
+        // Salto variable: soltar el botÃ³n corta el ascenso
         if (Input.GetButtonUp("Jump") && rb2d.linearVelocity.y > 0f)
         {
             rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, rb2d.linearVelocity.y * 0.5f);
         }
 
-        // Sincronización con Animator
+        // SincronizaciÃ³n con Animator
         if (animator != null)
         {
             animator.SetFloat("speed", Mathf.Abs(move));
@@ -326,6 +331,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetBool("isAttacking", isAttacking);
             animator.SetBool("isDodgeAttacking", isDodgeAttacking);
             animator.SetBool("isVerticalAttacking", isVerticalAttacking);
+            animator.SetBool("isJumpAttacking", isJumpAttacking);
             animator.SetBool("isCrouching", isCrouching);
             animator.SetBool("isSliding", isSliding);
             animator.SetBool("isDodging", isDodging);
@@ -333,7 +339,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetBool("isAirDashing", isAirDashing);
         }
 
-        // Recuperación de Squash & Stretch
+        // RecuperaciÃ³n de Squash & Stretch
         if (enableSquashAndStretch)
         {
             currentScale.x = Mathf.MoveTowards(currentScale.x, 1f, squashRecoverySpeed * Time.deltaTime);
@@ -398,7 +404,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             coyoteTimeCounter -= Time.fixedDeltaTime;
 
-            // Detección automática de salientes (Ledge Grab) en el aire
+            // DetecciÃ³n automÃ¡tica de salientes (Ledge Grab) en el aire
             if (enableLedgeGrab && ledgeCooldown <= 0f)
             {
                 CheckLedgeGrab();
@@ -414,7 +420,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             wallJumpTimer -= Time.fixedDeltaTime;
             if (wallJumpTimer <= 0f) isWallJumping = false;
         }
-        // Selección de velocidad según estado Caminar / Correr (solo si no está en combate, slide o agachado)
+        // SelecciÃ³n de velocidad segÃºn estado Caminar / Correr (solo si no estÃ¡ en combate, slide o agachado)
         else if (!freezeMovementForce)
         {
             float currentMaxSpeed = isRunning ? runSpeed : walkSpeed;
@@ -450,18 +456,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void CheckLedgeGrab()
     {
-        // No agarrar si está en combate, slide, agachado o esquivando
+        // No agarrar si estÃ¡ en combate, slide, agachado o esquivando
         if (IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing) return;
 
-        // No agarrar si el jugador está presionando S/Abajo para bajar
+        // No agarrar si el jugador estÃ¡ presionando S/Abajo para bajar
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) return;
 
         Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
 
-        // No agarrar si se está moviendo en dirección contraria al muro
+        // No agarrar si se estÃ¡ moviendo en direcciÃ³n contraria al muro
         if (move * -lookDir.x > 0.1f) return;
 
-        // No agarrar si está subiendo con velocidad muy alta hacia arriba
+        // No agarrar si estÃ¡ subiendo con velocidad muy alta hacia arriba
         if (rb2d.linearVelocity.y > 2.5f) return;
 
         Vector2 chestPos = (Vector2)transform.position + Vector2.up * chestCheckHeight;
@@ -470,7 +476,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         RaycastHit2D wallHit = Physics2D.Raycast(chestPos, lookDir, wallCheckDistance, groundLayer);
         RaycastHit2D headHit = Physics2D.Raycast(headPos, lookDir, wallCheckDistance + 0.1f, groundLayer);
 
-        // Condición de borde: hay muro al pecho, pero aire libre sobre la cabeza
+        // CondiciÃ³n de borde: hay muro al pecho, pero aire libre sobre la cabeza
         if (wallHit.collider != null && headHit.collider == null)
         {
             Vector2 rayDownStart = new Vector2(wallHit.point.x + lookDir.x * 0.05f, headPos.y);
@@ -506,6 +512,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isAttacking = false;
         isDodgeAttacking = false;
         isVerticalAttacking = false;
+        isJumpAttacking = false;
         isDodging = false;
         isBackdodging = false;
         isAirDashing = false;
@@ -534,8 +541,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         rb2d.linearVelocity = Vector2.zero;
         rb2d.angularVelocity = 0f;
 
-        // Desactivar temporalmente collider físico para evitar penetración errática
-        // con la geometría de la plataforma y eliminar cualquier efecto de levitación/expulsión
+        // Desactivar temporalmente collider fÃ­sico para evitar penetraciÃ³n errÃ¡tica
+        // con la geometrÃ­a de la plataforma y eliminar cualquier efecto de levitaciÃ³n/expulsiÃ³n
         if (playerCollider != null) playerCollider.enabled = false;
 
         // Posicionamiento con offsets calibrados para que las manos descansen de forma natural
@@ -582,13 +589,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // Comprobación de entradas direccionales hacia afuera del muro (dirección opuesta a lookDir)
+        // ComprobaciÃ³n de entradas direccionales hacia afuera del muro (direcciÃ³n opuesta a lookDir)
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         bool isJumpPressed = Input.GetButtonDown("Jump");
 
-        // Si el muro está a la izquierda (lookDir.x < 0):
+        // Si el muro estÃ¡ a la izquierda (lookDir.x < 0):
         // D + ESPACIO salta hacia la derecha
-        // Si el muro está a la derecha (lookDir.x > 0):
+        // Si el muro estÃ¡ a la derecha (lookDir.x > 0):
         // A + ESPACIO salta hacia la izquierda
         bool awayInput = false;
         if (lookDir.x < 0f)
@@ -600,14 +607,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
             awayInput = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || horizontalInput < -0.1f;
         }
 
-        // 2. Wall Jump horizontal desde el agarre: Dirección contraria + ESPACIO
+        // 2. Wall Jump horizontal desde el agarre: DirecciÃ³n contraria + ESPACIO
         if (isJumpPressed && awayInput)
         {
             ExecuteLedgeWallJump(lookDir);
             return;
         }
 
-        // 3. Subir al saliente: ESPACIO solo (sin dirección contraria), o W / Arriba
+        // 3. Subir al saliente: ESPACIO solo (sin direcciÃ³n contraria), o W / Arriba
         if (isJumpPressed || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             StartCoroutine(ClimbLedgeRoutine(lookDir));
@@ -622,7 +629,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isClimbing = false;
         rb2d.bodyType = RigidbodyType2D.Dynamic;
 
-        // Restaurar collider físico
+        // Restaurar collider fÃ­sico
         if (playerCollider != null) playerCollider.enabled = true;
 
         Vector2 jumpAwayDir = -lookDir;
@@ -632,15 +639,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // facingDirection == 1  -> Mira a la IZQUIERDA (-X)
         facingDirection = (jumpAwayDir.x > 0f) ? -1 : 1;
 
-        // Registrar esquina previa y cooldown para evitar re-agarre instantáneo
+        // Registrar esquina previa y cooldown para evitar re-agarre instantÃ¡neo
         lastLedgeCorner = ledgeCorner;
         ledgeCooldown = wallJumpLedgeCooldown;
 
-        // Separar del saliente limpiamente para evitar atascarse en la geometría
+        // Separar del saliente limpiamente para evitar atascarse en la geometrÃ­a
         transform.position = new Vector3(ledgeCorner.x + jumpAwayDir.x * 0.15f, ledgeCorner.y - 0.25f, transform.position.z);
         transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
 
-        // Iniciar Dodge alejándose del muro
+        // Iniciar Dodge alejÃ¡ndose del muro
         dodgeCooldownTimer = dodgeCooldown;
         isDodging = true;
         isBackdodging = false;
@@ -651,7 +658,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // Atravesar enemigos si los hubiera
         SetDodgeIgnoreEnemies(true);
 
-        // Impulso horizontal limpio con pequeña suspensión vertical
+        // Impulso horizontal limpio con pequeÃ±a suspensiÃ³n vertical
         rb2d.linearVelocity = new Vector2(jumpAwayDir.x * dodgeSpeed, 1.5f);
 
         if (animator != null)
@@ -673,17 +680,17 @@ public class NewMonoBehaviourScript : MonoBehaviour
         wallJumpTimer = wallJumpGraceTime;
         rb2d.bodyType = RigidbodyType2D.Dynamic;
 
-        // Restaurar collider físico para el salto
+        // Restaurar collider fÃ­sico para el salto
         if (playerCollider != null) playerCollider.enabled = true;
 
         Vector2 jumpAwayDir = -lookDir;
 
-        // Actualizar orientación del personaje hacia la dirección del salto horizontal
+        // Actualizar orientaciÃ³n del personaje hacia la direcciÃ³n del salto horizontal
         // facingDirection == -1 -> Mira a la DERECHA (+X)
         // facingDirection == 1  -> Mira a la IZQUIERDA (-X)
         facingDirection = (jumpAwayDir.x > 0f) ? -1 : 1;
 
-        // Registrar esquina previa y cooldown para evitar re-agarre instantáneo en el mismo muro
+        // Registrar esquina previa y cooldown para evitar re-agarre instantÃ¡neo en el mismo muro
         lastLedgeCorner = ledgeCorner;
         ledgeCooldown = wallJumpLedgeCooldown;
 
@@ -716,11 +723,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
         lastLedgeCorner = ledgeCorner;
         ledgeCooldown = 0.65f; // Cooldown generoso para caer limpiamente
 
-        // Restaurar collider físico al soltarse
+        // Restaurar collider fÃ­sico al soltarse
         if (playerCollider != null) playerCollider.enabled = true;
 
-        // Al cambiar a animación de caída (cuyo pivot está en los pies),
-        // colocamos el transform en la posición real de los pies (0.55m más abajo del borde)
+        // Al cambiar a animaciÃ³n de caÃ­da (cuyo pivot estÃ¡ en los pies),
+        // colocamos el transform en la posiciÃ³n real de los pies (0.55m mÃ¡s abajo del borde)
         // y ligeramente separado de la pared para evitar tirones y bucles.
         transform.position = new Vector3(ledgeCorner.x - lookDir.x * 0.12f, ledgeCorner.y - 0.55f, transform.position.z);
 
@@ -746,11 +753,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetTrigger("climb");
         }
 
-        // Mantener posición en la esquina durante la animación de subida
-        // ya que los fotogramas contienen visualmente toda la acción de escalar.
+        // Mantener posiciÃ³n en la esquina durante la animaciÃ³n de subida
+        // ya que los fotogramas contienen visualmente toda la acciÃ³n de escalar.
         transform.position = new Vector3(ledgeCorner.x, ledgeCorner.y, transform.position.z);
 
-        // Esperar la duración de la animación (7 frames a 12 fps = ~0.58s)
+        // Esperar la duraciÃ³n de la animaciÃ³n (7 frames a 12 fps = ~0.58s)
         yield return new WaitForSeconds(climbDuration);
 
         // Posicionar al personaje de pie sobre la superficie de la plataforma (pivote en pies para Idle)
@@ -762,7 +769,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         rb2d.linearVelocity = Vector2.zero;
         ledgeCooldown = 0.40f;
 
-        // Restaurar collider físico al estar de pie sobre la plataforma
+        // Restaurar collider fÃ­sico al estar de pie sobre la plataforma
         if (playerCollider != null) playerCollider.enabled = true;
 
         if (animator != null)
@@ -793,10 +800,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // =========================================================================
     private void HandleCombatInputs()
     {
-        // No permitir atacar en estados incompatibles (colgado, trepando, deslizándose o esquivando)
-        if (isHanging || isClimbing || isSliding || isDodging || isBackdodging) return;
+        // No permitir atacar en estados incompatibles (colgado, trepando, deslizÃ¡ndose, esquivando o haciendo dash aÃ©reo)
+        if (isHanging || isClimbing || isSliding || isDodging || isBackdodging || isAirDashing) return;
 
-        // Si está agachado, solo puede iniciar ataque si tiene espacio para levantarse
+        // Si estÃ¡ agachado, solo puede iniciar ataque si tiene espacio para levantarse
         if (isCrouching)
         {
             if (Input.GetKeyDown(attackKey))
@@ -829,7 +836,25 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
         }
 
-        // 1. Si está en Ataque Vertical
+        // 1. Si estÃ¡ en Jump Attack (en el aire)
+        if (isJumpAttacking)
+        {
+            attackTimer += Time.deltaTime;
+            // Si toca el suelo durante el ataque aÃ©reo, finalizarlo con aterrizaje
+            if (isGrounded && attackTimer > 0.05f)
+            {
+                FinishJumpAttack();
+                return;
+            }
+
+            if (attackTimer >= jumpAttackDuration)
+            {
+                FinishJumpAttack();
+            }
+            return;
+        }
+
+        // 2. Si estÃ¡ en Ataque Vertical
         if (isVerticalAttacking)
         {
             attackTimer += Time.deltaTime;
@@ -840,12 +865,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 2. Si está en Dodge Attack
+        // 3. Si estÃ¡ en Dodge Attack
         if (isDodgeAttacking)
         {
             attackTimer += Time.deltaTime;
 
-            // Posibilidad de encadenar DodgeAttack1 a DodgeAttack2 con K durante la ventana de cancelación
+            // Posibilidad de encadenar DodgeAttack1 a DodgeAttack2 con K durante la ventana de cancelaciÃ³n
             if (currentDodgeStep == 1 && Input.GetKeyDown(dodgeKey) && attackTimer >= dodgeCancelWindowStart && attackTimer <= dodgeCancelWindowEnd)
             {
                 ExecuteDodgeAttack(2);
@@ -859,12 +884,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 3. Si está en ataque normal (Combo con J)
+        // 3. Si estÃ¡ en ataque normal (Combo con J)
         if (isAttacking)
         {
             attackTimer += Time.deltaTime;
 
-            // CANCELACIÓN A DODGE ATTACK CON K DURANTE LA VENTANA CONFIGURABLE
+            // CANCELACIÃ“N A DODGE ATTACK CON K DURANTE LA VENTANA CONFIGURABLE
             if (Input.GetKeyDown(dodgeKey) && attackTimer >= dodgeCancelWindowStart && attackTimer <= dodgeCancelWindowEnd)
             {
                 int targetDodgeStep = (currentComboStep == 2) ? 2 : 1;
@@ -872,7 +897,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 return;
             }
 
-            // CANCELACIÓN O ENCADENAMIENTO A ATAQUE VERTICAL CON W+J o UP+J
+            // CANCELACIÃ“N O ENCADENAMIENTO A ATAQUE VERTICAL CON W+J o UP+J
             bool isUpHeldDuringAtk = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || 
                                      Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || 
                                      Input.GetAxisRaw("Vertical") > 0.5f;
@@ -882,13 +907,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 return;
             }
 
-            // Ventana para registrar la pulsación del siguiente golpe normal
+            // Ventana para registrar la pulsaciÃ³n del siguiente golpe normal
             if (Input.GetKeyDown(attackKey) && attackTimer >= comboChainWindowStart && !comboQueued && currentComboStep < 3)
             {
                 comboQueued = true;
             }
 
-            // Al terminar la duración del golpe actual
+            // Al terminar la duraciÃ³n del golpe actual
             if (attackTimer >= currentAttackDuration)
             {
                 if (comboQueued)
@@ -913,10 +938,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 5. Iniciar nuevo combo normal con J (solo disponible en el suelo)
+        // 5. Iniciar nuevo combo normal con J (en el suelo)
         if (isGrounded && Input.GetKeyDown(attackKey))
         {
             ExecuteAttack(1);
+            return;
+        }
+
+        // 6. Iniciar Ataque AÃ©reo en Salto con J (solo en el aire y si no estÃ¡ en dash aÃ©reo)
+        if (!isGrounded && !isAirDashing && Input.GetKeyDown(attackKey))
+        {
+            ExecuteJumpAttack();
+            return;
         }
     }
 
@@ -957,7 +990,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private IEnumerator AttackHitboxRoutine(int step, Vector2 lookDir)
     {
-        // Sincronización con el fotograma exacto del impacto
+        // SincronizaciÃ³n con el fotograma exacto del impacto
         float hitDelay = (step == 3) ? 0.28f : 0.12f;
         yield return new WaitForSeconds(hitDelay);
 
@@ -1088,7 +1121,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 damagedReceivers.Add(receiver);
                 connected = true;
                 Vector2 hitPoint = col.ClosestPoint(attackCenter);
-                // Mayor daño o multiplicador en dodge attack (combo 2 o 3)
+                // Mayor daÃ±o o multiplicador en dodge attack (combo 2 o 3)
                 receiver.OnHit(hitPoint, step + 1, transform.position, lookDir);
 
                 if (hitFxPrefab != null)
@@ -1137,7 +1170,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
 
-        // Impulso vertical con avance horizontal mínimo y anclado al eje
+        // Impulso vertical con avance horizontal mÃ­nimo y anclado al eje
         rb2d.linearVelocity = new Vector2(lookDir.x * verticalAttackForwardDrift, verticalAttackJumpForce);
 
         if (animator != null)
@@ -1174,7 +1207,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 damagedReceivers.Add(receiver);
                 connected = true;
                 Vector2 hitPoint = col.ClosestPoint(attackCenter);
-                // Ataque vertical: fuerza de daño combo 3 y elevación vertical del enemigo
+                // Ataque vertical: fuerza de daÃ±o combo 3 y elevaciÃ³n vertical del enemigo
                 receiver.OnHit(hitPoint, 3, transform.position, lookDir, verticalAttackKnockback);
 
                 if (hitFxPrefab != null)
@@ -1204,6 +1237,102 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
     }
 
+    // ==========================================
+    // ATAQUE AÃ‰REO EN SALTO (J EN EL AIRE)
+    // ==========================================
+    private void ExecuteJumpAttack()
+    {
+        if (attackRoutine != null) StopCoroutine(attackRoutine);
+
+        isAttacking = false;
+        isDodgeAttacking = false;
+        isVerticalAttacking = false;
+        isJumpAttacking = true;
+        currentComboStep = 0;
+        currentDodgeStep = 0;
+        comboQueued = false;
+        attackTimer = 0f;
+        comboResetTimer = comboResetTime;
+
+        // Orientar segÃºn entrada horizontal si el jugador la pulsa
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        if (horizontalInput > 0.1f) facingDirection = -1;
+        else if (horizontalInput < -0.1f) facingDirection = 1;
+
+        transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
+
+        Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
+
+        // Leve impulso frontal en el aire y sustentaciÃ³n momentÃ¡nea para que el golpe se sienta dinÃ¡mico
+        float forwardNudge = 1.6f;
+        float airLift = Mathf.Max(rb2d.linearVelocity.y * 0.5f, 1.2f);
+        rb2d.linearVelocity = new Vector2(lookDir.x * forwardNudge, airLift);
+
+        if (animator != null)
+        {
+            animator.ResetTrigger("jumpAttack");
+            animator.SetTrigger("jumpAttack");
+            animator.SetBool("isJumpAttacking", true);
+            animator.SetBool("isAttacking", false);
+            animator.SetBool("isDodgeAttacking", false);
+            animator.SetBool("isVerticalAttacking", false);
+        }
+
+        attackRoutine = StartCoroutine(JumpAttackHitboxRoutine(lookDir));
+    }
+
+    private IEnumerator JumpAttackHitboxRoutine(Vector2 lookDir)
+    {
+        // El impacto del corte aÃ©reo se produce en el frame 2-3 (a los 0.10s - 0.12s)
+        yield return new WaitForSeconds(0.10f);
+
+        Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (jumpAttackReach * 0.5f);
+        Vector2 attackSize = new Vector2(jumpAttackReach, 0.95f);
+
+        Collider2D[] hits = Physics2D.OverlapBoxAll(attackCenter, attackSize, 0f);
+        bool connected = false;
+        var damagedReceivers = new System.Collections.Generic.HashSet<HitReceiver>();
+
+        foreach (var col in hits)
+        {
+            if (col.gameObject == gameObject) continue;
+
+            var receiver = col.GetComponent<HitReceiver>();
+            if (receiver != null && !damagedReceivers.Contains(receiver))
+            {
+                damagedReceivers.Add(receiver);
+                connected = true;
+                Vector2 hitPoint = col.ClosestPoint(attackCenter);
+                // Golpe aÃ©reo con daÃ±o combo 2
+                receiver.OnHit(hitPoint, 2, transform.position, lookDir);
+
+                if (hitFxPrefab != null)
+                {
+                    Instantiate(hitFxPrefab, hitPoint, Quaternion.identity);
+                }
+            }
+        }
+
+        if (connected)
+        {
+            connectedComboHits++;
+            comboResetTimer = comboResetTime;
+            OnComboHit?.Invoke(connectedComboHits);
+            TriggerHitstop(0.06f);
+        }
+    }
+
+    private void FinishJumpAttack()
+    {
+        isJumpAttacking = false;
+
+        if (animator != null)
+        {
+            animator.SetBool("isJumpAttacking", false);
+            animator.ResetTrigger("jumpAttack");
+        }
+    }
+
     // =========================================================================
     // SISTEMA DE AGACHADO Y DESLIZAMIENTO (FASE 4 - CROUCH & SLIDE)
     // =========================================================================
@@ -1212,9 +1341,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (playerCollider == null) return;
 
         float targetHeight = crouch ? crouchColliderHeight : originalColliderSize.y;
-        // En CapsuleCollider2D Vertical, si width > height la cápsula colapsa en un círculo ensanchado
-        // que penetra el suelo y fuerza un empuje físico hacia arriba, creando un espacio vacío bajo los pies.
-        // Limitando el ancho a targetHeight * 0.94f (~0.30m), la base semicircular permanece idéntica a bottomY.
+        // En CapsuleCollider2D Vertical, si width > height la cÃ¡psula colapsa en un cÃ­rculo ensanchado
+        // que penetra el suelo y fuerza un empuje fÃ­sico hacia arriba, creando un espacio vacÃ­o bajo los pies.
+        // Limitando el ancho a targetHeight * 0.94f (~0.30m), la base semicircular permanece idÃ©ntica a bottomY.
         float targetWidth = crouch ? Mathf.Min(originalColliderSize.x, targetHeight * 0.94f) : originalColliderSize.x;
         float bottomY = originalColliderOffset.y - (originalColliderSize.y * 0.5f);
         Vector2 targetSize = new Vector2(targetWidth, targetHeight);
@@ -1247,7 +1376,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             if (h != null && h != playerCollider && !h.transform.IsChildOf(transform) && !h.isTrigger)
             {
-                return false; // Obstáculo sólido arriba
+                return false; // ObstÃ¡culo sÃ³lido arriba
             }
         }
         return true; // Espacio libre
@@ -1266,7 +1395,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             {
                 isCrouching = true;
                 SetColliderCrouched(true);
-                // Frenado instantáneo de inercia horizontal al agacharse
+                // Frenado instantÃ¡neo de inercia horizontal al agacharse
                 rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
             }
             else
@@ -1277,13 +1406,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
         else if (isCrouching)
         {
-            // Al soltar S, permitir levantarse únicamente si hay espacio suficiente
+            // Al soltar S, permitir levantarse Ãºnicamente si hay espacio suficiente
             if (CanStandUp())
             {
                 isCrouching = false;
                 SetColliderCrouched(false);
             }
-            // Si hay techo bajo, permanece agachado automáticamente hasta que salga
+            // Si hay techo bajo, permanece agachado automÃ¡ticamente hasta que salga
             else if (isGrounded)
             {
                 rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
@@ -1292,19 +1421,19 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
     // =========================================================================
-    // SISTEMA DE EVASIÓN Y DESLIZAMIENTO (FASE 5 - DODGE, BACKDODGE Y SPRINT)
+    // SISTEMA DE EVASIÃ“N Y DESLIZAMIENTO (FASE 5 - DODGE, BACKDODGE Y SPRINT)
     // =========================================================================
     private void HandleDodgeAndSlideInputs()
     {
-        // No actuar si está en un estado incompatible
+        // No actuar si estÃ¡ en un estado incompatible
         if (isHanging || isClimbing || IsInCombatAction || isSliding || isDodging || isBackdodging) return;
 
-        // Comprobación de recuperación/cooldown
+        // ComprobaciÃ³n de recuperaciÃ³n/cooldown
         if (dodgeCooldownTimer > 0f) return;
 
         if (!Input.GetKeyDown(dodgeKey)) return;
 
-        // Si está en el aire: DISPARO DE AERIAL DASH (solo en el aire, distancia fija con o sin sprint)
+        // Si estÃ¡ en el aire: DISPARO DE AERIAL DASH (solo en el aire, distancia fija con o sin sprint)
         if (!isGrounded)
         {
             if (!hasAirDashed && !isAirDashing && !isHanging && !isClimbing && !IsInCombatAction)
@@ -1314,11 +1443,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // Si S o Flecha Abajo está mantenida (postura agachada defensiva), K no interrumpe el agachado
+        // Si S o Flecha Abajo estÃ¡ mantenida (postura agachada defensiva), K no interrumpe el agachado
         bool crouchHeld = Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow);
         if (crouchHeld) return;
 
-        // Si está agachado (por techo bajo o previo), comprobar si puede incorporarse antes de esquivar
+        // Si estÃ¡ agachado (por techo bajo o previo), comprobar si puede incorporarse antes de esquivar
         if (isCrouching)
         {
             if (CanStandUp())
@@ -1329,11 +1458,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
             else
             {
-                return; // Techo bajo bloquea la evasión
+                return; // Techo bajo bloquea la evasiÃ³n
             }
         }
 
-        // Determinación de orientación actual:
+        // DeterminaciÃ³n de orientaciÃ³n actual:
         // facingDirection == -1 -> Mira hacia la DERECHA
         // facingDirection == 1  -> Mira hacia la IZQUIERDA
         float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -1357,14 +1486,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         // PRIORIDAD EXCLUSIVA DE K:
-        // 1. Backdodge: si se pulsa la dirección opuesta a su orientación
+        // 1. Backdodge: si se pulsa la direcciÃ³n opuesta a su orientaciÃ³n
         if (isOppositeInput)
         {
             StartDodge(isBackwards: true);
             return;
         }
 
-        // 2. Slide: si el personaje está en el suelo, corriendo y moviéndose en la dirección frontal
+        // 2. Slide: si el personaje estÃ¡ en el suelo, corriendo y moviÃ©ndose en la direcciÃ³n frontal
         bool isMovingForward = (facingDirection == -1 && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || horizontalInput > 0.1f)) ||
                                (facingDirection == 1 && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || horizontalInput < -0.1f));
 
@@ -1418,7 +1547,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         hasAirDashed = true;
         airDashTimer = 0f;
 
-        // Orientar según entrada horizontal si la hay, o mantener orientación actual
+        // Orientar segÃºn entrada horizontal si la hay, o mantener orientaciÃ³n actual
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         if (horizontalInput > 0.1f) facingDirection = -1;
         else if (horizontalInput < -0.1f) facingDirection = 1;
@@ -1430,7 +1559,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // REGLA ESTRICTA: Misma velocidad y distancia con sprint activado o desactivado
         rb2d.linearVelocity = new Vector2(airDashDirection * airDashSpeed, 0f);
 
-        // Ignorar colisión física con enemigos durante la evasión aérea
+        // Ignorar colisiÃ³n fÃ­sica con enemigos durante la evasiÃ³n aÃ©rea
         SetDodgeIgnoreEnemies(true);
 
         transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
@@ -1448,7 +1577,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         airDashTimer += Time.deltaTime;
 
-        // Comprobación de pared frontal para evitar penetrar estructuras sólidas
+        // ComprobaciÃ³n de pared frontal para evitar penetrar estructuras sÃ³lidas
         Vector2 checkOrigin = (Vector2)transform.position + Vector2.up * 0.35f;
         RaycastHit2D wallHit = Physics2D.Raycast(checkOrigin, Vector2.right * airDashDirection, 0.35f, groundLayer);
         if (wallHit.collider != null)
@@ -1457,14 +1586,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // Si aterriza en el suelo durante el dash aéreo
+        // Si aterriza en el suelo durante el dash aÃ©reo
         if (isGrounded && airDashTimer > 0.04f)
         {
             StopAirDash();
             return;
         }
 
-        // Mantener velocidad constante horizontal y suspensión vertical de gravedad cero
+        // Mantener velocidad constante horizontal y suspensiÃ³n vertical de gravedad cero
         rb2d.linearVelocity = new Vector2(airDashDirection * airDashSpeed, 0f);
 
         if (airDashTimer >= airDashDuration)
@@ -1511,10 +1640,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isBackdodging = isBackwards;
         dodgeTimer = 0f;
 
-        // Atravesar temporalmente a enemigos sin colisión física durante la evasión
+        // Atravesar temporalmente a enemigos sin colisiÃ³n fÃ­sica durante la evasiÃ³n
         SetDodgeIgnoreEnemies(true);
 
-        // Orientación:
+        // OrientaciÃ³n:
         // facingDirection == -1 -> Mira a la DERECHA (+X)
         // facingDirection == 1  -> Mira a la IZQUIERDA (-X)
         float forwardDir = (facingDirection == -1) ? 1f : -1f;
@@ -1526,7 +1655,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         float speedMultiplier = (!isBackwards && isRunning) ? dodgeRunMultiplier : 1.0f;
         currentDodgeSpeed = baseSpeed * speedMultiplier;
 
-        // Mantener orientación del personaje (el backdodge mantiene el frente hacia el enemigo)
+        // Mantener orientaciÃ³n del personaje (el backdodge mantiene el frente hacia el enemigo)
         transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
 
         if (animator != null)
@@ -1552,10 +1681,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         dodgeTimer += Time.deltaTime;
 
-        // Desaceleración suave
+        // DesaceleraciÃ³n suave
         currentDodgeSpeed = Mathf.MoveTowards(currentDodgeSpeed, 0f, 7.5f * Time.deltaTime);
 
-        // Comprobación de pared frontal en la dirección del movimiento para evitar atravesar paredes
+        // ComprobaciÃ³n de pared frontal en la direcciÃ³n del movimiento para evitar atravesar paredes
         Vector2 checkOrigin = (Vector2)transform.position + Vector2.up * 0.35f;
         RaycastHit2D wallHit = Physics2D.Raycast(checkOrigin, Vector2.right * dodgeDirection, 0.32f, groundLayer);
         if (wallHit.collider != null)
@@ -1578,7 +1707,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isBackdodging = false;
         dodgeCooldownTimer = dodgeCooldown;
 
-        // Restaurar colisiones físicas completas contra enemigos
+        // Restaurar colisiones fÃ­sicas completas contra enemigos
         SetDodgeIgnoreEnemies(false);
 
         if (animator != null)
@@ -1611,7 +1740,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         slideTimer += Time.deltaTime;
 
-        // Desaceleración progresiva
+        // DesaceleraciÃ³n progresiva
         currentSlideSpeed = Mathf.MoveTowards(currentSlideSpeed, 0f, slideDeceleration * Time.deltaTime);
         rb2d.linearVelocity = new Vector2(slideDirection * currentSlideSpeed, rb2d.linearVelocity.y);
 
@@ -1676,27 +1805,33 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(headPos, headPos + lookDir * (wallCheckDistance + 0.1f));
 
-        // Gizmo del área de ataque normal
+        // Gizmo del Ã¡rea de ataque normal
         float reach = (currentComboStep == 3) ? attack3Reach : ((currentComboStep == 2) ? attack2Reach : attack1Reach);
         Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (reach * 0.5f);
         Vector2 attackSize = new Vector2(reach, 0.75f);
         Gizmos.color = isAttacking ? Color.red : new Color(1f, 0f, 0f, 0.2f);
         Gizmos.DrawWireCube(attackCenter, attackSize);
 
-        // Gizmo del área de dodge attack
+        // Gizmo del Ã¡rea de dodge attack
         float dodgeReach = (currentDodgeStep == 2) ? dodgeAttack2Reach : dodgeAttack1Reach;
         Vector2 dodgeCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (dodgeReach * 0.5f);
         Vector2 dodgeSize = new Vector2(dodgeReach, 0.8f);
         Gizmos.color = isDodgeAttacking ? Color.cyan : new Color(0f, 1f, 1f, 0.2f);
         Gizmos.DrawWireCube(dodgeCenter, dodgeSize);
 
-        // Gizmo del área de ataque vertical
+        // Gizmo del Ã¡rea de ataque vertical
         Vector2 vertCenter = (Vector2)transform.position + Vector2.up * 1.1f + lookDir * 0.35f;
         Vector2 vertSize = new Vector2(verticalAttackReachX, verticalAttackReachY);
         Gizmos.color = isVerticalAttacking ? Color.yellow : new Color(1f, 1f, 0f, 0.2f);
         Gizmos.DrawWireCube(vertCenter, vertSize);
 
-        // Gizmo de comprobación de techo (Ceiling Check) para levantarse
+        // Gizmo del Ã¡rea de ataque aÃ©reo en salto (Jump Attack)
+        Vector2 airCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (jumpAttackReach * 0.5f);
+        Vector2 airSize = new Vector2(jumpAttackReach, 0.95f);
+        Gizmos.color = isJumpAttacking ? Color.cyan : new Color(0f, 1f, 1f, 0.15f);
+        Gizmos.DrawWireCube(airCenter, airSize);
+
+        // Gizmo de comprobaciÃ³n de techo (Ceiling Check) para levantarse
         if (playerCollider != null)
         {
             float bottomY = originalColliderOffset.y - (originalColliderSize.y * 0.5f);
