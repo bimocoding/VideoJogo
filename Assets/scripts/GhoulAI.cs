@@ -17,21 +17,25 @@ public class GhoulAI : MonoBehaviour
     public float attackRange = 0.85f;
     public int attackDamage = 15;
     public float attackCooldown = 1.6f;
-    public float attackHitDelay = 0.35f; // Momento del golpe sincronizado con el frame de zarpazo
+    public float attackHitDelay = 0.35f;
     private float attackTimer = 0f;
     private bool isAttacking = false;
     private Coroutine attackRoutine;
 
-    [Header("Aturdimiento / Stun al recibir golpes del Prota")]
+    [Header("Aturdimiento / Stun al recibir golpes")]
     public float hitStunDuration = 0.75f;
     private float stunTimer = 0f;
     public bool IsStunned => stunTimer > 0f;
 
-    [Header("Verificación de Suelo y Bordes")]
+    [Header("Verificación de Suelo y Protección contra el Vacío")]
     public Transform groundCheck;
     public LayerMask groundLayer;
     public float groundCheckRadius = 0.25f;
+    public float ledgeCheckDistanceAhead = 0.40f; // Distancia adelante para comprobar que hay suelo
+    public float ledgeCheckDownDistance = 0.65f;   // Distancia hacia abajo para el rayo
+    public float fallThreshold = -4.5f;           // Umbral por debajo del cual se reubica si cae
     private bool isGrounded = true;
+    private Vector3 lastSafeGroundedPos;
 
     [Header("Componentes")]
     private Rigidbody2D rb;
@@ -50,13 +54,11 @@ public class GhoulAI : MonoBehaviour
         myCollider = GetComponent<Collider2D>();
         sr = GetComponent<SpriteRenderer>();
 
-        // Respetar escala base
         baseScaleX = Mathf.Abs(transform.localScale.x);
         if (baseScaleX < 0.1f) baseScaleX = 1.55f;
         baseScaleY = Mathf.Abs(transform.localScale.y);
         if (baseScaleY < 0.1f) baseScaleY = 1.55f;
 
-        // Mantener escala estrictamente positiva en transform
         transform.localScale = new Vector3(baseScaleX, baseScaleY, 1f);
     }
 
@@ -76,6 +78,8 @@ public class GhoulAI : MonoBehaviour
 
     private void Start()
     {
+        lastSafeGroundedPos = transform.position;
+
         if (targetPlayer == null)
         {
             var p = GameObject.FindWithTag("Player");
@@ -87,11 +91,10 @@ public class GhoulAI : MonoBehaviour
             }
         }
 
-        // Configuración de capa de suelo: Floor (capa 3) y Default (0)
         if (groundLayer == 0)
         {
-            groundLayer = LayerMask.GetMask("Floor", "Ground", "Default");
-            if (groundLayer == 0) groundLayer = (1 << 3) | (1 << 0);
+            groundLayer = LayerMask.GetMask("Floor");
+            if (groundLayer == 0) groundLayer = (1 << 3);
         }
 
         IgnoreOtherEnemies();
@@ -109,14 +112,10 @@ public class GhoulAI : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Llamado cuando el Prota le propina un golpe. Interrumpe ataques en curso y lo aturde.
-    /// </summary>
     public void OnStunned(float duration = -1f)
     {
         stunTimer = (duration > 0f) ? duration : hitStunDuration;
 
-        // Cancelar ataque en curso para que no dañe a la PJ si el jugador ataca primero
         if (attackRoutine != null)
         {
             StopCoroutine(attackRoutine);
@@ -130,17 +129,22 @@ public class GhoulAI : MonoBehaviour
             anim.SetBool("isMoving", false);
         }
 
-        // Restablecer cooldown para que no ataque de inmediato al salir del aturdimiento
         attackTimer = Mathf.Max(attackTimer, 0.6f);
     }
 
     private void Update()
     {
-        // Temporizador de aturdimiento por combo del prota
+        // Salvaguarda: si cae por debajo del umbral de plataforma segura, reubicarlo de inmediato
+        if (transform.position.y < fallThreshold)
+        {
+            transform.position = lastSafeGroundedPos + Vector3.up * 0.15f;
+            rb.linearVelocity = Vector2.zero;
+        }
+
+        // Temporizador de aturdimiento
         if (stunTimer > 0f)
         {
             stunTimer -= Time.deltaTime;
-            // Durante el aturdimiento el ghoul no puede atacar ni perseguir
             if (anim != null)
             {
                 anim.SetBool("isMoving", false);
@@ -165,10 +169,7 @@ public class GhoulAI : MonoBehaviour
         float distX = targetPlayer.position.x - transform.position.x;
         float distTotal = Vector2.Distance(transform.position, targetPlayer.position);
 
-        // ORIENTACIÓN CORRECTA:
-        // El sprite original por defecto mira a la IZQUIERDA.
-        // Si el objetivo está a la DERECHA (distX > 0) -> se voltea (flipX = true).
-        // Si el objetivo está a la IZQUIERDA (distX < 0) -> no se voltea (flipX = false).
+        // Orientación del sprite hacia el jugador
         if (Mathf.Abs(distX) > 0.05f && !isAttacking)
         {
             if (sr != null)
@@ -177,40 +178,64 @@ public class GhoulAI : MonoBehaviour
             }
         }
 
-        // Si está en rango de ataque y el cooldown terminó
+        // Ataque si está en rango y listo
         if (distTotal <= attackRange && attackTimer <= 0f && !isAttacking)
         {
             attackRoutine = StartCoroutine(ExecuteAttackRoutine());
             return;
         }
 
-        // Movimiento hacia el jugador si está dentro del radio de detección
+        // Persecución inteligente con detección de bordes para NO caerse al vacío
         if (!isAttacking)
         {
             if (distTotal <= detectionRadius && Mathf.Abs(distX) > stopDistance)
             {
                 float moveDir = Mathf.Sign(distX);
 
-                // Separación suave entre ghouls
                 moveDir += CalculateSeparation();
                 moveDir = Mathf.Clamp(moveDir, -1f, 1f);
 
-                rb.linearVelocity = new Vector2(moveDir * moveSpeed, rb.linearVelocity.y);
+                // Comprobación de borde / precipicio al frente
+                bool hasGroundAhead = CheckGroundAhead(moveDir);
 
-                if (anim != null)
+                if (hasGroundAhead)
                 {
-                    anim.SetBool("isMoving", true);
+                    rb.linearVelocity = new Vector2(moveDir * moveSpeed, rb.linearVelocity.y);
+                    if (anim != null) anim.SetBool("isMoving", true);
+                }
+                else
+                {
+                    // No hay suelo adelante (borde/abismo): se detiene para no caer
+                    rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+                    if (anim != null) anim.SetBool("isMoving", false);
                 }
             }
             else
             {
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-                if (anim != null)
-                {
-                    anim.SetBool("isMoving", false);
-                }
+                if (anim != null) anim.SetBool("isMoving", false);
             }
         }
+    }
+
+    /// <summary>
+    /// Verifica si hay suelo firme al frente en la dirección de avance para no caer por un borde
+    /// </summary>
+    private bool CheckGroundAhead(float dir)
+    {
+        if (Mathf.Abs(dir) < 0.01f) return true;
+        float sign = Mathf.Sign(dir);
+        float bottomY = (myCollider != null) ? myCollider.bounds.min.y : transform.position.y;
+        Vector2 checkStart = new Vector2(transform.position.x + sign * ledgeCheckDistanceAhead, bottomY + 0.15f);
+        var hits = Physics2D.RaycastAll(checkStart, Vector2.down, ledgeCheckDownDistance, groundLayer);
+        foreach (var h in hits)
+        {
+            if (h.collider != null && h.collider.gameObject != gameObject && !h.collider.isTrigger)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private float CalculateSeparation()
@@ -233,7 +258,21 @@ public class GhoulAI : MonoBehaviour
     private void CheckGrounded()
     {
         Vector2 checkPos = (groundCheck != null) ? (Vector2)groundCheck.position : (Vector2)transform.position + Vector2.down * 0.05f;
-        isGrounded = Physics2D.OverlapCircle(checkPos, groundCheckRadius, groundLayer);
+        var cols = Physics2D.OverlapCircleAll(checkPos, groundCheckRadius, groundLayer);
+        isGrounded = false;
+        foreach (var c in cols)
+        {
+            if (c != null && c.gameObject != gameObject && !c.isTrigger)
+            {
+                isGrounded = true;
+                break;
+            }
+        }
+
+        if (isGrounded && Mathf.Abs(rb.linearVelocity.y) < 0.2f && transform.position.y > fallThreshold)
+        {
+            lastSafeGroundedPos = transform.position;
+        }
     }
 
     private IEnumerator ExecuteAttackRoutine()
@@ -250,7 +289,6 @@ public class GhoulAI : MonoBehaviour
 
         yield return new WaitForSeconds(attackHitDelay);
 
-        // Si fue aturdido durante el viento previo del ataque, no aplicar daño
         if (!IsStunned && targetPlayer != null)
         {
             float dist = Vector2.Distance(transform.position, targetPlayer.position);
@@ -285,5 +323,11 @@ public class GhoulAI : MonoBehaviour
         Gizmos.color = Color.blue;
         Vector2 checkPos = (groundCheck != null) ? (Vector2)groundCheck.position : (Vector2)transform.position + Vector2.down * 0.05f;
         Gizmos.DrawWireSphere(checkPos, groundCheckRadius);
+
+        // Rayo de detección de borde
+        Gizmos.color = Color.green;
+        float bottomY = (myCollider != null) ? myCollider.bounds.min.y : transform.position.y;
+        Vector2 fwdCheck = new Vector2(transform.position.x + ledgeCheckDistanceAhead, bottomY + 0.15f);
+        Gizmos.DrawLine(fwdCheck, fwdCheck + Vector2.down * ledgeCheckDownDistance);
     }
 }

@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class HitReceiver : MonoBehaviour
 {
-    [Header("Salud y Modo Dummy")]
+    [Header("Salud y Daño")]
     public int maxHealth = 100;
     public int currentHealth = 100;
-    public bool isImmortal = true; // Permite golpear infinitamente para pruebas
-    public float respawnDelay = 1.0f;
+    public int damagePerHit = 25; // 25 de daño fijo por cada ataque
+    public bool isImmortal = false;
 
     [Header("Retroalimentación Visual")]
     public float flashDuration = 0.12f;
@@ -16,15 +16,16 @@ public class HitReceiver : MonoBehaviour
     public Vector2 squashScale = new Vector2(1.25f, 0.8f);
 
     [Header("Físicas de Retroceso Ligero (Knockback)")]
-    public float baseKnockbackForce = 2.2f;   // Empuje ligero horizontal
-    public float verticalKnockback = 0.0f;     // Sin elevación vertical para mantenerlo en el suelo
-    public float groundDamping = 8.0f;        // Fricción para que frene suavemente tras el empuje
+    public float baseKnockbackForce = 2.0f;   // Empuje ligero horizontal
+    public float verticalKnockback = 0.0f;    // Sin elevación vertical para mantenerlo en el suelo
+    public float groundDamping = 8.0f;       // Fricción para frenado suave tras el empuje
 
     private SpriteRenderer sr;
     private Color originalColor = Color.white;
     private float flashTimer = 0f;
     private Vector3 originalScale = Vector3.one;
     private Rigidbody2D rb;
+    private Collider2D myCollider;
     private bool isDead = false;
 
     void Awake()
@@ -33,12 +34,14 @@ public class HitReceiver : MonoBehaviour
         if (sr != null) originalColor = sr.color;
         originalScale = transform.localScale;
         rb = GetComponent<Rigidbody2D>();
+        myCollider = GetComponent<Collider2D>();
         if (rb != null)
         {
             rb.linearDamping = groundDamping;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         currentHealth = maxHealth;
+        isImmortal = false;
     }
 
     void Update()
@@ -46,13 +49,13 @@ public class HitReceiver : MonoBehaviour
         if (flashTimer > 0f)
         {
             flashTimer -= Time.deltaTime;
-            if (flashTimer <= 0f && sr != null)
+            if (flashTimer <= 0f && sr != null && !isDead)
             {
                 sr.color = originalColor;
             }
         }
 
-        if (enableHitSquash)
+        if (enableHitSquash && !isDead)
         {
             transform.localScale = Vector3.MoveTowards(transform.localScale, originalScale, 6f * Time.deltaTime);
         }
@@ -67,7 +70,8 @@ public class HitReceiver : MonoBehaviour
     {
         if (isDead) return;
 
-        int damage = comboStep * 15; // 15 para atk1, 30 para atk2, 45 para atk3
+        // Cada ataque reduce exactamente 25 de vida
+        int damage = damagePerHit;
         currentHealth -= damage;
 
         // Flash visual de impacto
@@ -83,48 +87,50 @@ public class HitReceiver : MonoBehaviour
             transform.localScale = new Vector3(originalScale.x * squashScale.x, originalScale.y * squashScale.y, originalScale.z);
         }
 
-        // Notificar aturdimiento a componentes de IA (GhoulAI u otros) para que no pueda golpear durante el combo
+        // Notificar aturdimiento al componente de IA
         var ghoulAI = GetComponent<GhoulAI>();
         if (ghoulAI != null)
         {
             ghoulAI.OnStunned(0.75f);
         }
 
-        // Empuje físico ligero hacia atrás según el lado desde el que se golpea
+        // Empuje físico ligero hacia atrás respetando bordes para no caer al vacío
         if (rb != null)
         {
             float pushDir = 0f;
 
-            // 1. Si se provee la dirección del ataque del PJ
             if (attackDirection.sqrMagnitude > 0.001f)
             {
                 pushDir = Mathf.Sign(attackDirection.x);
             }
-            // 2. Si se provee la posición del atacante
             else if (attackerPos != Vector2.zero)
             {
                 pushDir = (transform.position.x >= attackerPos.x) ? 1f : -1f;
             }
-            // 3. Fallback con hitPoint
             else
             {
                 pushDir = (transform.position.x >= hitPoint.x) ? 1f : -1f;
             }
 
-            // Multiplicador según el golpe del combo
-            float comboBonus = 1f + ((comboStep - 1) * 0.2f);
-            float finalPushSpeed = pushDir * baseKnockbackForce * comboBonus;
+            // Comprobar si el empuje causaría que caiga al vacío
+            if (WouldKnockbackCauseFall(pushDir))
+            {
+                // Frenar empuje en el borde para protegerlo de caerse
+                pushDir = 0f;
+            }
+
+            float finalPushSpeed = pushDir * baseKnockbackForce;
             float vertForce = (customVerticalKnockback > 0f) ? customVerticalKnockback : verticalKnockback;
 
-            // Aplicar velocidad directa con amortiguación
             rb.linearDamping = groundDamping;
             rb.linearVelocity = new Vector2(finalPushSpeed, vertForce);
 
-            Debug.Log($"<color=orange>[HIT RECEIVER]</color> {gameObject.name} golpeado desde {(pushDir > 0 ? "izquierda" : "derecha")}, empujado hacia {(pushDir > 0 ? "DERECHA" : "IZQUIERDA")} (vel: {finalPushSpeed:F2}, vertical: {vertForce:F2}). HP: {currentHealth}/{maxHealth}");
+            Debug.Log($"<color=orange>[HIT RECEIVER]</color> {gameObject.name} recibió golpe (-{damage} HP). Vida restante: {currentHealth}/{maxHealth}");
         }
 
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             if (isImmortal)
             {
                 StartCoroutine(RespawnRoutine());
@@ -136,19 +142,81 @@ public class HitReceiver : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Comprueba si empujar al enemigo en pushDir lo lanzaría al vacío
+    /// </summary>
+    private bool WouldKnockbackCauseFall(float pushDir)
+    {
+        if (Mathf.Abs(pushDir) < 0.01f) return false;
+        float bottomY = myCollider != null ? myCollider.bounds.min.y : transform.position.y;
+        Vector2 checkStart = new Vector2(transform.position.x + Mathf.Sign(pushDir) * 0.45f, bottomY + 0.15f);
+        LayerMask floorMask = LayerMask.GetMask("Floor", "Ground", "Default");
+        if (floorMask == 0) floorMask = (1 << 3) | (1 << 0);
+        
+        var hits = Physics2D.RaycastAll(checkStart, Vector2.down, 0.65f, floorMask);
+        foreach (var h in hits)
+        {
+            if (h.collider != null && h.collider.gameObject != gameObject && !h.collider.isTrigger)
+            {
+                return false; // Hay suelo firme debajo
+            }
+        }
+        return true; // Precipicio detectado
+    }
+
     private IEnumerator RespawnRoutine()
     {
         isDead = true;
-        yield return new WaitForSeconds(respawnDelay);
+        yield return new WaitForSeconds(1.0f);
         currentHealth = maxHealth;
         isDead = false;
         if (sr != null) sr.color = originalColor;
-        Debug.Log($"<color=green>[HIT RECEIVER]</color> {gameObject.name} restauró salud a {maxHealth} HP para seguir testeando.");
     }
 
     private void Die()
     {
+        if (isDead) return;
         isDead = true;
-        Destroy(gameObject, 0.2f);
+
+        // Desactivar colisiones para que no estorbe al personaje
+        if (myCollider != null) myCollider.enabled = false;
+        var cols = GetComponentsInChildren<Collider2D>();
+        foreach (var c in cols) c.enabled = false;
+
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+
+        var ai = GetComponent<GhoulAI>();
+        if (ai != null) ai.enabled = false;
+
+        StartCoroutine(DeathSequence());
+    }
+
+    private IEnumerator DeathSequence()
+    {
+        if (sr != null) sr.color = hitFlashColor;
+
+        float elapsed = 0f;
+        float fadeTime = 0.35f;
+        Vector3 startScale = transform.localScale;
+
+        while (elapsed < fadeTime)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / fadeTime;
+            if (sr != null)
+            {
+                Color c = hitFlashColor;
+                c.a = Mathf.Lerp(1f, 0f, t);
+                sr.color = c;
+            }
+            transform.localScale = Vector3.Lerp(startScale, startScale * 0.3f, t);
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }

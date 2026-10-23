@@ -1419,27 +1419,46 @@ public class NewMonoBehaviourScript : MonoBehaviour
             {
                 isCrouching = true;
                 SetColliderCrouched(true);
-                // Frenado instantÃ¡neo de inercia horizontal al agacharse
                 rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
             }
             else
             {
-                // Asegurar cero velocidad horizontal residual mientras permanezca agachado
-                rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
+                // Permitir desplazamiento lento agachado (gateo)
+                float crawlInput = Input.GetAxisRaw("Horizontal");
+                if (Mathf.Abs(crawlInput) > 0.05f)
+                {
+                    rb2d.linearVelocity = new Vector2(crawlInput * walkSpeed * 0.6f, rb2d.linearVelocity.y);
+                    facingDirection = crawlInput > 0f ? -1 : 1;
+                    transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
+                }
+                else
+                {
+                    rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
+                }
             }
         }
         else if (isCrouching)
         {
-            // Al soltar S, permitir levantarse Ãºnicamente si hay espacio suficiente
+            // Al soltar S, permitir levantarse únicamente si hay espacio suficiente
             if (CanStandUp())
             {
                 isCrouching = false;
                 SetColliderCrouched(false);
             }
-            // Si hay techo bajo, permanece agachado automÃ¡ticamente hasta que salga
+            // Si hay techo bajo, permitir avanzar a paso de gateo para poder salir
             else if (isGrounded)
             {
-                rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
+                float crawlInput = Input.GetAxisRaw("Horizontal");
+                if (Mathf.Abs(crawlInput) > 0.05f)
+                {
+                    rb2d.linearVelocity = new Vector2(crawlInput * walkSpeed * 0.65f, rb2d.linearVelocity.y);
+                    facingDirection = crawlInput > 0f ? -1 : 1;
+                    transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
+                }
+                else
+                {
+                    rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
+                }
             }
         }
     }
@@ -1482,7 +1501,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
             else
             {
-                return; // Techo bajo bloquea la evasiÃ³n
+                // Bajo techo bajo: disparar deslizamiento para salir ágilmente
+                StartSlide();
+                return;
             }
         }
 
