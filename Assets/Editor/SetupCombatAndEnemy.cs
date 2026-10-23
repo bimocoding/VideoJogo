@@ -63,8 +63,9 @@ public static class SetupCombatAndEnemy
         // 5. Configurar UI de Combos
         SetupComboUI();
 
-        // 6. Ejecutar configuración de Fase 3 (Dodge & Vertical Attack)
+        // 6. Ejecutar configuración de Fase 3 (Dodge & Vertical Attack) y Combos Completos (Basic 3-Hit & 5-Hit Variation)
         SetupPhase3Combat.ExecutePhase3Setup();
+        SetupCompleteCombos.Execute();
 
         // 7. Ejecutar configuración de Fase 4 (Crouch & Slide)
         SetupPhase4CrouchAndSlide.ExecutePhase4Setup();

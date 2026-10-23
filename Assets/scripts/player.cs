@@ -107,13 +107,22 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     // Estado de combate
     public bool isAttacking = false;
-    public int currentComboStep = 0; // 0=idle, 1=atk1, 2=atk2, 3=atk3
+    public int currentComboStep = 0; // 0=idle, 1=atk1, 2=atk2, 3=atk3, 21=var2, 22=var3
     private bool comboQueued = false;
     private float currentAttackDuration = 0f;
     private float attackTimer = 0f;
     private float comboResetTimer = 0f;
     private int connectedComboHits = 0;
     private Coroutine attackRoutine;
+
+    [Header("Combo Variación 5-Hit (2x-1, 2x-2, Dodge1, Dodge2, Vertical Finisher)")]
+    public float variation2Duration = 0.35f;
+    public float variation3Duration = 0.42f;
+    public float variation2Reach = 1.30f;
+    public float variation3Reach = 1.45f;
+    public float variation2Lunge = 1.8f;
+    public float variation3Lunge = 2.2f;
+    public bool isVariation = false;
 
     [Header("Sistema de Combate Fase 3 (Dodge Attack & Vertical Attack)")]
     public KeyCode dodgeKey = KeyCode.K;
@@ -126,15 +135,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float dodgeAttack1Reach = 1.4f;
     public float dodgeAttack2Reach = 1.5f;
 
-    [Header("Ataque Vertical (W + J)")]
-    public float verticalAttackJumpForce = 7.6f; // Impulso vertical Ã¡gil y contenido
-    public float verticalAttackDuration = 0.52f;  // DuraciÃ³n reactiva del ataque vertical
-    public float verticalAttackForwardDrift = 0.20f; // Avance horizontal mÃ­nimo para evitar desplazarse mucho
+    [Header("Ataque Vertical (W + J / Vertical Finisher Slam)")]
+    public float verticalAttackJumpForce = 7.6f; // Impulso vertical ágil y contenido
+    public float verticalAttackDuration = 0.52f;  // Duración reactiva del ataque vertical
+    public float verticalAttackForwardDrift = 0.20f; // Avance horizontal mínimo para evitar desplazarse mucho
     public float verticalAttackReachX = 1.35f;
     public float verticalAttackReachY = 2.2f;
     public float verticalAttackKnockback = 4.8f; // Impulso vertical equilibrado y controlado del enemigo
 
-    [Header("Ataque AÃ©reo en Salto (Jump Attack con J en el aire)")]
+    [Header("Ataque Aéreo en Salto (Jump Attack con J en el aire)")]
     public float jumpAttackDuration = 0.45f;
     public float jumpAttackReach = 1.55f;
     public bool isJumpAttacking = false;
@@ -146,7 +155,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private Coroutine hitstopRoutine;
     private readonly System.Collections.Generic.List<Collider2D> ignoredEnemyColliders = new System.Collections.Generic.List<Collider2D>();
 
-    // Helper para saber si estÃ¡ en cualquier acciÃ³n de combate
+    // Helper para saber si está en cualquier acción de combate
     public bool IsInCombatAction => isAttacking || isDodgeAttacking || isVerticalAttacking || isJumpAttacking;
 
     [Header("Sistema de Agachado y Deslizamiento (Fase 4 - Crouch & Slide)")]
@@ -860,11 +869,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
         }
 
-        // 1. Si estÃ¡ en Jump Attack (en el aire)
+        // 1. Si está en Jump Attack (en el aire)
         if (isJumpAttacking)
         {
             attackTimer += Time.deltaTime;
-            // Si toca el suelo durante el ataque aÃ©reo, finalizarlo con aterrizaje
+            // Si toca el suelo durante el ataque aéreo, finalizarlo con aterrizaje
             if (isGrounded && attackTimer > 0.05f)
             {
                 FinishJumpAttack();
@@ -878,10 +887,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 2. Si estÃ¡ en Ataque Vertical
+        // 2. Si está en Ataque Vertical (Finisher o W+J)
         if (isVerticalAttacking)
         {
             attackTimer += Time.deltaTime;
+            // Si impacta el suelo tras caer en picada como finisher
+            if (isGrounded && attackTimer > 0.12f)
+            {
+                TriggerHitstop(0.08f);
+                FinishVerticalAttack();
+                return;
+            }
+
             if (attackTimer >= verticalAttackDuration)
             {
                 FinishVerticalAttack();
@@ -889,15 +906,22 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 3. Si estÃ¡ en Dodge Attack
+        // 3. Si está en Dodge Attack (Pasos 4 y 5 del combo de variación o directo con K)
         if (isDodgeAttacking)
         {
             attackTimer += Time.deltaTime;
 
-            // Posibilidad de encadenar DodgeAttack1 a DodgeAttack2 con K durante la ventana de cancelaciÃ³n
-            if (currentDodgeStep == 1 && Input.GetKeyDown(dodgeKey) && attackTimer >= dodgeCancelWindowStart && attackTimer <= dodgeCancelWindowEnd)
+            // Paso 4 (DodgeAttack1) -> Encadenar a Paso 5 (DodgeAttack2) con J o K
+            if (currentDodgeStep == 1 && (Input.GetKeyDown(attackKey) || Input.GetKeyDown(dodgeKey)) && attackTimer >= comboChainWindowStart)
             {
                 ExecuteDodgeAttack(2);
+                return;
+            }
+
+            // Paso 5 (DodgeAttack2) -> Al elevarse, presionar J o W+J ejecuta el Vertical Finisher en picada!
+            if (currentDodgeStep == 2 && (Input.GetKeyDown(attackKey) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)) && attackTimer >= 0.12f)
+            {
+                ExecuteVerticalAttack();
                 return;
             }
 
@@ -908,20 +932,20 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 3. Si estÃ¡ en ataque normal (Combo con J)
+        // 4. Si está en Ataque normal (1x, 2x, 3x) o de Variación (2x-1, 2x-2)
         if (isAttacking)
         {
             attackTimer += Time.deltaTime;
 
-            // CANCELACIÃ“N A DODGE ATTACK CON K DURANTE LA VENTANA CONFIGURABLE
+            // CANCELACIÓN A DODGE ATTACK CON K EN CUALQUIER MOMENTO
             if (Input.GetKeyDown(dodgeKey) && attackTimer >= dodgeCancelWindowStart && attackTimer <= dodgeCancelWindowEnd)
             {
-                int targetDodgeStep = (currentComboStep == 2) ? 2 : 1;
+                int targetDodgeStep = (currentComboStep == 2 || currentComboStep == 22) ? 2 : 1;
                 ExecuteDodgeAttack(targetDodgeStep);
                 return;
             }
 
-            // CANCELACIÃ“N O ENCADENAMIENTO A ATAQUE VERTICAL CON W+J o UP+J
+            // CANCELACIÓN O ENCADENAMIENTO A ATAQUE VERTICAL CON W+J o UP+J
             bool isUpHeldDuringAtk = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || 
                                      Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || 
                                      Input.GetAxisRaw("Vertical") > 0.5f;
@@ -931,18 +955,52 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 return;
             }
 
-            // Ventana para registrar la pulsaciÃ³n del siguiente golpe normal
-            if (Input.GetKeyDown(attackKey) && attackTimer >= comboChainWindowStart && !comboQueued && currentComboStep < 3)
+            // Registro de buffer para el siguiente golpe:
+            if (Input.GetKeyDown(attackKey) && attackTimer >= comboChainWindowStart && !comboQueued)
             {
                 comboQueued = true;
+
+                // Si estamos en Hit 1 (1x atk), comprobar si el jugador mantiene avance (A/D o carrera)
+                if (currentComboStep == 1)
+                {
+                    float h = Input.GetAxisRaw("Horizontal");
+                    bool isHoldingForward = (facingDirection == -1 && h > 0.1f) || (facingDirection == 1 && h < -0.1f) || isRunning;
+                    isVariation = isHoldingForward;
+                }
             }
 
-            // Al terminar la duraciÃ³n del golpe actual
+            // Al terminar la duración del golpe actual:
             if (attackTimer >= currentAttackDuration)
             {
                 if (comboQueued)
                 {
-                    ExecuteAttack(currentComboStep + 1);
+                    if (currentComboStep == 1)
+                    {
+                        if (isVariation)
+                        {
+                            ExecuteVariationAttack(2); // Paso 2 variación (2x-1 atk)
+                        }
+                        else
+                        {
+                            ExecuteAttack(2); // Paso 2 básico (2x atk)
+                        }
+                    }
+                    else if (currentComboStep == 2)
+                    {
+                        ExecuteAttack(3); // Paso 3 básico (3x atk - recarga mágica)
+                    }
+                    else if (currentComboStep == 21)
+                    {
+                        ExecuteVariationAttack(3); // Paso 3 variación (2x-2 atk)
+                    }
+                    else if (currentComboStep == 22)
+                    {
+                        ExecuteDodgeAttack(1); // Paso 4 variación (dodge atk 1x)
+                    }
+                    else
+                    {
+                        FinishAttack();
+                    }
                 }
                 else
                 {
@@ -952,7 +1010,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 4. Iniciar Ataque Vertical desde el suelo con W + J, Flecha Arriba + J o Eje Vertical Arriba + J
+        // 5. Iniciar Ataque Vertical desde el suelo con W + J, Flecha Arriba + J o Eje Vertical Arriba + J
         bool isUpHeldGround = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || 
                               Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || 
                               Input.GetAxisRaw("Vertical") > 0.5f;
@@ -962,17 +1020,28 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 5. Iniciar nuevo combo normal con J (en el suelo)
+        // 6. Iniciar nuevo combo normal con J (en el suelo)
         if (isGrounded && Input.GetKeyDown(attackKey))
         {
+            float h = Input.GetAxisRaw("Horizontal");
+            bool isHoldingForward = (facingDirection == -1 && h > 0.1f) || (facingDirection == 1 && h < -0.1f) || isRunning;
+            isVariation = isHoldingForward;
             ExecuteAttack(1);
             return;
         }
 
-        // 6. Iniciar Ataque AÃ©reo en Salto con J (solo en el aire y si no estÃ¡ en dash aÃ©reo)
+        // 7. Iniciar Ataque Aéreo en Salto con J (solo en el aire y si no está en dash aéreo)
         if (!isGrounded && !isAirDashing && Input.GetKeyDown(attackKey))
         {
-            ExecuteJumpAttack();
+            // Si en el aire pulsa W o S + J, o viene de elevación, puede activar el finisher vertical
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                ExecuteVerticalAttack();
+            }
+            else
+            {
+                ExecuteJumpAttack();
+            }
             return;
         }
     }
@@ -982,6 +1051,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isAttacking = true;
         isDodgeAttacking = false;
         isVerticalAttacking = false;
+        isJumpAttacking = false;
         currentComboStep = step;
         currentDodgeStep = 0;
         comboQueued = false;
@@ -1001,20 +1071,102 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             animator.ResetTrigger("verticalAttack");
             animator.ResetTrigger("dodgeAttack");
+            animator.SetBool("isVariation", false);
             animator.SetInteger("comboStep", step);
             animator.SetTrigger("attack");
             animator.SetBool("isAttacking", true);
             animator.SetBool("isDodgeAttacking", false);
             animator.SetBool("isVerticalAttacking", false);
+            string stateName = (step == 1) ? "Attack1" : ((step == 2) ? "Attack2" : "Attack3");
+            animator.Play(stateName, 0, 0f);
         }
 
         if (attackRoutine != null) StopCoroutine(attackRoutine);
         attackRoutine = StartCoroutine(AttackHitboxRoutine(step, lookDir));
     }
 
+    private void ExecuteVariationAttack(int variationStep)
+    {
+        isAttacking = true;
+        isDodgeAttacking = false;
+        isVerticalAttacking = false;
+        isJumpAttacking = false;
+        currentComboStep = (variationStep == 2) ? 21 : 22;
+        currentDodgeStep = 0;
+        comboQueued = false;
+        attackTimer = 0f;
+        comboResetTimer = comboResetTime;
+
+        currentAttackDuration = (variationStep == 2) ? variation2Duration : variation3Duration;
+        float lunge = (variationStep == 2) ? variation2Lunge : variation3Lunge;
+
+        Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
+
+        // Impulso de avance para la variación rápida de estocada
+        rb2d.linearVelocity = new Vector2(lookDir.x * lunge, rb2d.linearVelocity.y);
+
+        if (animator != null)
+        {
+            animator.ResetTrigger("verticalAttack");
+            animator.ResetTrigger("dodgeAttack");
+            animator.SetBool("isVariation", true);
+            animator.SetInteger("comboStep", currentComboStep);
+            animator.SetTrigger("attack");
+            animator.SetBool("isAttacking", true);
+            animator.SetBool("isDodgeAttacking", false);
+            animator.SetBool("isVerticalAttacking", false);
+            string stateName = (variationStep == 2) ? "Attack2_Variation" : "Attack3_Variation";
+            animator.Play(stateName, 0, 0f);
+        }
+
+        if (attackRoutine != null) StopCoroutine(attackRoutine);
+        attackRoutine = StartCoroutine(VariationAttackHitboxRoutine(variationStep, lookDir));
+    }
+
+    private IEnumerator VariationAttackHitboxRoutine(int variationStep, Vector2 lookDir)
+    {
+        float hitDelay = (variationStep == 2) ? 0.10f : 0.12f;
+        yield return new WaitForSeconds(hitDelay);
+
+        float reach = (variationStep == 2) ? variation2Reach : variation3Reach;
+        Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (reach * 0.5f);
+        Vector2 attackSize = new Vector2(reach, 0.8f);
+
+        Collider2D[] hits = Physics2D.OverlapBoxAll(attackCenter, attackSize, 0f);
+        bool connected = false;
+        var damagedReceivers = new System.Collections.Generic.HashSet<HitReceiver>();
+
+        foreach (var col in hits)
+        {
+            if (col.gameObject == gameObject) continue;
+
+            var receiver = col.GetComponent<HitReceiver>();
+            if (receiver != null && !damagedReceivers.Contains(receiver))
+            {
+                damagedReceivers.Add(receiver);
+                connected = true;
+                Vector2 hitPoint = col.ClosestPoint(attackCenter);
+                receiver.OnHit(hitPoint, variationStep, transform.position, lookDir);
+
+                if (hitFxPrefab != null)
+                {
+                    Instantiate(hitFxPrefab, hitPoint, Quaternion.identity);
+                }
+            }
+        }
+
+        if (connected)
+        {
+            connectedComboHits++;
+            comboResetTimer = comboResetTime;
+            OnComboHit?.Invoke(connectedComboHits);
+            TriggerHitstop(0.05f);
+        }
+    }
+
     private IEnumerator AttackHitboxRoutine(int step, Vector2 lookDir)
     {
-        // SincronizaciÃ³n con el fotograma exacto del impacto
+        // Sincronización con el fotograma exacto del impacto
         float hitDelay = (step == 3) ? 0.28f : 0.12f;
         yield return new WaitForSeconds(hitDelay);
 
@@ -1059,12 +1211,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isAttacking = false;
         currentComboStep = 0;
         comboQueued = false;
+        isVariation = false;
 
         if (animator != null)
         {
             animator.SetInteger("comboStep", 0);
             animator.SetBool("isAttacking", false);
-            // Prevenir disparos accidentales o transiciones no deseadas a verticalAttack o dodgeAttack
+            animator.SetBool("isVariation", false);
             animator.ResetTrigger("verticalAttack");
             animator.ResetTrigger("dodgeAttack");
         }
@@ -1088,7 +1241,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
     // ==========================================
-    // DODGE ATTACKS (TECLA K DESDE COMBO)
+    // DODGE ATTACKS (TECLA K O PASOS 4 Y 5 DE VARIACIÓN)
     // ==========================================
     private void ExecuteDodgeAttack(int step)
     {
@@ -1108,8 +1261,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
 
-        // Impulso horizontal evasivo/deslizante hacia adelante conservando gravedad
-        rb2d.linearVelocity = new Vector2(lookDir.x * lunge, rb2d.linearVelocity.y);
+        if (step == 2)
+        {
+            // Corte ascendente giratorio que eleva al personaje y a los enemigos al aire
+            rb2d.linearVelocity = new Vector2(lookDir.x * 2.2f, 7.8f);
+        }
+        else
+        {
+            // Impulso horizontal evasivo/deslizante hacia adelante
+            rb2d.linearVelocity = new Vector2(lookDir.x * lunge, rb2d.linearVelocity.y);
+        }
 
         if (animator != null)
         {
@@ -1117,6 +1278,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetBool("isDodgeAttacking", true);
             animator.SetBool("isAttacking", false);
             animator.SetBool("isVerticalAttacking", false);
+            string stateName = (step == 1) ? "DodgeAttack1" : "DodgeAttack2";
+            animator.Play(stateName, 0, 0f);
         }
 
         attackRoutine = StartCoroutine(DodgeAttackHitboxRoutine(step, lookDir));
@@ -1145,8 +1308,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 damagedReceivers.Add(receiver);
                 connected = true;
                 Vector2 hitPoint = col.ClosestPoint(attackCenter);
-                // Mayor daÃ±o o multiplicador en dodge attack (combo 2 o 3)
-                receiver.OnHit(hitPoint, step + 1, transform.position, lookDir);
+                float knockUp = (step == 2) ? 6.5f : 0f;
+                receiver.OnHit(hitPoint, step + 2, transform.position, lookDir, knockUp);
 
                 if (hitFxPrefab != null)
                 {
@@ -1177,7 +1340,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     }
 
     // ==========================================
-    // ATAQUE VERTICAL (W + J / ARRIBA + J)
+    // ATAQUE VERTICAL (W + J / VERTICAL FINISHER SLAM)
     // ==========================================
     private void ExecuteVerticalAttack()
     {
@@ -1186,6 +1349,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isAttacking = false;
         isDodgeAttacking = false;
         isVerticalAttacking = true;
+        isJumpAttacking = false;
         currentComboStep = 0;
         currentDodgeStep = 0;
         comboQueued = false;
@@ -1194,8 +1358,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
 
-        // Impulso vertical con avance horizontal mÃ­nimo y anclado al eje
-        rb2d.linearVelocity = new Vector2(lookDir.x * verticalAttackForwardDrift, verticalAttackJumpForce);
+        if (!isGrounded)
+        {
+            // Caída en picada masiva vertical del finisher
+            rb2d.linearVelocity = new Vector2(lookDir.x * 0.6f, -14.0f);
+        }
+        else
+        {
+            // Impulso vertical desde el suelo
+            rb2d.linearVelocity = new Vector2(lookDir.x * verticalAttackForwardDrift, verticalAttackJumpForce);
+        }
 
         if (animator != null)
         {
@@ -1204,6 +1376,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetBool("isVerticalAttacking", true);
             animator.SetBool("isAttacking", false);
             animator.SetBool("isDodgeAttacking", false);
+            animator.Play("VerticalAttack", 0, 0f);
         }
 
         attackRoutine = StartCoroutine(VerticalAttackHitboxRoutine(lookDir));
@@ -1211,7 +1384,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private IEnumerator VerticalAttackHitboxRoutine(Vector2 lookDir)
     {
-        // Impacto sincronizado con la fase de corte ascendente
+        // Impacto sincronizado con la fase de corte o caída
         yield return new WaitForSeconds(0.10f);
 
         Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 1.0f + lookDir * 0.25f;
@@ -1231,8 +1404,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 damagedReceivers.Add(receiver);
                 connected = true;
                 Vector2 hitPoint = col.ClosestPoint(attackCenter);
-                // Ataque vertical: fuerza de daÃ±o combo 3 y elevaciÃ³n vertical del enemigo
-                receiver.OnHit(hitPoint, 3, transform.position, lookDir, verticalAttackKnockback);
+                // Ataque vertical: fuerza de daño combo crítico y elevación o golpe masivo
+                receiver.OnHit(hitPoint, 4, transform.position, lookDir, verticalAttackKnockback);
 
                 if (hitFxPrefab != null)
                 {
@@ -1246,7 +1419,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             connectedComboHits++;
             comboResetTimer = comboResetTime;
             OnComboHit?.Invoke(connectedComboHits);
-            TriggerHitstop(0.07f);
+            TriggerHitstop(0.08f);
         }
     }
 
@@ -1929,8 +2102,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(headPos, headPos + lookDir * (wallCheckDistance + 0.1f));
 
-        // Gizmo del Ã¡rea de ataque normal
-        float reach = (currentComboStep == 3) ? attack3Reach : ((currentComboStep == 2) ? attack2Reach : attack1Reach);
+        // Gizmo del área de ataque normal y variación
+        float reach = (currentComboStep == 3) ? attack3Reach : ((currentComboStep == 2) ? attack2Reach : ((currentComboStep == 21) ? variation2Reach : ((currentComboStep == 22) ? variation3Reach : attack1Reach)));
         Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (reach * 0.5f);
         Vector2 attackSize = new Vector2(reach, 0.75f);
         Gizmos.color = isAttacking ? Color.red : new Color(1f, 0f, 0f, 0.2f);
