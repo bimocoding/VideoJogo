@@ -51,6 +51,7 @@ public class ChestGoal : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (hasTriggered) return;
+        if (BossAlive()) return; // el cofre no se abre hasta derrotar al jefe
 
         // Verificar si es el personaje
         if (other.CompareTag("Player") || other.name == "prota" || other.GetComponent<NewMonoBehaviourScript>() != null)
@@ -58,6 +59,24 @@ public class ChestGoal : MonoBehaviour
             hasTriggered = true;
             StartCoroutine(OpenAndCelebrate(other.gameObject));
         }
+    }
+
+    private static bool BossAlive()
+    {
+        // Incluye la IA desactivada: el jefe sigue "vivo" hasta que termina su secuencia de explosiones y se destruye
+        return FindAnyObjectByType<AngelBossAI>(FindObjectsInactive.Include) != null;
+    }
+
+    // Si el jugador ya está encima del cofre cuando muere el jefe, abrirlo igualmente
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        OnTriggerEnter2D(other);
+    }
+
+    void Update()
+    {
+        // Atenuado mientras está bloqueado para que se entienda que aún no se puede abrir
+        if (sr != null && !hasTriggered) sr.color = BossAlive() ? new Color(0.55f, 0.55f, 0.6f, 1f) : Color.white;
     }
 
     private IEnumerator OpenAndCelebrate(GameObject player)

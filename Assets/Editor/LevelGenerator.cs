@@ -6,9 +6,9 @@ using System.Collections.Generic;
 /// <summary>
 /// Level Generator v4 - Authentic Pixel Art Platformer Level
 /// Uses the correct tile mapping from basic.png:
-/// - Top grass surface: basic_0_2 (corner L), basic_0_3..5 (flat grass), basic_0_6 (corner R)
-/// - Left cliff wall: basic_1_0 / basic_2_0 / basic_3_0
-/// - Right cliff wall: basic_1_8 / basic_2_8 / basic_3_8
+/// - Top grass surface: basic_1_0 (corner L), basic_0_3..5 (flat grass), basic_1_8 (corner R)
+/// - Left cliff wall: basic_2_0 / basic_3_0
+/// - Right cliff wall: basic_2_8 / basic_3_8
 /// - Inner dirt fill: basic_1_4 / basic_2_4
 /// - Bottom edge: basic_6_0 (corner L), basic_6_1 (bottom center), basic_6_8 (corner R)
 /// - Thin platforms: basic_1_10 (L cap), basic_1_11 (plank), basic_1_12 (R cap)
@@ -42,26 +42,14 @@ public class LevelBuilder
         SetupTilemaps();
         ClearTilemaps();
 
-        // 1. Zona Segura Inicial (0 - 32)
-        BuildSection1_SafeZone();
-
-        // 2. Plataformeo Básico y Terrazas (32 - 76)
-        BuildSection2_BasicPlatforming();
-
-        // 3. Ascenso a la Cumbre del Monte (78 - 128)
-        BuildSection3_VerticalClimb();
-
-        // 4. Pasajes de Deslizamiento (Slide) (130 - 168)
-        BuildSection4_SlideTunnels();
-
-        // 5. La Gran Grieta del Sprint (170 - 224)
-        BuildSection5_SprintChasm();
-
-        // 6. La Torre de Salientes (Wall Jump & Ledge Grab) (226 - 256)
-        BuildSection6_TowerOfLedges();
-
-        // 7. Arena de Combate y Estrado Final (258 - 306)
-        BuildSection7_ArenaAndGoal();
+        BuildSection1_Meadow();          // 0 - 60
+        BuildSection2_Jumps();           // 61 - 104
+        BuildSection3_WizardOutpost();   // 105 - 140
+        BuildSection4_Climb();           // 141 - 176
+        BuildSection5_SlideTunnel();     // 177 - 206
+        BuildSection6_SprintChasm();     // 207 - 252
+        BuildSection7_Gauntlet();        // 253 - 284
+        BuildSection8_BossArena();       // 285 - 322
 
         // Fondo de Profundidad Subterráneo
         BuildDeepBackground();
@@ -221,8 +209,8 @@ public class LevelBuilder
                 string tile;
                 if (isTop)
                 {
-                    if (isLeft && w > 1) tile = "basic_0_2";       // Esquina superior izquierda
-                    else if (isRight && w > 1) tile = "basic_0_6"; // Esquina superior derecha
+                    if (isLeft && w > 1) tile = "basic_1_0";       // Esquina superior izquierda (basic_0_2 es pendiente)
+                    else if (isRight && w > 1) tile = "basic_1_8"; // Esquina superior derecha (basic_0_6 es pendiente)
                     else
                     {
                         // Variaciones armónicas de hierba en la superficie plana
@@ -238,11 +226,11 @@ public class LevelBuilder
                 }
                 else if (isLeft && w > 1)
                 {
-                    tile = (ty % 2 == 0) ? "basic_1_0" : "basic_2_0"; // Pared vertical izquierda
+                    tile = (ty % 2 == 0) ? "basic_2_0" : "basic_3_0"; // Pared vertical izquierda (sin hierba)
                 }
                 else if (isRight && w > 1)
                 {
-                    tile = (ty % 2 == 0) ? "basic_1_8" : "basic_2_8"; // Pared vertical derecha
+                    tile = (ty % 2 == 0) ? "basic_2_8" : "basic_3_8"; // Pared vertical derecha (sin hierba)
                 }
                 else
                 {
@@ -339,177 +327,141 @@ public class LevelBuilder
 
     // ============================================================
     // CONSTRUCCIÓN DE SECCIONES
+    // ------------------------------------------------------------
+    // Diseñado con las capacidades reales del personaje (1 tile = 0.32m):
+    //  - Salto simple: ~3.5 tiles de alto  -> escalones de 2-3 tiles
+    //  - Doble salto:  ~5 tiles de alto     -> rutas opcionales altas
+    //  - Hueco caminando: ~6 tiles cómodo; corriendo (Shift): ~11 tiles
+    //  - Agarre de bordes: muros de 4-6 tiles se suben colgándose
+    //  - Deslizamiento (S): túneles de 2 tiles de alto
+    // Cada sección enseña una mecánica en seguro y luego la pone a prueba.
     // ============================================================
 
-    private void BuildSection1_SafeZone()
+    // Suelo macizo desde el fondo hasta topY (incluido), entre x1 y x2 (incluidos)
+    private void Ground(int x1, int x2, int topY)
     {
-        // Superficie continua y firme al inicio
-        BuildTerrain(0, FILL_BOTTOM, 33, GROUND_Y - FILL_BOTTOM + 1);
-
-        // Pequeño escalón de piedra y hierba
-        BuildTerrain(18, GROUND_Y + 1, 5, 2);
-
-        // Plataforma delgada superior para salto
-        BuildPlatform(25, GROUND_Y + 5, 4);
-
-        // Estructuras de fondo para dar profundidad a la arboleda
-        BuildBgBlock(8, GROUND_Y + 1, 5, 9);
-        BuildBgBlock(22, GROUND_Y + 1, 4, 11);
+        BuildTerrain(x1, FILL_BOTTOM, x2 - x1 + 1, topY - FILL_BOTTOM + 1);
     }
 
-    private void BuildSection2_BasicPlatforming()
+    // 1. Prado inicial: moverse, primer escalón, primer hueco pequeño y primer enemigo
+    private void BuildSection1_Meadow()
     {
-        // Brecha 1: 7 tiles (2.24m) -> Salto muy cómodo de caminata
-        BuildTerrain(40, FILL_BOTTOM, 12, GROUND_Y - FILL_BOTTOM + 1);
+        Ground(0, 38, GROUND_Y);
+        BuildTerrain(14, GROUND_Y + 1, 4, 2);       // escalón de 2: enseña a saltar
+        BuildPlatform(26, GROUND_Y + 3, 4);         // plataforma opcional
+        // Hueco de 3 tiles (39-41): imposible fallar
+        Ground(42, 60, GROUND_Y);
+        BuildPlatform(47, GROUND_Y + 3, 4);
 
-        // Plataforma flotante para explorar
-        BuildPlatform(44, GROUND_Y + 5, 4);
-
-        // Brecha 2: 8 tiles (2.56m)
-        BuildTerrain(60, FILL_BOTTOM, 11, GROUND_Y - FILL_BOTTOM + 2); // Terraza ligeramente elevada
-
-        // Plataformas escalonadas
-        BuildPlatform(73, GROUND_Y + 4, 3);
-        BuildPlatform(78, GROUND_Y + 6, 3);
-
-        // Fondo oscuro para sensación de profundidad
-        BuildBgBlock(42, GROUND_Y + 1, 4, 13);
-        BuildBgBlock(63, GROUND_Y + 2, 4, 15);
+        BuildBgBlock(6, GROUND_Y + 1, 5, 8);
+        BuildBgBlock(30, GROUND_Y + 1, 4, 10);
+        BuildBgBlock(52, GROUND_Y + 1, 5, 9);
     }
 
-    private void BuildSection3_VerticalClimb()
+    // 2. Saltos crecientes: huecos de 4, 5 y 6 tiles con cambios de altura
+    private void BuildSection2_Jumps()
     {
-        int bx = 83;
-        BuildTerrain(bx, FILL_BOTTOM, 8, GROUND_Y - FILL_BOTTOM + 1);
+        // Hueco 61-64 (4)
+        Ground(65, 72, GROUND_Y + 1);               // terraza +1
+        // Hueco 73-77 (5) subiendo +2
+        Ground(78, 84, GROUND_Y + 3);
+        BuildPlatform(80, GROUND_Y + 8, 3);         // recompensa: solo con doble salto
+        // Hueco 85-90 (6) bajando: más largo pero más fácil por la caída
+        Ground(91, 145, GROUND_Y);              // suelo continuo hasta las colinas (evita costuras entre secciones)
 
-        // Ascenso escalonado con incrementos de 4 tiles de altura (salto corto = 9.6 tiles máx)
-        BuildTerrain(bx + 6, GROUND_Y + 4, 5, 2);
-        BuildTerrain(bx + 12, GROUND_Y + 8, 5, 2);
-        BuildTerrain(bx + 8, GROUND_Y + 12, 5, 2);
-
-        // LA CUMBRE
-        BuildTerrain(bx + 14, GROUND_Y + 16, 9, 2);
-
-        // Descenso seguro y rítmico
-        BuildTerrain(bx + 24, GROUND_Y + 12, 4, 2);
-        BuildPlatform(bx + 29, GROUND_Y + 8, 4);
-        BuildTerrain(bx + 34, GROUND_Y + 4, 4, 2);
-
-        // Suelo de recepción
-        BuildTerrain(bx + 38, FILL_BOTTOM, 10, GROUND_Y - FILL_BOTTOM + 1);
-
-        // Pilares colosales de fondo
-        BuildBgBlock(bx + 8, GROUND_Y + 1, 4, 19);
-        BuildBgBlock(bx + 16, GROUND_Y + 1, 5, 23);
+        BuildBgBlock(67, GROUND_Y + 2, 4, 10);
+        BuildBgBlock(95, GROUND_Y + 1, 6, 12);
     }
 
-    private void BuildSection4_SlideTunnels()
+    // 3. Puesto del mago: aprender a cubrirse tras muros y acercarse por debajo
+    private void BuildSection3_WizardOutpost()
     {
-        int bx = 132;
-        // Suelo continuo
-        BuildTerrain(bx, FILL_BOTTOM, 36, GROUND_Y - FILL_BOTTOM + 1);
+        BuildTerrain(112, GROUND_Y + 1, 2, 2);      // cobertura 1
+        BuildTerrain(118, GROUND_Y + 1, 2, 2);      // cobertura 2
+        BuildTerrain(123, GROUND_Y + 1, 3, 2);      // escalón hacia la torre
+        BuildTerrain(126, GROUND_Y + 1, 6, 4);      // torre del mago (top +4)
+        BuildPlatform(134, GROUND_Y + 3, 3);        // bajada
 
-        // TÚNEL 1 (Longitud 5 tiles): Techo a GROUND_Y + 3 (altura libre de 2 tiles para deslizamiento holgado)
-        BuildTerrain(bx + 7, GROUND_Y + 3, 5, 4);
-        // Ruta alternativa por arriba (plataformas)
-        BuildPlatform(bx + 6, GROUND_Y + 8, 7);
-
-        // Descanso intermedio
-        BuildPlatform(bx + 14, GROUND_Y + 4, 3);
-
-        // TÚNEL 2 (Longitud 6 tiles)
-        BuildTerrain(bx + 19, GROUND_Y + 3, 6, 4);
-        // Ruta alternativa por arriba
-        BuildPlatform(bx + 18, GROUND_Y + 8, 8);
-
-        // Fondo oscuro de cueva
-        BuildBgBlock(bx + 6, GROUND_Y + 1, 20, 10);
+        BuildBgBlock(108, GROUND_Y + 1, 4, 11);
+        BuildBgBlock(127, GROUND_Y + 5, 4, 9);
     }
 
-    private void BuildSection5_SprintChasm()
+    // 4. Ascenso por bloques: escalones de 3 tiles con huecos de 2, ideales para agarrarse al borde
+    private void BuildSection4_Climb()
     {
-        int bx = 170;
-        // Pista de carrerilla para tomar velocidad de carrera (4.6m/s con Shift)
-        BuildTerrain(bx, FILL_BOTTOM, 13, GROUND_Y - FILL_BOTTOM + 1);
+        // Pilares macizos con abismos entre ellos: si fallas el salto caes al vacío y reapareces, en vez de quedar atrapado
+        Ground(146, 149, GROUND_Y + 3);
+        Ground(152, 155, GROUND_Y + 6);
+        Ground(158, 161, GROUND_Y + 9);
+        Ground(164, 170, GROUND_Y + 12);            // cumbre (mago vigía)
+        Ground(171, 206, GROUND_Y);                 // bajada y suelo hasta el túnel
+        BuildPlatform(172, GROUND_Y + 8, 3);        // escalera de bajada
+        BuildPlatform(175, GROUND_Y + 4, 3);
 
-        // Grieta 1: 14 tiles con isla de rescate en el centro
-        BuildPlatform(bx + 19, GROUND_Y + 2, 3);
-
-        // Pista intermedia
-        BuildTerrain(bx + 27, FILL_BOTTOM, 12, GROUND_Y - FILL_BOTTOM + 1);
-
-        // Grieta 2: 15 tiles con isla de rescate
-        BuildPlatform(bx + 45, GROUND_Y + 3, 3);
-
-        // Aterrizaje
-        BuildTerrain(bx + 54, FILL_BOTTOM, 12, GROUND_Y - FILL_BOTTOM + 1);
-
-        // Ruinas oscuras en el abismo
-        BuildBgBlock(bx + 15, GROUND_Y - 4, 6, 12);
-        BuildBgBlock(bx + 41, GROUND_Y - 4, 6, 14);
+        BuildBgBlock(150, GROUND_Y + 1, 3, 14);
+        BuildBgBlock(162, GROUND_Y + 1, 3, 18);
     }
 
-    private void BuildSection6_TowerOfLedges()
+    // 5. Túnel de deslizamiento: techo a 2 tiles, con un ghoul esperando a la salida
+    private void BuildSection5_SlideTunnel()
     {
-        int bx = 228;
-        int innerW = 6;
-        int shaftLeft = bx + 4;
-        int shaftRight = shaftLeft + innerW + 1;
+        BuildTerrain(181, GROUND_Y + 3, 10, 5);     // techo bajo (hueco libre de 2 tiles)
+        BuildPlatform(181, GROUND_Y + 10, 10);      // ruta alta alternativa (doble salto desde el techo)
 
-        // Suelo continuo de entrada y base de la torre
-        BuildTerrain(bx, FILL_BOTTOM, 26, GROUND_Y - FILL_BOTTOM + 1);
-
-        // Arco de entrada totalmente despejado a ras de suelo: el muro exterior comienza a +5 tiles
-        BuildTerrain(shaftLeft - 2, GROUND_Y + 5, 2, 19);
-
-        // Muro derecho de la torre
-        BuildTerrain(shaftRight, GROUND_Y + 1, 2, 21);
-
-        // Cornisas escalonadas (Ledges) para engancharse y hacer Wall Jump alternado:
-        BuildPlatform(shaftLeft, GROUND_Y + 5, 2);
-        BuildPlatform(shaftRight - 2, GROUND_Y + 10, 2);
-        BuildPlatform(shaftLeft, GROUND_Y + 15, 2);
-        BuildPlatform(shaftRight - 2, GROUND_Y + 20, 2);
-
-        // Salida abierta por la cima hacia la derecha
-        BuildTerrain(shaftRight, GROUND_Y + 22, 12, 3);
-
-        // Interior oscuro de la torre
-        BuildBgBlock(shaftLeft, GROUND_Y + 1, innerW, 24);
+        BuildBgBlock(180, GROUND_Y + 1, 12, 9);
     }
 
-    private void BuildSection7_ArenaAndGoal()
+    // 6. Grietas de carrera: 10 tiles (corriendo) y 13 tiles con isla de apoyo
+    private void BuildSection6_SprintChasm()
     {
-        int bx = 254;
+        // Hueco 207-216 (10): hay que correr con Shift
+        Ground(217, 226, GROUND_Y);
+        // Hueco 227-239 (13) con isla en el medio
+        BuildPlatform(232, GROUND_Y + 1, 3);
+        Ground(240, 322, GROUND_Y);             // suelo continuo hasta el final del nivel
 
-        // Descenso de la torre
-        BuildTerrain(bx, GROUND_Y + 16, 5, 2);
-        BuildTerrain(bx + 6, GROUND_Y + 11, 5, 2);
-        BuildPlatform(bx + 12, GROUND_Y + 6, 4);
-
-        // ARENA DE COMBATE AMPLIA
-        BuildTerrain(bx + 14, FILL_BOTTOM, 24, GROUND_Y - FILL_BOTTOM + 1);
-
-        // Plataformas tácticas de combate
-        BuildPlatform(bx + 19, GROUND_Y + 4, 4);
-        BuildPlatform(bx + 27, GROUND_Y + 7, 3);
-
-        // Paso hacia la meta
-        BuildTerrain(bx + 40, FILL_BOTTOM, 16, GROUND_Y - FILL_BOTTOM + 1);
-
-        // ESTRADO DEL COFRE DE LA VICTORIA
-        BuildTerrain(bx + 46, GROUND_Y + 1, 6, 2);
-
-        // Fondo oscuro de la arena
-        BuildBgBlock(bx + 16, GROUND_Y + 1, 8, 12);
-        BuildBgBlock(bx + 32, GROUND_Y + 1, 8, 14);
+        BuildBgBlock(210, GROUND_Y - 5, 5, 12);
+        BuildBgBlock(229, GROUND_Y - 5, 5, 13);
     }
+
+    // 7. Prueba combinada: plataformas a distintas alturas con ghouls y un mago arriba
+    private void BuildSection7_Gauntlet()
+    {
+        BuildPlatform(257, GROUND_Y + 3, 5);
+        BuildTerrain(265, GROUND_Y + 1, 6, 3);      // bloque top +3
+        BuildPlatform(273, GROUND_Y + 6, 4);        // nido del mago
+        BuildPlatform(279, GROUND_Y + 3, 3);
+
+        BuildBgBlock(262, GROUND_Y + 1, 5, 12);
+        BuildBgBlock(276, GROUND_Y + 1, 4, 14);
+    }
+
+    // 8. Arena del jefe: suelo plano, dos plataformas para esquivar picadas y muro final
+    private void BuildSection8_BossArena()
+    {
+        BuildTerrain(285, GROUND_Y + 7, 2, 10);     // arco de entrada (se pasa por debajo)
+        // Dos pisos de plataformas escalonadas: subirse esquiva la onda de choque y da ángulos para atacar
+        BuildPlatform(289, GROUND_Y + 3, 3);        // piso bajo (+3)
+        BuildPlatform(296, GROUND_Y + 3, 4);
+        BuildPlatform(303, GROUND_Y + 3, 4);
+        BuildPlatform(310, GROUND_Y + 3, 4);
+        BuildPlatform(292, GROUND_Y + 6, 4);        // piso alto (+6), alternado con el bajo
+        BuildPlatform(300, GROUND_Y + 6, 3);
+        BuildPlatform(307, GROUND_Y + 6, 3);
+        BuildTerrain(321, GROUND_Y + 1, 2, 14);     // muro final del nivel
+
+        BuildBgBlock(288, GROUND_Y + 1, 32, 16);
+    }
+
+    public const int BOSS_ARENA_MIN_X = 289;
+    public const int BOSS_ARENA_MAX_X = 318;
+    public const int CHEST_X = 316;
 
     private void BuildDeepBackground()
     {
         if (bgTilemap == null) return;
         // Rellenar toda la zona subterránea profunda con el tono de roca oscura de fondo
-        for (int x = -4; x <= 312; x++)
+        for (int x = -4; x <= 324; x++)
         {
             for (int y = FILL_BOTTOM; y <= GROUND_Y - 1; y++)
             {
@@ -554,6 +506,20 @@ public class LevelBuilder
             player.transform.localScale = new Vector3(-1f, 1f, 1f); // Orientado a la derecha
             var rb = player.GetComponent<Rigidbody2D>();
             if (rb != null) rb.linearVelocity = Vector2.zero;
+
+            // Animación de muerte: fotogramas 0-17 de "hard hit" (cae y queda tendido)
+            var protaScript = player.GetComponent<NewMonoBehaviourScript>();
+            if (protaScript != null)
+            {
+                var frames = new List<Sprite>();
+                var all = AssetDatabase.LoadAllAssetsAtPath("Assets/Characters/Prota/hurt/sprite sheets/hard hit.png");
+                for (int i = 0; i <= 17; i++)
+                    foreach (var a in all)
+                        if (a is Sprite s && s.name == $"hard hit_{i}") { frames.Add(s); break; }
+                Undo.RecordObject(protaScript, "Assign Death Frames");
+                protaScript.deathFrames = frames.ToArray();
+                EditorUtility.SetDirty(protaScript);
+            }
         }
 
         // Cofre de la cumbre en el estrado
@@ -574,7 +540,7 @@ public class LevelBuilder
             sr.sortingOrder = 2;
         }
         Undo.RecordObject(chest.transform, "Position SummitChest");
-        chest.transform.position = new Vector3(303 * 0.32f, (GROUND_Y + 3) * 0.32f + 0.16f, 0f);
+        chest.transform.position = new Vector3(CHEST_X * 0.32f, (GROUND_Y + 1) * 0.32f, 0f);
         chest.SetActive(true);
 
         // Configurar meta del cofre (ChestGoal)
@@ -639,28 +605,183 @@ public class LevelBuilder
         var playerObj = GameObject.Find("prota");
         Transform playerTrans = playerObj != null ? playerObj.transform : null;
 
-        // Posiciones estratégicas y dinámicas para los Ghouls a lo largo del nivel
-        Vector3[] ghoulPositions = new Vector3[]
-        {
-            new Vector3(45 * 0.32f,  (GROUND_Y + 1) * 0.32f + 0.20f, 0f), // 1. Sección 2: Terraza básica
-            new Vector3(97 * 0.32f,  (GROUND_Y + 17) * 0.32f + 0.20f, 0f), // 2. Sección 3: Guardián de la Cumbre
-            new Vector3(154 * 0.32f, (GROUND_Y + 1) * 0.32f + 0.20f, 0f), // 3. Sección 4: Tras la salida del túnel
-            new Vector3(197 * 0.32f, (GROUND_Y + 1) * 0.32f + 0.20f, 0f), // 4. Sección 5: Pista intermedia del sprint
-            new Vector3(272 * 0.32f, (GROUND_Y + 1) * 0.32f + 0.20f, 0f), // 5. Sección 7: Entrada a la Arena
-            new Vector3(280 * 0.32f, (GROUND_Y + 1) * 0.32f + 0.20f, 0f), // 6. Sección 7: Centro de la Arena
-            new Vector3(288 * 0.32f, (GROUND_Y + 1) * 0.32f + 0.20f, 0f)  // 7. Sección 7: Retaguardia de la Arena
-        };
+        Sprite[] deathFx = LoadFrames("Assets/Sprites/fx/enemy-death/enemy-death-sprites", "enemy-death");
 
-        for (int i = 0; i < ghoulPositions.Length; i++)
+        // Ghouls: (tile X, altura de la superficie donde se apoyan, rango de patrulla en metros)
+        var ghouls = new (int x, int top, float patrol)[]
+        {
+            (52,  GROUND_Y,      2.0f),  // 1. Prado: primer combate en terreno seguro
+            (98,  GROUND_Y,      2.5f),  // 2. Tras los saltos
+            (121, GROUND_Y,      1.2f),  // 3. Entre las coberturas del mago
+            (198, GROUND_Y,      1.5f),  // 4. Esperando a la salida del túnel
+            (221, GROUND_Y,      1.2f),  // 5. Pista entre grietas
+            (260, GROUND_Y + 3,  0.6f),  // 6. Prueba: sobre la plataforma
+            (268, GROUND_Y + 3,  0.7f),  // 7. Prueba: sobre el bloque
+            (281, GROUND_Y,      1.5f),  // 8. Prueba: antes de la arena
+        };
+        for (int i = 0; i < ghouls.Length; i++)
         {
             GameObject ghoul = new GameObject($"Enemy_Ghoul_{i}");
             Undo.RegisterCreatedObjectUndo(ghoul, $"Spawn Ghoul {i}");
             ghoul.transform.SetParent(enemiesParent.transform, false);
-            ghoul.transform.position = ghoulPositions[i];
+            ghoul.transform.position = new Vector3(ghouls[i].x * 0.32f, (ghouls[i].top + 1) * 0.32f + 0.02f, 0f);
             ghoul.transform.localScale = new Vector3(1.55f, 1.55f, 1f);
 
             ConfigureGhoul(ghoul, playerTrans);
+            ghoul.GetComponent<GhoulAI>().patrolRange = ghouls[i].patrol;
+            ghoul.GetComponent<HitReceiver>().deathFxFrames = deathFx;
         }
+
+        // Magos: disparan desde posiciones elevadas
+        var wizards = new (int x, int top)[]
+        {
+            (129, GROUND_Y + 4),   // torre del puesto del mago
+            (167, GROUND_Y + 12),  // vigía de la cumbre
+            (275, GROUND_Y + 6),   // nido de la prueba final
+        };
+        for (int i = 0; i < wizards.Length; i++)
+        {
+            var w = CreateWizard($"Enemy_Wizard_{i}", wizards[i].x, wizards[i].top, playerTrans, deathFx);
+            w.transform.SetParent(enemiesParent.transform, true);
+        }
+
+        // Jefe final
+        var boss = CreateAngelBoss(playerTrans, deathFx);
+        boss.transform.SetParent(enemiesParent.transform, true);
+    }
+
+    private static Sprite[] LoadFrames(string folder, string prefix = "f-")
+    {
+        var list = new List<(string name, Sprite sprite)>();
+        foreach (string guid in AssetDatabase.FindAssets("t:Texture2D", new[] { folder }))
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            string file = System.IO.Path.GetFileNameWithoutExtension(path);
+            if (!file.StartsWith(prefix)) continue;
+            foreach (var a in AssetDatabase.LoadAllAssetsAtPath(path))
+            {
+                if (a is Sprite s) { list.Add((file, s)); break; }
+            }
+        }
+        // Orden natural: f-2 antes que f-10
+        list.Sort((a, b) => ExtractNumber(a.name).CompareTo(ExtractNumber(b.name)));
+        var result = new Sprite[list.Count];
+        for (int i = 0; i < list.Count; i++) result[i] = list[i].sprite;
+        return result;
+    }
+
+    private static int ExtractNumber(string s)
+    {
+        string digits = "";
+        foreach (char c in s) if (char.IsDigit(c)) digits += c;
+        return digits.Length > 0 ? int.Parse(digits) : 0;
+    }
+
+    // Coloca el objeto para que la parte de abajo del sprite toque la superficie (los sprites tienen pivote centrado)
+    private static void PlaceOnSurface(GameObject go, Sprite sprite, float tileX, int surfaceTop, float scale)
+    {
+        float floorY = (surfaceTop + 1) * 0.32f;
+        float bottom = sprite != null ? (sprite.bounds.min.y * scale) : 0f;
+        go.transform.position = new Vector3(tileX * 0.32f, floorY - bottom + 0.02f, 0f);
+    }
+
+    private static void FitCollider(BoxCollider2D col, Sprite sprite, Vector2 fraction)
+    {
+        if (sprite == null) return;
+        var b = sprite.bounds;
+        col.size = new Vector2(b.size.x * fraction.x, b.size.y * fraction.y);
+        col.offset = new Vector2(b.center.x, b.min.y + col.size.y * 0.5f);
+    }
+
+    private GameObject CreateWizard(string name, int tileX, int surfaceTop, Transform player, Sprite[] deathFx)
+    {
+        var idle = LoadFrames("Assets/Sprites/wizard/Idle/sprites");
+        var cast = LoadFrames("Assets/Sprites/wizard/Fire/sprites");
+        var fireball = LoadFrames("Assets/Sprites/fx/fireball/fireball-sprites", "fireball");
+
+        var go = new GameObject(name);
+        Undo.RegisterCreatedObjectUndo(go, $"Spawn {name}");
+        go.tag = "Enemy";
+        const float scale = 1.1f;
+        go.transform.localScale = new Vector3(scale, scale, 1f);
+
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = idle.Length > 0 ? idle[0] : null;
+        sr.sortingOrder = 3;
+        PlaceOnSurface(go, sr.sprite, tileX, surfaceTop, scale);
+
+        var rb = go.AddComponent<Rigidbody2D>();
+        rb.gravityScale = 2.5f;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        var col = go.AddComponent<BoxCollider2D>();
+        FitCollider(col, sr.sprite, new Vector2(0.45f, 0.85f));
+
+        var hr = go.AddComponent<HitReceiver>();
+        hr.maxHealth = 50;
+        hr.currentHealth = 50;
+        hr.damagePerHit = 25;
+        hr.baseKnockbackForce = 3.0f;
+
+        go.AddComponent<SpriteFrameAnimator>();
+        var ai = go.AddComponent<WizardAI>();
+        ai.targetPlayer = player;
+        ai.idleFrames = idle;
+        ai.castFrames = cast;
+        ai.fireballFrames = fireball;
+        ai.groundLayer = 1 << 3;
+        return go;
+    }
+
+    private GameObject CreateAngelBoss(Transform player, Sprite[] deathFx)
+    {
+        var idle = LoadFrames("Assets/Sprites/angel/idle/sprites");
+        var attack = LoadFrames("Assets/Sprites/angel/attack/sprites");
+        var fireball = LoadFrames("Assets/Sprites/fx/fireball/fireball-sprites", "fireball");
+
+        var go = new GameObject("Boss_Angel");
+        Undo.RegisterCreatedObjectUndo(go, "Spawn Boss");
+        go.tag = "Enemy";
+        go.transform.localScale = Vector3.one * 1.6f; // jefe grande
+        float floorY = (GROUND_Y + 1) * 0.32f;
+        go.transform.position = new Vector3((BOSS_ARENA_MIN_X + BOSS_ARENA_MAX_X) * 0.5f * 0.32f, floorY + 3.0f, 0f);
+
+        var sr = go.AddComponent<SpriteRenderer>();
+        sr.sprite = idle.Length > 0 ? idle[0] : null;
+        sr.sortingOrder = 4;
+
+        var rb = go.AddComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.gravityScale = 0f;
+        var col = go.AddComponent<BoxCollider2D>();
+        col.isTrigger = true; // no empuja al jugador; recibe golpes por OverlapBox
+        if (sr.sprite != null)
+        {
+            col.size = new Vector2(sr.sprite.bounds.size.x * 0.35f, sr.sprite.bounds.size.y * 0.7f);
+            col.offset = sr.sprite.bounds.center;
+        }
+
+        var hr = go.AddComponent<HitReceiver>();
+        hr.isBoss = true;
+        hr.deathFxFrames = deathFx;  // cadena de explosiones al morir
+        hr.explosionDamage = 0;      // sus explosiones no dañan al jugador
+        hr.maxHealth = 400;
+        hr.currentHealth = 400;
+        hr.damagePerHit = 25;
+
+        go.AddComponent<SpriteFrameAnimator>();
+        var ai = go.AddComponent<AngelBossAI>();
+        ai.targetPlayer = player;
+        ai.idleFrames = idle;
+        ai.attackFrames = attack;
+        ai.fireballFrames = fireball;
+        ai.arenaMinX = BOSS_ARENA_MIN_X * 0.32f;
+        ai.arenaMaxX = BOSS_ARENA_MAX_X * 0.32f;
+        ai.arenaFloorY = floorY;
+        // Cámara fija: toda la arena (desde el arco hasta el muro final) con el suelo cerca del borde inferior
+        float arenaLeft = 285 * 0.32f, arenaRight = 323 * 0.32f;
+        float arenaWidth = arenaRight - arenaLeft;
+        ai.cameraArea = new Rect(arenaLeft, floorY - 0.6f, arenaWidth, arenaWidth / (16f / 9f));
+        return go;
     }
 
     private static void ConfigureGhoul(GameObject ghoul, Transform playerTransform)
@@ -707,7 +828,7 @@ public class LevelBuilder
         hr.currentHealth = 100;
         hr.damagePerHit = 25;
         hr.isImmortal = false;
-        hr.baseKnockbackForce = 1.8f;
+        hr.baseKnockbackForce = 4.5f;
         hr.groundDamping = 8.0f;
 
         // GhoulAI con protección contra abismos y ataque conectado al prota
@@ -719,8 +840,8 @@ public class LevelBuilder
         ai.stopDistance = 0.65f;
         ai.attackRange = 0.85f;
         ai.attackDamage = 15;
-        ai.attackCooldown = 1.6f;
-        ai.attackHitDelay = 0.35f;
+        ai.attackCooldown = 1.0f;
+        ai.attackHitDelay = 0.2f;
         ai.ledgeCheckDistanceAhead = 0.40f;
         ai.ledgeCheckDownDistance = 0.65f;
         ai.fallThreshold = -4.5f;

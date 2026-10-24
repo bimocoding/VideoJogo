@@ -1,8 +1,35 @@
 using System.Collections;
 using UnityEngine;
 
+// IA de enemigo que puede ser aturdida por un golpe (GhoulAI, WizardAI, AngelBossAI)
+public interface IStunnable
+{
+    void OnStunned(float duration);
+}
+
+// Daño de la explosión de fuego al morir: llega con un pequeño retraso para que el jugador pueda alejarse
+public class DelayedExplosion : MonoBehaviour
+{
+    public int damage = 15;
+    public float radius = 0.8f;
+    public float delay = 0.3f;
+
+    IEnumerator Start()
+    {
+        yield return new WaitForSeconds(delay);
+        foreach (var c in Physics2D.OverlapCircleAll(transform.position, radius))
+        {
+            var p = c.GetComponentInParent<NewMonoBehaviourScript>();
+            if (p != null) { p.TakeDamage(damage, false, transform); break; }
+        }
+    }
+}
+
 public class HitReceiver : MonoBehaviour
 {
+    [Header("Jefe (sin retroceso ni aturdimiento)")]
+    public bool isBoss = false;
+
     [Header("Salud y Daño")]
     public int maxHealth = 100;
     public int currentHealth = 100;
@@ -16,8 +43,9 @@ public class HitReceiver : MonoBehaviour
     public Vector2 squashScale = new Vector2(1.25f, 0.8f);
 
     [Header("Físicas de Retroceso Ligero (Knockback)")]
-    public float baseKnockbackForce = 2.0f;   // Empuje ligero horizontal
-    public float verticalKnockback = 0.0f;    // Sin elevación vertical para mantenerlo en el suelo
+    public float baseKnockbackForce = 4.5f;   // Empuje horizontal al recibir un golpe
+    public float verticalKnockback = 1.5f;    // Pequeño salto para que el retroceso se lea bien
+    public float finisherKnockbackMultiplier = 1.6f; // El tercer golpe del combo empuja más
     public float groundDamping = 8.0f;       // Fricción para frenado suave tras el empuje
 
     private SpriteRenderer sr;
@@ -87,15 +115,16 @@ public class HitReceiver : MonoBehaviour
             transform.localScale = new Vector3(originalScale.x * squashScale.x, originalScale.y * squashScale.y, originalScale.z);
         }
 
-        // Notificar aturdimiento al componente de IA
-        var ghoulAI = GetComponent<GhoulAI>();
-        if (ghoulAI != null)
+        if (isBoss) GetComponent<AngelBossAI>()?.OnHurt();
+
+        // Notificar aturdimiento a la IA (los jefes no se aturden)
+        if (!isBoss)
         {
-            ghoulAI.OnStunned(0.75f);
+            foreach (var stunnable in GetComponents<IStunnable>()) stunnable.OnStunned(0.75f);
         }
 
-        // Empuje físico ligero hacia atrás respetando bordes para no caer al vacío
-        if (rb != null)
+        // Empuje físico hacia atrás respetando bordes para no caer al vacío (los jefes no retroceden)
+        if (rb != null && !isBoss && rb.bodyType == RigidbodyType2D.Dynamic)
         {
             float pushDir = 0f;
 
@@ -119,8 +148,9 @@ public class HitReceiver : MonoBehaviour
                 pushDir = 0f;
             }
 
-            float finalPushSpeed = pushDir * baseKnockbackForce;
-            float vertForce = (customVerticalKnockback > 0f) ? customVerticalKnockback : verticalKnockback;
+            float push = baseKnockbackForce * (comboStep >= 3 ? finisherKnockbackMultiplier : 1f);
+            float finalPushSpeed = pushDir * push;
+            float vertForce = (customVerticalKnockback > 0f) ? customVerticalKnockback : (pushDir != 0f ? verticalKnockback : 0f);
 
             rb.linearDamping = groundDamping;
             rb.linearVelocity = new Vector2(finalPushSpeed, vertForce);
@@ -189,10 +219,111 @@ public class HitReceiver : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Kinematic;
         }
 
-        var ai = GetComponent<GhoulAI>();
-        if (ai != null) ai.enabled = false;
+        foreach (var stunnable in GetComponents<IStunnable>())
+            if (stunnable is MonoBehaviour mb) mb.enabled = false;
+
+        if (isBoss)
+        {
+            StartCoroutine(BossDeathRoutine());
+            return;
+        }
+        SpawnDeathFx();
 
         StartCoroutine(DeathSequence());
+    }
+
+    [Header("Efecto de Muerte")]
+    public Sprite[] deathFxFrames;            // explosión de fuego "enemy-death" (solo enemigos de fuego)
+    public float deathFxFps = 18f;
+    public int explosionDamage = 15;          // la explosión daña al jugador si está cerca
+    public float explosionRadius = 0.8f;
+
+    private void SpawnDeathFx()
+    {
+        if (deathFxFrames == null || deathFxFrames.Length == 0) return;
+        var fx = new GameObject("EnemyDeathFx");
+        // La explosión nace a la altura del cuerpo (el collider del ghoul solo cubre sus pies)
+        Vector3 pos = transform.position + Vector3.up * 0.45f;
+        fx.transform.position = pos;
+        fx.transform.localScale = Vector3.one * (isBoss ? 2f : 1.2f);
+
+        camara.Shake(0.12f, 0.2f);
+        if (explosionDamage > 0)
+        {
+            var blast = fx.AddComponent<DelayedExplosion>();
+            blast.damage = explosionDamage;
+            blast.radius = explosionRadius;
+        }
+        var fxSr = fx.AddComponent<SpriteRenderer>();
+        fxSr.sortingOrder = 10;
+        var anim = fx.AddComponent<SpriteFrameAnimator>();
+        anim.frames = deathFxFrames;
+        anim.fps = deathFxFps;
+        anim.loop = false;
+        anim.destroyOnFinish = true;
+    }
+
+    [Header("Muerte del Jefe")]
+    public int bossExplosionCount = 9;
+    public float bossExplosionInterval = 0.22f;
+
+    // Cadena de explosiones de fuego por todo el cuerpo, una gran explosión final y luego se libera la cámara
+    private IEnumerator BossDeathRoutine()
+    {
+        // Los colliders ya están desactivados (bounds vacíos): usar los del sprite
+        Vector3 basePos = transform.position;
+        Vector3 center = sr != null ? sr.bounds.center : transform.position;
+        Vector2 extents = sr != null ? (Vector2)sr.bounds.extents * 0.6f : Vector2.one * 0.6f;
+        if (sr != null) sr.color = Color.white;
+
+        for (int i = 0; i < bossExplosionCount; i++)
+        {
+            Vector3 pos = center + new Vector3(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y), 0f);
+            SpawnExplosion(pos, Random.Range(1.0f, 1.6f));
+            camara.Shake(0.12f + 0.02f * i, 0.2f);
+            if (i % 2 == 0) BossSfx.Play(BossSfx.Sound.Slam);
+
+            // El cuerpo tiembla y parpadea mientras explota
+            transform.position = basePos + (Vector3)(Random.insideUnitCircle * 0.06f);
+            if (sr != null) sr.color = (i % 2 == 0) ? hitFlashColor : Color.white;
+            yield return new WaitForSeconds(bossExplosionInterval);
+        }
+
+        // Gran explosión final
+        SpawnExplosion(center, 3.2f);
+        camara.Shake(0.45f, 0.7f);
+        BossSfx.Play(BossSfx.Sound.Slam);
+
+        float fade = 0.5f;
+        Vector3 startScale = transform.localScale;
+        for (float t = 0f; t < fade; t += Time.deltaTime)
+        {
+            float k = t / fade;
+            if (sr != null) sr.color = new Color(1f, 1f, 1f, 1f - k);
+            transform.localScale = Vector3.Lerp(startScale, startScale * 1.3f, k);
+            yield return null;
+        }
+        if (sr != null) sr.enabled = false;
+
+        yield return new WaitForSeconds(0.6f);
+        camara.Unlock();
+        BossMusic.Stop();
+        Destroy(gameObject); // al desaparecer el jefe se desbloquea el cofre
+    }
+
+    private void SpawnExplosion(Vector3 pos, float scale)
+    {
+        if (deathFxFrames == null || deathFxFrames.Length == 0) return;
+        var fx = new GameObject("BossExplosionFx");
+        fx.transform.position = pos;
+        fx.transform.localScale = Vector3.one * scale;
+        var fxSr = fx.AddComponent<SpriteRenderer>();
+        fxSr.sortingOrder = 10;
+        var anim = fx.AddComponent<SpriteFrameAnimator>();
+        anim.frames = deathFxFrames;
+        anim.fps = deathFxFps;
+        anim.loop = false;
+        anim.destroyOnFinish = true;
     }
 
     private IEnumerator DeathSequence()
