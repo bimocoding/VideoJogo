@@ -15,6 +15,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float groundDeceleration = 18f;
     public float airAcceleration = 10f;
     public float airDeceleration = 8f;
+    public float turnAroundMultiplier = 1.6f;   // Frenado extra al cambiar de dirección para giros nítidos
 
     [Header("Salto Estilo Celeste")]
     public float jumpForce = 12.5f;
@@ -22,6 +23,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float lowJumpMultiplier = 2.2f;
     public float coyoteTime = 0.15f;
     public float jumpBufferTime = 0.15f;
+    public float jumpGroundLockTime = 0.1f;     // Tras saltar, ignora el suelo para no recargar coyote/doble salto
+    public float landingBufferDistance = 0.4f;  // Si cae y el suelo está así de cerca, el salto se guarda para el aterrizaje
+    private float jumpGroundLockTimer = 0f;
 
     [Header("Doble Salto (Double Jump)")]
     public float doubleJumpForce = 2.0f;
@@ -33,6 +37,39 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public int currentHealth = 100;
     public int voidDamage = 25;
     public bool isDead = false;
+
+    [Header("Impacto al Recibir Daño (Juice)")]
+    public float hurtShakeIntensity = 0.12f;
+    public float hurtShakeDuration = 0.2f;
+    public float voidShakeIntensity = 0.25f;
+    public float voidShakeDuration = 0.35f;
+    public float deathShakeIntensity = 0.35f;
+    public float deathShakeDuration = 0.5f;
+    public float hurtHitPause = 0.06f;
+    public float hitShakeIntensity = 0.05f;     // temblor al golpear tú a un enemigo (más suave que al recibir)
+    public float hitShakeDuration = 0.1f;          // Micro-congelación del juego al recibir un golpe
+    public Color damageFlashColor = new Color(1f, 0.35f, 0.35f, 1f);
+    public int damageFlashCount = 3;
+    private SpriteRenderer[] spriteRenderers;
+    private Coroutine damageFlashRoutine;
+
+    [Header("Retroceso e Invulnerabilidad al Recibir Golpe")]
+    public float knockbackForceX = 4.5f;        // Empuje horizontal alejándose del enemigo
+    public float knockbackForceY = 4.0f;        // Pequeño salto hacia arriba
+    public float knockbackDuration = 0.25f;     // Tiempo sin control mientras sale despedido
+    public float invulnerabilityDuration = 1.0f;
+    public float postClimbInvulnerability = 0.4f; // Margen al terminar de trepar para reaccionar a enemigos arriba
+    public float invulnerableBlinkInterval = 0.08f;
+    [Range(0f, 1f)]
+    public float invulnerableBlinkAlpha = 0.25f;
+    private float knockbackTimer = 0f;
+    private float invulnerableTimer = 0f;
+    public bool IsInvulnerable => invulnerableTimer > 0f;
+    public bool IsKnockedBack => knockbackTimer > 0f;
+
+    [Header("Animación de Muerte")]
+    public Sprite[] deathFrames;                // "hard hit" hasta quedar tendido (los asigna el generador de nivel)
+    public float deathFps = 14f;
 
     [Header("Sistema de Curación (Tecla H)")]
     public KeyCode healKey = KeyCode.H;
@@ -220,6 +257,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private Animator animator;
     private float move;
     private bool isGrounded;
+    public bool IsGrounded => isGrounded;
     private bool wasGrounded;
     private float coyoteTimeCounter;
     private float jumpBufferCounter;
@@ -302,6 +340,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         if (dodgeCooldownTimer > 0f) dodgeCooldownTimer -= Time.deltaTime;
+        if (invulnerableTimer > 0f) invulnerableTimer -= Time.deltaTime;
+        if (knockbackTimer > 0f) knockbackTimer -= Time.deltaTime;
 
         // GestiÃ³n de Crouch, Slide, Dodge y Backdodge (Fase 4 & 5)
         HandleDodgeAndSlideInputs();
@@ -314,7 +354,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // Sistema de combate con J (combos), K (dodge attacks) y W+J (ataque vertical)
         HandleCombatInputs();
 
-        bool isMovementBlocked = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing || isHealing || isDead;
+        bool isMovementBlocked = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing || isHealing || isDead || IsKnockedBack;
 
         // Movimiento horizontal A/D o flechas (bloqueado durante combate, slide o agachado)
         move = isMovementBlocked ? 0f : Input.GetAxisRaw("Horizontal");
@@ -355,7 +395,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             ExecuteJump();
         }
         // Disparo de doble salto (en el aire, sin coyote time, si quedan saltos aéreos)
-        else if (jumpBufferCounter > 0f && !isGrounded && airJumpsRemaining > 0 && !isAirDashing && !IsInCombatAction && !isHanging && !isClimbing)
+        else if (jumpBufferCounter > 0f && !isGrounded && airJumpsRemaining > 0 && !isAirDashing && !IsInCombatAction && !isHanging && !isClimbing && !IsAboutToLand())
         {
             ExecuteDoubleJump();
         }
@@ -412,7 +452,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         wasGrounded = isGrounded;
         Vector2 checkPos = (groundCheck != null) ? (Vector2)groundCheck.position : (Vector2)transform.position + Vector2.down * 0.05f;
-        isGrounded = Physics2D.OverlapCircle(checkPos, groundRadius, groundLayer);
+        if (jumpGroundLockTimer > 0f) jumpGroundLockTimer -= Time.fixedDeltaTime;
+        isGrounded = jumpGroundLockTimer <= 0f && Physics2D.OverlapCircle(checkPos, groundRadius, groundLayer);
 
         // Frenado suave al atacar en el suelo
         if (isAttacking && isGrounded)
@@ -462,7 +503,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         bool isApex = !isGrounded && Mathf.Abs(rb2d.linearVelocity.y) < apexThreshold;
-        bool freezeMovementForce = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing;
+        bool freezeMovementForce = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing || IsKnockedBack;
 
         // Durante los primeros instantes del wall jump, se preserva el impulso horizontal sin interferencia
         if (wallJumpTimer > 0f)
@@ -477,15 +518,21 @@ public class NewMonoBehaviourScript : MonoBehaviour
             float targetSpeed = move * currentMaxSpeed;
             if (isApex) targetSpeed *= apexSpeedBonus;
 
-            float speedDiff = targetSpeed - rb2d.linearVelocity.x;
+            float currentX = rb2d.linearVelocity.x;
+            bool hasInput = Mathf.Abs(targetSpeed) > 0.01f;
             float accelRate;
             if (isGrounded)
-                accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? groundAcceleration : groundDeceleration;
+                accelRate = hasInput ? groundAcceleration : groundDeceleration;
             else
-                accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? airAcceleration : airDeceleration;
+                accelRate = hasInput ? airAcceleration : airDeceleration;
 
-            float force = speedDiff * accelRate;
-            rb2d.AddForce(new Vector2(force, 0f), ForceMode2D.Force);
+            // Girar en sentido contrario frena más fuerte para que el cambio de dirección sea inmediato
+            if (hasInput && Mathf.Abs(currentX) > 0.01f && Mathf.Sign(targetSpeed) != Mathf.Sign(currentX))
+                accelRate *= turnAroundMultiplier;
+
+            // Velocidad directa (independiente de la masa): llega a la velocidad máxima en ~1/accelRate segundos
+            float step = accelRate * Mathf.Max(currentMaxSpeed, 0.01f) * Time.fixedDeltaTime;
+            rb2d.linearVelocity = new Vector2(Mathf.MoveTowards(currentX, targetSpeed, step), rb2d.linearVelocity.y);
         }
 
         // Curva de gravedad Celeste
@@ -770,9 +817,22 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // Restaurar collider fÃ­sico al estar de pie sobre la plataforma
         if (playerCollider != null) playerCollider.enabled = true;
 
+        // Al terminar de trepar ya está de pie: sin esto el primer frame sigue "en el aire" y la animación se queda trabada
+        isGrounded = true;
+        wasGrounded = true;
+        coyoteTimeCounter = coyoteTime;
+        jumpBufferCounter = 0f;
+        invulnerableTimer = Mathf.Max(invulnerableTimer, postClimbInvulnerability);
+
         if (animator != null)
         {
             animator.SetBool("isClimbing", false);
+            animator.SetBool("isHanging", false);
+            animator.SetBool("isGrounded", true);
+            animator.SetFloat("yVelocity", 0f);
+            foreach (var trig in new[] { "climb", "ledgeGrab", "hurt", "jump", "doubleJumpForward", "doubleJumpVertical" })
+                animator.ResetTrigger(trig);
+            animator.Play("Idle", 0, 0f);
         }
     }
 
@@ -781,6 +841,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, jumpForce);
         jumpBufferCounter = 0f;
         coyoteTimeCounter = 0f;
+        jumpGroundLockTimer = jumpGroundLockTime;
+        isGrounded = false;
 
         if (enableSquashAndStretch)
         {
@@ -791,6 +853,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             animator.SetTrigger("jump");
         }
+    }
+
+    // Cayendo con el suelo justo debajo: el salto queda en buffer para el aterrizaje en vez de gastar el doble salto
+    private bool IsAboutToLand()
+    {
+        if (rb2d.linearVelocity.y >= 0f) return false;
+        Vector2 checkPos = (groundCheck != null) ? (Vector2)groundCheck.position : (Vector2)transform.position;
+        return Physics2D.Raycast(checkPos, Vector2.down, landingBufferDistance, groundLayer).collider != null;
     }
 
     private void ExecuteDoubleJump()
@@ -1127,6 +1197,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         float hitDelay = (variationStep == 2) ? 0.10f : 0.12f;
         yield return new WaitForSeconds(hitDelay);
+        HitSfx.PlaySlash(false);
 
         float reach = (variationStep == 2) ? variation2Reach : variation3Reach;
         Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (reach * 0.5f);
@@ -1169,6 +1240,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // Sincronización con el fotograma exacto del impacto
         float hitDelay = (step == 3) ? 0.28f : 0.12f;
         yield return new WaitForSeconds(hitDelay);
+        HitSfx.PlaySlash(step == 3); // el tercer golpe es el más fuerte: corte épico
 
         float reach = (step == 1) ? attack1Reach : ((step == 2) ? attack2Reach : attack3Reach);
         Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (reach * 0.5f);
@@ -1230,6 +1302,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (hitstopRoutine != null) StopCoroutine(hitstopRoutine);
         hitstopRoutine = StartCoroutine(HitstopRoutine(duration));
+
+        // Impacto al golpear: temblor corto y más suave que al recibir daño, crece con golpes más fuertes
+        float strength = Mathf.InverseLerp(0.05f, 0.08f, duration);
+        camara.Shake(Mathf.Lerp(hitShakeIntensity, hitShakeIntensity * 1.8f, strength), hitShakeDuration);
     }
 
     private IEnumerator HitstopRoutine(float duration)
@@ -1289,6 +1365,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         float hitDelay = (step == 1) ? 0.14f : 0.18f;
         yield return new WaitForSeconds(hitDelay);
+        HitSfx.PlaySlash(false);
 
         float reach = (step == 1) ? dodgeAttack1Reach : dodgeAttack2Reach;
         Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (reach * 0.5f);
@@ -1386,6 +1463,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         // Impacto sincronizado con la fase de corte o caída
         yield return new WaitForSeconds(0.10f);
+        HitSfx.PlaySlash(true); // remate vertical: corte épico
 
         Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 1.0f + lookDir * 0.25f;
         Vector2 attackSize = new Vector2(verticalAttackReachX, verticalAttackReachY);
@@ -1482,6 +1560,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         // El impacto del corte aÃ©reo se produce en el frame 2-3 (a los 0.10s - 0.12s)
         yield return new WaitForSeconds(0.10f);
+        HitSfx.PlaySlash(false);
 
         Vector2 attackCenter = (Vector2)transform.position + Vector2.up * 0.35f + lookDir * (jumpAttackReach * 0.5f);
         Vector2 attackSize = new Vector2(jumpAttackReach, 0.95f);
@@ -2002,9 +2081,17 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // =========================================================================
     // SISTEMA DE SALUD, DAÑO Y CURACIÓN (TECLA H)
     // =========================================================================
-    public void TakeDamage(int damage, bool fromVoid = false)
+    public void TakeDamage(int damage, bool fromVoid = false, Transform source = null)
     {
         if (isDead) return;
+        if (!fromVoid && invulnerableTimer > 0f) return; // Invulnerable tras un golpe reciente
+        if (!fromVoid && (isHanging || isClimbing)) return; // Colgado o trepando no se puede recibir daño (el collider está apagado)
+
+        if (!fromVoid)
+        {
+            invulnerableTimer = invulnerabilityDuration;
+            ApplyKnockback(source);
+        }
 
         currentHealth = Mathf.Max(0, currentHealth - damage);
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
@@ -2014,17 +2101,117 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetTrigger("hurt");
         }
 
-        if (currentHealth <= 0)
+        // Impacto: temblor de cámara, destello y micro-pausa (más fuertes al caer al vacío o morir)
+        bool lethal = currentHealth <= 0;
+        if (lethal) camara.Shake(deathShakeIntensity, deathShakeDuration);
+        else if (fromVoid) camara.Shake(voidShakeIntensity, voidShakeDuration);
+        else camara.Shake(hurtShakeIntensity, hurtShakeDuration);
+
+        if (damageFlashRoutine != null) StopCoroutine(damageFlashRoutine);
+        damageFlashRoutine = StartCoroutine(DamageFlashRoutine());
+        if (!fromVoid) StartCoroutine(HitPauseRoutine(lethal ? hurtHitPause * 2f : hurtHitPause));
+
+        if (lethal)
         {
             StartCoroutine(DieRoutine());
         }
+    }
+
+    private void ApplyKnockback(Transform source)
+    {
+        // Empuje alejándose del atacante (si no hay atacante, hacia atrás según la orientación)
+        float dir;
+        if (source != null && Mathf.Abs(transform.position.x - source.position.x) > 0.01f)
+        {
+            dir = Mathf.Sign(transform.position.x - source.position.x);
+            // Mirar hacia el atacante: la animación de daño retrocede hacia atrás y debe coincidir con el empuje
+            // (facingDirection -1 = mira a la derecha)
+            facingDirection = (dir < 0f) ? -1 : 1;
+            transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
+        }
+        else
+            dir = (facingDirection == -1) ? -1f : 1f;
+
+        // Cancelar acciones que fijan la velocidad para que el empuje no se pierda
+        if (attackRoutine != null) { StopCoroutine(attackRoutine); attackRoutine = null; }
+        if (isAttacking) FinishAttack();
+        isDodgeAttacking = false;
+        isJumpAttacking = false;
+        isVerticalAttacking = false;
+        isSliding = false;
+        isAirDashing = false;
+        isWallJumping = false;
+        wallJumpTimer = 0f;
+
+        knockbackTimer = knockbackDuration;
+        jumpBufferCounter = 0f;
+        rb2d.linearVelocity = new Vector2(dir * knockbackForceX, knockbackForceY);
+    }
+
+    private IEnumerator DamageFlashRoutine()
+    {
+        if (spriteRenderers == null) spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+
+        // Destellos rojos del impacto
+        for (int i = 0; i < damageFlashCount; i++)
+        {
+            SetSpritesColor(damageFlashColor);
+            yield return new WaitForSecondsRealtime(0.06f);
+            SetSpritesColor(Color.white);
+            yield return new WaitForSecondsRealtime(0.06f);
+        }
+
+        // Parpadeo mientras dura la invulnerabilidad
+        bool visible = true;
+        while (invulnerableTimer > 0f && !isDead)
+        {
+            visible = !visible;
+            SetSpritesColor(visible ? Color.white : new Color(1f, 1f, 1f, invulnerableBlinkAlpha));
+            yield return new WaitForSeconds(invulnerableBlinkInterval);
+        }
+
+        SetSpritesColor(Color.white);
+        damageFlashRoutine = null;
+    }
+
+    private void SetSpritesColor(Color c)
+    {
+        foreach (var sr in spriteRenderers) if (sr != null) sr.color = c;
+    }
+
+    private IEnumerator HitPauseRoutine(float duration)
+    {
+        if (duration <= 0f || Time.timeScale == 0f) yield break;
+        float previous = Time.timeScale;
+        Time.timeScale = 0f;
+        yield return new WaitForSecondsRealtime(duration);
+        if (Time.timeScale == 0f) Time.timeScale = previous;
     }
 
     private IEnumerator DieRoutine()
     {
         isDead = true;
         rb2d.linearVelocity = Vector2.zero;
-        if (animator != null)
+
+        // Si murió cayendo al vacío, la animación se ve en el último suelo pisado
+        if (transform.position.y < fallThreshold)
+        {
+            transform.position = lastGroundedPos;
+            rb2d.linearVelocity = Vector2.zero;
+        }
+
+        // Animación de muerte: cae al suelo y queda tendido (sin el Animator, que lo dejaría de pie)
+        var bodySr = GetComponent<SpriteRenderer>();
+        if (deathFrames != null && deathFrames.Length > 0 && bodySr != null)
+        {
+            if (animator != null) animator.enabled = false;
+            for (int i = 0; i < deathFrames.Length; i++)
+            {
+                bodySr.sprite = deathFrames[i];
+                yield return new WaitForSecondsRealtime(1f / deathFps);
+            }
+        }
+        else if (animator != null)
         {
             animator.SetTrigger("hurt");
         }

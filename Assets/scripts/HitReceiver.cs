@@ -1,8 +1,35 @@
 using System.Collections;
 using UnityEngine;
 
+// IA de enemigo que puede ser aturdida por un golpe (GhoulAI, WizardAI, AngelBossAI)
+public interface IStunnable
+{
+    void OnStunned(float duration);
+}
+
+// Daño de la explosión de fuego al morir: llega con un pequeño retraso para que el jugador pueda alejarse
+public class DelayedExplosion : MonoBehaviour
+{
+    public int damage = 15;
+    public float radius = 0.8f;
+    public float delay = 0.3f;
+
+    IEnumerator Start()
+    {
+        yield return new WaitForSeconds(delay);
+        foreach (var c in Physics2D.OverlapCircleAll(transform.position, radius))
+        {
+            var p = c.GetComponentInParent<NewMonoBehaviourScript>();
+            if (p != null) { p.TakeDamage(damage, false, transform); break; }
+        }
+    }
+}
+
 public class HitReceiver : MonoBehaviour
 {
+    [Header("Jefe (sin retroceso ni aturdimiento)")]
+    public bool isBoss = false;
+
     [Header("Salud y Daño")]
     public int maxHealth = 100;
     public int currentHealth = 100;
@@ -16,8 +43,9 @@ public class HitReceiver : MonoBehaviour
     public Vector2 squashScale = new Vector2(1.25f, 0.8f);
 
     [Header("Físicas de Retroceso Ligero (Knockback)")]
-    public float baseKnockbackForce = 2.0f;   // Empuje ligero horizontal
-    public float verticalKnockback = 0.0f;    // Sin elevación vertical para mantenerlo en el suelo
+    public float baseKnockbackForce = 4.5f;   // Empuje horizontal al recibir un golpe
+    public float verticalKnockback = 1.5f;    // Pequeño salto para que el retroceso se lea bien
+    public float finisherKnockbackMultiplier = 1.6f; // El tercer golpe del combo empuja más
     public float groundDamping = 8.0f;       // Fricción para frenado suave tras el empuje
 
     private SpriteRenderer sr;
@@ -87,15 +115,14 @@ public class HitReceiver : MonoBehaviour
             transform.localScale = new Vector3(originalScale.x * squashScale.x, originalScale.y * squashScale.y, originalScale.z);
         }
 
-        // Notificar aturdimiento al componente de IA
-        var ghoulAI = GetComponent<GhoulAI>();
-        if (ghoulAI != null)
+        // Notificar aturdimiento a la IA (los jefes no se aturden)
+        if (!isBoss)
         {
-            ghoulAI.OnStunned(0.75f);
+            foreach (var stunnable in GetComponents<IStunnable>()) stunnable.OnStunned(0.75f);
         }
 
-        // Empuje físico ligero hacia atrás respetando bordes para no caer al vacío
-        if (rb != null)
+        // Empuje físico hacia atrás respetando bordes para no caer al vacío (los jefes no retroceden)
+        if (rb != null && !isBoss && rb.bodyType == RigidbodyType2D.Dynamic)
         {
             float pushDir = 0f;
 
@@ -119,8 +146,9 @@ public class HitReceiver : MonoBehaviour
                 pushDir = 0f;
             }
 
-            float finalPushSpeed = pushDir * baseKnockbackForce;
-            float vertForce = (customVerticalKnockback > 0f) ? customVerticalKnockback : verticalKnockback;
+            float push = baseKnockbackForce * (comboStep >= 3 ? finisherKnockbackMultiplier : 1f);
+            float finalPushSpeed = pushDir * push;
+            float vertForce = (customVerticalKnockback > 0f) ? customVerticalKnockback : (pushDir != 0f ? verticalKnockback : 0f);
 
             rb.linearDamping = groundDamping;
             rb.linearVelocity = new Vector2(finalPushSpeed, vertForce);
@@ -189,10 +217,44 @@ public class HitReceiver : MonoBehaviour
             rb.bodyType = RigidbodyType2D.Kinematic;
         }
 
-        var ai = GetComponent<GhoulAI>();
-        if (ai != null) ai.enabled = false;
+        foreach (var stunnable in GetComponents<IStunnable>())
+            if (stunnable is MonoBehaviour mb) mb.enabled = false;
+
+        if (isBoss) camara.Shake(0.4f, 0.6f);
+        SpawnDeathFx();
 
         StartCoroutine(DeathSequence());
+    }
+
+    [Header("Efecto de Muerte")]
+    public Sprite[] deathFxFrames;            // explosión de fuego "enemy-death" (solo enemigos de fuego)
+    public float deathFxFps = 18f;
+    public int explosionDamage = 15;          // la explosión daña al jugador si está cerca
+    public float explosionRadius = 0.8f;
+
+    private void SpawnDeathFx()
+    {
+        if (deathFxFrames == null || deathFxFrames.Length == 0) return;
+        var fx = new GameObject("EnemyDeathFx");
+        // La explosión nace a la altura del cuerpo (el collider del ghoul solo cubre sus pies)
+        Vector3 pos = transform.position + Vector3.up * 0.45f;
+        fx.transform.position = pos;
+        fx.transform.localScale = Vector3.one * (isBoss ? 2f : 1.2f);
+
+        camara.Shake(0.12f, 0.2f);
+        if (explosionDamage > 0)
+        {
+            var blast = fx.AddComponent<DelayedExplosion>();
+            blast.damage = explosionDamage;
+            blast.radius = explosionRadius;
+        }
+        var fxSr = fx.AddComponent<SpriteRenderer>();
+        fxSr.sortingOrder = 10;
+        var anim = fx.AddComponent<SpriteFrameAnimator>();
+        anim.frames = deathFxFrames;
+        anim.fps = deathFxFps;
+        anim.loop = false;
+        anim.destroyOnFinish = true;
     }
 
     private IEnumerator DeathSequence()
