@@ -735,9 +735,9 @@ public class LevelBuilder
         var go = new GameObject("Boss_Angel");
         Undo.RegisterCreatedObjectUndo(go, "Spawn Boss");
         go.tag = "Enemy";
-        go.transform.localScale = Vector3.one;
+        go.transform.localScale = Vector3.one * 1.6f; // jefe grande
         float floorY = (GROUND_Y + 1) * 0.32f;
-        go.transform.position = new Vector3((BOSS_ARENA_MIN_X + BOSS_ARENA_MAX_X) * 0.5f * 0.32f, floorY + 2.6f, 0f);
+        go.transform.position = new Vector3((BOSS_ARENA_MIN_X + BOSS_ARENA_MAX_X) * 0.5f * 0.32f, floorY + 3.0f, 0f);
 
         var sr = go.AddComponent<SpriteRenderer>();
         sr.sprite = idle.Length > 0 ? idle[0] : null;

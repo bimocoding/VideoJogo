@@ -115,6 +115,8 @@ public class HitReceiver : MonoBehaviour
             transform.localScale = new Vector3(originalScale.x * squashScale.x, originalScale.y * squashScale.y, originalScale.z);
         }
 
+        if (isBoss) GetComponent<AngelBossAI>()?.OnHurt();
+
         // Notificar aturdimiento a la IA (los jefes no se aturden)
         if (!isBoss)
         {
