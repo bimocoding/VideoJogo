@@ -440,8 +440,14 @@ public class LevelBuilder
     private void BuildSection8_BossArena()
     {
         BuildTerrain(285, GROUND_Y + 7, 2, 10);     // arco de entrada (se pasa por debajo)
-        BuildPlatform(293, GROUND_Y + 3, 4);
-        BuildPlatform(306, GROUND_Y + 3, 4);
+        // Dos pisos de plataformas escalonadas: subirse esquiva la onda de choque y da ángulos para atacar
+        BuildPlatform(289, GROUND_Y + 3, 3);        // piso bajo (+3)
+        BuildPlatform(296, GROUND_Y + 3, 4);
+        BuildPlatform(303, GROUND_Y + 3, 4);
+        BuildPlatform(310, GROUND_Y + 3, 4);
+        BuildPlatform(292, GROUND_Y + 6, 4);        // piso alto (+6), alternado con el bajo
+        BuildPlatform(300, GROUND_Y + 6, 3);
+        BuildPlatform(307, GROUND_Y + 6, 3);
         BuildTerrain(321, GROUND_Y + 1, 2, 14);     // muro final del nivel
 
         BuildBgBlock(288, GROUND_Y + 1, 32, 16);
@@ -756,6 +762,8 @@ public class LevelBuilder
 
         var hr = go.AddComponent<HitReceiver>();
         hr.isBoss = true;
+        hr.deathFxFrames = deathFx;  // cadena de explosiones al morir
+        hr.explosionDamage = 0;      // sus explosiones no dañan al jugador
         hr.maxHealth = 400;
         hr.currentHealth = 400;
         hr.damagePerHit = 25;

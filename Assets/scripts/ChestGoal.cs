@@ -63,8 +63,8 @@ public class ChestGoal : MonoBehaviour
 
     private static bool BossAlive()
     {
-        var boss = FindAnyObjectByType<AngelBossAI>();
-        return boss != null && boss.enabled; // al morir, HitReceiver desactiva la IA y luego destruye al jefe
+        // Incluye la IA desactivada: el jefe sigue "vivo" hasta que termina su secuencia de explosiones y se destruye
+        return FindAnyObjectByType<AngelBossAI>(FindObjectsInactive.Include) != null;
     }
 
     // Si el jugador ya está encima del cofre cuando muere el jefe, abrirlo igualmente

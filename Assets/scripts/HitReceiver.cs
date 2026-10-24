@@ -222,7 +222,11 @@ public class HitReceiver : MonoBehaviour
         foreach (var stunnable in GetComponents<IStunnable>())
             if (stunnable is MonoBehaviour mb) mb.enabled = false;
 
-        if (isBoss) camara.Shake(0.4f, 0.6f);
+        if (isBoss)
+        {
+            StartCoroutine(BossDeathRoutine());
+            return;
+        }
         SpawnDeathFx();
 
         StartCoroutine(DeathSequence());
@@ -250,6 +254,69 @@ public class HitReceiver : MonoBehaviour
             blast.damage = explosionDamage;
             blast.radius = explosionRadius;
         }
+        var fxSr = fx.AddComponent<SpriteRenderer>();
+        fxSr.sortingOrder = 10;
+        var anim = fx.AddComponent<SpriteFrameAnimator>();
+        anim.frames = deathFxFrames;
+        anim.fps = deathFxFps;
+        anim.loop = false;
+        anim.destroyOnFinish = true;
+    }
+
+    [Header("Muerte del Jefe")]
+    public int bossExplosionCount = 9;
+    public float bossExplosionInterval = 0.22f;
+
+    // Cadena de explosiones de fuego por todo el cuerpo, una gran explosión final y luego se libera la cámara
+    private IEnumerator BossDeathRoutine()
+    {
+        // Los colliders ya están desactivados (bounds vacíos): usar los del sprite
+        Vector3 basePos = transform.position;
+        Vector3 center = sr != null ? sr.bounds.center : transform.position;
+        Vector2 extents = sr != null ? (Vector2)sr.bounds.extents * 0.6f : Vector2.one * 0.6f;
+        if (sr != null) sr.color = Color.white;
+
+        for (int i = 0; i < bossExplosionCount; i++)
+        {
+            Vector3 pos = center + new Vector3(Random.Range(-extents.x, extents.x), Random.Range(-extents.y, extents.y), 0f);
+            SpawnExplosion(pos, Random.Range(1.0f, 1.6f));
+            camara.Shake(0.12f + 0.02f * i, 0.2f);
+            if (i % 2 == 0) BossSfx.Play(BossSfx.Sound.Slam);
+
+            // El cuerpo tiembla y parpadea mientras explota
+            transform.position = basePos + (Vector3)(Random.insideUnitCircle * 0.06f);
+            if (sr != null) sr.color = (i % 2 == 0) ? hitFlashColor : Color.white;
+            yield return new WaitForSeconds(bossExplosionInterval);
+        }
+
+        // Gran explosión final
+        SpawnExplosion(center, 3.2f);
+        camara.Shake(0.45f, 0.7f);
+        BossSfx.Play(BossSfx.Sound.Slam);
+
+        float fade = 0.5f;
+        Vector3 startScale = transform.localScale;
+        for (float t = 0f; t < fade; t += Time.deltaTime)
+        {
+            float k = t / fade;
+            if (sr != null) sr.color = new Color(1f, 1f, 1f, 1f - k);
+            transform.localScale = Vector3.Lerp(startScale, startScale * 1.3f, k);
+            yield return null;
+        }
+        if (sr != null) sr.enabled = false;
+
+        yield return new WaitForSeconds(0.6f);
+        camara.Unlock();
+        BossMusic.Stop();
+        Destroy(gameObject); // al desaparecer el jefe se desbloquea el cofre
+    }
+
+    private void SpawnExplosion(Vector3 pos, float scale)
+    {
+        if (deathFxFrames == null || deathFxFrames.Length == 0) return;
+        var fx = new GameObject("BossExplosionFx");
+        fx.transform.position = pos;
+        fx.transform.localScale = Vector3.one * scale;
         var fxSr = fx.AddComponent<SpriteRenderer>();
         fxSr.sortingOrder = 10;
         var anim = fx.AddComponent<SpriteFrameAnimator>();

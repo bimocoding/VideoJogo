@@ -108,13 +108,11 @@ public class AngelBossAI : MonoBehaviour, IStunnable
         gruntCooldown = 0.7f;
     }
 
-    // HitReceiver desactiva la IA al morir: rugido final, liberar la cámara y apagar la música
+    // HitReceiver desactiva la IA al morir: rugido final. La cámara y la música se liberan
+    // al terminar la secuencia de explosiones (HitReceiver.BossDeathRoutine)
     void OnDisable()
     {
-        if (!IsActive) return;
-        if (health != null && health.currentHealth <= 0) BossSfx.Play(BossSfx.Sound.DeathRoar);
-        camara.Unlock();
-        BossMusic.Stop();
+        if (IsActive && health != null && health.currentHealth <= 0) BossSfx.Play(BossSfx.Sound.DeathRoar);
     }
 
     void Update()
@@ -260,7 +258,8 @@ public class AngelBossAI : MonoBehaviour, IStunnable
         // Estruendo + onda de choque por el suelo
         BossSfx.Play(BossSfx.Sound.Slam);
         camara.Shake(0.3f, 0.35f);
-        bool playerGrounded = playerComp != null && playerComp.IsGrounded;
+        // La onda recorre el suelo de la arena: en una plataforma estás a salvo
+        bool playerGrounded = playerComp != null && playerComp.IsGrounded && targetPlayer.position.y < arenaFloorY + 0.3f;
         if (!hit && playerGrounded && Mathf.Abs(targetPlayer.position.x - rb.position.x) < shockwaveRadius)
             playerComp.TakeDamage(shockwaveDamage, false, transform);
 
