@@ -58,6 +58,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public float knockbackForceY = 4.0f;        // Pequeño salto hacia arriba
     public float knockbackDuration = 0.25f;     // Tiempo sin control mientras sale despedido
     public float invulnerabilityDuration = 1.0f;
+
+    [Header("Invulnerabilidad durante Dash (I-Frames)")]
+    public float dashInvulnerabilityDuration = 0.30f;
+    public bool enableDashIFrameShimmer = true;
+    private Coroutine dashInvulnerabilityRoutine;
     public float postClimbInvulnerability = 0.4f; // Margen al terminar de trepar para reaccionar a enemigos arriba
     public float invulnerableBlinkInterval = 0.08f;
     [Range(0f, 1f)]
@@ -1950,6 +1955,39 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void SetDodgeIgnoreEnemies(bool ignore) => SetIgnoreEnemyCollisions(ignore);
 
+    /// <summary>
+    /// Activa un periodo corto de invulnerabilidad (i-frames) durante el dash para esquivar ataques o proyectiles.
+    /// </summary>
+    public void TriggerDashInvulnerability(float duration = -1f)
+    {
+        float dur = duration > 0f ? duration : dashInvulnerabilityDuration;
+        invulnerableTimer = Mathf.Max(invulnerableTimer, dur);
+
+        if (enableDashIFrameShimmer && gameObject.activeInHierarchy)
+        {
+            if (dashInvulnerabilityRoutine != null) StopCoroutine(dashInvulnerabilityRoutine);
+            dashInvulnerabilityRoutine = StartCoroutine(DashIFrameShimmerRoutine(dur));
+        }
+    }
+
+    private IEnumerator DashIFrameShimmerRoutine(float duration)
+    {
+        float timer = 0f;
+        Color shimmerColor = new Color(0.85f, 0.95f, 1f, 0.70f);
+        while (timer < duration && !isDead)
+        {
+            timer += Time.deltaTime;
+            SetSpritesColor(shimmerColor);
+            yield return null;
+        }
+
+        if (damageFlashRoutine == null && !isDead)
+        {
+            SetSpritesColor(Color.white);
+        }
+        dashInvulnerabilityRoutine = null;
+    }
+
     // ==========================================
     // SISTEMA DE AERIAL DASH (EN EL AIRE)
     // ==========================================
@@ -1983,6 +2021,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         if (combatController != null) combatController.SpawnAirDashSmoke();
+        TriggerDashInvulnerability(dashInvulnerabilityDuration);
     }
 
     private void UpdateAirDash()
@@ -2037,6 +2076,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void StartDodge(bool isBackwards)
     {
+        TriggerDashInvulnerability(dashInvulnerabilityDuration);
         isDodging = !isBackwards;
         isBackdodging = isBackwards;
         dodgeTimer = 0f;
@@ -2120,6 +2160,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void StartSlide()
     {
+        TriggerDashInvulnerability(dashInvulnerabilityDuration);
         isSliding = true;
         isCrouching = false;
         slideTimer = 0f;
