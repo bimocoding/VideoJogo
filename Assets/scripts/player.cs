@@ -1972,6 +1972,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.SetTrigger("airDash");
             animator.SetBool("isAirDashing", true);
         }
+
+        if (combatController != null) combatController.SpawnAirDashSmoke();
     }
 
     private void UpdateAirDash()
@@ -2026,7 +2028,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void StartDodge(bool isBackwards)
     {
-        if (combatController != null) combatController.SpawnFeetSmoke();
+        if (combatController != null)
+        {
+            if (isBackwards)
+                combatController.SpawnFeetSmoke(-0.25f, 0.18f); // Impulso al saltar hacia atrás
+            else
+                combatController.SpawnFeetSmoke(0.35f, 0.18f);  // Estela detrás del avance
+        }
         isDodging = !isBackwards;
         isBackdodging = isBackwards;
         dodgeTimer = 0f;
@@ -2110,7 +2118,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void StartSlide()
     {
-        if (combatController != null) combatController.SpawnFeetSmoke();
+        if (combatController != null) combatController.SpawnFeetSmoke(0.40f, 0.18f);
         isSliding = true;
         isCrouching = false;
         slideTimer = 0f;

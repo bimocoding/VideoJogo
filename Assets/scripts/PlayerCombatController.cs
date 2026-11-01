@@ -151,14 +151,19 @@ public class PlayerCombatController : MonoBehaviour
             if (existing != null)
             {
                 vfxSpawner = existing;
+                vfxSpawner.localPosition = new Vector3(0f, 0.18f, 0f);
             }
             else
             {
                 GameObject sp = new GameObject("VFX_Spawner");
                 sp.transform.SetParent(transform);
-                sp.transform.localPosition = new Vector3(0f, -0.25f, 0f);
+                sp.transform.localPosition = new Vector3(0f, 0.18f, 0f);
                 vfxSpawner = sp.transform;
             }
+        }
+        else
+        {
+            vfxSpawner.localPosition = new Vector3(0f, 0.18f, 0f);
         }
     }
 
@@ -973,20 +978,32 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
 
-    public void SpawnFeetSmoke()
+    public void SpawnFeetSmoke(float xOffsetBehind = 0.30f, float yOffset = 0.18f)
     {
         if (smokeFxPrefab != null)
         {
-            Vector3 spawnPos = vfxSpawner != null ? vfxSpawner.position : (transform.position + Vector3.down * 0.3f);
+            Vector2 lookDir = GetFacingVector();
+            float baseY = vfxSpawner != null ? vfxSpawner.position.y : (transform.position.y + yOffset);
+            if (Mathf.Abs(yOffset - 0.18f) > 0.05f)
+            {
+                baseY = transform.position.y + yOffset;
+            }
+
+            Vector3 spawnPos = new Vector3(transform.position.x - lookDir.x * xOffsetBehind, baseY, transform.position.z);
             GameObject smoke = Instantiate(smokeFxPrefab, spawnPos, Quaternion.identity);
 
             // Sincronizar giro con la orientación del personaje
-            Vector2 lookDir = GetFacingVector();
             if (lookDir.x < 0f)
             {
                 smoke.transform.localScale = new Vector3(-1f, 1f, 1f);
             }
         }
+    }
+
+    public void SpawnAirDashSmoke()
+    {
+        // En el aire: a la altura del cuerpo/cintura del personaje (y = 0.30f) y detrás de la dirección del dash
+        SpawnFeetSmoke(0.35f, 0.30f);
     }
 
     public void TriggerHitstop(float duration = 0.05f)
