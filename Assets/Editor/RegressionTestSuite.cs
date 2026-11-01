@@ -35,7 +35,7 @@ public static class RegressionTestSuite
         int total = 0;
 
         // Reflection helpers
-        var fFacingDir = type.GetField("facingDirection", BindingFlags.NonPublic | BindingFlags.Instance);
+        var fFacingDir = type.GetField("facingDirection", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         var fLedgeCorner = type.GetField("ledgeCorner", BindingFlags.NonPublic | BindingFlags.Instance);
         var fLastLedgeCorner = type.GetField("lastLedgeCorner", BindingFlags.NonPublic | BindingFlags.Instance);
         var fLedgeCooldown = type.GetField("ledgeCooldown", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -299,7 +299,7 @@ public static class RegressionTestSuite
         // Test 5.4: Estado efectivo de carrera (IsEffectiveRunning)
         player.isRunning = true;
         var fieldMove = type.GetField("move", BindingFlags.NonPublic | BindingFlags.Instance);
-        var fieldGrounded = type.GetField("isGrounded", BindingFlags.NonPublic | BindingFlags.Instance);
+        var fieldGrounded = type.GetField("isGrounded", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
         fieldGrounded.SetValue(player, true);
         fieldMove.SetValue(player, 1.0f);
         bool runEffective = player.IsEffectiveRunning;

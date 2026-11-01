@@ -58776,6 +58776,11 @@ Texture2D:
     offset: 0
     size: 0
     path: 
+--- !u!1 &808512202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 421572578373919003, guid: 579fef78f73793e4abff30195597cfec, type: 3}
+  m_PrefabInstance: {fileID: 4598265330002219188}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &825894389
 GameObject:
   m_ObjectHideFlags: 0
@@ -88320,6 +88325,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3317018998205002372, guid: 579fef78f73793e4abff30195597cfec, type: 3}
+      propertyPath: combatController
+      value: 
+      objectReference: {fileID: 7878350320230767055}
+    - target: {fileID: 3317018998205002372, guid: 579fef78f73793e4abff30195597cfec, type: 3}
       propertyPath: wallJumpGraceTime
       value: 0.12
       objectReference: {fileID: 0}
@@ -88470,13 +88479,73 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 421572578373919003, guid: 579fef78f73793e4abff30195597cfec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7878350320230767055}
   m_SourcePrefab: {fileID: 100100000, guid: 579fef78f73793e4abff30195597cfec, type: 3}
 --- !u!4 &7878350320230767049 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8675999683785227126, guid: 579fef78f73793e4abff30195597cfec, type: 3}
   m_PrefabInstance: {fileID: 4598265330002219188}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7878350320230767055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808512202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567bbb5d891fb41408c5fa8221fe3efa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombatController
+  player: {fileID: 0}
+  rb2d: {fileID: 0}
+  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  vfxSpawner: {fileID: 0}
+  hitFxPrefab: {fileID: 100001, guid: 4a88bc91d8e1374439c2ff1100000002, type: 3}
+  smokeFxPrefab: {fileID: 3740749053327368162, guid: 5be803d9f2eda914391067627aee0f07, type: 3}
+  attackKey: 106
+  dodgeKey: 107
+  hit1LungeForce: 1.2
+  hit1Duration: 0.708
+  earlyWindowStartNorm: 0.35
+  earlyWindowEndNorm: 0.65
+  delayWindowStartNorm: 0.66
+  delayWindowEndNorm: 0.9
+  hit2BasicDuration: 0.792
+  hit2BasicReach: 1.25
+  hit3BasicDuration: 1.72
+  hit3BasicReach: 1.55
+  hit3FlashTiming: 0.28
+  hit3KnockbackForce: 7.5
+  hit2VarLungeForce: 1.8
+  hit2VarDuration: 0.293
+  hit2VarReach: 1.3
+  hit3VarLungeForce: 2.2
+  hit3VarDuration: 0.446
+  hit3VarReach: 1.45
+  hit4LungeForce: 4.2
+  hit4LungeDuration: 0.792
+  hit4LungeReach: 1.4
+  hit5LauncherJumpForce: 7.8
+  hit5LauncherDuration: 0.667
+  hit5LauncherReach: 1.5
+  verticalWindUpDuration: 0.1
+  verticalDiveSpeed: -14
+  verticalImpactAoERadius: 2
+  verticalImpactAoEDamage: 45
+  verticalFinisherDuration: 1.542
+  jumpAttack1Duration: 0.45
+  jumpAttack1Reach: 1.55
+  jumpAttack2Duration: 0.583
+  jumpAttack2Reach: 1.65
+  delayWindowFeedbackColor: {r: 0.6, g: 0.9, b: 1, a: 1}
+  delayFeedbackFlashDuration: 0.08
+  comboResetMaxTime: 1.4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
