@@ -505,9 +505,6 @@ public class PlayerCombatController : MonoBehaviour
             Rb2D.linearVelocity = new Vector2(lookDir.x * hit4LungeForce, Rb2D.linearVelocity.y);
         }
 
-        // Efecto de humo en los pies al arrancar la embestida
-        SpawnFeetSmoke();
-
         PlayAnimationState("DodgeAttack1", 0f);
         SetAnimatorCombatBools(isDodgeAttacking: true);
 
@@ -610,9 +607,6 @@ public class PlayerCombatController : MonoBehaviour
         {
             Rb2D.linearVelocity = Vector2.zero;
         }
-
-        // Instanciar onda expansiva / humo en el suelo
-        SpawnFeetSmoke();
 
         // Audio épico y temblor de cámara
         HitSfx.PlaySlash(true);
@@ -1002,8 +996,19 @@ public class PlayerCombatController : MonoBehaviour
 
     public void SpawnAirDashSmoke()
     {
-        // En el aire: a la altura del cuerpo/cintura del personaje (y = 0.30f) y detrás de la dirección del dash
-        SpawnFeetSmoke(0.35f, 0.30f);
+        if (smokeFxPrefab != null)
+        {
+            Vector2 lookDir = GetFacingVector();
+            // En el aire: aparece directamente detrás del personaje a la altura de su centro/cintura
+            Vector3 spawnPos = new Vector3(transform.position.x - lookDir.x * 0.35f, transform.position.y + 0.35f, transform.position.z);
+            GameObject smoke = Instantiate(smokeFxPrefab, spawnPos, Quaternion.identity);
+
+            // Sincronizar giro horizontal según dirección del dash
+            if (lookDir.x < 0f)
+            {
+                smoke.transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
+        }
     }
 
     public void TriggerHitstop(float duration = 0.05f)
