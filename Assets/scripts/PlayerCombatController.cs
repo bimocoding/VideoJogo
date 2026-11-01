@@ -553,6 +553,9 @@ public class PlayerCombatController : MonoBehaviour
         IsHorizontalLocked = true;
         CanTriggerAirSlam = false;
 
+        // ATRAVESAR ENEMIGOS: Desactivar colisión física con enemigos para caer limpiamente y ocupar su lugar
+        if (Player != null) Player.SetIgnoreEnemyCollisions(true);
+
         PlayAnimationState("VerticalAttack", 0f);
         SetAnimatorCombatBools(isVerticalAttacking: true);
 
@@ -578,9 +581,11 @@ public class PlayerCombatController : MonoBehaviour
             Rb2D.linearVelocity = new Vector2(0f, verticalDiveSpeed);
         }
 
-        // Mantener/esperar hasta tocar el suelo
+        // Mantener/esperar hasta tocar el suelo mientras atraviesa y daña a enemigos en la caída
         float fallTimeout = 3.0f;
         float fallTimer = 0f;
+        var piercedDuringDive = new HashSet<HitReceiver>();
+
         while (fallTimer < fallTimeout)
         {
             fallTimer += Time.deltaTime;
@@ -589,6 +594,26 @@ public class PlayerCombatController : MonoBehaviour
             {
                 // Forzar estricta verticalidad: NADA de movimiento lateral
                 Rb2D.linearVelocity = new Vector2(0f, verticalDiveSpeed);
+            }
+
+            // Daño y desplazamiento al atravesar enemigos en la caída vertical
+            Vector2 diveCheckCenter = (Vector2)transform.position + Vector2.down * 0.20f;
+            Vector2 diveCheckSize = new Vector2(1.0f, 0.8f);
+            Collider2D[] diveHits = Physics2D.OverlapBoxAll(diveCheckCenter, diveCheckSize, 0f);
+            foreach (var col in diveHits)
+            {
+                if (col.gameObject == gameObject) continue;
+                var receiver = col.GetComponent<HitReceiver>();
+                if (receiver != null && !piercedDuringDive.Contains(receiver))
+                {
+                    piercedDuringDive.Add(receiver);
+                    float pDir = (col.transform.position.x >= transform.position.x) ? 1f : -1f;
+                    // Mover ligeramente al enemigo a los lados al atravesarlo
+                    col.transform.position += new Vector3(pDir * 0.25f, 0f, 0f);
+                    receiver.OnHit(col.ClosestPoint(diveCheckCenter), 4, transform.position, new Vector2(pDir, -0.3f), 1.0f);
+                    SpawnHitFX(col.ClosestPoint(diveCheckCenter));
+                    HitSfx.PlaySlash(false);
+                }
             }
 
             // Loop visual de caída (frames de picada aérea mientras no toque el suelo)
@@ -650,6 +675,9 @@ public class PlayerCombatController : MonoBehaviour
             yield return null;
         }
 
+        // Restaurar colisión con enemigos ahora que los enemigos fueron apartados fuera del centro
+        if (Player != null) Player.SetIgnoreEnemyCollisions(false);
+
         // Solo ahora que concluyó la explosión y la recuperación, desbloquear movimiento lateral
         IsHorizontalLocked = false;
         FinishCombat();
@@ -669,9 +697,26 @@ public class PlayerCombatController : MonoBehaviour
             if (receiver != null && !damaged.Contains(receiver))
             {
                 damaged.Add(receiver);
+
+                // Determinar dirección de empuje hacia afuera del impacto
+                float pushDirX = (col.transform.position.x >= center.x) ? 1f : -1f;
+                if (Mathf.Abs(col.transform.position.x - center.x) < 0.08f)
+                {
+                    pushDirX = GetFacingVector().x > 0 ? 1f : -1f;
+                }
+
+                // Desplazar ligeramente a los enemigos para despejar la posición donde cae el jugador
+                float minSeparation = 0.65f;
+                float currentDist = Mathf.Abs(col.transform.position.x - center.x);
+                if (currentDist < minSeparation)
+                {
+                    float shift = (minSeparation - currentDist) * pushDirX;
+                    col.transform.position = new Vector3(col.transform.position.x + shift, col.transform.position.y, col.transform.position.z);
+                }
+
                 Vector2 hitPoint = col.ClosestPoint(center);
-                Vector2 pushDir = ((Vector2)col.transform.position - center).normalized;
-                receiver.OnHit(hitPoint, 5, center, pushDir, 3.5f);
+                Vector2 knockDir = new Vector2(pushDirX, 0.35f).normalized;
+                receiver.OnHit(hitPoint, 5, center, knockDir, 2.5f);
 
                 SpawnHitFX(hitPoint);
             }
@@ -877,6 +922,7 @@ public class PlayerCombatController : MonoBehaviour
             verticalFinisherRoutine = null;
         }
 
+        if (Player != null) Player.SetIgnoreEnemyCollisions(false);
         IsHorizontalLocked = false;
         if (Rb2D != null) Rb2D.gravityScale = originalGravityScale;
 

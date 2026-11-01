@@ -1917,7 +1917,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (isDodging || isBackdodging) StopDodge();
     }
 
-    private void SetDodgeIgnoreEnemies(bool ignore)
+    public void SetIgnoreEnemyCollisions(bool ignore)
     {
         if (playerCollider == null) return;
 
@@ -1947,6 +1947,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
             ignoredEnemyColliders.Clear();
         }
     }
+
+    private void SetDodgeIgnoreEnemies(bool ignore) => SetIgnoreEnemyCollisions(ignore);
 
     // ==========================================
     // SISTEMA DE AERIAL DASH (EN EL AIRE)
