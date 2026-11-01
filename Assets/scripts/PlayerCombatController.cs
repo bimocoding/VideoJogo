@@ -194,11 +194,12 @@ public class PlayerCombatController : MonoBehaviour
     /// </summary>
     public void HandleFixedUpdate()
     {
-        if (IsHorizontalLocked && rb2d != null)
+        if (IsHorizontalLocked && Rb2D != null)
         {
             // REGLA ESTRICTA DE BLOQUEO EN EJE X:
             // Forzar velocidad horizontal a 0 en cada FixedUpdate durante Vertical Finisher
-            Rb2D.linearVelocity = new Vector2(0f, Rb2D.linearVelocity.y);
+            float yVel = (CurrentState == CombatState.VerticalFinisher && Player != null && Player.isGrounded) ? 0f : Rb2D.linearVelocity.y;
+            Rb2D.linearVelocity = new Vector2(0f, yVel);
         }
     }
 
@@ -568,7 +569,7 @@ public class PlayerCombatController : MonoBehaviour
         yield return new WaitForSeconds(verticalWindUpDuration);
 
         // =========================================================================
-        // FASE 2: LOOP DE CAÍDA
+        // FASE 2: LOOP DE CAÍDA (Sin movimiento lateral)
         // Aplica velocity = (0, -14.0 m/s) hasta detectar isGrounded
         // =========================================================================
         if (Rb2D != null)
@@ -578,7 +579,7 @@ public class PlayerCombatController : MonoBehaviour
         }
 
         // Mantener/esperar hasta tocar el suelo
-        float fallTimeout = 2.5f;
+        float fallTimeout = 3.0f;
         float fallTimer = 0f;
         while (fallTimer < fallTimeout)
         {
@@ -586,8 +587,18 @@ public class PlayerCombatController : MonoBehaviour
 
             if (Rb2D != null)
             {
-                // Forzar estricta verticalidad
+                // Forzar estricta verticalidad: NADA de movimiento lateral
                 Rb2D.linearVelocity = new Vector2(0f, verticalDiveSpeed);
+            }
+
+            // Loop visual de caída (frames de picada aérea mientras no toque el suelo)
+            if (Anim != null)
+            {
+                var stateInfo = Anim.GetCurrentAnimatorStateInfo(0);
+                if (stateInfo.IsName("VerticalAttack") && stateInfo.normalizedTime >= 0.32f)
+                {
+                    Anim.Play("VerticalAttack", 0, 0.22f);
+                }
             }
 
             if (Player != null && Player.isGrounded && fallTimer > 0.05f)
@@ -599,13 +610,20 @@ public class PlayerCombatController : MonoBehaviour
         }
 
         // =========================================================================
-        // FASE 3: IMPACTO EN SUELO Y RECUPERACIÓN
-        // Fija velocity = 0, instancia onda expansiva / humo, aplica daño crítico AoE (45 dmg)
-        // y solo desbloquea el movimiento lateral al terminar el clip
+        // FASE 3: IMPACTO EN SUELO Y EXPLOSIÓN COMPLETA
+        // Al tocar tierra: fija velocity = Vector2.zero
+        // Salta exactamente al frame del impacto y explosión en el suelo (frame 13 de 37)
+        // Y BLOQUEA TOTALMENTE el movimiento lateral hasta que la explosión y recuperación terminen al 100%
         // =========================================================================
         if (Rb2D != null)
         {
             Rb2D.linearVelocity = Vector2.zero;
+        }
+
+        // Reproducir explosión e impacto en el suelo
+        if (Anim != null)
+        {
+            Anim.Play("VerticalAttack", 0, 13f / 37f);
         }
 
         // Audio épico y temblor de cámara
@@ -615,11 +633,24 @@ public class PlayerCombatController : MonoBehaviour
         // Daño crítico AoE a los enemigos en el radio de impacto
         ExecuteAoEImpactDamage(transform.position, verticalImpactAoERadius, verticalImpactAoEDamage);
 
-        // Esperar frames de impacto y recuperación hasta concluir la animación
-        float remainingRecoveryTime = 0.55f;
-        yield return new WaitForSeconds(remainingRecoveryTime);
+        // La animación de choque y explosión dura desde el frame 13 hasta el 37 = 24 frames a 24 fps = 1.00s
+        float impactDuration = (37f - 13f) / 24f; // 1.00 segundo completo
+        float impactTimer = 0f;
 
-        // Desbloquear movimiento lateral y volver a Idle
+        while (impactTimer < impactDuration)
+        {
+            impactTimer += Time.deltaTime;
+
+            // Bloquear absolutamente cualquier velocidad durante la explosión
+            if (Rb2D != null)
+            {
+                Rb2D.linearVelocity = Vector2.zero;
+            }
+
+            yield return null;
+        }
+
+        // Solo ahora que concluyó la explosión y la recuperación, desbloquear movimiento lateral
         IsHorizontalLocked = false;
         FinishCombat();
         verticalFinisherRoutine = null;

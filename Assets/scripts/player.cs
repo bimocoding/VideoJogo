@@ -503,9 +503,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         // Frenado horizontal inmediato y firme durante el Ataque Vertical para evitar desplazarse
-        if (isVerticalAttacking)
+        if (isVerticalAttacking || (combatController != null && combatController.IsHorizontalLocked))
         {
-            rb2d.linearVelocity = new Vector2(Mathf.MoveTowards(rb2d.linearVelocity.x, 0f, 14f * Time.fixedDeltaTime), rb2d.linearVelocity.y);
+            float yVel = isGrounded ? 0f : rb2d.linearVelocity.y;
+            rb2d.linearVelocity = new Vector2(0f, yVel);
         }
 
         // Aterrizaje
@@ -543,7 +544,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         bool isApex = !isGrounded && Mathf.Abs(rb2d.linearVelocity.y) < apexThreshold;
-        bool freezeMovementForce = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing || IsKnockedBack;
+        bool freezeMovementForce = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing || IsKnockedBack || (combatController != null && combatController.IsHorizontalLocked);
 
         // Durante los primeros instantes del wall jump, se preserva el impulso horizontal sin interferencia
         if (wallJumpTimer > 0f)
@@ -1467,6 +1468,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // ==========================================
     private void ExecuteVerticalAttack()
     {
+        if (combatController != null)
+        {
+            combatController.StartVerticalFinisher();
+            return;
+        }
+
         if (attackRoutine != null) StopCoroutine(attackRoutine);
 
         isAttacking = false;
