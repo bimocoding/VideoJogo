@@ -41,6 +41,8 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField] private Transform vfxSpawner;
     [SerializeField] private PlayerInputHandler inputHandler;
     public PlayerInputHandler InputH => inputHandler != null ? inputHandler : (inputHandler = GetComponent<PlayerInputHandler>());
+    [SerializeField] private PlayerStamina stamina;
+    public PlayerStamina Stamina => stamina != null ? stamina : (stamina = GetComponent<PlayerStamina>());
 
     [Header("Prefabs de Efectos Visuales (VFX)")]
     public GameObject hitFxPrefab;
@@ -251,6 +253,7 @@ public class PlayerCombatController : MonoBehaviour
         if (Anim == null) animator = GetComponent<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
         if (inputHandler == null) inputHandler = GetComponent<PlayerInputHandler>();
+        if (stamina == null) stamina = GetComponent<PlayerStamina>();
 
         if (vfxSpawner == null)
         {
@@ -354,6 +357,7 @@ public class PlayerCombatController : MonoBehaviour
         if (isGrounded && wantsUp)
         {
             InputH.ConsumeAttack();
+            if (Stamina != null && !TryConsumeAttackStamina(Stamina.heavyAttackCost)) return;
             OrientCharacterFromInput();
             ExecuteDirectLauncher();
             return;
@@ -367,25 +371,26 @@ public class PlayerCombatController : MonoBehaviour
                 if (CanExecuteVerticalFinisher)
                 {
                     InputH.ConsumeAttack();
+                    if (Stamina != null && !TryConsumeAttackStamina(Stamina.verticalFinisherCost)) return;
                     StartVerticalFinisher();
                     return;
                 }
             }
 
-            // COMBO AÉREO ESTÁNDAR (1 corte limpio por salto; W + J en aire cae aquí sin dar salto extra)
+            // COMBO AÉREO ESTÁNDAR (1 corte limpio por salto)
             if (airAttacksUsed < maxAirAttacksPerJump)
             {
                 InputH.ConsumeAttack();
+                if (Stamina != null && !TryConsumeAttackStamina(Stamina.mediumAttackCost)) return;
                 OrientCharacterFromInput();
                 ExecuteJumpAttack(1);
             }
-            // Si ya gastaste tu corte aéreo, NO consumimos el buffer:
-            // en pleno aire no hará nada, pero si tocas suelo en los siguientes 0.14s, Hit1 saldrá en el frame 1 del aterrizaje.
             return;
         }
 
         // APERTURA COMÚN: HIT 1 EN EL SUELO (J)
         InputH.ConsumeAttack();
+        if (Stamina != null && !TryConsumeAttackStamina(Stamina.lightAttackCost)) return;
         OrientCharacterFromInput();
         ExecuteHit1();
     }
@@ -408,7 +413,7 @@ public class PlayerCombatController : MonoBehaviour
                 break;
 
             case CombatState.Hit2Basic:
-                UpdateStandardComboState(normTime, 0.30f, 0.90f, () => ExecuteHit3Basic());
+                UpdateStandardComboState(normTime, 0.30f, 0.90f, Stamina != null ? Stamina.heavyAttackCost : 0f, () => ExecuteHit3Basic());
                 break;
 
             case CombatState.Hit3Basic:
@@ -416,15 +421,15 @@ public class PlayerCombatController : MonoBehaviour
                 break;
 
             case CombatState.Hit2Variation:
-                UpdateStandardComboState(normTime, 0.30f, 0.90f, () => ExecuteHit3Variation());
+                UpdateStandardComboState(normTime, 0.30f, 0.90f, Stamina != null ? Stamina.lightAttackCost : 0f, () => ExecuteHit3Variation());
                 break;
 
             case CombatState.Hit3Variation:
-                UpdateStandardComboState(normTime, 0.30f, 0.90f, () => ExecuteHit4Lunge());
+                UpdateStandardComboState(normTime, 0.30f, 0.90f, Stamina != null ? Stamina.mediumAttackCost : 0f, () => ExecuteHit4Lunge());
                 break;
 
             case CombatState.Hit4Lunge:
-                UpdateStandardComboState(normTime, 0.30f, 0.90f, () => ExecuteHit5Launcher());
+                UpdateStandardComboState(normTime, 0.30f, 0.90f, Stamina != null ? Stamina.heavyAttackCost : 0f, () => ExecuteHit5Launcher());
                 break;
 
             case CombatState.Hit5Launcher:
@@ -481,19 +486,19 @@ public class PlayerCombatController : MonoBehaviour
 
         if (InputH.AttackBufferActive)
         {
-            // Ventana Rápida (35% - 65%): Rama A (Basic 3-Hit)
             if (normTime >= earlyWindowStartNorm && normTime <= earlyWindowEndNorm)
             {
                 InputH.ConsumeAttack();
+                if (Stamina != null && !TryConsumeAttackStamina(Stamina.lightAttackCost)) return;
                 OrientCharacterFromInput();
                 ExecuteHit2Basic();
                 return;
             }
 
-            // Ventana de Pausa (66% - 90%): Rama B (5-Hit Variation)
             if (normTime >= delayWindowStartNorm && normTime <= delayWindowEndNorm)
             {
                 InputH.ConsumeAttack();
+                if (Stamina != null && !TryConsumeAttackStamina(Stamina.lightAttackCost)) return;
                 OrientCharacterFromInput();
                 ExecuteHit2Variation();
                 return;
@@ -872,6 +877,9 @@ public class PlayerCombatController : MonoBehaviour
 
         if (InputH != null) InputH.ConsumeDodge();
 
+        // Cobrar stamina ANTES de cancelar el ataque activo
+        if (!Player.TryPayCancelDodgeOrSlide()) return false;
+
         if (activeAttackRoutine != null)
         {
             StopCoroutine(activeAttackRoutine);
@@ -901,6 +909,8 @@ public class PlayerCombatController : MonoBehaviour
         if (Player.isSliding || Player.isDodging || Player.isBackdodging)
         {
             if (InputH != null) InputH.ConsumeAttack();
+            if (Stamina != null && !TryConsumeAttackStamina(Stamina.mediumAttackCost)) return false;
+
             Player.InterruptDodgeAndSlide();
             OrientCharacterFromInput();
             ExecuteHit4Lunge();
@@ -1003,6 +1013,7 @@ public class PlayerCombatController : MonoBehaviour
             if ((wantsDown || CanTriggerAirSlam) && CanExecuteVerticalFinisher)
             {
                 InputH.ConsumeAttack();
+                if (Stamina != null && !TryConsumeAttackStamina(Stamina.verticalFinisherCost)) return;
                 StartVerticalFinisher();
                 return;
             }
@@ -1018,11 +1029,12 @@ public class PlayerCombatController : MonoBehaviour
 
     #region Generic Combo Helpers & Recovery
 
-    private void UpdateStandardComboState(float normTime, float chainStart, float chainEnd, Action nextAction)
+    private void UpdateStandardComboState(float normTime, float chainStart, float chainEnd, float staminaCost, Action nextAction)
     {
         if (InputH.AttackBufferActive && normTime >= chainStart && normTime <= chainEnd)
         {
             InputH.ConsumeAttack();
+            if (Stamina != null && !TryConsumeAttackStamina(staminaCost)) return;
             OrientCharacterFromInput();
             nextAction?.Invoke();
             return;
@@ -1041,6 +1053,7 @@ public class PlayerCombatController : MonoBehaviour
             if (CanExecuteVerticalFinisher)
             {
                 InputH.ConsumeAttack();
+                if (Stamina != null && !TryConsumeAttackStamina(Stamina.verticalFinisherCost)) return;
                 StartVerticalFinisher();
                 return;
             }
@@ -1346,6 +1359,12 @@ public class PlayerCombatController : MonoBehaviour
     {
         int facing = (player != null) ? Player.facingDirection : -1;
         return (facing == -1) ? Vector2.right : Vector2.left;
+    }
+
+    private bool TryConsumeAttackStamina(float baseCost)
+    {
+        if (Stamina == null) return true;
+        return Stamina.TryConsume(baseCost);
     }
 
     private void PlayAnimationState(string stateName, float normalizedTime = 0f)

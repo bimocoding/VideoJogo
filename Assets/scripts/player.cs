@@ -139,6 +139,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [Header("Capa de Input Centralizada")]
     public PlayerInputHandler inputHandler;
 
+    [Header("Sistema de Stamina")]
+    public PlayerStamina stamina;
+
     [Header("Opciones de Slide")]
     [Tooltip("Si está activo, pulsar S + K en el suelo dispara Slide (acorde al diseño).")]
     public bool allowCrouchSlideInput = true;
@@ -289,6 +292,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             inputHandler = gameObject.AddComponent<PlayerInputHandler>();
             Debug.LogWarning("[player.cs] PlayerInputHandler no estaba en el prefab; se añadió en runtime. Agrégalo al prefab idle.");
+        }
+        if (stamina == null) stamina = GetComponent<PlayerStamina>();
+        if (stamina == null)
+        {
+            stamina = gameObject.AddComponent<PlayerStamina>();
+            Debug.LogWarning("[player.cs] PlayerStamina no estaba en el prefab; se añadió en runtime. Agrégalo al prefab idle.");
         }
     }
 
@@ -1738,54 +1747,43 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (isHanging || isClimbing || IsInCombatAction || isSliding || isDodging || isBackdodging) return;
 
-        bool crouchKeyDown = inputHandler != null ? inputHandler.DownHeld : (Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow));
+        bool crouchKeyDown = inputHandler.DownHeld;
 
-        // Agacharse con S en el suelo
+        // Agacharse con S en el suelo (sin desplazarse)
         if (isGrounded && crouchKeyDown)
         {
             if (!isCrouching)
             {
                 isCrouching = true;
                 SetColliderCrouched(true);
-                rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
             }
-            else
+
+            // Frenado horizontal total: no puede caminar agachado
+            rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
+
+            // Permite girar en el sitio con A/D para apuntar un Slide de salida o ataque al incorporarse
+            if (Mathf.Abs(inputHandler.MoveX) > 0.1f)
             {
-                // Permitir desplazamiento lento agachado (gateo)
-                float crawlInput = inputHandler != null ? inputHandler.MoveX : Input.GetAxisRaw("Horizontal");
-                if (Mathf.Abs(crawlInput) > 0.05f)
-                {
-                    rb2d.linearVelocity = new Vector2(crawlInput * walkSpeed * 0.6f, rb2d.linearVelocity.y);
-                    facingDirection = crawlInput > 0f ? -1 : 1;
-                    transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
-                }
-                else
-                {
-                    rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
-                }
+                facingDirection = inputHandler.MoveX > 0f ? -1 : 1;
+                transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
             }
         }
         else if (isCrouching)
         {
-            // Al soltar S, permitir levantarse únicamente si hay espacio suficiente
+            // Al soltar S, levantarse únicamente si hay espacio libre arriba
             if (CanStandUp())
             {
                 isCrouching = false;
                 SetColliderCrouched(false);
             }
-            // Si hay techo bajo, permitir avanzar a paso de gateo para poder salir
             else if (isGrounded)
             {
-                float crawlInput = inputHandler != null ? inputHandler.MoveX : Input.GetAxisRaw("Horizontal");
-                if (Mathf.Abs(crawlInput) > 0.05f)
+                // Atrapado bajo techo bajo: no camina, pero puede girar y usar Slide (K o S+K) para salir
+                rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
+                if (Mathf.Abs(inputHandler.MoveX) > 0.1f)
                 {
-                    rb2d.linearVelocity = new Vector2(crawlInput * walkSpeed * 0.65f, rb2d.linearVelocity.y);
-                    facingDirection = crawlInput > 0f ? -1 : 1;
+                    facingDirection = inputHandler.MoveX > 0f ? -1 : 1;
                     transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
-                }
-                else
-                {
-                    rb2d.linearVelocity = new Vector2(0f, rb2d.linearVelocity.y);
                 }
             }
         }
@@ -1815,6 +1813,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             if (!hasAirDashed && !isAirDashing && !isHanging && !isClimbing && !IsInCombatAction)
             {
                 inputHandler.ConsumeDodge();
+                if (stamina != null && !stamina.TryConsume(stamina.airDashCost)) return;
                 StartAirDash();
             }
             return;
@@ -1826,6 +1825,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             if (allowCrouchSlideInput)
             {
                 inputHandler.ConsumeDodge();
+                if (stamina != null && !stamina.TryConsume(stamina.slideCost)) return;
                 StartSlide();
             }
             return;
@@ -1843,6 +1843,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             else
             {
                 inputHandler.ConsumeDodge();
+                if (stamina != null && !stamina.TryConsume(stamina.slideCost)) return;
                 StartSlide();
                 return;
             }
@@ -1854,12 +1855,31 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // 1. Backdodge: dirección opuesta
         if (relativeIntent == -1)
         {
+            if (stamina != null && !stamina.TryConsume(stamina.backdodgeCost)) return;
             StartDodge(isBackwards: true);
             return;
         }
 
         // 2. Dodge Normal (idéntico con o sin Sprint toggleado)
+        if (stamina != null && !stamina.TryConsume(stamina.dodgeCost)) return;
         StartDodge(isBackwards: false);
+    }
+
+    /// <summary>
+    /// Verifica y cobra la stamina correspondiente antes de cancelar un ataque hacia Dodge/Backdodge/Slide.
+    /// </summary>
+    public bool TryPayCancelDodgeOrSlide()
+    {
+        if (stamina == null) return true;
+
+        if (inputHandler.DownHeld && allowCrouchSlideInput)
+        {
+            return stamina.TryConsume(stamina.slideCost);
+        }
+
+        int relativeIntent = inputHandler.GetRelativeHorizontalIntent(facingDirection);
+        float cost = (relativeIntent == -1) ? stamina.backdodgeCost : stamina.dodgeCost;
+        return stamina.TryConsume(cost);
     }
 
     public void CancelAttackIntoDodgeOrSlide()

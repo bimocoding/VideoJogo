@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Resumen de Cambios y Nuevas Mecánicas</title>
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 14mm 18mm 14mm;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.55;
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+  }
+  .header-box {
+    border-bottom: 2.5px solid #2563eb;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+  h1 {
+    font-size: 18pt;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.3px;
+  }
+  .doc-subtitle {
+    color: #64748b;
+    font-size: 9.5pt;
+    font-style: italic;
+    margin: 0;
+  }
+  h2 {
+    font-size: 13pt;
+    color: #1e40af;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 3px;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 10.5pt;
+    color: #334155;
+    margin-top: 12px;
+    margin-bottom: 4px;
+    page-break-after: avoid;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  ul {
+    margin-top: 3px;
+    margin-bottom: 8px;
+    padding-left: 18px;
+  }
+  li {
+    margin-bottom: 3px;
+  }
+  strong {
+    color: #0f172a;
+  }
+  code {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-size: 9pt;
+    font-family: Consolas, "Courier New", monospace;
+    border: 1px solid #e2e8f0;
+  }
+  kbd {
+    background-color: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-bottom: 2px solid #94a3b8;
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 8pt;
+    font-family: Consolas, monospace;
+    font-weight: 600;
+    color: #1e293b;
+    display: inline-block;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 14px;
+    font-size: 9pt;
+    page-break-inside: avoid;
+  }
+  th, td {
+    padding: 7px 9px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  th {
+    background-color: #f8fafc;
+    color: #334155;
+    font-weight: 700;
+    border-bottom: 2px solid #cbd5e1;
+  }
+  tr:nth-child(even) {
+    background-color: #fbfcfe;
+  }
+  .badge-nuevo {
+    background-color: #dcfce7;
+    color: #15803d;
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 8pt;
+    display: inline-block;
+    border: 1px solid #bbf7d0;
+  }
+  .badge-modificado {
+    background-color: #fef3c7;
+    color: #b45309;
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 8pt;
+    display: inline-block;
+    border: 1px solid #fde68a;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 14px 0;
+  }
+  .footer-note {
+    font-size: 8pt;
+    color: #94a3b8;
+    text-align: right;
+    margin-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-box">
+  <h1>Resumen de Cambios y Nuevas Mecánicas del Proyecto</h1>
+  <div class="doc-subtitle">Documento técnico de arquitectura, jugabilidad y sincronización para el equipo &bull; Angel's Journey</div>
+</div>
+
+<h2>1. Capa Centralizada de Entrada (<code>PlayerInputHandler.cs</code>)</h2>
+<p>Se creó un nuevo componente dedicado en el objeto raíz del jugador con ejecución prioritaria (<code>[DefaultExecutionOrder(-100)]</code>), actuando como árbitro único de entrada antes de que corran <code>player.cs</code> o <code>PlayerCombatController.cs</code>.</p>
+
+<ul>
+  <li><strong>Resolución SOCD con Last Input Priority (LIP)</strong>:
+    <ul>
+      <li>Si mantienes pulsada <kbd>D</kbd> y presionas <kbd>A</kbd>, el personaje cambia instantáneamente a la izquierda sin pasar por 0 ni frenar en seco. Al soltar <kbd>A</kbd>, regresa de inmediato a la derecha. Lo mismo aplica para <kbd>W</kbd> y <kbd>S</kbd>.</li>
+      <li>Elimina los "Backdodges involuntarios" que ocurrían en giros rápidos donde ambas teclas se solapaban por 1 o 2 frames.</li>
+    </ul>
+  </li>
+  <li><strong>Input Buffers Deterministas con Consumo Explícito</strong>:
+    <ul>
+      <li><strong>Jump Buffer (0.15 s)</strong>: Registra la pulsación de salto durante ataques o evasiones y se ejecuta en el instante en que el personaje toca suelo o termina su bloqueo de animación. Se limpia con <code>ClearAllBuffers()</code> al agarrarse de un borde o recibir knockback.</li>
+      <li><strong>Attack Buffer (0.14 s)</strong>: Registra pulsaciones de ataque y captura snapshots de teclas direccionales (<code>AttackBufferedUp</code> y <code>AttackBufferedDown</code>) para que combos como <kbd>W</kbd> + <kbd>J</kbd> o <kbd>S</kbd> + <kbd>J</kbd> no se pierdan si se suelta la dirección un frame antes.</li>
+      <li><strong>Dodge Buffer (0.12 s)</strong>: Garantiza que presionar <kbd>K</kbd> justo antes de que termine el cooldown o al aterrizar dispare el esquive sin descartar la pulsación.</li>
+    </ul>
+  </li>
+  <li><strong>Limpieza de <code>FixedUpdate</code></strong>:
+    <ul>
+      <li><code>player.cs</code> ya no lee <code>UnityEngine.Input</code> dentro de <code>FixedUpdate</code>. Ahora solo consulta booleanos cacheados (<code>JumpHeld</code>, <code>DownHeld</code>, <code>MoveX</code>), eliminando la pérdida de inputs por desincronización de ciclos de físicas.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2>2. Ajustes de Movilidad y Evasión (<code>player.cs</code>)</h2>
+
+<h3>Calibración del Slide</h3>
+<ul>
+  <li><strong>Distancia recortada</strong>: Se redujo de 3.31 m (~10.3 baldosas, excesivo para plataformas de precisión) a <strong>~1.83 m</strong> (~5.7 baldosas).</li>
+  <li><strong>Parámetros finales</strong>:
+    <ul>
+      <li><code>slideInitialSpeed = 7.2f</code></li>
+      <li><code>slideDeceleration = 12.5f</code></li>
+      <li><code>slideDuration = 0.38f</code></li>
+    </ul>
+  </li>
+  <li><strong>Regla estricta de activación</strong>: El Slide solo se dispara manualmente con <strong><kbd>S</kbd> + <kbd>K</kbd></strong> (o de forma forzada si el personaje está bajo un techo de 1 bloque y no puede levantarse). Ya no se activa por error al esquivar con el Sprint encendido.</li>
+</ul>
+
+<h3>Consistencia en Dodge y Backdodge</h3>
+<ul>
+  <li>Se eliminó la multiplicación de velocidad por carrera (<code>dodgeRunMultiplier</code>). Ahora presionar <kbd>K</kbd> neutral o adelante produce exactamente el mismo Dodge con velocidad y distancia constantes, esté o no activado el toggle de Sprint.</li>
+</ul>
+
+<h3>Bloqueo de Caminata/Gateo Agachado</h3>
+<ul>
+  <li>Se eliminó el desplazamiento horizontal mientras el personaje está agachado (<code>rb2d.linearVelocity.x = 0</code>).</li>
+  <li><strong>Prevención de softlock</strong>: Se permite girar en el sitio con <kbd>A</kbd> / <kbd>D</kbd> sin desplazarse, permitiendo al jugador apuntar la dirección para deslizarse con <kbd>K</kbd> y escapar de cualquier túnel bajo.</li>
+</ul>
+
+<hr>
+
+<h2>3. Combate y Game Feel (<code>PlayerCombatController.cs</code>)</h2>
+
+<h3>Recovery Jump-Cancel Reactivo</h3>
+<p>Se respeta íntegramente el peso y los frames activos de impacto del ataque, pero en la fase final de recuperación se permite cancelar el golpe con <kbd>Espacio</kbd> para saltar inmediatamente:</p>
+<ul>
+  <li><strong>Hit 1</strong>: Cancelable desde el 30% (~0.21 s), <strong>0.25 s antes</strong> de que inicie la ventana del destello cian (0.47 s).</li>
+  <li><strong>Hit 2 Básico</strong>: Cancelable desde el 30% (~0.24 s).</li>
+  <li><strong>Hit 3 Básico</strong>: Cancelable desde el 35% (~0.60 s), reteniendo el impacto del golpe pesado sin bloquear al jugador 1.24 s.</li>
+  <li><strong>Hit 2 Variación</strong>: Cancelable desde el 55% (~0.16 s).</li>
+  <li><strong>Hit 3 Variación</strong>: Cancelable desde el 65% (~0.29 s).</li>
+  <li><strong>Hit 4 Lunge</strong>: Cancelable desde el 35% (~0.28 s).</li>
+  <li><strong>Vertical Finisher</strong>: Permanece <strong>100% blindado</strong> (sin jump-cancel) para preservar la contundencia del impacto y temblor.</li>
+  <li><strong>Control direccional frame 0</strong>: Al pulsar salto durante la recuperación, la orientación y movimiento horizontal se calculan en ese mismo frame antes de despegar.</li>
+  <li><strong>Limpieza de destello</strong>: Se implementó <code>StopDelayGleamIfActive()</code> para asegurar que el destello cian se apague de inmediato al cancelar con salto, esquive o interrupción externa.</li>
+</ul>
+
+<h3>Control Aéreo y <kbd>W</kbd> + <kbd>J</kbd></h3>
+<ul>
+  <li><strong><kbd>W</kbd> + <kbd>J</kbd> estrictamente en el suelo</strong>: El Direct Launcher ahora exige <code>isGrounded && wantsUp</code>. Ya no es posible relanzarse infinitamente en el aire a +7.8 m/s.</li>
+  <li><strong>Límite Aéreo y Landing Attack Buffer</strong>:
+    <ul>
+      <li>Se configuró <strong>1 corte aéreo limpio por salto</strong> (<code>maxAirAttacksPerJump = 1</code>), que recarga al tocar suelo o interactuar con cornisas.</li>
+      <li>Si el jugador gasta su ataque aéreo y vuelve a pulsar <kbd>J</kbd> cerca del suelo, el buffer no se descarta en el aire y dispara automáticamente el <strong>Hit 1 terrestre en el frame 1 del aterrizaje</strong>.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3>Sincronización del Animator</h3>
+<ul>
+  <li>En todos los ataques se invirtió el orden de llamada: primero se actualizan los booleanos (<code>SetAnimatorCombatBools</code>) y de inmediato se fuerza <code>PlayAnimationState</code> con <code>Anim.Update(0f)</code>. Esto evita que las transiciones internas del Animator sobreescriban los clips al cambiar de frame.</li>
+</ul>
+
+<hr>
+
+<h2>4. Sistema Modular de Stamina (<code>PlayerStamina.cs</code>)</h2>
+<p>Se creó un componente desacoplado para gestionar la resistencia del jugador:</p>
+<ul>
+  <li><strong>Reglas de Consumo</strong>:
+    <ul>
+      <li><strong>Evasión / Dash</strong>: Dodge (<code>18</code>), Backdodge (<code>18</code>), Slide (<code>15</code>), Air Dash (<code>20</code>).</li>
+      <li><strong>Ataques</strong>: Ligeros (<code>12</code>), Medios (<code>16</code>), Pesados (<code>22</code>), Vertical Finisher (<code>28</code>).</li>
+      <li><strong>Movilidad Gratuita</strong>: Caminar, correr con Shift, saltar, hacer doble salto y trepar salientes tienen coste <strong>0</strong>.</li>
+    </ul>
+  </li>
+  <li><strong>Regeneración Controlada</strong>:
+    <ul>
+      <li>Retardo de espera tras gastar: <code>regenDelay = 0.65 s</code>.</li>
+      <li>Tasa de recuperación: <code>34</code> puntos por segundo.</li>
+      <li>La regeneración se congela durante animaciones de combate (<code>IsInCombatAction</code>), evasiones (<code>IsInEvasiveAction</code>) o dash aéreo, garantizando que no se recargue en mitad de un ataque.</li>
+    </ul>
+  </li>
+  <li><strong>Cobro Seguro en Cancelaciones</strong>:
+    <ul>
+      <li>En <strong>Dodge Cancel</strong> (<kbd>K</kbd> durante combo) y en el atajo <strong>Slide/Dodge &rarr; Hit 4 Lunge</strong> (<kbd>J</kbd>), la stamina se cobra <strong>antes</strong> de interrumpir la acción en curso. Si no alcanza, el ataque actual continúa sin romperse.</li>
+    </ul>
+  </li>
+  <li><strong>Preparado para Dificultad y HUD</strong>:
+    <ul>
+      <li>Contiene eventos estáticos <code>OnStaminaChanged(current, max)</code> y <code>OnStaminaInsufficient</code>.</li>
+      <li>Multiplicadores en tiempo real <code>costMultiplier</code> y <code>regenMultiplier</code> listos para el futuro selector de dificultad.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2>5. Actualización Visual del HUD (<code>PlayerHealthHUD.cs</code>)</h2>
+<ul>
+  <li><strong>Salud en Rojo</strong>:
+    <ul>
+      <li>Color base normal: <strong>Rojo vivo</strong> (<code>#EB2E2E</code> / <code>new Color(0.92f, 0.18f, 0.18f, 1f)</code>).</li>
+      <li>Color de salud crítica (&lt; 30%): <strong>Rojo oscuro</strong> (<code>#A61414</code>).</li>
+      <li>Rastro de daño (Catchup): Naranja-rojo translúcido para distinguir visualmente el chip damage.</li>
+    </ul>
+  </li>
+  <li><strong>Nueva Barra de Stamina en Verde</strong>:
+    <ul>
+      <li>Ubicada inmediatamente debajo de la barra de salud.</li>
+      <li>Relleno activo: <strong>Verde esmeralda vivo</strong> (<code>#2EE061</code> / <code>new Color(0.18f, 0.88f, 0.38f, 1f)</code>).</li>
+      <li>Rastro de consumo (Catchup): Verde menta suave (<code>new Color(0.40f, 0.95f, 0.55f, 0.85f)</code>).</li>
+      <li>Contador numérico dinámico: <code>100 / 100</code>.</li>
+      <li>Feedback visual: Destello rojo de advertencia si se intenta ejecutar una acción sin suficiente stamina.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2>6. Mapa de Archivos del Proyecto</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Archivo</th>
+      <th style="text-align: center;">Estado</th>
+      <th>Responsabilidad Principal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>PlayerInputHandler.cs</strong></td>
+      <td style="text-align: center;"><span class="badge-nuevo">Nuevo</span></td>
+      <td>Árbitro de entrada, LIP SOCD y buffers de salto, ataque y esquive.</td>
+    </tr>
+    <tr>
+      <td><strong>PlayerStamina.cs</strong></td>
+      <td style="text-align: center;"><span class="badge-nuevo">Nuevo</span></td>
+      <td>Capacidad, costos de acciones, retardo y eventos de stamina.</td>
+    </tr>
+    <tr>
+      <td><strong>SetupStaminaBar.cs</strong></td>
+      <td style="text-align: center;"><span class="badge-nuevo">Nuevo</span></td>
+      <td>Utilidad de editor para construir y vincular la barra de stamina en el Canvas.</td>
+    </tr>
+    <tr>
+      <td><strong>player.cs</strong></td>
+      <td style="text-align: center;"><span class="badge-modificado">Modificado</span></td>
+      <td>Calibración de Slide, bloqueo de gateo agachado, integración de stamina y jump-cancel.</td>
+    </tr>
+    <tr>
+      <td><strong>PlayerCombatController.cs</strong></td>
+      <td style="text-align: center;"><span class="badge-modificado">Modificado</span></td>
+      <td>Ventanas de Jump-Cancel, cobro de stamina por golpe, landing buffer y bloqueo de W+J en aire.</td>
+    </tr>
+    <tr>
+      <td><strong>PlayerHealthHUD.cs</strong></td>
+      <td style="text-align: center;"><span class="badge-modificado">Modificado</span></td>
+      <td>Salud roja, visualización y animación de catchup para la barra verde de stamina.</td>
+    </tr>
+    <tr>
+      <td><strong>idle.prefab</strong></td>
+      <td style="text-align: center;"><span class="badge-modificado">Modificado</span></td>
+      <td>Vinculación y serialización de PlayerInputHandler y PlayerStamina.</td>
+    </tr>
+    <tr>
+      <td><strong>SampleScene.unity</strong></td>
+      <td style="text-align: center;"><span class="badge-modificado">Modificado</span></td>
+      <td>Estructura de UI de stamina en Canvas e instancia de personaje actualizada.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer-note">
+  Angel's Journey &bull; Documento de Actualización de Sistemas &bull; Generado el 20/11/2026
+</div>
+
+</body>
+</html>

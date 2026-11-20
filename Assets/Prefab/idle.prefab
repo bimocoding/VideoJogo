@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3317018998205002372}
   - component: {fileID: -8682334697098611514}
   - component: {fileID: 8093955887444835255}
+  - component: {fileID: 7550166378919478590}
   m_Layer: 0
   m_Name: idle
   m_TagString: Untagged
@@ -278,6 +279,7 @@ MonoBehaviour:
     m_Bits: 8
   combatController: {fileID: -8682334697098611514}
   inputHandler: {fileID: 8093955887444835255}
+  stamina: {fileID: 7550166378919478590}
   allowCrouchSlideInput: 1
   attackKey: 106
   hitFxPrefab: {fileID: 100001, guid: 4a88bc91d8e1374439c2ff1100000002, type: 3}
@@ -364,6 +366,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 9199426973914224064}
   vfxSpawner: {fileID: 8061851353556149343}
   inputHandler: {fileID: 8093955887444835255}
+  stamina: {fileID: 7550166378919478590}
   hitFxPrefab: {fileID: 100001, guid: 4a88bc91d8e1374439c2ff1100000002, type: 3}
   smokeFxPrefab: {fileID: 3740749053327368162, guid: 5be803d9f2eda914391067627aee0f07, type: 3}
   attackKey: 106
@@ -432,6 +435,32 @@ MonoBehaviour:
   jumpBufferDuration: 0.15
   attackBufferDuration: 0.14
   dodgeBufferDuration: 0.12
+--- !u!114 &7550166378919478590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421572578373919003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 511877c68f1d2da4385bbda630c1195f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStamina
+  maxStamina: 100
+  currentStamina: 100
+  regenDelay: 0.65
+  regenRate: 34
+  dodgeCost: 18
+  backdodgeCost: 18
+  slideCost: 15
+  airDashCost: 20
+  lightAttackCost: 12
+  mediumAttackCost: 16
+  heavyAttackCost: 22
+  verticalFinisherCost: 28
+  costMultiplier: 1
+  regenMultiplier: 1
 --- !u!1 &1425003014234660594
 GameObject:
   m_ObjectHideFlags: 0
