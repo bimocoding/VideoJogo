@@ -753,7 +753,7 @@ public class PlayerCombatController : MonoBehaviour
             Anim.ResetTrigger("attack");
             Anim.ResetTrigger("attackVariation");
             Anim.ResetTrigger("dodgeAttack");
-            Anim.ResetTrigger("verticalFinisher");
+            Anim.ResetTrigger("verticalAttack");
         }
 
         // Delegar inicio de slide o dodge según entrada a player.cs

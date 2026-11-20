@@ -2025,7 +2025,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.ResetTrigger("attack");
             animator.ResetTrigger("attackVariation");
             animator.ResetTrigger("dodgeAttack");
-            animator.ResetTrigger("verticalFinisher");
+            animator.ResetTrigger("verticalAttack");
             animator.ResetTrigger("airDash");
             animator.SetBool("isAirDashing", true);
             animator.Play("AirDash", 0, 0f);
@@ -2117,7 +2117,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.ResetTrigger("attack");
             animator.ResetTrigger("attackVariation");
             animator.ResetTrigger("dodgeAttack");
-            animator.ResetTrigger("verticalFinisher");
+            animator.ResetTrigger("verticalAttack");
 
             if (isBackwards)
             {
@@ -2213,7 +2213,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             animator.ResetTrigger("attack");
             animator.ResetTrigger("attackVariation");
             animator.ResetTrigger("dodgeAttack");
-            animator.ResetTrigger("verticalFinisher");
+            animator.ResetTrigger("verticalAttack");
             animator.ResetTrigger("dodge");
             animator.ResetTrigger("backdodge");
             animator.ResetTrigger("slide");
