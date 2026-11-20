@@ -1885,6 +1885,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isDodgeAttacking = false;
         isVerticalAttacking = false;
         isJumpAttacking = false;
+        dodgeCooldownTimer = 0f;
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         bool isOppositeInput = false;
@@ -2021,8 +2022,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetTrigger("airDash");
+            animator.ResetTrigger("attack");
+            animator.ResetTrigger("attackVariation");
+            animator.ResetTrigger("dodgeAttack");
+            animator.ResetTrigger("verticalFinisher");
+            animator.ResetTrigger("airDash");
             animator.SetBool("isAirDashing", true);
+            animator.Play("AirDash", 0, 0f);
+            animator.Update(0f);
         }
 
         if (combatController != null) combatController.SpawnAirDashSmoke();
@@ -2075,6 +2082,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (animator != null)
         {
+            animator.ResetTrigger("airDash");
             animator.SetBool("isAirDashing", false);
         }
     }
@@ -2106,18 +2114,28 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (animator != null)
         {
+            animator.ResetTrigger("attack");
+            animator.ResetTrigger("attackVariation");
+            animator.ResetTrigger("dodgeAttack");
+            animator.ResetTrigger("verticalFinisher");
+
             if (isBackwards)
             {
-                animator.SetTrigger("backdodge");
-                animator.SetBool("isBackdodging", true);
+                animator.ResetTrigger("dodge");
+                animator.ResetTrigger("backdodge");
                 animator.SetBool("isDodging", false);
+                animator.SetBool("isBackdodging", true);
+                animator.Play("Backdodge", 0, 0f);
             }
             else
             {
-                animator.SetTrigger("dodge");
-                animator.SetBool("isDodging", true);
+                animator.ResetTrigger("backdodge");
+                animator.ResetTrigger("dodge");
                 animator.SetBool("isBackdodging", false);
+                animator.SetBool("isDodging", true);
+                animator.Play("Dodge", 0, 0f);
             }
+            animator.Update(0f);
         }
     }
 
@@ -2158,8 +2176,24 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (animator != null)
         {
+            animator.ResetTrigger("dodge");
+            animator.ResetTrigger("backdodge");
             animator.SetBool("isDodging", false);
             animator.SetBool("isBackdodging", false);
+
+            var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.IsName("Dodge") || stateInfo.IsName("Backdodge"))
+            {
+                float h = Input.GetAxisRaw("Horizontal");
+                if (Mathf.Abs(h) > 0.1f)
+                {
+                    animator.CrossFadeInFixedTime(isRunning ? "Run" : "Walk", 0.08f, 0);
+                }
+                else
+                {
+                    animator.CrossFadeInFixedTime("Idle", 0.08f, 0);
+                }
+            }
         }
     }
 
@@ -2176,8 +2210,16 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (animator != null)
         {
-            animator.SetTrigger("slide");
+            animator.ResetTrigger("attack");
+            animator.ResetTrigger("attackVariation");
+            animator.ResetTrigger("dodgeAttack");
+            animator.ResetTrigger("verticalFinisher");
+            animator.ResetTrigger("dodge");
+            animator.ResetTrigger("backdodge");
+            animator.ResetTrigger("slide");
             animator.SetBool("isSliding", true);
+            animator.Play("Slide", 0, 0f);
+            animator.Update(0f);
         }
     }
 
@@ -2235,8 +2277,23 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (animator != null)
         {
+            animator.ResetTrigger("slide");
             animator.SetBool("isSliding", false);
             animator.SetBool("isCrouching", isCrouching);
+
+            var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.IsName("Slide") && !remainCrouched)
+            {
+                float h = Input.GetAxisRaw("Horizontal");
+                if (Mathf.Abs(h) > 0.1f)
+                {
+                    animator.CrossFadeInFixedTime(isRunning ? "Run" : "Walk", 0.08f, 0);
+                }
+                else
+                {
+                    animator.CrossFadeInFixedTime("Idle", 0.08f, 0);
+                }
+            }
         }
     }
 

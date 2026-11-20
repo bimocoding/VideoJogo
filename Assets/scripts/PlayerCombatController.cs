@@ -273,7 +273,8 @@ public class PlayerCombatController : MonoBehaviour
 
         // CANCELACIÓN CON K (DODGE CANCEL)
         // Permitido en cualquier frame de cualquier ataque terrestre excepto durante la caída del Vertical Finisher
-        if (CurrentState != CombatState.VerticalFinisher && Input.GetKeyDown(dodgeKey))
+        KeyCode cancelKey = (Player != null) ? Player.dodgeKey : dodgeKey;
+        if (CurrentState != CombatState.VerticalFinisher && (Input.GetKeyDown(dodgeKey) || Input.GetKeyDown(cancelKey)))
         {
             if (TryDodgeCancel()) return;
         }
@@ -745,6 +746,15 @@ public class PlayerCombatController : MonoBehaviour
         // Desactivar flags de combate
         SetAnimatorCombatBools(false, false, false, false, false);
         CurrentState = CombatState.Idle;
+
+        // Limpiar triggers de combate para que no queden pendientes al cancelar
+        if (Anim != null)
+        {
+            Anim.ResetTrigger("attack");
+            Anim.ResetTrigger("attackVariation");
+            Anim.ResetTrigger("dodgeAttack");
+            Anim.ResetTrigger("verticalFinisher");
+        }
 
         // Delegar inicio de slide o dodge según entrada a player.cs
         Player.CancelAttackIntoDodgeOrSlide();
