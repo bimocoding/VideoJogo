@@ -136,6 +136,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [Header("Controlador de Combate DMC")]
     public PlayerCombatController combatController;
 
+    [Header("Capa de Input Centralizada")]
+    public PlayerInputHandler inputHandler;
+
+    [Header("Opciones de Slide")]
+    [Tooltip("Si está activo, pulsar S + K en el suelo dispara Slide (acorde al diseño).")]
+    public bool allowCrouchSlideInput = true;
+
     [Header("Sistema de Combate (Tecla J)")]
     public KeyCode attackKey = KeyCode.J;
     public GameObject hitFxPrefab;
@@ -275,6 +282,12 @@ public class NewMonoBehaviourScript : MonoBehaviour
     void Awake()
     {
         spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        if (inputHandler == null) inputHandler = GetComponent<PlayerInputHandler>();
+        if (inputHandler == null)
+        {
+            inputHandler = gameObject.AddComponent<PlayerInputHandler>();
+            Debug.LogWarning("[player.cs] PlayerInputHandler no estaba en el prefab; se añadió en runtime. Agrégalo al prefab idle.");
+        }
     }
 
     void Start()
@@ -398,11 +411,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         bool isMovementBlocked = IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing || isHealing || isDead || IsKnockedBack || (combatController != null && combatController.IsHorizontalLocked);
 
-        // Movimiento horizontal A/D o flechas (bloqueado durante combate, slide o agachado)
-        move = isMovementBlocked ? 0f : Input.GetAxisRaw("Horizontal");
+        // Movimiento horizontal desde PlayerInputHandler (con SOCD)
+        move = isMovementBlocked ? 0f : inputHandler.MoveX;
 
         // Conmutador / Toggle de Correr con Shift
-        if (!isMovementBlocked && (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)))
+        if (!isMovementBlocked && inputHandler.SprintTogglePressedThisFrame)
         {
             isRunning = !isRunning;
         }
@@ -418,32 +431,26 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
         }
 
-        // Buffer de salto (no saltar durante combate, slide o agachado)
-        if (!isMovementBlocked && Input.GetButtonDown("Jump"))
-            jumpBufferCounter = jumpBufferTime;
-        else
-            jumpBufferCounter -= Time.deltaTime;
-
-        // OrientaciÃ³n / Flip (no flipear durante combate, slide o agachado)
+        // Orientación / Flip (no flipear durante combate, slide o agachado)
         if (!isMovementBlocked)
         {
             if (move > 0.01f) facingDirection = -1;
             else if (move < -0.01f) facingDirection = 1;
         }
 
-        // Disparo de salto normal (desde suelo o coyote time)
-        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
+        // Disparo de salto normal (desde suelo o coyote time) usando el buffer global
+        if (!isMovementBlocked && inputHandler.JumpBufferActive && coyoteTimeCounter > 0f)
         {
             ExecuteJump();
         }
         // Disparo de doble salto (en el aire, sin coyote time, si quedan saltos aéreos)
-        else if (jumpBufferCounter > 0f && !isGrounded && airJumpsRemaining > 0 && !isAirDashing && !IsInCombatAction && !isHanging && !isClimbing && !IsAboutToLand())
+        else if (!isMovementBlocked && inputHandler.JumpBufferActive && !isGrounded && airJumpsRemaining > 0 && !isAirDashing && !IsInCombatAction && !isHanging && !isClimbing && !IsAboutToLand())
         {
             ExecuteDoubleJump();
         }
 
-        // Salto variable: soltar el botÃ³n corta el ascenso
-        if (Input.GetButtonUp("Jump") && rb2d.linearVelocity.y > 0f)
+        // Salto variable: soltar el botón corta el ascenso
+        if (inputHandler.JumpReleasedThisFrame && rb2d.linearVelocity.y > 0f)
         {
             rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, rb2d.linearVelocity.y * 0.5f);
         }
@@ -592,7 +599,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             rb2d.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
         }
-        else if (rb2d.linearVelocity.y > 0f && !Input.GetButton("Jump") && !isVerticalAttacking)
+        else if (rb2d.linearVelocity.y > 0f && !inputHandler.JumpHeld && !isVerticalAttacking)
         {
             rb2d.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1f) * Time.fixedDeltaTime;
         }
@@ -607,8 +614,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // No agarrar si estÃ¡ en combate, slide, agachado o esquivando
         if (IsInCombatAction || isSliding || isCrouching || isDodging || isBackdodging || isAirDashing) return;
 
-        // No agarrar si el jugador estÃ¡ presionando S/Abajo para bajar
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) return;
+        // No agarrar si el jugador está presionando S/Abajo para bajar
+        if (inputHandler.DownHeld) return;
 
         Vector2 lookDir = (facingDirection == -1) ? Vector2.right : Vector2.left;
 
@@ -644,6 +651,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void GrabLedge(Vector2 corner, Vector2 lookDir)
     {
+        if (combatController != null) combatController.InterruptCombat();
+        if (inputHandler != null) inputHandler.ClearAllBuffers();
+
         // Cancelar ataques o esquives activos para eliminar cualquier inercia previa
         if (attackRoutine != null)
         {
@@ -724,41 +734,27 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         // 1. Soltarse y bajar con S (o Abajo)
-        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        if (inputHandler.DownPressedThisFrame)
         {
             DropFromLedge(lookDir);
             return;
         }
 
+        bool isJumpPressed = inputHandler.JumpPressedThisFrame;
+        bool awayInput = inputHandler.GetRelativeHorizontalIntent(facingDirection) == -1;
 
-        // ComprobaciÃ³n de entradas direccionales hacia afuera del muro (direcciÃ³n opuesta a lookDir)
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        bool isJumpPressed = Input.GetButtonDown("Jump");
-
-        // Si el muro estÃ¡ a la izquierda (lookDir.x < 0):
-        // D + ESPACIO salta hacia la derecha
-        // Si el muro estÃ¡ a la derecha (lookDir.x > 0):
-        // A + ESPACIO salta hacia la izquierda
-        bool awayInput = false;
-        if (lookDir.x < 0f)
-        {
-            awayInput = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || horizontalInput > 0.1f;
-        }
-        else
-        {
-            awayInput = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || horizontalInput < -0.1f;
-        }
-
-        // 2. Wall Jump horizontal desde el agarre: DirecciÃ³n contraria + ESPACIO
+        // 2. Wall Jump horizontal desde el agarre: Dirección contraria + ESPACIO
         if (isJumpPressed && awayInput)
         {
+            inputHandler.ConsumeJump();
             ExecuteLedgeWallJump(lookDir);
             return;
         }
 
-        // 3. Subir al saliente: ESPACIO solo (sin direcciÃ³n contraria), o W / Arriba
-        if (isJumpPressed || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        // 3. Subir al saliente: ESPACIO solo (sin dirección contraria), o W / Arriba
+        if (isJumpPressed || inputHandler.UpPressedThisFrame)
         {
+            inputHandler.ConsumeJump();
             StartCoroutine(ClimbLedgeRoutine(lookDir));
             return;
         }
@@ -890,6 +886,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void ExecuteJump()
     {
         rb2d.linearVelocity = new Vector2(rb2d.linearVelocity.x, jumpForce);
+        if (inputHandler != null) inputHandler.ConsumeJump();
         jumpBufferCounter = 0f;
         coyoteTimeCounter = 0f;
         jumpGroundLockTimer = jumpGroundLockTime;
@@ -917,6 +914,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void ExecuteDoubleJump()
     {
         airJumpsRemaining--;
+        if (inputHandler != null) inputHandler.ConsumeJump();
         jumpBufferCounter = 0f;
         coyoteTimeCounter = 0f;
 
@@ -957,10 +955,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
         // No permitir atacar en estados incompatibles (colgado, trepando, deslizÃ¡ndose, esquivando o haciendo dash aÃ©reo)
         if (isHanging || isClimbing || isSliding || isDodging || isBackdodging || isAirDashing) return;
 
-        // Si estÃ¡ agachado, solo puede iniciar ataque si tiene espacio para levantarse
+        // Si está agachado, solo puede iniciar ataque si tiene espacio para levantarse
         if (isCrouching)
         {
-            if (Input.GetKeyDown(attackKey))
+            if (inputHandler.AttackBufferActive)
             {
                 if (CanStandUp())
                 {
@@ -1593,7 +1591,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         comboResetTimer = comboResetTime;
 
         // Orientar segÃºn entrada horizontal si el jugador la pulsa
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float horizontalInput = inputHandler.MoveX;
         if (horizontalInput > 0.1f) facingDirection = -1;
         else if (horizontalInput < -0.1f) facingDirection = 1;
 
@@ -1725,7 +1723,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         if (isHanging || isClimbing || IsInCombatAction || isSliding || isDodging || isBackdodging) return;
 
-        bool crouchKeyDown = Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow);
+        bool crouchKeyDown = inputHandler != null ? inputHandler.DownHeld : (Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow));
 
         // Agacharse con S en el suelo
         if (isGrounded && crouchKeyDown)
@@ -1739,7 +1737,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             else
             {
                 // Permitir desplazamiento lento agachado (gateo)
-                float crawlInput = Input.GetAxisRaw("Horizontal");
+                float crawlInput = inputHandler != null ? inputHandler.MoveX : Input.GetAxisRaw("Horizontal");
                 if (Mathf.Abs(crawlInput) > 0.05f)
                 {
                     rb2d.linearVelocity = new Vector2(crawlInput * walkSpeed * 0.6f, rb2d.linearVelocity.y);
@@ -1763,7 +1761,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             // Si hay techo bajo, permitir avanzar a paso de gateo para poder salir
             else if (isGrounded)
             {
-                float crawlInput = Input.GetAxisRaw("Horizontal");
+                float crawlInput = inputHandler != null ? inputHandler.MoveX : Input.GetAxisRaw("Horizontal");
                 if (Mathf.Abs(crawlInput) > 0.05f)
                 {
                     rb2d.linearVelocity = new Vector2(crawlInput * walkSpeed * 0.65f, rb2d.linearVelocity.y);
@@ -1783,9 +1781,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // =========================================================================
     private void HandleDodgeAndSlideInputs()
     {
-        // No actuar si estÃ¡ en un estado incompatible
         // Atajo de combo: Presionar J durante Slide o Dodge entra directamente a Hit 4 Lunge
-        if ((isSliding || isDodging || isBackdodging) && Input.GetKeyDown(attackKey))
+        if ((isSliding || isDodging || isBackdodging) && inputHandler.AttackBufferActive)
         {
             if (combatController != null && combatController.TryDodgeLungeShortcut())
             {
@@ -1795,26 +1792,34 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         if (isHanging || isClimbing || IsInCombatAction || isSliding || isDodging || isBackdodging) return;
 
-        // ComprobaciÃ³n de recuperaciÃ³n/cooldown
+        // Comprobación de recuperación/cooldown (el buffer en PlayerInputHandler retiene K hasta que baje a 0)
         if (dodgeCooldownTimer > 0f) return;
 
-        if (!Input.GetKeyDown(dodgeKey)) return;
+        if (!inputHandler.DodgeBufferActive) return;
 
-        // Si estÃ¡ en el aire: DISPARO DE AERIAL DASH (solo en el aire, distancia fija con o sin sprint)
+        // Si está en el aire: DISPARO DE AERIAL DASH
         if (!isGrounded)
         {
             if (!hasAirDashed && !isAirDashing && !isHanging && !isClimbing && !IsInCombatAction)
             {
+                inputHandler.ConsumeDodge();
                 StartAirDash();
             }
             return;
         }
 
-        // Si S o Flecha Abajo estÃ¡ mantenida (postura agachada defensiva), K no interrumpe el agachado
-        bool crouchHeld = Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow);
-        if (crouchHeld) return;
+        // S + K en el suelo: Slide directo si allowCrouchSlideInput está activo
+        if (inputHandler.DownHeld)
+        {
+            if (allowCrouchSlideInput)
+            {
+                inputHandler.ConsumeDodge();
+                StartSlide();
+            }
+            return;
+        }
 
-        // Si estÃ¡ agachado (por techo bajo o previo), comprobar si puede incorporarse antes de esquivar
+        // Si está agachado por techo bajo
         if (isCrouching)
         {
             if (CanStandUp())
@@ -1825,54 +1830,31 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
             else
             {
-                // Bajo techo bajo: disparar deslizamiento para salir ágilmente
+                inputHandler.ConsumeDodge();
                 StartSlide();
                 return;
             }
         }
 
-        // DeterminaciÃ³n de orientaciÃ³n actual:
-        // facingDirection == -1 -> Mira hacia la DERECHA
-        // facingDirection == 1  -> Mira hacia la IZQUIERDA
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        bool isOppositeInput = false;
+        int relativeIntent = inputHandler.GetRelativeHorizontalIntent(facingDirection);
 
-        if (facingDirection == -1) // Mira a la DERECHA
-        {
-            // Sentido opuesto: entrada hacia la IZQUIERDA (A o Flecha Izq o eje negativo)
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || horizontalInput < -0.1f)
-            {
-                isOppositeInput = true;
-            }
-        }
-        else // Mira a la IZQUIERDA
-        {
-            // Sentido opuesto: entrada hacia la DERECHA (D o Flecha Der o eje positivo)
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || horizontalInput > 0.1f)
-            {
-                isOppositeInput = true;
-            }
-        }
+        inputHandler.ConsumeDodge();
 
-        // PRIORIDAD EXCLUSIVA DE K:
-        // 1. Backdodge: si se pulsa la direcciÃ³n opuesta a su orientaciÃ³n
-        if (isOppositeInput)
+        // 1. Backdodge: dirección opuesta
+        if (relativeIntent == -1)
         {
             StartDodge(isBackwards: true);
             return;
         }
 
-        // 2. Slide: si el personaje estÃ¡ en el suelo, corriendo y moviÃ©ndose en la direcciÃ³n frontal
-        bool isMovingForward = (facingDirection == -1 && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || horizontalInput > 0.1f)) ||
-                               (facingDirection == 1 && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || horizontalInput < -0.1f));
-
-        if (isRunning && (isMovingForward || Mathf.Abs(rb2d.linearVelocity.x) > walkSpeed + 0.2f))
+        // 2. Slide: corriendo hacia adelante o con inercia de carrera
+        if (isRunning && (relativeIntent == 1 || Mathf.Abs(rb2d.linearVelocity.x) > walkSpeed + 0.2f))
         {
             StartSlide();
             return;
         }
 
-        // 3. Dodge Normal: si no se cumple ninguna de las anteriores (neutral o adelante sin slide)
+        // 3. Dodge Normal
         StartDodge(isBackwards: false);
     }
 
@@ -1887,30 +1869,21 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isJumpAttacking = false;
         dodgeCooldownTimer = 0f;
 
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        bool isOppositeInput = false;
+        int relativeIntent = inputHandler.GetRelativeHorizontalIntent(facingDirection);
 
-        if (facingDirection == -1) // Mira a la DERECHA
-        {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || horizontalInput < -0.1f)
-                isOppositeInput = true;
-        }
-        else // Mira a la IZQUIERDA
-        {
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || horizontalInput > 0.1f)
-                isOppositeInput = true;
-        }
-
-        if (isOppositeInput)
+        if (relativeIntent == -1)
         {
             StartDodge(isBackwards: true);
             return;
         }
 
-        bool isMovingForward = (facingDirection == -1 && (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || horizontalInput > 0.1f)) ||
-                               (facingDirection == 1 && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || horizontalInput < -0.1f));
+        if (inputHandler.DownHeld && allowCrouchSlideInput)
+        {
+            StartSlide();
+            return;
+        }
 
-        if (isRunning || isMovingForward)
+        if (isRunning || relativeIntent == 1)
         {
             StartSlide();
             return;
@@ -2004,7 +1977,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         airDashTimer = 0f;
 
         // Orientar segÃºn entrada horizontal si la hay, o mantener orientaciÃ³n actual
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float horizontalInput = inputHandler.MoveX;
         if (horizontalInput > 0.1f) facingDirection = -1;
         else if (horizontalInput < -0.1f) facingDirection = 1;
 
@@ -2184,7 +2157,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             if (stateInfo.IsName("Dodge") || stateInfo.IsName("Backdodge"))
             {
-                float h = Input.GetAxisRaw("Horizontal");
+                float h = inputHandler != null ? inputHandler.MoveX : Input.GetAxisRaw("Horizontal");
                 if (Mathf.Abs(h) > 0.1f)
                 {
                     animator.CrossFadeInFixedTime(isRunning ? "Run" : "Walk", 0.08f, 0);
@@ -2234,7 +2207,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         rb2d.linearVelocity = new Vector2(slideDirection * currentSlideSpeed, rb2d.linearVelocity.y);
 
         // Cancelar slide en salto si el jugador pulsa Space y hay espacio libre
-        if (Input.GetButtonDown("Jump") && CanStandUp())
+        if (inputHandler.JumpBufferActive && CanStandUp())
         {
             StopSlide(false);
             ExecuteJump();
@@ -2249,7 +2222,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             {
                 StopSlide(true);
             }
-            else if (Input.GetKey(crouchKey) || Input.GetKey(KeyCode.DownArrow))
+            else if (inputHandler.DownHeld)
             {
                 StopSlide(true);
             }
@@ -2284,7 +2257,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             var stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             if (stateInfo.IsName("Slide") && !remainCrouched)
             {
-                float h = Input.GetAxisRaw("Horizontal");
+                float h = inputHandler != null ? inputHandler.MoveX : Input.GetAxisRaw("Horizontal");
                 if (Mathf.Abs(h) > 0.1f)
                 {
                     animator.CrossFadeInFixedTime(isRunning ? "Run" : "Walk", 0.08f, 0);
@@ -2379,6 +2352,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
             dir = (facingDirection == -1) ? -1f : 1f;
 
         // Cancelar acciones que fijan la velocidad para que el empuje no se pierda
+        if (combatController != null) combatController.InterruptCombat();
+        if (inputHandler != null) inputHandler.ClearAllBuffers();
         if (attackRoutine != null) { StopCoroutine(attackRoutine); attackRoutine = null; }
         if (isAttacking) FinishAttack();
         isDodgeAttacking = false;
@@ -2444,6 +2419,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private IEnumerator DieRoutine()
     {
         isDead = true;
+        if (combatController != null) combatController.InterruptCombat();
+        if (inputHandler != null) inputHandler.ClearAllBuffers();
         move = 0f;
         jumpBufferCounter = 0f;
         coyoteTimeCounter = 0f;
@@ -2496,7 +2473,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (isDead || isHealing || isHanging || isClimbing || IsInCombatAction || isSliding || isDodging || isBackdodging || isAirDashing)
             return;
 
-        if (Input.GetKeyDown(healKey))
+        if (inputHandler != null ? inputHandler.HealPressedThisFrame : Input.GetKeyDown(healKey))
         {
             if (healChargesRemaining > 0 && healCooldownTimer <= 0f && currentHealth < maxHealth)
             {

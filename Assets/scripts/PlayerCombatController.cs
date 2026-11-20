@@ -39,6 +39,8 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private Transform vfxSpawner;
+    [SerializeField] private PlayerInputHandler inputHandler;
+    public PlayerInputHandler InputH => inputHandler != null ? inputHandler : (inputHandler = GetComponent<PlayerInputHandler>());
 
     [Header("Prefabs de Efectos Visuales (VFX)")]
     public GameObject hitFxPrefab;
@@ -163,6 +165,7 @@ public class PlayerCombatController : MonoBehaviour
         if (rb2d == null) rb2d = GetComponent<Rigidbody2D>();
         if (Anim == null) animator = GetComponent<Animator>();
         if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        if (inputHandler == null) inputHandler = GetComponent<PlayerInputHandler>();
 
         if (vfxSpawner == null)
         {
@@ -242,11 +245,12 @@ public class PlayerCombatController : MonoBehaviour
     /// </summary>
     public void HandleCombatInputs()
     {
-        // Si el jugador está muerto o en estados no cancelables, no procesar
         if (Player != null && (Player.isDead || Player.isClimbing || Player.isHanging || Player.isHealing))
         {
             return;
         }
+
+        if (InputH == null) return;
 
         // 1. Manejo activo del estado de combate actual
         if (CurrentState != CombatState.Idle)
@@ -255,70 +259,59 @@ public class PlayerCombatController : MonoBehaviour
             return;
         }
 
-        // 2. Si está en Idle de combate, procesar inicios de ataque:
-        bool isGrounded = player != null ? Player.isGrounded : true;
+        // 2. Si está en Idle de combate, solo actuar si hay ataque en buffer
+        if (!InputH.AttackBufferActive) return;
 
-        // RAMA D: ATAQUE VERTICAL DIRECTO (W + J en suelo o aire)
-        bool isUpHeld = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetAxisRaw("Vertical") > 0.5f;
-        if (isUpHeld && Input.GetKeyDown(attackKey))
+        bool isGrounded = Player != null ? Player.isGrounded : true;
+        bool wantsUp = InputH.UpHeld || InputH.AttackBufferedUp;
+        bool wantsDown = InputH.DownHeld || InputH.AttackBufferedDown;
+
+        // RAMA D: ATAQUE VERTICAL DIRECTO (W + J)
+        if (wantsUp)
         {
+            InputH.ConsumeAttack();
             OrientCharacterFromInput();
             ExecuteDirectLauncher();
             return;
         }
 
-        // VERTICAL FINISHER SLAM DESDE EL AIRE (S + J o J con CanTriggerAirSlam)
-        bool isDownHeld = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxisRaw("Vertical") < -0.5f;
+        // EN EL AIRE
         if (!isGrounded)
         {
-            if ((isDownHeld || CanTriggerAirSlam) && Input.GetKeyDown(attackKey))
+            if (wantsDown || CanTriggerAirSlam)
             {
                 if (CanExecuteVerticalFinisher)
                 {
+                    InputH.ConsumeAttack();
                     StartVerticalFinisher();
                     return;
                 }
             }
 
             // COMBO AÉREO ESTÁNDAR (J en aire neutral)
-            if (Input.GetKeyDown(attackKey))
-            {
-                OrientCharacterFromInput();
-                ExecuteJumpAttack(1);
-                return;
-            }
+            InputH.ConsumeAttack();
+            OrientCharacterFromInput();
+            ExecuteJumpAttack(1);
+            return;
         }
-        else
-        {
-            // APERTURA COMÚN: HIT 1 EN EL SUELO (J)
-            if (Input.GetKeyDown(attackKey))
-            {
-                OrientCharacterFromInput();
-                ExecuteHit1();
-                return;
-            }
-        }
+
+        // APERTURA COMÚN: HIT 1 EN EL SUELO (J)
+        InputH.ConsumeAttack();
+        OrientCharacterFromInput();
+        ExecuteHit1();
     }
 
-    /// <summary>
-    /// Actualiza el estado de ataque en curso, temporizadores y ventanas de transición.
-    /// </summary>
     private void UpdateActiveCombatState()
     {
         stateTimer += Time.deltaTime;
         float normTime = currentStateDuration > 0.001f ? (stateTimer / currentStateDuration) : 1f;
 
-        // CANCELACIÓN CON K (DODGE CANCEL)
-        // Permitido en cualquier frame de cualquier ataque terrestre excepto durante la caída del Vertical Finisher
-        KeyCode cancelKey = (Player != null) ? Player.dodgeKey : dodgeKey;
-        if (CurrentState != CombatState.VerticalFinisher && (Input.GetKeyDown(dodgeKey) || Input.GetKeyDown(cancelKey)))
+        // CANCELACIÓN CON K (DODGE CANCEL) usando buffer de Dodge
+        if (CurrentState != CombatState.VerticalFinisher && InputH.DodgeBufferActive)
         {
             if (TryDodgeCancel()) return;
         }
 
-        // ==========================================
-        // GESTIÓN POR ESTADOS
-        // ==========================================
         switch (CurrentState)
         {
             case CombatState.Hit1:
@@ -362,7 +355,6 @@ public class PlayerCombatController : MonoBehaviour
                 break;
 
             case CombatState.VerticalFinisher:
-                // Manejado enteramente por su Corrutina en 3 fases
                 break;
         }
     }
@@ -391,7 +383,6 @@ public class PlayerCombatController : MonoBehaviour
 
     private void UpdateHit1State(float normTime)
     {
-        // 1. Destello visual / feedback cuando se abre la DelayComboWindow (al 66%)
         if (normTime >= delayWindowStartNorm && !delayGleamTriggered)
         {
             delayGleamTriggered = true;
@@ -399,28 +390,27 @@ public class PlayerCombatController : MonoBehaviour
             OnDelayWindowOpened?.Invoke();
         }
 
-        // 2. Comprobación de input J
-        if (Input.GetKeyDown(attackKey))
+        if (InputH.AttackBufferActive)
         {
-            // Orientación libre del personaje con A o D entre golpes
-            OrientCharacterFromInput();
-
-            // Ventana Rápida (EarlyComboWindow: 35% - 65%): Rama A (Basic 3-Hit Combo)
+            // Ventana Rápida (35% - 65%): Rama A (Basic 3-Hit)
             if (normTime >= earlyWindowStartNorm && normTime <= earlyWindowEndNorm)
             {
+                InputH.ConsumeAttack();
+                OrientCharacterFromInput();
                 ExecuteHit2Basic();
                 return;
             }
 
-            // Ventana de Pausa (DelayComboWindow: 66% - 90%): Rama B (5-Hit Combo Variation)
+            // Ventana de Pausa (66% - 90%): Rama B (5-Hit Variation)
             if (normTime >= delayWindowStartNorm && normTime <= delayWindowEndNorm)
             {
+                InputH.ConsumeAttack();
+                OrientCharacterFromInput();
                 ExecuteHit2Variation();
                 return;
             }
         }
 
-        // 3. Si termina la animación sin encadenar (>90%), recuperación suave a Idle
         if (normTime >= 0.95f)
         {
             FinishCombat();
@@ -787,20 +777,19 @@ public class PlayerCombatController : MonoBehaviour
     public bool TryDodgeCancel()
     {
         if (CurrentState == CombatState.VerticalFinisher) return false;
-        if (player == null || !Player.isGrounded) return false;
+        if (Player == null || !Player.isGrounded) return false;
 
-        // Cancelar rutinas activas y apagar hitboxes
+        if (InputH != null) InputH.ConsumeDodge();
+
         if (activeAttackRoutine != null)
         {
             StopCoroutine(activeAttackRoutine);
             activeAttackRoutine = null;
         }
 
-        // Desactivar flags de combate
         SetAnimatorCombatBools(false, false, false, false, false);
         CurrentState = CombatState.Idle;
 
-        // Limpiar triggers de combate para que no queden pendientes al cancelar
         if (Anim != null)
         {
             Anim.ResetTrigger("attack");
@@ -809,20 +798,16 @@ public class PlayerCombatController : MonoBehaviour
             Anim.ResetTrigger("verticalAttack");
         }
 
-        // Delegar inicio de slide o dodge según entrada a player.cs
         Player.CancelAttackIntoDodgeOrSlide();
         return true;
     }
 
-    /// <summary>
-    /// Atajo de combo: Si el jugador presiona J durante Slide o Backdodge, entra directamente a Hit 4 Lunge.
-    /// </summary>
     public bool TryDodgeLungeShortcut()
     {
-        if (player == null) return false;
+        if (Player == null) return false;
         if (Player.isSliding || Player.isDodging || Player.isBackdodging)
         {
-            // Interrumpir dodge/slide
+            if (InputH != null) InputH.ConsumeAttack();
             Player.InterruptDodgeAndSlide();
             OrientCharacterFromInput();
             ExecuteHit4Lunge();
@@ -879,30 +864,29 @@ public class PlayerCombatController : MonoBehaviour
 
     private void UpdateAerialComboState(float normTime, float chainStart, float chainEnd, Action nextAction)
     {
-        // Si aterriza mientras ataca en el aire, terminar ataque suavemente
         if (Player != null && Player.isGrounded && stateTimer > 0.05f)
         {
             FinishCombat();
             return;
         }
 
-        // Si presiona S + J o CanTriggerAirSlam, entra a Finisher
-        bool isDownHeld = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxisRaw("Vertical") < -0.5f;
-        if ((isDownHeld || CanTriggerAirSlam) && Input.GetKeyDown(attackKey))
+        if (InputH.AttackBufferActive)
         {
-            if (CanExecuteVerticalFinisher)
+            bool wantsDown = InputH.DownHeld || InputH.AttackBufferedDown;
+            if ((wantsDown || CanTriggerAirSlam) && CanExecuteVerticalFinisher)
             {
+                InputH.ConsumeAttack();
                 StartVerticalFinisher();
                 return;
             }
-        }
 
-        // Encadenar a Jump Attack 2 si pulsa J en la ventana
-        if (Input.GetKeyDown(attackKey) && normTime >= chainStart && normTime <= chainEnd)
-        {
-            OrientCharacterFromInput();
-            nextAction?.Invoke();
-            return;
+            if (normTime >= chainStart && normTime <= chainEnd)
+            {
+                InputH.ConsumeAttack();
+                OrientCharacterFromInput();
+                nextAction?.Invoke();
+                return;
+            }
         }
 
         if (normTime >= 0.95f)
@@ -919,12 +903,12 @@ public class PlayerCombatController : MonoBehaviour
             return;
         }
 
-        // Finisher disponible si pulsa S+J
-        bool isDownHeld = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxisRaw("Vertical") < -0.5f;
-        if ((isDownHeld || CanTriggerAirSlam) && Input.GetKeyDown(attackKey))
+        if (InputH.AttackBufferActive)
         {
-            if (CanExecuteVerticalFinisher)
+            bool wantsDown = InputH.DownHeld || InputH.AttackBufferedDown;
+            if ((wantsDown || CanTriggerAirSlam) && CanExecuteVerticalFinisher)
             {
+                InputH.ConsumeAttack();
                 StartVerticalFinisher();
                 return;
             }
@@ -942,8 +926,9 @@ public class PlayerCombatController : MonoBehaviour
 
     private void UpdateStandardComboState(float normTime, float chainStart, float chainEnd, Action nextAction)
     {
-        if (Input.GetKeyDown(attackKey) && normTime >= chainStart && normTime <= chainEnd)
+        if (InputH.AttackBufferActive && normTime >= chainStart && normTime <= chainEnd)
         {
+            InputH.ConsumeAttack();
             OrientCharacterFromInput();
             nextAction?.Invoke();
             return;
@@ -957,11 +942,11 @@ public class PlayerCombatController : MonoBehaviour
 
     private void UpdateLauncherState(float normTime)
     {
-        // Al ascender, si el jugador pulsa J o S+J, encadena al Finisher vertical
-        if (Input.GetKeyDown(attackKey) && stateTimer >= 0.12f)
+        if (InputH.AttackBufferActive && stateTimer >= 0.12f)
         {
             if (CanExecuteVerticalFinisher)
             {
+                InputH.ConsumeAttack();
                 StartVerticalFinisher();
                 return;
             }
@@ -1247,12 +1232,12 @@ public class PlayerCombatController : MonoBehaviour
     /// </summary>
     public void OrientCharacterFromInput()
     {
-        if (IsHorizontalLocked) return;
+        if (IsHorizontalLocked || InputH == null) return;
 
-        float h = Input.GetAxisRaw("Horizontal");
+        float h = InputH.MoveX;
         if (Mathf.Abs(h) > 0.05f)
         {
-            int newFacing = (h > 0f) ? -1 : 1; // Convención del proyecto: -1 = Derecha (+X), 1 = Izquierda (-X)
+            int newFacing = (h > 0f) ? -1 : 1;
             if (Player != null)
             {
                 Player.facingDirection = newFacing;

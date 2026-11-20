@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1342008072905323708}
   - component: {fileID: 3317018998205002372}
   - component: {fileID: -8682334697098611514}
+  - component: {fileID: 8093955887444835255}
   m_Layer: 0
   m_Name: idle
   m_TagString: Untagged
@@ -36,6 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7563256089448134111}
+  - {fileID: 8061851353556149343}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9199426973914224064
@@ -232,6 +234,8 @@ MonoBehaviour:
   knockbackForceY: 4
   knockbackDuration: 0.25
   invulnerabilityDuration: 1
+  dashInvulnerabilityDuration: 0.3
+  enableDashIFrameShimmer: 1
   postClimbInvulnerability: 0.4
   invulnerableBlinkInterval: 0.08
   invulnerableBlinkAlpha: 0.25
@@ -273,6 +277,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   combatController: {fileID: -8682334697098611514}
+  inputHandler: {fileID: 8093955887444835255}
+  allowCrouchSlideInput: 1
   attackKey: 106
   hitFxPrefab: {fileID: 100001, guid: 4a88bc91d8e1374439c2ff1100000002, type: 3}
   enemyLayer:
@@ -351,11 +357,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567bbb5d891fb41408c5fa8221fe3efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombatController
-  player: {fileID: 0}
-  rb2d: {fileID: 0}
-  animator: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  vfxSpawner: {fileID: 0}
+  player: {fileID: 3317018998205002372}
+  rb2d: {fileID: 1439832498629735533}
+  animator: {fileID: 6293141047657220903}
+  spriteRenderer: {fileID: 9199426973914224064}
+  vfxSpawner: {fileID: 8061851353556149343}
+  inputHandler: {fileID: 8093955887444835255}
   hitFxPrefab: {fileID: 100001, guid: 4a88bc91d8e1374439c2ff1100000002, type: 3}
   smokeFxPrefab: {fileID: 3740749053327368162, guid: 5be803d9f2eda914391067627aee0f07, type: 3}
   attackKey: 106
@@ -389,6 +396,11 @@ MonoBehaviour:
   verticalImpactAoERadius: 2
   verticalImpactAoEDamage: 45
   verticalFinisherDuration: 1.542
+  verticalFinisherCooldown: 1.8
+  verticalImpactCameraShake: 0.28
+  verticalImpactCameraDuration: 0.35
+  verticalImpactGroundMagnitude: 0.045
+  verticalImpactGroundDuration: 0.3
   jumpAttack1Duration: 0.45
   jumpAttack1Reach: 1.55
   jumpAttack2Duration: 0.583
@@ -396,6 +408,57 @@ MonoBehaviour:
   delayWindowFeedbackColor: {r: 0.6, g: 0.9, b: 1, a: 1}
   delayFeedbackFlashDuration: 0.08
   comboResetMaxTime: 1.4
+--- !u!114 &8093955887444835255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421572578373919003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2922041063cbf4fa4219459d60f857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputHandler
+  attackKey: 106
+  dodgeKey: 107
+  jumpKey: 32
+  healKey: 104
+  crouchKey: 115
+  jumpBufferDuration: 0.15
+  attackBufferDuration: 0.14
+  dodgeBufferDuration: 0.12
+--- !u!1 &1425003014234660594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8061851353556149343}
+  m_Layer: 0
+  m_Name: VFX_Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8061851353556149343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425003014234660594}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.18, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8675999683785227126}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3594314530035506961
 GameObject:
   m_ObjectHideFlags: 0

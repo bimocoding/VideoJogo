@@ -91190,6 +91190,7 @@ MonoBehaviour:
   animator: {fileID: 7878350320230767053}
   spriteRenderer: {fileID: 7878350320230767054}
   vfxSpawner: {fileID: 96912663}
+  inputHandler: {fileID: 0}
   hitFxPrefab: {fileID: 100001, guid: 4a88bc91d8e1374439c2ff1100000002, type: 3}
   smokeFxPrefab: {fileID: 3740749053327368162, guid: 5be803d9f2eda914391067627aee0f07, type: 3}
   attackKey: 106
