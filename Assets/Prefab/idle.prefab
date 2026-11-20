@@ -325,14 +325,15 @@ MonoBehaviour:
   currentDodgeStep: 0
   crouchKey: 115
   crouchColliderHeight: 0.32
-  slideDuration: 0.55
-  slideInitialSpeed: 8.5
-  slideDeceleration: 9
+  slideDuration: 0.38
+  slideInitialSpeed: 7.2
+  slideDeceleration: 12.5
   isCrouching: 0
   isSliding: 0
   airDashSpeed: 8
   airDashDuration: 0.225
   isAirDashing: 0
+  dodgeJumpCancelNormalizedTime: 0.65
   dodgeDuration: 0.4
   backdodgeDuration: 0.5
   dodgeSpeed: 6.8
@@ -405,6 +406,9 @@ MonoBehaviour:
   jumpAttack1Reach: 1.55
   jumpAttack2Duration: 0.583
   jumpAttack2Reach: 1.65
+  maxAirAttacksPerJump: 1
+  standardAttackJumpCancelNorm: 0.62
+  heavyAttackJumpCancelNorm: 0.72
   delayWindowFeedbackColor: {r: 0.6, g: 0.9, b: 1, a: 1}
   delayFeedbackFlashDuration: 0.08
   comboResetMaxTime: 1.4

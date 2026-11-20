@@ -114,6 +114,91 @@ public class PlayerCombatController : MonoBehaviour
     public float jumpAttack2Duration = 0.583f;
     public float jumpAttack2Reach = 1.65f;
 
+    [Header("Límites Aéreos y Jump-Cancel de Recuperación")]
+    [Tooltip("Máximo de ataques aéreos normales permitidos por salto.")]
+    public int maxAirAttacksPerJump = 1;
+    [Range(0.4f, 0.95f)] public float standardAttackJumpCancelNorm = 0.62f;
+    [Range(0.5f, 0.95f)] public float heavyAttackJumpCancelNorm = 0.72f;
+    private int airAttacksUsed = 0;
+
+    public void ResetAirAttacks()
+    {
+        airAttacksUsed = 0;
+    }
+
+    public bool CanJumpCancelRecovery
+    {
+        get
+        {
+            if (CurrentState == CombatState.Idle || CurrentState == CombatState.VerticalFinisher) return false;
+            if (IsHorizontalLocked || currentStateDuration <= 0.001f) return false;
+            if (Player == null || !Player.isGrounded) return false;
+
+            float normTime = stateTimer / currentStateDuration;
+            switch (CurrentState)
+            {
+                // Hit1 (0.708s, hitbox en 0.12s): cancelable desde 0.21s — mucho antes del destello cian (0.47s)
+                case CombatState.Hit1:
+                    return normTime >= 0.30f;
+
+                // Hit2Basic (0.792s, hitbox en 0.12s): cancelable desde 0.24s
+                case CombatState.Hit2Basic:
+                    return normTime >= 0.30f;
+
+                // Hit3Basic (1.720s, hitbox épica en 0.28s): conserva peso ~0.60s en vez de bloquearte 1.24s
+                case CombatState.Hit3Basic:
+                    return normTime >= 0.35f;
+
+                // Hit2Variation (0.293s, hitbox en 0.10s): cancelable tras el golpe (~0.16s)
+                case CombatState.Hit2Variation:
+                    return normTime >= 0.55f;
+
+                // Hit3Variation (0.446s, 2º pulso en 0.24s): espera a que salga el 2º corte (~0.29s)
+                case CombatState.Hit3Variation:
+                    return normTime >= 0.65f;
+
+                // Hit4Lunge (0.792s, hitbox en 0.14s): cancelable desde ~0.28s
+                case CombatState.Hit4Lunge:
+                    return normTime >= 0.35f;
+
+                default:
+                    return false;
+            }
+        }
+    }
+
+    private void StopDelayGleamIfActive()
+    {
+        if (gleamRoutine != null)
+        {
+            StopCoroutine(gleamRoutine);
+            gleamRoutine = null;
+            if (SR != null) SR.color = Color.white;
+        }
+    }
+
+    public void CancelRecoveryForJump()
+    {
+        if (activeAttackRoutine != null)
+        {
+            StopCoroutine(activeAttackRoutine);
+            activeAttackRoutine = null;
+        }
+
+        StopDelayGleamIfActive();
+
+        if (Anim != null)
+        {
+            Anim.ResetTrigger("attack");
+            Anim.ResetTrigger("attackVariation");
+            Anim.ResetTrigger("dodgeAttack");
+            Anim.ResetTrigger("verticalAttack");
+            Anim.ResetTrigger("jumpAttack");
+        }
+
+        FinishCombat();
+    }
+
     [Header("Feedback de Combate")]
     public Color delayWindowFeedbackColor = new Color(0.6f, 0.9f, 1f, 1f);
     public float delayFeedbackFlashDuration = 0.08f;
@@ -222,6 +307,7 @@ public class PlayerCombatController : MonoBehaviour
             if (Player != null && Player.isGrounded)
             {
                 CanTriggerAirSlam = false;
+                airAttacksUsed = 0;
             }
         }
     }
@@ -252,22 +338,20 @@ public class PlayerCombatController : MonoBehaviour
 
         if (InputH == null) return;
 
-        // 1. Manejo activo del estado de combate actual
         if (CurrentState != CombatState.Idle)
         {
             UpdateActiveCombatState();
             return;
         }
 
-        // 2. Si está en Idle de combate, solo actuar si hay ataque en buffer
         if (!InputH.AttackBufferActive) return;
 
         bool isGrounded = Player != null ? Player.isGrounded : true;
         bool wantsUp = InputH.UpHeld || InputH.AttackBufferedUp;
         bool wantsDown = InputH.DownHeld || InputH.AttackBufferedDown;
 
-        // RAMA D: ATAQUE VERTICAL DIRECTO (W + J)
-        if (wantsUp)
+        // RAMA D: ATAQUE VERTICAL DIRECTO (W + J SOLO EN EL SUELO)
+        if (isGrounded && wantsUp)
         {
             InputH.ConsumeAttack();
             OrientCharacterFromInput();
@@ -288,10 +372,15 @@ public class PlayerCombatController : MonoBehaviour
                 }
             }
 
-            // COMBO AÉREO ESTÁNDAR (J en aire neutral)
-            InputH.ConsumeAttack();
-            OrientCharacterFromInput();
-            ExecuteJumpAttack(1);
+            // COMBO AÉREO ESTÁNDAR (1 corte limpio por salto; W + J en aire cae aquí sin dar salto extra)
+            if (airAttacksUsed < maxAirAttacksPerJump)
+            {
+                InputH.ConsumeAttack();
+                OrientCharacterFromInput();
+                ExecuteJumpAttack(1);
+            }
+            // Si ya gastaste tu corte aéreo, NO consumimos el buffer:
+            // en pleno aire no hará nada, pero si tocas suelo en los siguientes 0.14s, Hit1 saldrá en el frame 1 del aterrizaje.
             return;
         }
 
@@ -343,7 +432,7 @@ public class PlayerCombatController : MonoBehaviour
                 break;
 
             case CombatState.JumpAttack1:
-                UpdateAerialComboState(normTime, 0.25f, 0.90f, () => ExecuteJumpAttack(2));
+                UpdateAerialRecoveryState(normTime);
                 break;
 
             case CombatState.JumpAttack2:
@@ -374,8 +463,8 @@ public class PlayerCombatController : MonoBehaviour
             Rb2D.linearVelocity = new Vector2(lookDir.x * hit1LungeForce, Rb2D.linearVelocity.y);
         }
 
-        PlayAnimationState("Attack1", 0f);
         SetAnimatorCombatBools(isAttacking: true);
+        PlayAnimationState("Attack1", 0f);
 
         if (activeAttackRoutine != null) StopCoroutine(activeAttackRoutine);
         activeAttackRoutine = StartCoroutine(SingleHitboxRoutine(0.12f, 1.15f, 0.75f, 1, 3.5f, 0f, false));
@@ -450,8 +539,8 @@ public class PlayerCombatController : MonoBehaviour
             Rb2D.linearVelocity = new Vector2(0f, Rb2D.linearVelocity.y);
         }
 
-        PlayAnimationState("Attack2", 0f);
         SetAnimatorCombatBools(isAttacking: true);
+        PlayAnimationState("Attack2", 0f);
 
         if (activeAttackRoutine != null) StopCoroutine(activeAttackRoutine);
         activeAttackRoutine = StartCoroutine(SingleHitboxRoutine(0.12f, hit2BasicReach, 0.75f, 2, 4.0f, 0f, false));
@@ -468,8 +557,8 @@ public class PlayerCombatController : MonoBehaviour
             Rb2D.linearVelocity = new Vector2(0f, Rb2D.linearVelocity.y);
         }
 
-        PlayAnimationState("Attack3", 0f);
         SetAnimatorCombatBools(isAttacking: true);
+        PlayAnimationState("Attack3", 0f);
 
         if (activeAttackRoutine != null) StopCoroutine(activeAttackRoutine);
         // Activa Hitbox exactamente en el frame del destello (0.28s) aplicando Knockback horizontal épico
@@ -493,8 +582,8 @@ public class PlayerCombatController : MonoBehaviour
             Rb2D.linearVelocity = new Vector2(lookDir.x * hit2VarLungeForce, Rb2D.linearVelocity.y);
         }
 
-        PlayAnimationState("Attack2_Variation", 0f);
         SetAnimatorCombatBools(isAttacking: true, isVariation: true);
+        PlayAnimationState("Attack2_Variation", 0f);
 
         if (activeAttackRoutine != null) StopCoroutine(activeAttackRoutine);
         activeAttackRoutine = StartCoroutine(SingleHitboxRoutine(0.10f, hit2VarReach, 0.80f, 2, 4.5f, 0f, false));
@@ -513,8 +602,8 @@ public class PlayerCombatController : MonoBehaviour
             Rb2D.linearVelocity = new Vector2(lookDir.x * hit3VarLungeForce, Rb2D.linearVelocity.y);
         }
 
-        PlayAnimationState("Attack3_Variation", 0f);
         SetAnimatorCombatBools(isAttacking: true, isVariation: true);
+        PlayAnimationState("Attack3_Variation", 0f);
 
         if (activeAttackRoutine != null) StopCoroutine(activeAttackRoutine);
         // Activa 2 pulsos de hitbox continuos
@@ -534,8 +623,8 @@ public class PlayerCombatController : MonoBehaviour
             Rb2D.linearVelocity = new Vector2(lookDir.x * hit4LungeForce, Rb2D.linearVelocity.y);
         }
 
-        PlayAnimationState("DodgeAttack1", 0f);
         SetAnimatorCombatBools(isDodgeAttacking: true);
+        PlayAnimationState("DodgeAttack1", 0f);
 
         if (activeAttackRoutine != null) StopCoroutine(activeAttackRoutine);
         activeAttackRoutine = StartCoroutine(SingleHitboxRoutine(0.14f, hit4LungeReach, 0.80f, 4, 5.5f, 0f, false));
@@ -552,8 +641,8 @@ public class PlayerCombatController : MonoBehaviour
             Rb2D.linearVelocity = new Vector2(0f, hit5LauncherJumpForce);
         }
 
-        PlayAnimationState("DodgeAttack2", 0f);
         SetAnimatorCombatBools(isDodgeAttacking: true);
+        PlayAnimationState("DodgeAttack2", 0f);
 
         // Activa flag para habilitar el Vertical Finisher Slam en el aire
         CanTriggerAirSlam = true;
@@ -572,6 +661,8 @@ public class PlayerCombatController : MonoBehaviour
             StopCoroutine(activeAttackRoutine);
             activeAttackRoutine = null;
         }
+
+        StopDelayGleamIfActive();
         if (verticalFinisherRoutine != null) StopCoroutine(verticalFinisherRoutine);
         verticalFinisherRoutine = StartCoroutine(VerticalFinisherSlamRoutine());
     }
@@ -787,6 +878,8 @@ public class PlayerCombatController : MonoBehaviour
             activeAttackRoutine = null;
         }
 
+        StopDelayGleamIfActive();
+
         SetAnimatorCombatBools(false, false, false, false, false);
         CurrentState = CombatState.Idle;
 
@@ -830,8 +923,8 @@ public class PlayerCombatController : MonoBehaviour
             Rb2D.linearVelocity = new Vector2(0f, hit5LauncherJumpForce);
         }
 
-        PlayAnimationState("DodgeAttack2", 0f);
         SetAnimatorCombatBools(isDodgeAttacking: true);
+        PlayAnimationState("DodgeAttack2", 0f);
 
         CanTriggerAirSlam = true;
 
@@ -841,25 +934,22 @@ public class PlayerCombatController : MonoBehaviour
 
     private void ExecuteJumpAttack(int step)
     {
-        CombatState targetState = (step == 1) ? CombatState.JumpAttack1 : CombatState.JumpAttack2;
-        float duration = (step == 1) ? jumpAttack1Duration : jumpAttack2Duration;
-        float reach = (step == 1) ? jumpAttack1Reach : jumpAttack2Reach;
+        airAttacksUsed++;
 
-        SetCombatState(targetState, duration);
+        SetCombatState(CombatState.JumpAttack1, jumpAttack1Duration);
 
-        // REGLA: Conservar la inercia del salto horizontal, dando una leve sustentación vertical
+        // Conservar inercia horizontal con leve sustentación vertical
         if (Rb2D != null)
         {
             float airLift = Mathf.Max(Rb2D.linearVelocity.y * 0.5f, 1.2f);
             Rb2D.linearVelocity = new Vector2(Rb2D.linearVelocity.x, airLift);
         }
 
-        string stateName = (step == 1) ? "JumpAttack" : "JumpAttack2";
-        PlayAnimationState(stateName, 0f);
         SetAnimatorCombatBools(isJumpAttacking: true);
+        PlayAnimationState("JumpAttack", 0f);
 
         if (activeAttackRoutine != null) StopCoroutine(activeAttackRoutine);
-        activeAttackRoutine = StartCoroutine(SingleHitboxRoutine(0.10f, reach, 0.95f, step, 3.5f, 0f, false));
+        activeAttackRoutine = StartCoroutine(SingleHitboxRoutine(0.10f, jumpAttack1Reach, 0.95f, 1, 3.5f, 0f, false));
     }
 
     private void UpdateAerialComboState(float normTime, float chainStart, float chainEnd, Action nextAction)
@@ -880,12 +970,16 @@ public class PlayerCombatController : MonoBehaviour
                 return;
             }
 
-            if (normTime >= chainStart && normTime <= chainEnd)
+            if (airAttacksUsed < maxAirAttacksPerJump && normTime >= chainStart && normTime <= chainEnd)
             {
-                InputH.ConsumeAttack();
-                OrientCharacterFromInput();
-                nextAction?.Invoke();
-                return;
+                bool hasSecondAirState = Anim == null || Anim.HasState(0, Animator.StringToHash("JumpAttack2"));
+                if (hasSecondAirState)
+                {
+                    InputH.ConsumeAttack();
+                    OrientCharacterFromInput();
+                    nextAction?.Invoke();
+                    return;
+                }
             }
         }
 
@@ -973,6 +1067,8 @@ public class PlayerCombatController : MonoBehaviour
             StopCoroutine(activeAttackRoutine);
             activeAttackRoutine = null;
         }
+
+        StopDelayGleamIfActive();
         if (verticalFinisherRoutine != null)
         {
             StopCoroutine(verticalFinisherRoutine);
@@ -1257,6 +1353,7 @@ public class PlayerCombatController : MonoBehaviour
         if (Anim != null)
         {
             Anim.Play(stateName, 0, normalizedTime);
+            Anim.Update(0f);
         }
     }
 

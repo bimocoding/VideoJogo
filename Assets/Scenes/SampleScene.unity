@@ -91190,7 +91190,7 @@ MonoBehaviour:
   animator: {fileID: 7878350320230767053}
   spriteRenderer: {fileID: 7878350320230767054}
   vfxSpawner: {fileID: 96912663}
-  inputHandler: {fileID: 0}
+  inputHandler: {fileID: 7878350320230767056}
   hitFxPrefab: {fileID: 100001, guid: 4a88bc91d8e1374439c2ff1100000002, type: 3}
   smokeFxPrefab: {fileID: 3740749053327368162, guid: 5be803d9f2eda914391067627aee0f07, type: 3}
   attackKey: 106
@@ -91233,9 +91233,23 @@ MonoBehaviour:
   jumpAttack1Reach: 1.55
   jumpAttack2Duration: 0.583
   jumpAttack2Reach: 1.65
+  maxAirAttacksPerJump: 2
+  standardAttackJumpCancelNorm: 0.62
+  heavyAttackJumpCancelNorm: 0.72
   delayWindowFeedbackColor: {r: 0.6, g: 0.9, b: 1, a: 1}
   delayFeedbackFlashDuration: 0.08
   comboResetMaxTime: 1.4
+--- !u!114 &7878350320230767056 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8093955887444835255, guid: 579fef78f73793e4abff30195597cfec, type: 3}
+  m_PrefabInstance: {fileID: 4598265330002219188}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808512202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c2922041063cbf4fa4219459d60f857, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputHandler
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

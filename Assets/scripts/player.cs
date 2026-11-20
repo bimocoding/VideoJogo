@@ -213,9 +213,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [Header("Sistema de Agachado y Deslizamiento (Fase 4 - Crouch & Slide)")]
     public KeyCode crouchKey = KeyCode.S;
     public float crouchColliderHeight = 0.32f;  // Altura del collider reducida al agacharse/deslizarse
-    public float slideDuration = 0.55f;         // DuraciÃ³n del deslizamiento
-    public float slideInitialSpeed = 8.5f;      // Velocidad de arranque del slide (mayor a carrera 4.6f)
-    public float slideDeceleration = 9.0f;      // DesaceleraciÃ³n / fricciÃ³n durante el slide
+    public float slideDuration = 0.38f;         // Duración del deslizamiento (~1.83m)
+    public float slideInitialSpeed = 7.2f;      // Velocidad de arranque del slide
+    public float slideDeceleration = 12.5f;     // Desaceleración / fricción durante el slide
 
     // Estados de Crouch y Slide
     public bool isCrouching = false;
@@ -224,7 +224,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private float currentSlideSpeed = 0f;
     private float slideDirection = 1f;
 
-    [Header("Sistema de EvasiÃ³n AÃ©rea (Aerial Dash)")]
+    [Header("Sistema de Evasión Aérea (Aerial Dash)")]
     public float airDashSpeed = 8.0f;           // Distancia calibrada a ~60% (ej. de 10 a 6)
     public float airDashDuration = 0.225f;
     public bool isAirDashing = false;
@@ -232,13 +232,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private float airDashTimer = 0f;
     private float airDashDirection = 0f;
 
-    [Header("Sistema de EvasiÃ³n (Fase 5 - Dodge, Backdodge y Sprint)")]
-    public float dodgeDuration = 0.40f;         // DuraciÃ³n del dodge normal
-    public float backdodgeDuration = 0.50f;     // DuraciÃ³n del backdodge
+    [Header("Sistema de Evasión (Fase 5 - Dodge, Backdodge y Sprint)")]
+    [Range(0.4f, 0.95f)]
+    public float dodgeJumpCancelNormalizedTime = 0.65f; // Permite saltar en el último 35% del dodge/backdodge
+    public float dodgeDuration = 0.40f;         // Duración del dodge normal
+    public float backdodgeDuration = 0.50f;     // Duración del backdodge
     public float dodgeSpeed = 6.8f;             // Velocidad base del dodge normal
     public float backdodgeSpeed = 6.2f;         // Velocidad base del backdodge (distancia constante fija)
     public float dodgeRunMultiplier = 1.35f;    // Multiplicador de distancia / velocidad al esquivar hacia adelante en carrera
-    public float dodgeCooldown = 0.25f;         // Tiempo de recuperaciÃ³n entre evasiones
+    public float dodgeCooldown = 0.25f;         // Tiempo de recuperación entre evasiones
 
     // Estados de Dodge y Backdodge
     public bool isDodging = false;
@@ -438,8 +440,17 @@ public class NewMonoBehaviourScript : MonoBehaviour
             else if (move < -0.01f) facingDirection = 1;
         }
 
+        // Recovery Jump-Cancel: permite cancelar los frames finales de recuperación de ataques terrestres con Salto
+        if (combatController != null && combatController.CanJumpCancelRecovery && inputHandler.JumpBufferActive && coyoteTimeCounter > 0f)
+        {
+            combatController.CancelRecoveryForJump();
+            move = inputHandler.MoveX;
+            if (move > 0.01f) facingDirection = -1;
+            else if (move < -0.01f) facingDirection = 1;
+            ExecuteJump();
+        }
         // Disparo de salto normal (desde suelo o coyote time) usando el buffer global
-        if (!isMovementBlocked && inputHandler.JumpBufferActive && coyoteTimeCounter > 0f)
+        else if (!isMovementBlocked && inputHandler.JumpBufferActive && coyoteTimeCounter > 0f)
         {
             ExecuteJump();
         }
@@ -539,6 +550,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (isGrounded)
         {
             hasAirDashed = false;
+            if (combatController != null) combatController.ResetAirAttacks();
             airJumpsRemaining = maxAirJumps;
             coyoteTimeCounter = coyoteTime;
             lastLedgeCorner = Vector2.positiveInfinity;
@@ -675,6 +687,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isBackdodging = false;
         isAirDashing = false;
         hasAirDashed = false;
+        if (combatController != null) combatController.ResetAirAttacks();
         isSliding = false;
         isCrouching = false;
         isWallJumping = false;
@@ -764,6 +777,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void ExecuteLedgeWallJump(Vector2 lookDir)
     {
         hasAirDashed = false;
+        if (combatController != null) combatController.ResetAirAttacks();
         airJumpsRemaining = maxAirJumps;
         isHanging = false;
         isClimbing = false;
@@ -808,6 +822,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private void DropFromLedge(Vector2 lookDir)
     {
         hasAirDashed = false;
+        if (combatController != null) combatController.ResetAirAttacks();
         airJumpsRemaining = maxAirJumps;
         isHanging = false;
         isClimbing = false;
@@ -1791,13 +1806,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         if (isHanging || isClimbing || IsInCombatAction || isSliding || isDodging || isBackdodging) return;
-
-        // Comprobación de recuperación/cooldown (el buffer en PlayerInputHandler retiene K hasta que baje a 0)
         if (dodgeCooldownTimer > 0f) return;
-
         if (!inputHandler.DodgeBufferActive) return;
 
-        // Si está en el aire: DISPARO DE AERIAL DASH
+        // En el aire: Aerial Dash
         if (!isGrounded)
         {
             if (!hasAirDashed && !isAirDashing && !isHanging && !isClimbing && !IsInCombatAction)
@@ -1808,7 +1820,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // S + K en el suelo: Slide directo si allowCrouchSlideInput está activo
+        // ÚNICA FORMA MANUAL DE SLIDE: S + K en el suelo
         if (inputHandler.DownHeld)
         {
             if (allowCrouchSlideInput)
@@ -1819,7 +1831,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // Si está agachado por techo bajo
+        // Si está agachado por techo bajo sin pulsar S
         if (isCrouching)
         {
             if (CanStandUp())
@@ -1837,7 +1849,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
         int relativeIntent = inputHandler.GetRelativeHorizontalIntent(facingDirection);
-
         inputHandler.ConsumeDodge();
 
         // 1. Backdodge: dirección opuesta
@@ -1847,20 +1858,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        // 2. Slide: corriendo hacia adelante o con inercia de carrera
-        if (isRunning && (relativeIntent == 1 || Mathf.Abs(rb2d.linearVelocity.x) > walkSpeed + 0.2f))
-        {
-            StartSlide();
-            return;
-        }
-
-        // 3. Dodge Normal
+        // 2. Dodge Normal (idéntico con o sin Sprint toggleado)
         StartDodge(isBackwards: false);
     }
 
-    /// <summary>
-    /// Cancela el ataque terrestre en curso para ejecutar de inmediato Slide o Dodge según la dirección presionada.
-    /// </summary>
     public void CancelAttackIntoDodgeOrSlide()
     {
         isAttacking = false;
@@ -1868,6 +1869,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isVerticalAttacking = false;
         isJumpAttacking = false;
         dodgeCooldownTimer = 0f;
+
+        // Slide SOLO con S + K
+        if (inputHandler.DownHeld && allowCrouchSlideInput)
+        {
+            StartSlide();
+            return;
+        }
 
         int relativeIntent = inputHandler.GetRelativeHorizontalIntent(facingDirection);
 
@@ -1877,18 +1885,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
             return;
         }
 
-        if (inputHandler.DownHeld && allowCrouchSlideInput)
-        {
-            StartSlide();
-            return;
-        }
-
-        if (isRunning || relativeIntent == 1)
-        {
-            StartSlide();
-            return;
-        }
-
+        // Neutral o adelante (con o sin sprint): siempre Dodge normal
         StartDodge(isBackwards: false);
     }
 
@@ -2067,22 +2064,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
         isBackdodging = isBackwards;
         dodgeTimer = 0f;
 
-        // Atravesar temporalmente a enemigos sin colisiÃ³n fÃ­sica durante la evasiÃ³n
         SetDodgeIgnoreEnemies(true);
 
-        // OrientaciÃ³n:
-        // facingDirection == -1 -> Mira a la DERECHA (+X)
-        // facingDirection == 1  -> Mira a la IZQUIERDA (-X)
         float forwardDir = (facingDirection == -1) ? 1f : -1f;
         dodgeDirection = isBackwards ? -forwardDir : forwardDir;
 
-        float baseSpeed = isBackwards ? backdodgeSpeed : dodgeSpeed;
-        // El backdodge mantiene la misma distancia fija constante ya sea con correr activado o desactivado;
-        // el multiplicador de sprint solo incrementa la distancia del dodge hacia adelante.
-        float speedMultiplier = (!isBackwards && isRunning) ? dodgeRunMultiplier : 1.0f;
-        currentDodgeSpeed = baseSpeed * speedMultiplier;
+        // Velocidad y distancia constantes independientemente del toggle de Sprint
+        currentDodgeSpeed = isBackwards ? backdodgeSpeed : dodgeSpeed;
 
-        // Mantener orientaciÃ³n del personaje (el backdodge mantiene el frente hacia el enemigo)
         transform.localScale = new Vector3(facingDirection * currentScale.x, currentScale.y, 1f);
 
         if (animator != null)
@@ -2117,11 +2106,18 @@ public class NewMonoBehaviourScript : MonoBehaviour
         if (!isDodging && !isBackdodging) return;
 
         dodgeTimer += Time.deltaTime;
+        float maxDuration = isBackdodging ? backdodgeDuration : dodgeDuration;
 
-        // DesaceleraciÃ³n suave
+        // Jump-Cancel en el tramo de recuperación del dodge/backdodge
+        if (dodgeTimer >= maxDuration * dodgeJumpCancelNormalizedTime && inputHandler.JumpBufferActive && coyoteTimeCounter > 0f && CanStandUp())
+        {
+            StopDodge();
+            ExecuteJump();
+            return;
+        }
+
         currentDodgeSpeed = Mathf.MoveTowards(currentDodgeSpeed, 0f, 7.5f * Time.deltaTime);
 
-        // ComprobaciÃ³n de pared frontal en la direcciÃ³n del movimiento para evitar atravesar paredes
         Vector2 checkOrigin = (Vector2)transform.position + Vector2.up * 0.35f;
         RaycastHit2D wallHit = Physics2D.Raycast(checkOrigin, Vector2.right * dodgeDirection, 0.32f, groundLayer);
         if (wallHit.collider != null)
@@ -2131,7 +2127,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         rb2d.linearVelocity = new Vector2(dodgeDirection * currentDodgeSpeed, rb2d.linearVelocity.y);
 
-        float maxDuration = isBackdodging ? backdodgeDuration : dodgeDuration;
         if (dodgeTimer >= maxDuration || Mathf.Abs(currentDodgeSpeed) < 0.2f)
         {
             StopDodge();
