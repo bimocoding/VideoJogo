@@ -119,7 +119,7 @@ public class LevelBuilder
             go.layer = 3;
             go.tag = "Floor";
             var col = go.AddComponent<TilemapCollider2D>();
-            col.usedByComposite = true;
+            col.compositeOperation = Collider2D.CompositeOperation.Merge;
             var rb = go.AddComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Static;
             go.AddComponent<CompositeCollider2D>();
