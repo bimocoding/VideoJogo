@@ -272,6 +272,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public int facingDirection = 1;
     private Vector3 currentScale = Vector3.one;
 
+    void Awake()
+    {
+        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+    }
+
     void Start()
     {
         combatController = GetComponent<PlayerCombatController>();
@@ -2360,7 +2365,14 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void SetSpritesColor(Color c)
     {
-        foreach (var sr in spriteRenderers) if (sr != null) sr.color = c;
+        if (spriteRenderers == null || spriteRenderers.Length == 0)
+        {
+            spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        }
+        if (spriteRenderers != null)
+        {
+            foreach (var sr in spriteRenderers) if (sr != null) sr.color = c;
+        }
     }
 
     private IEnumerator HitPauseRoutine(float duration)
