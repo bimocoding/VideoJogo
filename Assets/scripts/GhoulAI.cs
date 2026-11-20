@@ -47,7 +47,7 @@ public class GhoulAI : MonoBehaviour, IStunnable
     private Coroutine attackRoutine;
 
     [Header("Aturdimiento / Stun al recibir golpes")]
-    public float hitStunDuration = 0.75f;
+    public float hitStunDuration = 0.85f;       // Ventana de combo (permite encadenar el siguiente golpe)
     private float stunTimer = 0f;
     public bool IsStunned => stunTimer > 0f;
 
@@ -92,6 +92,9 @@ public class GhoulAI : MonoBehaviour, IStunnable
         if (baseScaleY < 0.1f) baseScaleY = 1.55f;
 
         transform.localScale = new Vector3(baseScaleX, baseScaleY, 1f);
+
+        // Asegurar que la ventana de stun permita encadenar combos (mínimo 0.85s)
+        if (hitStunDuration < 0.85f) hitStunDuration = 0.85f;
     }
 
     private void OnEnable()
@@ -103,6 +106,8 @@ public class GhoulAI : MonoBehaviour, IStunnable
     private void OnDisable()
     {
         allGhouls.Remove(this);
+        if (anim != null) anim.speed = 1f;
+        CancelAttack();
     }
 
     private void Start()
@@ -140,12 +145,13 @@ public class GhoulAI : MonoBehaviour, IStunnable
 
     public void OnStunned(float duration = -1f)
     {
-        stunTimer = (duration > 0f) ? duration : hitStunDuration;
+        float targetDuration = (duration > 0f) ? duration : hitStunDuration;
+        stunTimer = targetDuration;
         CancelAttack();
-        attackTimer = Mathf.Max(attackTimer, 0.6f);
-        // Un golpe siempre le hace notar al jugador
+        attackTimer = 0f; // Al concluir el stun, podrá atacar de inmediato si el jugador no encadena otro ataque
         state = State.Chase;
         lastSeenTimer = 0f;
+        if (anim != null) anim.speed = 0f; // Pausa animación en hitstun
     }
 
     private void CancelAttack()
@@ -177,7 +183,15 @@ public class GhoulAI : MonoBehaviour, IStunnable
         {
             stunTimer -= Time.deltaTime;
             SetMoving(false);
+            if (anim != null) anim.speed = 0f;
             return;
+        }
+        else
+        {
+            if (anim != null && anim.speed == 0f)
+            {
+                anim.speed = 1f;
+            }
         }
 
         if (attackTimer > 0f) attackTimer -= Time.deltaTime;
@@ -314,7 +328,7 @@ public class GhoulAI : MonoBehaviour, IStunnable
     // Se comprueba por solapamiento cada frame: no depende de que los colliders choquen físicamente.
     private void CheckContactDamage()
     {
-        if (contactDamage <= 0 || IsStunned || myCollider == null || playerComp == null) return;
+        if (contactDamage <= 0 || IsStunned || isAttacking || myCollider == null || playerComp == null) return;
         if (playerComp.IsInvulnerable || !PlayerIsTargetable()) return;
         var b = myCollider.bounds;
         foreach (var c in Physics2D.OverlapBoxAll(b.center, (Vector2)b.size + Vector2.one * 0.06f, 0f))

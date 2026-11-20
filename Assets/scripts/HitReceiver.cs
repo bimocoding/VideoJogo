@@ -10,12 +10,13 @@ public interface IStunnable
 // Daño de la explosión de fuego al morir: llega con un pequeño retraso para que el jugador pueda alejarse
 public class DelayedExplosion : MonoBehaviour
 {
-    public int damage = 15;
+    public int damage = 0; // Por defecto 0 (explosión cosmética sin daño)
     public float radius = 0.8f;
     public float delay = 0.3f;
 
     IEnumerator Start()
     {
+        if (damage <= 0) yield break; // Sin daño
         yield return new WaitForSeconds(delay);
         foreach (var c in Physics2D.OverlapCircleAll(transform.position, radius))
         {
@@ -41,6 +42,9 @@ public class HitReceiver : MonoBehaviour
     public Color hitFlashColor = new Color(1f, 0.25f, 0.25f, 1f);
     public bool enableHitSquash = true;
     public Vector2 squashScale = new Vector2(1.25f, 0.8f);
+
+    [Header("Aturdimiento")]
+    public float defaultHitStunDuration = 0.85f;
 
     [Header("Físicas de Retroceso Ligero (Knockback)")]
     public float baseKnockbackForce = 4.5f;   // Empuje horizontal al recibir un golpe
@@ -70,6 +74,12 @@ public class HitReceiver : MonoBehaviour
         }
         currentHealth = maxHealth;
         isImmortal = false;
+
+        // La explosión al morir de los ghouls es puramente visual y no hace daño al jugador
+        if (GetComponent<GhoulAI>() != null)
+        {
+            explosionDamage = 0;
+        }
     }
 
     void Update()
@@ -120,7 +130,7 @@ public class HitReceiver : MonoBehaviour
         // Notificar aturdimiento a la IA (los jefes no se aturden)
         if (!isBoss)
         {
-            foreach (var stunnable in GetComponents<IStunnable>()) stunnable.OnStunned(0.75f);
+            foreach (var stunnable in GetComponents<IStunnable>()) stunnable.OnStunned(defaultHitStunDuration);
         }
 
         // Empuje físico hacia atrás respetando bordes para no caer al vacío (los jefes no retroceden)
@@ -235,7 +245,7 @@ public class HitReceiver : MonoBehaviour
     [Header("Efecto de Muerte")]
     public Sprite[] deathFxFrames;            // explosión de fuego "enemy-death" (solo enemigos de fuego)
     public float deathFxFps = 18f;
-    public int explosionDamage = 15;          // la explosión daña al jugador si está cerca
+    public int explosionDamage = 0;           // La explosión al morir NO hace daño (puramente visual)
     public float explosionRadius = 0.8f;
 
     private void SpawnDeathFx()

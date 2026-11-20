@@ -251,7 +251,7 @@ MonoBehaviour:
   groundDamping: 8
   deathFxFrames: []
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -459,7 +459,7 @@ MonoBehaviour:
   contactDamage: 10
   maxDropHeight: 2.2
   windupColor: {r: 1, g: 0.85, b: 0.4, a: 1}
-  hitStunDuration: 0.75
+  hitStunDuration: 0.85
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -505,7 +505,7 @@ MonoBehaviour:
   - {fileID: -8671084770012893645, guid: 771a5a6873e111c4d9943783870b0329, type: 3}
   - {fileID: -285156463949586906, guid: d94da497809dc9645a294b5a481afbcf, type: 3}
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -772,7 +772,7 @@ MonoBehaviour:
   contactDamage: 10
   maxDropHeight: 2.2
   windupColor: {r: 1, g: 0.85, b: 0.4, a: 1}
-  hitStunDuration: 0.75
+  hitStunDuration: 0.85
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -818,7 +818,7 @@ MonoBehaviour:
   - {fileID: -8671084770012893645, guid: 771a5a6873e111c4d9943783870b0329, type: 3}
   - {fileID: -285156463949586906, guid: d94da497809dc9645a294b5a481afbcf, type: 3}
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -55868,7 +55868,7 @@ MonoBehaviour:
   contactDamage: 10
   maxDropHeight: 2.2
   windupColor: {r: 1, g: 0.85, b: 0.4, a: 1}
-  hitStunDuration: 0.75
+  hitStunDuration: 0.85
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -55914,7 +55914,7 @@ MonoBehaviour:
   - {fileID: -8671084770012893645, guid: 771a5a6873e111c4d9943783870b0329, type: 3}
   - {fileID: -285156463949586906, guid: d94da497809dc9645a294b5a481afbcf, type: 3}
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -57741,7 +57741,7 @@ MonoBehaviour:
   groundDamping: 8
   deathFxFrames: []
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -59717,7 +59717,7 @@ MonoBehaviour:
   contactDamage: 10
   maxDropHeight: 2.2
   windupColor: {r: 1, g: 0.85, b: 0.4, a: 1}
-  hitStunDuration: 0.75
+  hitStunDuration: 0.85
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -59763,7 +59763,7 @@ MonoBehaviour:
   - {fileID: -8671084770012893645, guid: 771a5a6873e111c4d9943783870b0329, type: 3}
   - {fileID: -285156463949586906, guid: d94da497809dc9645a294b5a481afbcf, type: 3}
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -61056,7 +61056,7 @@ MonoBehaviour:
   contactDamage: 10
   maxDropHeight: 2.2
   windupColor: {r: 1, g: 0.85, b: 0.4, a: 1}
-  hitStunDuration: 0.75
+  hitStunDuration: 0.85
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -61102,7 +61102,7 @@ MonoBehaviour:
   - {fileID: -8671084770012893645, guid: 771a5a6873e111c4d9943783870b0329, type: 3}
   - {fileID: -285156463949586906, guid: d94da497809dc9645a294b5a481afbcf, type: 3}
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -64640,7 +64640,7 @@ MonoBehaviour:
   contactDamage: 10
   maxDropHeight: 2.2
   windupColor: {r: 1, g: 0.85, b: 0.4, a: 1}
-  hitStunDuration: 0.75
+  hitStunDuration: 0.85
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -64686,7 +64686,7 @@ MonoBehaviour:
   - {fileID: -8671084770012893645, guid: 771a5a6873e111c4d9943783870b0329, type: 3}
   - {fileID: -285156463949586906, guid: d94da497809dc9645a294b5a481afbcf, type: 3}
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -64892,7 +64892,7 @@ MonoBehaviour:
   groundDamping: 8
   deathFxFrames: []
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -88188,7 +88188,7 @@ MonoBehaviour:
   contactDamage: 10
   maxDropHeight: 2.2
   windupColor: {r: 1, g: 0.85, b: 0.4, a: 1}
-  hitStunDuration: 0.75
+  hitStunDuration: 0.85
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -88234,7 +88234,7 @@ MonoBehaviour:
   - {fileID: -8671084770012893645, guid: 771a5a6873e111c4d9943783870b0329, type: 3}
   - {fileID: -285156463949586906, guid: d94da497809dc9645a294b5a481afbcf, type: 3}
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -88507,7 +88507,7 @@ MonoBehaviour:
   contactDamage: 10
   maxDropHeight: 2.2
   windupColor: {r: 1, g: 0.85, b: 0.4, a: 1}
-  hitStunDuration: 0.75
+  hitStunDuration: 0.85
   groundCheck: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -88553,7 +88553,7 @@ MonoBehaviour:
   - {fileID: -8671084770012893645, guid: 771a5a6873e111c4d9943783870b0329, type: 3}
   - {fileID: -285156463949586906, guid: d94da497809dc9645a294b5a481afbcf, type: 3}
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22
@@ -90068,7 +90068,7 @@ MonoBehaviour:
   groundDamping: 8
   deathFxFrames: []
   deathFxFps: 18
-  explosionDamage: 15
+  explosionDamage: 0
   explosionRadius: 0.8
   bossExplosionCount: 9
   bossExplosionInterval: 0.22

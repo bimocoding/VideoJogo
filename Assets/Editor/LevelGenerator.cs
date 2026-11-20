@@ -828,6 +828,7 @@ public class LevelBuilder
         hr.currentHealth = 100;
         hr.damagePerHit = 25;
         hr.isImmortal = false;
+        hr.explosionDamage = 0; // Sin daño en la explosión al morir
         hr.baseKnockbackForce = 4.5f;
         hr.groundDamping = 8.0f;
 
@@ -835,6 +836,7 @@ public class LevelBuilder
         var ai = ghoul.GetComponent<GhoulAI>();
         if (ai == null) ai = ghoul.AddComponent<GhoulAI>();
         ai.targetPlayer = playerTransform;
+        ai.hitStunDuration = 0.85f;
         ai.moveSpeed = 2.2f;
         ai.detectionRadius = 12.0f;
         ai.stopDistance = 0.65f;
