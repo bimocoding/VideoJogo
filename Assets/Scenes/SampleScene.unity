@@ -91223,6 +91223,11 @@ MonoBehaviour:
   verticalImpactAoERadius: 2
   verticalImpactAoEDamage: 45
   verticalFinisherDuration: 1.542
+  verticalFinisherCooldown: 1.8
+  verticalImpactCameraShake: 0.28
+  verticalImpactCameraDuration: 0.35
+  verticalImpactGroundMagnitude: 0.045
+  verticalImpactGroundDuration: 0.3
   jumpAttack1Duration: 0.45
   jumpAttack1Reach: 1.55
   jumpAttack2Duration: 0.583

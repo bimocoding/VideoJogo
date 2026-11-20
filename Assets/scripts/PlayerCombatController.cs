@@ -570,13 +570,18 @@ public class PlayerCombatController : MonoBehaviour
 
         if (activeAttackRoutine != null) StopCoroutine(activeAttackRoutine);
         // Aplica +7.8 m/s vertical de launcher al enemigo
-        activeAttackRoutine = StartCoroutine(SingleHitboxRoutine(0.16f, hit5LauncherReach, 1.2f, 5, 2.5f, hit5LauncherJumpForce, true));
+        activeAttackRoutine = StartCoroutine(SingleHitboxRoutine(0.16f, hit5LauncherReach, 1.2f, 5, 2.5f, hit5LauncherJumpForce, false));
     }
 
     public void StartVerticalFinisher()
     {
         if (!CanExecuteVerticalFinisher) return;
         CanTriggerAirSlam = false;
+        if (activeAttackRoutine != null)
+        {
+            StopCoroutine(activeAttackRoutine);
+            activeAttackRoutine = null;
+        }
         if (verticalFinisherRoutine != null) StopCoroutine(verticalFinisherRoutine);
         verticalFinisherRoutine = StartCoroutine(VerticalFinisherSlamRoutine());
     }
@@ -846,7 +851,7 @@ public class PlayerCombatController : MonoBehaviour
         CanTriggerAirSlam = true;
 
         if (activeAttackRoutine != null) StopCoroutine(activeAttackRoutine);
-        activeAttackRoutine = StartCoroutine(SingleHitboxRoutine(0.16f, hit5LauncherReach, 1.2f, 5, 2.5f, hit5LauncherJumpForce, true));
+        activeAttackRoutine = StartCoroutine(SingleHitboxRoutine(0.16f, hit5LauncherReach, 1.2f, 5, 2.5f, hit5LauncherJumpForce, false));
     }
 
     private void ExecuteJumpAttack(int step)

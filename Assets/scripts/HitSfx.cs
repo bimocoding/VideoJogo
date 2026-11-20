@@ -28,11 +28,18 @@ public class HitSfx : MonoBehaviour
         instance.PlayInternal(Mathf.Clamp01(strength));
     }
 
+    private static float lastEpicPlayTime = -999f;
+
     // Suena en cada tajo, acierte o no. epic = golpe final del combo / remate
     public static void PlaySlash(bool epic)
     {
         Ensure();
         if (!epic) { instance.PlayInternal(0f); return; }
+
+        // Evitar que el remate épico se reproduzca más de una vez consecutiva por spam de teclas
+        if (Time.time - lastEpicPlayTime < 0.75f) return;
+        lastEpicPlayTime = Time.time;
+
         var clip = instance.customEpicClip != null ? instance.customEpicClip : instance.epicClip;
         instance.source.pitch = Random.Range(0.97f, 1.03f);
         instance.source.PlayOneShot(clip, instance.volume);
