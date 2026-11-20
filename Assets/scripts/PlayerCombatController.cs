@@ -87,6 +87,25 @@ public class PlayerCombatController : MonoBehaviour
     public int verticalImpactAoEDamage = 45;
     public float verticalFinisherDuration = 1.542f;
 
+    [Header("Anti-Spam Vertical Finisher")]
+    [Tooltip("Tiempo de enfriamiento (segundos) tras tocar tierra antes de poder realizar otro Vertical Finisher")]
+    public float verticalFinisherCooldown = 1.8f;
+    private float verticalFinisherCooldownTimer = 0f;
+
+    [Header("Temblor de Cámara y Suelo en Impacto")]
+    public float verticalImpactCameraShake = 0.28f;
+    public float verticalImpactCameraDuration = 0.35f;
+    public float verticalImpactGroundMagnitude = 0.045f;
+    public float verticalImpactGroundDuration = 0.30f;
+    private Coroutine groundTremorRoutine = null;
+    private Transform cachedGridTransform = null;
+    private Vector3 gridInitialPos = Vector3.zero;
+
+    public bool CanExecuteVerticalFinisher =>
+        verticalFinisherCooldownTimer <= 0f &&
+        CurrentState != CombatState.VerticalFinisher &&
+        Player != null && !Player.isGrounded && !Player.isDead && !Player.isHanging && !Player.isClimbing;
+
     [Header("Configuración Combo Aéreo Estándar")]
     public float jumpAttack1Duration = 0.450f;
     public float jumpAttack1Reach = 1.55f;
@@ -165,10 +184,25 @@ public class PlayerCombatController : MonoBehaviour
         {
             vfxSpawner.localPosition = new Vector3(0f, 0.18f, 0f);
         }
+
+        if (cachedGridTransform == null)
+        {
+            GameObject gridObj = GameObject.Find("Grid");
+            if (gridObj != null)
+            {
+                cachedGridTransform = gridObj.transform;
+                gridInitialPos = cachedGridTransform.position;
+            }
+        }
     }
 
     private void Update()
     {
+        if (verticalFinisherCooldownTimer > 0f)
+        {
+            verticalFinisherCooldownTimer -= Time.deltaTime;
+        }
+
         if (comboResetTimer > 0f)
         {
             comboResetTimer -= Time.deltaTime;
@@ -239,8 +273,11 @@ public class PlayerCombatController : MonoBehaviour
         {
             if ((isDownHeld || CanTriggerAirSlam) && Input.GetKeyDown(attackKey))
             {
-                StartVerticalFinisher();
-                return;
+                if (CanExecuteVerticalFinisher)
+                {
+                    StartVerticalFinisher();
+                    return;
+                }
             }
 
             // COMBO AÉREO ESTÁNDAR (J en aire neutral)
@@ -538,6 +575,8 @@ public class PlayerCombatController : MonoBehaviour
 
     public void StartVerticalFinisher()
     {
+        if (!CanExecuteVerticalFinisher) return;
+        CanTriggerAirSlam = false;
         if (verticalFinisherRoutine != null) StopCoroutine(verticalFinisherRoutine);
         verticalFinisherRoutine = StartCoroutine(VerticalFinisherSlamRoutine());
     }
@@ -652,9 +691,15 @@ public class PlayerCombatController : MonoBehaviour
             Anim.Play("VerticalAttack", 0, 13f / 37f);
         }
 
-        // Audio épico y temblor de cámara
+        // Audio épico, temblor de cámara y vibración del suelo
         HitSfx.PlaySlash(true);
         TriggerHitstop(0.09f);
+
+        // Sacudir ligeramente la cámara y hacer temblar el suelo en el impacto
+        camara.Shake(verticalImpactCameraShake, verticalImpactCameraDuration);
+        if (groundTremorRoutine != null) StopCoroutine(groundTremorRoutine);
+        groundTremorRoutine = StartCoroutine(GroundTremorRoutine(verticalImpactGroundDuration, verticalImpactGroundMagnitude));
+        SpawnImpactSmokeWave();
 
         // Daño crítico AoE a los enemigos en el radio de impacto
         ExecuteAoEImpactDamage(transform.position, verticalImpactAoERadius, verticalImpactAoEDamage);
@@ -675,6 +720,9 @@ public class PlayerCombatController : MonoBehaviour
 
             yield return null;
         }
+
+        // Iniciar enfriamiento anti-spam al concluir el impacto y la explosión
+        verticalFinisherCooldownTimer = verticalFinisherCooldown;
 
         // Restaurar colisión con enemigos ahora que los enemigos fueron apartados fuera del centro
         if (Player != null) Player.SetIgnoreEnemyCollisions(false);
@@ -837,8 +885,11 @@ public class PlayerCombatController : MonoBehaviour
         bool isDownHeld = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxisRaw("Vertical") < -0.5f;
         if ((isDownHeld || CanTriggerAirSlam) && Input.GetKeyDown(attackKey))
         {
-            StartVerticalFinisher();
-            return;
+            if (CanExecuteVerticalFinisher)
+            {
+                StartVerticalFinisher();
+                return;
+            }
         }
 
         // Encadenar a Jump Attack 2 si pulsa J en la ventana
@@ -867,8 +918,11 @@ public class PlayerCombatController : MonoBehaviour
         bool isDownHeld = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxisRaw("Vertical") < -0.5f;
         if ((isDownHeld || CanTriggerAirSlam) && Input.GetKeyDown(attackKey))
         {
-            StartVerticalFinisher();
-            return;
+            if (CanExecuteVerticalFinisher)
+            {
+                StartVerticalFinisher();
+                return;
+            }
         }
 
         if (normTime >= 0.95f)
@@ -901,8 +955,11 @@ public class PlayerCombatController : MonoBehaviour
         // Al ascender, si el jugador pulsa J o S+J, encadena al Finisher vertical
         if (Input.GetKeyDown(attackKey) && stateTimer >= 0.12f)
         {
-            StartVerticalFinisher();
-            return;
+            if (CanExecuteVerticalFinisher)
+            {
+                StartVerticalFinisher();
+                return;
+            }
         }
 
         if (normTime >= 0.95f)
@@ -930,6 +987,16 @@ public class PlayerCombatController : MonoBehaviour
         {
             StopCoroutine(verticalFinisherRoutine);
             verticalFinisherRoutine = null;
+            verticalFinisherCooldownTimer = verticalFinisherCooldown;
+        }
+        if (groundTremorRoutine != null)
+        {
+            StopCoroutine(groundTremorRoutine);
+            groundTremorRoutine = null;
+            if (cachedGridTransform != null)
+            {
+                cachedGridTransform.position = gridInitialPos;
+            }
         }
 
         if (Player != null) Player.SetIgnoreEnemyCollisions(false);
@@ -1110,6 +1177,60 @@ public class PlayerCombatController : MonoBehaviour
         yield return new WaitForSeconds(duration);
         if (Anim != null) Anim.speed = 1.0f;
         hitstopRoutine = null;
+    }
+
+    public void SpawnImpactSmokeWave()
+    {
+        if (smokeFxPrefab == null) return;
+
+        float baseY = transform.position.y + 0.05f;
+
+        // Humo hacia la izquierda
+        Vector3 leftPos = new Vector3(transform.position.x - 0.45f, baseY, transform.position.z);
+        GameObject leftSmoke = Instantiate(smokeFxPrefab, leftPos, Quaternion.identity);
+        leftSmoke.transform.localScale = new Vector3(-1.2f, 1.2f, 1f);
+
+        // Humo hacia la derecha
+        Vector3 rightPos = new Vector3(transform.position.x + 0.45f, baseY, transform.position.z);
+        GameObject rightSmoke = Instantiate(smokeFxPrefab, rightPos, Quaternion.identity);
+        rightSmoke.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+    }
+
+    private IEnumerator GroundTremorRoutine(float duration, float magnitude)
+    {
+        if (cachedGridTransform == null)
+        {
+            GameObject gridObj = GameObject.Find("Grid");
+            if (gridObj != null)
+            {
+                cachedGridTransform = gridObj.transform;
+                gridInitialPos = cachedGridTransform.position;
+            }
+        }
+
+        if (cachedGridTransform == null) yield break;
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float progress = Mathf.Clamp01(elapsed / duration);
+            float damper = 1f - progress;
+            // Vibración sísmica rápida con amortiguación
+            float offsetY = Mathf.Sin(elapsed * 60f) * magnitude * damper;
+            float offsetX = Mathf.Cos(elapsed * 45f) * (magnitude * 0.35f) * damper;
+            if (cachedGridTransform != null)
+            {
+                cachedGridTransform.position = gridInitialPos + new Vector3(offsetX, offsetY, 0f);
+            }
+            yield return null;
+        }
+
+        if (cachedGridTransform != null)
+        {
+            cachedGridTransform.position = gridInitialPos;
+        }
+        groundTremorRoutine = null;
     }
 
     #endregion
