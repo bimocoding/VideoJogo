@@ -54,6 +54,10 @@ public class GameOverUI : MonoBehaviour
     {
         isDisplaying = true;
 
+        // Subir la música al volumen de menú/game over (40%)
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.SetGameOverVolume();
+
         if (canvasGroup != null)
         {
             canvasGroup.blocksRaycasts = true;

@@ -89,6 +89,10 @@ public class CelestePauseMenu : MonoBehaviour
         showingControls = false;
         Time.timeScale = 0f;
 
+        // Subir la música al volumen de menú (40%)
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.SetMenuVolume();
+
         mainPauseGroup.alpha = 1f;
         mainPauseGroup.blocksRaycasts = true;
         mainPauseGroup.interactable = true;
@@ -103,6 +107,11 @@ public class CelestePauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         if (!isPaused || isTransitioning) return;
+
+        // Bajar la música al volumen de gameplay (4%)
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.SetGameplayVolume();
+
         StartCoroutine(FadeOutAndResume());
     }
 

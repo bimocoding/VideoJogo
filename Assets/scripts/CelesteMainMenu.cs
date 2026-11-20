@@ -59,6 +59,13 @@ public class CelesteMainMenu : MonoBehaviour
 
     void Start()
     {
+        // Asegurar que el MusicManager existe (se auto-crea si no hay uno en la escena)
+        if (MusicManager.Instance == null)
+        {
+            var musicGO = new GameObject("MusicManager");
+            musicGO.AddComponent<MusicManager>();
+        }
+
         BuildMenu();
 
         if (menuActive)
@@ -304,6 +311,11 @@ public class CelesteMainMenu : MonoBehaviour
     private IEnumerator FadeOutAndStartGame()
     {
         isTransitioning = true;
+
+        // Bajar la música al volumen de gameplay (4%)
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.SetGameplayVolume();
+
         float duration = 0.45f;
         float elapsed = 0f;
         while (elapsed < duration)

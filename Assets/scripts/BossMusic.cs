@@ -62,6 +62,10 @@ public class BossMusic : MonoBehaviour
         instance.StopAllCoroutines(); // por si aún esperaba a que terminara de componerse
         instance.fade = null;
         instance.FadeTo(0f, true);
+
+        // Restaurar la música principal al volumen de gameplay
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.RestoreAfterBoss();
     }
 
     void Awake()
@@ -75,6 +79,10 @@ public class BossMusic : MonoBehaviour
 
     private void StartTrack()
     {
+        // Silenciar la música principal mientras suena la del boss
+        if (MusicManager.Instance != null)
+            MusicManager.Instance.MuteInstant();
+
         source.clip = customTrack != null ? customTrack : generated;
         if (!source.isPlaying) source.Play();
         FadeTo(volume, false);
