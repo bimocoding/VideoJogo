@@ -54,3 +54,6 @@ crashlytics-build.properties
 # OS files
 .DS_Store
 Thumbs.db
+
+# Root raw media files
+/*.mp3
