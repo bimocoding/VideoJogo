@@ -245,6 +245,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 3
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -490,6 +491,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 4.5
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -803,6 +805,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 4.5
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -55899,6 +55902,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 4.5
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -57735,6 +57739,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 3
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -59069,6 +59074,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 4.5
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -59748,6 +59754,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 4.5
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -61087,6 +61094,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 4.5
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -64671,6 +64679,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 4.5
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -64886,6 +64895,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 3
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -88219,6 +88229,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 4.5
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -88538,6 +88549,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 4.5
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
@@ -90062,6 +90074,7 @@ MonoBehaviour:
   hitFlashColor: {r: 1, g: 0.25, b: 0.25, a: 1}
   enableHitSquash: 1
   squashScale: {x: 1.25, y: 0.8}
+  defaultHitStunDuration: 0.85
   baseKnockbackForce: 3
   verticalKnockback: 1.5
   finisherKnockbackMultiplier: 1.6
